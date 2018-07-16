@@ -1,6 +1,3 @@
-# Mention
-
-
 
 [![Coverage Status](https://coveralls.io/repos/github/upastushyna/Mention/badge.svg?branch=master)](https://coveralls.io/github/upastushyna/Mention?branch=master)
 
