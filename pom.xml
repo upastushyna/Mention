@@ -81,6 +81,15 @@
             </reportSet>
           </reportSets>
                   </plugin>
+                 
+                 <plugin>
+    <groupId>org.eluder.coveralls</groupId>
+    <artifactId>coveralls-maven-plugin</artifactId>
+    <version>4.3.0</version>
+    <configuration>
+        <repoToken>HvLH3kgsyCh5IYplJAmEaXkGXlt1X6JL0</repoToken>
+    </configuration>
+</plugin>
         </plugins>
     </build>
 
