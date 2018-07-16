@@ -1,0 +1,6 @@
+language: java
+
+## mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+// TO-DO
+##add script and scenario
