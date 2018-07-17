@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/hellomention")
-public class HelloMention {
 
-    @GetMapping
-    public String hello() {
-        return "Hello Mention!";
-    }
+public class HelloMention {
+  @GetMapping
+  public String hello() {
+    return "Hello Mention!";
+  }
 }
