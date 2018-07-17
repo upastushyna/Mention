@@ -1,3 +1,6 @@
+
+ ## mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+ 
 dist: trusty
 
 language: java
@@ -6,4 +9,4 @@ jdk:
   - oraclejdk8
 
 script:
- - mvn clean test
+   - mvn clean test
