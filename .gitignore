@@ -8,5 +8,7 @@
 *.zip
 *.tar.gz
 *.rar
+*.iml
 .idea/
 node_modules/
+target/
