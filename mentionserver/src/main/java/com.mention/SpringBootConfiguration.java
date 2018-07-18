@@ -1,7 +1,7 @@
 package com.mention;
 
-import com.mention.Workflow.StringMakerOne;
-import com.mention.Workflow.StringMakerTwo;
+import com.mention.workflow.StringMakerOne;
+import com.mention.workflow.StringMakerTwo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
