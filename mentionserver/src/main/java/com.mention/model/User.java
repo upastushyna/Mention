@@ -25,11 +25,11 @@ public class User {
   private String password;
 
   public Long getUser_id() {
-    return user_id;
+    return id;
   }
 
   public void setUser_id(Long user_id) {
-    this.user_id = user_id;
+    this.id = user_id;
   }
 
   public String getRole() {
