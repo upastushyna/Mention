@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface PostService {
 
-    void addPost(Post post);
+  void addPost(Post post);
 
-    Post getPost(Long post_id);
+  Post getPost(Long post_id);
 
-    void updatePost(Post post);
+  void updatePost(Post post);
 
-    void deletePost(Long post_id);
+  void deletePost(Long post_id);
 }

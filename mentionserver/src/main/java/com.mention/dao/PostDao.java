@@ -6,12 +6,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostDao {
 
-    void addPost(Post post);
+  void addPost(Post post);
 
-    Post getPost(Long id);
+  Post getPost(Long id);
 
-    void updatePost(Post post);
+  void updatePost(Post post);
 
-    void deletePost(Long id);
+  void deletePost(Long id);
 
 }

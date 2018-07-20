@@ -7,28 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class PostServiceImpl implements PostService {
 
-    @Autowired
+  @Autowired
     PostDaoImpl postDao;
 
-    @Override
+  @Override
     public void addPost(Post post) {
-        post.setPost_isActive(true);
-        postDao.addPost(post);
-    }
+    post.setPost_isActive(true);
+    postDao.addPost(post);
+  }
 
-    @Override
+  @Override
     public Post getPost(Long post_id) {
-        return postDao.getPost(post_id);
-    }
+    return postDao.getPost(post_id);
+  }
 
-    @Override
+  @Override
     public void updatePost(Post post) {
-        postDao.updatePost(post);
+    postDao.updatePost(post);
 
-    }
+  }
 
-    @Override
+  @Override
     public void deletePost(Long post_id) {
-        postDao.deletePost(post_id);
-    }
+    postDao.deletePost(post_id);
+  }
 }
