@@ -90,10 +90,12 @@ public class Post {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) {
-        return true; }
-    if (!(obj instanceof Post)) {
-        return false; }
+    if (this == obj){
+      return true;
+    }
+    if (!(obj instanceof Post)){
+      return false;
+    }
     Post post = (Post) obj;
     return Objects.equals(post_id, post.post_id)
         &&
