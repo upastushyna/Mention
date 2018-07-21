@@ -4,7 +4,9 @@ import com.mention.dao.PostDao;
 import com.mention.dao.PostDaoImpl;
 import com.mention.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PostServiceImpl implements PostService {
 
   @Autowired
@@ -12,7 +14,6 @@ public class PostServiceImpl implements PostService {
 
   @Override
     public void addPost(Post post) {
-    post.setPost_isActive(true);
     postDao.addPost(post);
   }
 

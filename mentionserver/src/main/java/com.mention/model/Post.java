@@ -1,6 +1,16 @@
 package com.mention.model;
 
-import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -12,11 +22,13 @@ public class Post {
   @Column(nullable = false)
   private String post_body;
 
-  @Column
+  @ManyToOne
+  @JoinColumn(name="USER_ID")
+  @JsonIgnoreProperties(value = "user_posts")
   private User post_author;
 
   @Column
-  private Long post_timestamp;
+  private Timestamp post_timestamp;
 
   /*
     @Column
@@ -24,21 +36,7 @@ public class Post {
   */
 
   @Column
-  private String post_mediafile;
-
-  @Column
-  private String post_comment;
-
-  public boolean isPost_isActive() {
-    return post_isActive;
-  }
-
-  public void setPost_isActive(boolean post_isActive) {
-    this.post_isActive = post_isActive;
-  }
-
-  @Column(nullable = false)
-  private boolean post_isActive;
+  private String post_mediafileUrl;
 
   public Long getPost_id() {
     return post_id;
@@ -64,28 +62,20 @@ public class Post {
     this.post_author = post_author;
   }
 
-  public Long getPost_timestamp() {
+  public Timestamp getPost_timestamp() {
     return post_timestamp;
   }
 
-  public void setPost_timestamp(Long post_timestamp) {
+  public void setPost_timestamp(Timestamp post_timestamp) {
     this.post_timestamp = post_timestamp;
   }
 
-  public Object getPost_mediafile() {
-    return post_mediafile;
+  public Object getPost_mediafileUrl() {
+    return post_mediafileUrl;
   }
 
-  public void setPost_mediafile(String post_mediafile) {
-    this.post_mediafile = post_mediafile;
-  }
-
-  public String getPost_comment() {
-    return post_comment;
-  }
-
-  public void setPost_comment(String post_comment) {
-    this.post_comment = post_comment;
+  public void setPost_mediafileUrl(String post_mediafileUrl) {
+    this.post_mediafileUrl = post_mediafileUrl;
   }
 
   @Override
@@ -105,14 +95,12 @@ public class Post {
         &&
           Objects.equals(post_timestamp, post.post_timestamp)
         &&
-          Objects.equals(post_mediafile, post.post_mediafile)
-        &&
-          Objects.equals(post_comment, post.post_comment);
+          Objects.equals(post_mediafileUrl, post.post_mediafileUrl);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(post_id, post_body, post_author, post_timestamp, post_mediafile, post_comment);
+    return Objects.hash(post_id, post_body, post_author, post_timestamp, post_mediafileUrl);
   }
 }
