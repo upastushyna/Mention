@@ -20,6 +20,12 @@ public class User {
   @OneToMany(mappedBy = "post_author")
   private List<Post> user_posts;
 
+  @OneToMany(mappedBy = "message_sender")
+  private List<Message> user_sentMessages;
+
+  @OneToMany(mappedBy = "message_receiver")
+  private List<Message> user_receivedMessages;
+
   @Column(nullable = false, unique = true)
   private String user_username;
 
@@ -136,5 +142,21 @@ public class User {
 
   public void setActive(boolean active) {
     user_isActive = active;
+  }
+
+  public List<Message> getUser_receivedMessages() {
+    return user_receivedMessages;
+  }
+
+  public void setUser_receivedMessages(List<Message> user_receivedMessages) {
+    this.user_receivedMessages = user_receivedMessages;
+  }
+
+  public List<Message> getUser_sentMessages() {
+    return user_sentMessages;
+  }
+
+  public void setUser_sentMessages(List<Message> user_sentMessages) {
+    this.user_sentMessages = user_sentMessages;
   }
 }

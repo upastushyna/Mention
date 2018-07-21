@@ -23,7 +23,7 @@ public class Post {
   private String post_body;
 
   @ManyToOne
-  @JoinColumn(name = "USER_ID")
+  @JoinColumn(name = "USER_ID", nullable = false)
   @JsonIgnoreProperties(value = "user_posts")
   private User post_author;
 
