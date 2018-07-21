@@ -5,18 +5,39 @@
   "dependencies": {
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.1",
+    "npm-watch": "^0.3.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-order": "^0.7.0"
   },
+
+  "watch": {
+    "stylelint-dev": {
+      "patterns": [
+        "/src/**/*.scss"
+      ],
+      "extensions": "scss"
+    }
+  },
+
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm-run-all -p watch-styles-sass watch-compile-sass start-js",
+    "start-js": "react-scripts start",
+    "build": "npm run stylelint-build && npm run build-sass && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "watch-compile-sass": "npm run build-sass && node-sass-chokidar src/scss/index.scss -o src/css --watch --recursive",
-    "build-sass": "node-sass-chokidar src/scss/index.scss -o src/css"
+    "build-sass": "node-sass-chokidar src/scss/index.scss -o src/css",
+    "watch-styles-sass": "npm-watch",
+    "stylelint-dev": "stylelint 'src/**/*.scss' --cache --cache-location './.stylelintcache'; exit 0",
+    "stylelint-build": "stylelint 'src/**/*.scss'",
+    "stylelint-fix-sass": "stylelint --fix 'src/**/*.scss'"
   },
   "devDependencies": {
     "standard": "^10.0.3"
