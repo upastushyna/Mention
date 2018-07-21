@@ -1,21 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable indent */
+import React, { Component, Fragment } from 'react'
+import './App.css'
+import { Route, Switch } from 'react-router-dom'
+import Navigation from './components/Navigation'
+import Profile from './components/Profile'
+import Messages from './components/Messages'
+import CreatePost from './components/CreatePost'
+import Favorites from './components/Favorites'
+import Body from './components/Body'
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <Fragment>
+        <Route path='/' component={Navigation}/>
+        <Switch>
+          <Route path='/messages' component={Messages}/>
+          <Route path='/profile' component={Profile}/>
+          <Route path='/createPost' component={CreatePost}/>
+          <Route path='/favorites' component={Favorites}/>
+        </Switch>
+          <Body/>
+      </Fragment>
+    )
   }
 }
 
-export default App;
+export default App
