@@ -90,10 +90,10 @@ public class Post {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj){
+    if (this == obj) {
       return true;
     }
-    if (!(obj instanceof Post)){
+    if (!(obj instanceof Post)) {
       return false;
     }
     Post post = (Post) obj;
