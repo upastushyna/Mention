@@ -23,7 +23,7 @@ public class Post {
   private String post_body;
 
   @ManyToOne
-  @JoinColumn(name="USER_ID")
+  @JoinColumn(name = "USER_ID")
   @JsonIgnoreProperties(value = "user_posts")
   private User post_author;
 
@@ -80,10 +80,10 @@ public class Post {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj){
+    if (this == obj) {
       return true;
     }
-    if (!(obj instanceof Post)){
+    if (!(obj instanceof Post)) {
       return false;
     }
     Post post = (Post) obj;
