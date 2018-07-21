@@ -10,5 +10,6 @@
 *.rar
 *.iml
 .idea/
+frontend/build/
 node_modules/
 target/
