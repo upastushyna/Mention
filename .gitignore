@@ -10,7 +10,8 @@
 *.tar.gz
 *.rar
 *.iml
-.stylelintcache
+frontend/.stylelintcache
 .idea/
+frontend/build/
 node_modules/
 target/
