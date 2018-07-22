@@ -11,7 +11,7 @@ import HomePage from './components/HomePage'
 import NotFound from './components/NotFound'
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <Fragment>
         <Navigation/>
