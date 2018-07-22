@@ -10,7 +10,7 @@ import Favorites from './components/Favorites'
 import Body from './components/Body'
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <Fragment>
         <Route path='/' component={Navigation}/>
