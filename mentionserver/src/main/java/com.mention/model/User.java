@@ -1,7 +1,5 @@
 package com.mention.model;
 
-import org.hibernate.annotations.DynamicUpdate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,148 +13,157 @@ import java.util.List;
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private Long user_id;
+  private Long id;
 
-  @OneToMany(mappedBy = "post_author")
-  private List<Post> user_posts;
+  @OneToMany(mappedBy = "author")
+  private List<Post> posts;
 
-  @OneToMany(mappedBy = "message_sender")
-  private List<Message> user_sentMessages;
+  @OneToMany(mappedBy = "sender")
+  private List<Message> sentMessages;
 
-  @OneToMany(mappedBy = "message_receiver")
-  private List<Message> user_receivedMessages;
+  @OneToMany(mappedBy = "receiver")
+  private List<Message> receivedMessages;
 
-  @Column(nullable = false, unique = true)
-  private String user_username;
+  @Column(nullable = false, unique = true, name = "USER_USERNAME")
+  private String username;
 
-  @Column
-  private String user_firstName;
+  @Column(name = "USER_FIRSTNAME")
+  private String firstName;
 
-  @Column
-  private String user_secondName;
+  @Column(name = "USER_SECONDNAME")
+  private String secondName;
 
-  @Column
-  private String user_address;
+  @Column(name = "USER_ADDRESS")
+  private String address;
 
-  @Column
-  private Date user_birthDate;
+  @Column(name = "USER_BIRTHDATE")
+  private Date birthDate;
 
-  @Column
-  private String user_avatarUrl;
+  @Column(name = "USER_AVATAR_URL")
+  private String avatarUrl;
 
-  @Column
-  private String user_backgroundUrl;
+  @Column(name = "USER_BACKGROUND_URL")
+  private String backgroundUrl;
 
-  @Column(nullable = false, unique = true)
-  private String user_email;
+  @Column(nullable = false, unique = true, name = "USER_EMAIL")
+  private String email;
 
-  @Column(nullable = false)
-  private String user_password;
+  @Column(nullable = false, name = "USER_PASSWORD")
+  private String password;
 
-  @Column(nullable = false)
-  private boolean user_isActive;
+  @Column(nullable = false, name = "USER_IS_ACTIVE")
+  private boolean isActive;
 
   public String getUsername() {
-    return user_username;
+    return username;
   }
 
   public void setUsername(String username) {
-    this.user_username = username;
+    this.username = username;
   }
 
   public Long getId() {
-    return user_id;
+    return id;
   }
 
   public void setId(Long id) {
-    this.user_id = id;
+    this.id = id;
   }
 
   public String getFirstName() {
-    return user_firstName;
+    return firstName;
   }
 
   public void setFirstName(String firstName) {
-    this.user_firstName = firstName;
+    this.firstName = firstName;
   }
 
   public String getSecondName() {
-    return user_secondName;
+    return secondName;
   }
 
   public void setSecondName(String secondName) {
-    this.user_secondName = secondName;
+    this.secondName = secondName;
   }
 
   public String getAddress() {
-    return user_address;
+    return address;
   }
 
   public void setAddress(String address) {
-    this.user_address = address;
+    this.address = address;
   }
 
   public Date getBirthDate() {
-    return user_birthDate;
+    return birthDate;
   }
 
   public void setBirthDate(Date birthDate) {
-    this.user_birthDate = birthDate;
+    this.birthDate = birthDate;
   }
 
   public String getAvatarUrl() {
-    return user_avatarUrl;
+    return avatarUrl;
   }
 
   public void setAvatarUrl(String avatarUrl) {
-    this.user_avatarUrl = avatarUrl;
+    this.avatarUrl = avatarUrl;
   }
 
   public String getBackgroundUrl() {
-    return user_backgroundUrl;
+    return backgroundUrl;
   }
 
   public void setBackgroundUrl(String backgroundUrl) {
-    this.user_backgroundUrl = backgroundUrl;
+    this.backgroundUrl = backgroundUrl;
   }
 
   public String getEmail() {
-    return user_email;
+    return email;
   }
 
   public void setEmail(String email) {
-    this.user_email = email;
+    this.email = email;
   }
 
   public String getPassword() {
-    return user_password;
+    return password;
   }
 
   public void setPassword(String password) {
-    this.user_password = password;
+    this.password = password;
   }
 
   public boolean isActive() {
-    return user_isActive;
+    return isActive;
   }
 
   public void setActive(boolean active) {
-    user_isActive = active;
+    isActive = active;
   }
 
-  public List<Message> getUser_receivedMessages() {
-    return user_receivedMessages;
+  public List<Message> getReceivedMessages() {
+    return receivedMessages;
   }
 
-  public void setUser_receivedMessages(List<Message> user_receivedMessages) {
-    this.user_receivedMessages = user_receivedMessages;
+  public void setReceivedMessages(List<Message> receivedMessages) {
+    this.receivedMessages = receivedMessages;
   }
 
-  public List<Message> getUser_sentMessages() {
-    return user_sentMessages;
+  public List<Message> getSentMessages() {
+    return sentMessages;
   }
 
-  public void setUser_sentMessages(List<Message> user_sentMessages) {
-    this.user_sentMessages = user_sentMessages;
+  public void setSentMessages(List<Message> sentMessages) {
+    this.sentMessages = sentMessages;
   }
+
+  public List<Post> getPosts() {
+    return posts;
+  }
+
+  public void setPosts(List<Post> posts) {
+    this.posts = posts;
+  }
+
 }

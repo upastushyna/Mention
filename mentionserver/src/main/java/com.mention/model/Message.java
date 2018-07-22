@@ -16,61 +16,61 @@ public class Message {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private int message_id;
+  private int id;
 
-  @Column(nullable = false)
-  private String message_content;
+  @Column(nullable = false, name = "MESSAGE_CONTENT")
+  private String content;
 
   @ManyToOne
   @JoinColumn(name = "SENDER_ID", nullable = false)
-  @JsonIgnoreProperties(value = "user_sentMessages")
-  private User message_sender;
+  @JsonIgnoreProperties(value = "sentMessages")
+  private User sender;
 
   @ManyToOne
   @JoinColumn(name = "RECEIVER_ID", nullable = false)
-  @JsonIgnoreProperties(value = "user_receivedMessages")
-  private User message_receiver;
+  @JsonIgnoreProperties(value = "receivedMessages")
+  private User receiver;
 
-  @Column
-  private Timestamp message_timestamp;
+  @Column(nullable = false, name = "MESSAGE_TIMESTAMP")
+  private Timestamp timestamp;
 
-  public int getMessage_id() {
-    return message_id;
+  public int getId() {
+    return id;
   }
 
-  public void setMessage_id(int message_id) {
-    this.message_id = message_id;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  public String getMessage_content() {
-    return message_content;
+  public String getContent() {
+    return content;
   }
 
-  public void setMessage_content(String message_content) {
-    this.message_content = message_content;
+  public void setContent(String content) {
+    this.content = content;
   }
 
-  public User getMessage_sender() {
-    return message_sender;
+  public User getSender() {
+    return sender;
   }
 
-  public void setMessage_sender(User message_sender) {
-    this.message_sender = message_sender;
+  public void setSender(User sender) {
+    this.sender = sender;
   }
 
-  public User getMessage_receiver() {
-    return message_receiver;
+  public User getReceiver() {
+    return receiver;
   }
 
-  public void setMessage_receiver(User message_receiver) {
-    this.message_receiver = message_receiver;
+  public void setReceiver(User receiver) {
+    this.receiver = receiver;
   }
 
   public Timestamp getMessage_timestamp() {
-    return message_timestamp;
+    return timestamp;
   }
 
-  public void setMessage_timestamp(Timestamp message_timestamp) {
-    this.message_timestamp = message_timestamp;
+  public void setTimestamp(Timestamp timestamp) {
+    this.timestamp = timestamp;
   }
 }

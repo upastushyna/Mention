@@ -26,20 +26,20 @@ public class PostController {
     postService.addPost(post);
   }
 
-  @GetMapping(value = "/{post_id}")
-  public Post getPost(@PathVariable Long post_id) { 
-    return postService.getPost(post_id);
+  @GetMapping(value = "/{id}")
+  public Post getPost(@PathVariable Long id) {
+    return postService.getPost(id);
   }
 
-  @PutMapping(value = "/{post_id}")
+  @PutMapping(value = "/{id}")
   @Transactional
-  public void updatePost(@PathVariable Long post_id, @RequestBody Post post) {
+  public void updatePost(@PathVariable Long id, @RequestBody Post post) {
     postService.updatePost(post);
   }
 
-  @DeleteMapping(value = "/{post_id}")
+  @DeleteMapping(value = "/{id}")
   @Transactional
-  public void deletePost(@PathVariable Long post_id) {
-    postService.deletePost(post_id);
+  public void deletePost(@PathVariable Long id) {
+    postService.deletePost(id);
   }
 }
