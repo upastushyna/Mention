@@ -15,23 +15,24 @@ import java.sql.Timestamp;
 public class Message {
 
   @Id
+  @Column(name = "message_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private int id;
 
-  @Column(nullable = false, name = "MESSAGE_CONTENT")
+  @Column(nullable = false, name = "message_content")
   private String content;
 
   @ManyToOne
-  @JoinColumn(name = "SENDER_ID", nullable = false)
+  @JoinColumn(name = "sender_id", nullable = false)
   @JsonIgnoreProperties(value = "sentMessages")
   private User sender;
 
   @ManyToOne
-  @JoinColumn(name = "RECEIVER_ID", nullable = false)
+  @JoinColumn(name = "receiver_id", nullable = false)
   @JsonIgnoreProperties(value = "receivedMessages")
   private User receiver;
 
-  @Column(nullable = false, name = "MESSAGE_TIMESTAMP")
+  @Column(nullable = false, name = "message_timestamp")
   private Timestamp timestamp;
 
   public int getId() {

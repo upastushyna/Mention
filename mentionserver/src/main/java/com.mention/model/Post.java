@@ -16,18 +16,19 @@ import java.util.Objects;
 @Entity
 public class Post {
   @Id
+  @Column(name = "post_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Column(nullable = false, name = "POST_BODY")
+  @Column(nullable = false, name = "post_body")
   private String body;
 
   @ManyToOne
-  @JoinColumn(name = "USER_ID", nullable = false)
+  @JoinColumn(name = "user_id", nullable = false)
   @JsonIgnoreProperties(value = "posts")
   private User author;
 
-  @Column(name = "POST_TIMESTAMP")
+  @Column(name = "post_timestamp")
   private Timestamp timestamp;
 
   /*
@@ -35,7 +36,7 @@ public class Post {
     private List<T> post_likes;
   */
 
-  @Column(name = "POST_MEDIAFILE_URL")
+  @Column(name = "post_mediafile_url")
   private String mediafileUrl;
 
   public Long getId() {

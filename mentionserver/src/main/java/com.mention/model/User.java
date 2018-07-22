@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 public class User {
   @Id
+  @Column(name = "user_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
@@ -24,34 +25,34 @@ public class User {
   @OneToMany(mappedBy = "receiver")
   private List<Message> receivedMessages;
 
-  @Column(nullable = false, unique = true, name = "USER_USERNAME")
+  @Column(nullable = false, unique = true, name = "user_username")
   private String username;
 
-  @Column(name = "USER_FIRSTNAME")
+  @Column(name = "user_firstname")
   private String firstName;
 
-  @Column(name = "USER_SECONDNAME")
+  @Column(name = "user_secondname")
   private String secondName;
 
-  @Column(name = "USER_ADDRESS")
+  @Column(name = "user_address")
   private String address;
 
-  @Column(name = "USER_BIRTHDATE")
+  @Column(name = "user_birthdate")
   private Date birthDate;
 
-  @Column(name = "USER_AVATAR_URL")
+  @Column(name = "user_avatar_url")
   private String avatarUrl;
 
-  @Column(name = "USER_BACKGROUND_URL")
+  @Column(name = "user_background_url")
   private String backgroundUrl;
 
-  @Column(nullable = false, unique = true, name = "USER_EMAIL")
+  @Column(nullable = false, unique = true, name = "user_email")
   private String email;
 
-  @Column(nullable = false, name = "USER_PASSWORD")
+  @Column(nullable = false, name = "user_password")
   private String password;
 
-  @Column(nullable = false, name = "USER_IS_ACTIVE")
+  @Column(nullable = false, name = "user_is_active")
   private boolean isActive;
 
   public String getUsername() {
