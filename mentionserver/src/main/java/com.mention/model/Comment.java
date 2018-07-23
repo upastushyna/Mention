@@ -22,11 +22,11 @@ public class Comment {
 
   @ManyToOne
   @JoinColumn(name = "user_id")
-  private User commentCreator;
+  private User commentator;
 
   @ManyToOne
   @JoinColumn(name = "post_id")
-  private Post commentedPost;
+  private Post post;
 
   @Column(name = "post_timestamp")
   private Timestamp timestamp;
@@ -51,19 +51,19 @@ public class Comment {
   }
 
   public User getCommentCreator() {
-    return commentCreator;
+    return commentator;
   }
 
   public void setCommentCreator(User commentCreator) {
-    this.commentCreator = commentCreator;
+    this.commentator = commentCreator;
   }
 
   public Post getCommentedPost() {
-    return commentedPost;
+    return post;
   }
 
   public void setCommentedPost(Post commentedPost) {
-    this.commentedPost = commentedPost;
+    this.post = commentedPost;
   }
 
   public Timestamp getTimestamp() {

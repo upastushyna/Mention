@@ -20,7 +20,7 @@ public class User {
   @OneToMany(mappedBy = "post_author")
   private List<Post> user_posts;
 
-  @OneToMany(mappedBy = "")
+  @OneToMany(mappedBy = "commentator")
   private List<Comment> comments;
 
   @Column(nullable = false, unique = true)
