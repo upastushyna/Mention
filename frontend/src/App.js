@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import React, { Component, Fragment } from 'react'
-import './App.css'
+import './css/index.css'
 import { Route, Switch } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Profile from './components/Profile'
