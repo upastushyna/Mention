@@ -34,5 +34,51 @@ public class Comment {
   @Column(name = "post_medifileurl")
   private String mediafileUrl;
 
+  public Long getId() {
+    return id;
+  }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getCommentBody() {
+    return commentBody;
+  }
+
+  public void setCommentBody(String commentBody) {
+    this.commentBody = commentBody;
+  }
+
+  public User getCommentCreator() {
+    return commentCreator;
+  }
+
+  public void setCommentCreator(User commentCreator) {
+    this.commentCreator = commentCreator;
+  }
+
+  public Post getCommentedPost() {
+    return commentedPost;
+  }
+
+  public void setCommentedPost(Post commentedPost) {
+    this.commentedPost = commentedPost;
+  }
+
+  public Timestamp getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(Timestamp timestamp) {
+    this.timestamp = timestamp;
+  }
+
+  public String getMediafileUrl() {
+    return mediafileUrl;
+  }
+
+  public void setMediafileUrl(String mediafileUrl) {
+    this.mediafileUrl = mediafileUrl;
+  }
 }
