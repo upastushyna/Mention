@@ -8,9 +8,9 @@ public interface PostService {
 
   void addPost(Post post);
 
-  Post getPost(Long post_id);
+  Post getPost(Long id);
 
   void updatePost(Post post);
 
-  void deletePost(Long post_id);
+  void deletePost(Long id);
 }
