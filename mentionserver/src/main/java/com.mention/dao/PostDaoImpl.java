@@ -17,7 +17,6 @@ public class PostDaoImpl implements PostDao {
 
   @Override
   public void addPost(Post post) {
-    post.setTimestamp(new Timestamp(new Date().getTime()));
     entityManager.persist(post);
   }
 

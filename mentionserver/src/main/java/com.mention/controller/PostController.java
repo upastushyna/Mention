@@ -31,9 +31,9 @@ public class PostController {
     return postService.getPost(id);
   }
 
-  @PutMapping(value = "/{id}")
+  @PutMapping
   @Transactional
-  public void updatePost(@PathVariable Long id, @RequestBody Post post) {
+  public void updatePost(@RequestBody Post post) {
     postService.updatePost(post);
   }
 

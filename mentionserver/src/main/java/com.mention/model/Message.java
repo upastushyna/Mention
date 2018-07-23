@@ -1,6 +1,10 @@
 package com.mention.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.sql.Timestamp;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Entity
 public class Message {
@@ -32,8 +38,15 @@ public class Message {
   @JsonIgnoreProperties(value = "receivedMessages")
   private User receiver;
 
+  @CreationTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
   @Column(nullable = false, name = "message_timestamp")
-  private Timestamp timestamp;
+  private Date timestamp;
+
+  @UpdateTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "message_modify_timestamp")
+  private Date modifyTimestamp;
 
   public int getId() {
     return id;
@@ -67,11 +80,19 @@ public class Message {
     this.receiver = receiver;
   }
 
-  public Timestamp getMessage_timestamp() {
+  public Date getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(Timestamp timestamp) {
+  public void setTimestamp(Date timestamp) {
     this.timestamp = timestamp;
+  }
+
+  public Date getModifyTimestamp() {
+    return modifyTimestamp;
+  }
+
+  public void setModifyTimestamp(Date modifyTimestamp) {
+    this.modifyTimestamp = modifyTimestamp;
   }
 }

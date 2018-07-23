@@ -2,6 +2,9 @@ package com.mention.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.sql.Timestamp;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -28,8 +33,15 @@ public class Post {
   @JsonIgnoreProperties(value = "posts")
   private User author;
 
+  @CreationTimestamp
   @Column(name = "post_timestamp")
-  private Timestamp timestamp;
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date timestamp;
+
+  @UpdateTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "post_modify_timestamp")
+  private Date modifyTimestamp;
 
   /*
     @Column
@@ -63,11 +75,11 @@ public class Post {
     this.author = author;
   }
 
-  public Timestamp getTimestamp() {
+  public Date getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(Timestamp timestamp) {
+  public void setTimestamp(Date timestamp) {
     this.timestamp = timestamp;
   }
 
@@ -77,6 +89,14 @@ public class Post {
 
   public void setMediafileUrl(String mediafileUrl) {
     this.mediafileUrl = mediafileUrl;
+  }
+
+  public Date getModifyTimestamp() {
+    return modifyTimestamp;
+  }
+
+  public void setModifyTimestamp(Date modifyTimestamp) {
+    this.modifyTimestamp = modifyTimestamp;
   }
 
   @Override
