@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import java.sql.Timestamp;
-import java.util.Date;
 
 @Repository
 public class PostDaoImpl implements PostDao {
@@ -17,13 +15,12 @@ public class PostDaoImpl implements PostDao {
 
   @Override
   public void addPost(Post post) {
-    post.setPost_timestamp(new Timestamp(new Date().getTime()));
     entityManager.persist(post);
   }
 
   @Override
-  public Post getPost(Long post_id) {
-    return entityManager.find(Post.class, post_id);
+  public Post getPost(Long id) {
+    return entityManager.find(Post.class, id);
   }
 
   @Override
@@ -32,8 +29,8 @@ public class PostDaoImpl implements PostDao {
   }
 
   @Override
-  public void deletePost(Long post_id) {
-    Post post = entityManager.find(Post.class, post_id);
+  public void deletePost(Long id) {
+    Post post = entityManager.find(Post.class, id);
     entityManager.remove(post);
   }
 }
