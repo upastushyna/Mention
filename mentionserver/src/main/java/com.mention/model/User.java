@@ -20,6 +20,9 @@ public class User {
   @OneToMany(mappedBy = "post_author")
   private List<Post> user_posts;
 
+  @OneToMany(mappedBy = "")
+  private List<Comment> comments;
+
   @Column(nullable = false, unique = true)
   private String user_username;
 
