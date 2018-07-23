@@ -2,7 +2,8 @@ package com.mention.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,72 +11,90 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.sql.Timestamp;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
 public class Post {
   @Id
+  @Column(name = "post_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private Long post_id;
+  private Long id;
 
-  @Column(nullable = false)
-  private String post_body;
+  @Column(nullable = false, name = "post_body")
+  private String body;
 
   @ManyToOne
-  @JoinColumn(name = "USER_ID")
-  @JsonIgnoreProperties(value = "user_posts")
-  private User post_author;
+  @JoinColumn(name = "user_id", nullable = false)
+  @JsonIgnoreProperties(value = "posts")
+  private User author;
 
-  @Column
-  private Timestamp post_timestamp;
+  @CreationTimestamp
+  @Column(name = "post_timestamp")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date timestamp;
+
+  @UpdateTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "post_modify_timestamp")
+  private Date modifyTimestamp;
 
   /*
     @Column
     private List<T> post_likes;
   */
 
-  @Column
-  private String post_mediafileUrl;
+  @Column(name = "post_mediafile_url")
+  private String mediafileUrl;
 
-  public Long getPost_id() {
-    return post_id;
+  public Long getId() {
+    return id;
   }
 
-  public void setPost_id(Long post_id) {
-    this.post_id = post_id;
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public String getPost_body() {
-    return post_body;
+  public String getBody() {
+    return body;
   }
 
-  public void setPost_body(String post_body) {
-    this.post_body = post_body;
+  public void setBody(String body) {
+    this.body = body;
   }
 
-  public User getPost_author() {
-    return post_author;
+  public User getAuthor() {
+    return author;
   }
 
-  public void setPost_author(User post_author) {
-    this.post_author = post_author;
+  public void setAuthor(User author) {
+    this.author = author;
   }
 
-  public Timestamp getPost_timestamp() {
-    return post_timestamp;
+  public Date getTimestamp() {
+    return timestamp;
   }
 
-  public void setPost_timestamp(Timestamp post_timestamp) {
-    this.post_timestamp = post_timestamp;
+  public void setTimestamp(Date timestamp) {
+    this.timestamp = timestamp;
   }
 
-  public Object getPost_mediafileUrl() {
-    return post_mediafileUrl;
+  public Object getMediafileUrl() {
+    return mediafileUrl;
   }
 
-  public void setPost_mediafileUrl(String post_mediafileUrl) {
-    this.post_mediafileUrl = post_mediafileUrl;
+  public void setMediafileUrl(String mediafileUrl) {
+    this.mediafileUrl = mediafileUrl;
+  }
+
+  public Date getModifyTimestamp() {
+    return modifyTimestamp;
+  }
+
+  public void setModifyTimestamp(Date modifyTimestamp) {
+    this.modifyTimestamp = modifyTimestamp;
   }
 
   @Override
@@ -87,20 +106,20 @@ public class Post {
       return false;
     }
     Post post = (Post) obj;
-    return Objects.equals(post_id, post.post_id)
+    return Objects.equals(id, post.id)
         &&
-          Objects.equals(post_body, post.post_body)
+          Objects.equals(body, post.body)
         &&
-          Objects.equals(post_author, post.post_author)
+          Objects.equals(author, post.author)
         &&
-          Objects.equals(post_timestamp, post.post_timestamp)
+          Objects.equals(timestamp, post.timestamp)
         &&
-          Objects.equals(post_mediafileUrl, post.post_mediafileUrl);
+          Objects.equals(mediafileUrl, post.mediafileUrl);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(post_id, post_body, post_author, post_timestamp, post_mediafileUrl);
+    return Objects.hash(id, body, author, timestamp, mediafileUrl);
   }
 }

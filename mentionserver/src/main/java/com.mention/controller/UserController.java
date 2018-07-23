@@ -31,9 +31,9 @@ public class UserController {
     return userService.getUser(id);
   }
 
-  @PutMapping(value = "/{id}")
+  @PutMapping
   @Transactional
-  public void updateUser(@PathVariable Long id, @RequestBody User user) {
+  public void updateUser(@RequestBody User user) {
     userService.updateUser(user);
   }
 
