@@ -1,6 +1,5 @@
 package com.mention.service;
 
-import com.mention.dao.PostDao;
 import com.mention.dao.PostDaoImpl;
 import com.mention.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
