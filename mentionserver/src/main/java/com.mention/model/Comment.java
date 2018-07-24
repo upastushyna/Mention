@@ -33,7 +33,7 @@ public class Comment {
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
-  @JsonIgnoreProperties(value = "comments")
+  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages"})
   private User commentator;
 
   @ManyToOne
