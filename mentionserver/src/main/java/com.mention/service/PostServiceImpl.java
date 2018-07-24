@@ -1,6 +1,5 @@
 package com.mention.service;
 
-import com.mention.dao.PostDao;
 import com.mention.dao.PostDaoImpl;
 import com.mention.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-    public Post getPost(Long post_id) {
-    return postDao.getPost(post_id);
+    public Post getPost(Long id) {
+    return postDao.getPost(id);
   }
 
   @Override
@@ -29,7 +28,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-    public void deletePost(Long post_id) {
-    postDao.deletePost(post_id);
+    public void deletePost(Long id) {
+    postDao.deletePost(id);
   }
 }
