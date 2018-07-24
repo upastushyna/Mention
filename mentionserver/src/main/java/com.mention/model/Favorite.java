@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-
 public class Favorite {
   @Id
   @Column(name = "favorite_id")
