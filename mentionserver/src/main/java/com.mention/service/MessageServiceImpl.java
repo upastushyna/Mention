@@ -4,14 +4,17 @@ import com.mention.dao.MessageDao;
 import com.mention.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
 public class MessageServiceImpl implements MessageService {
 
+  private MessageDao messageDao;
+
   @Autowired
-  MessageDao messageDao;
+  public MessageServiceImpl(MessageDao messageDao) {
+    this.messageDao = messageDao;
+  }
 
   @Override
   public Optional<Message> getMessage(Long id) {
