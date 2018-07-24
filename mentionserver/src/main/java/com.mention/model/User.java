@@ -24,8 +24,8 @@ public class User {
 
   @OneToMany(mappedBy = "receiver")
   private List<Message> receivedMessages;
-  
-  @OneToMany(mappedBy = "commenter")
+
+  @OneToMany(mappedBy = "commentator")
   private List<Comment> comments;
 
   @Column(nullable = false, unique = true, name = "user_username")
@@ -169,7 +169,7 @@ public class User {
   public void setPosts(List<Post> posts) {
     this.posts = posts;
   }
-  
+
   public List<Comment> getComments() {
     return comments;
   }
