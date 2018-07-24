@@ -1,34 +1,35 @@
 package com.mention.service;
 
-import com.mention.dao.PostDaoImpl;
+import com.mention.dao.PostDao;
 import com.mention.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
 
   @Autowired
-    PostDaoImpl postDao;
+  PostDao postDao;
 
   @Override
-    public void addPost(Post post) {
-    postDao.addPost(post);
+  public void addPost(Post post) {
+    postDao.save(post);
   }
 
   @Override
-    public Post getPost(Long id) {
-    return postDao.getPost(id);
+  public Optional<Post> getPost(Long id) {
+    return postDao.findById(id);
   }
 
   @Override
-    public void updatePost(Post post) {
-    postDao.updatePost(post);
-
+  public void updatePost(Post post) {
+    postDao.save(post);
   }
 
   @Override
-    public void deletePost(Long id) {
-    postDao.deletePost(id);
+  public void deletePost(Long id) {
+    postDao.deleteById(id);
   }
 }

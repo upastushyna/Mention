@@ -1,16 +1,19 @@
 package com.mention.dao;
 
 import com.mention.model.User;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserDao {
+import java.util.Optional;
 
-  void addUser(User user);
+@Repository
+public interface UserDao extends CrudRepository<User, Long> {
+
+  /*void addUser(User user);
 
   User getUser(Long id);
 
   void updateUser(User user);
 
-  void deleteUser(Long id);
+  void deleteUser(Long id);*/
 }

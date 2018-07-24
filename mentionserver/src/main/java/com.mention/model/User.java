@@ -1,5 +1,6 @@
 package com.mention.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -20,15 +21,19 @@ public class User {
   private Long id;
 
   @OneToMany(mappedBy = "author")
+  @JsonIgnoreProperties("author")
   private List<Post> posts;
 
   @OneToMany(mappedBy = "sender")
+  @JsonIgnoreProperties("sender")
   private List<Message> sentMessages;
 
   @OneToMany(mappedBy = "receiver")
+  @JsonIgnoreProperties("receiver")
   private List<Message> receivedMessages;
 
   @OneToMany(mappedBy = "commentator")
+  @JsonIgnoreProperties("commentator")
   private List<Comment> comments;
 
   @Column(nullable = false, unique = true, name = "user_username")

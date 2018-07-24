@@ -1,17 +1,20 @@
 package com.mention.dao;
 
 import com.mention.model.Post;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface PostDao {
+import java.util.Optional;
 
-  void addPost(Post post);
+@Repository
+public interface PostDao extends CrudRepository<Post, Long> {
+
+  /*void addPost(Post post);
 
   Post getPost(Long id);
 
   void updatePost(Post post);
 
-  void deletePost(Long id);
+  void deletePost(Long id);*/
 
 }

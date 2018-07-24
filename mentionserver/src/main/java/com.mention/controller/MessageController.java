@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/message")
 public class MessageController {
@@ -21,7 +23,7 @@ public class MessageController {
   MessageService messageService;
 
   @GetMapping("/{id}")
-  public Message getMessage(@PathVariable Long id) {
+  public Optional<Message> getMessage(@PathVariable Long id) {
     return messageService.getMessage(id);
   }
 
@@ -39,7 +41,7 @@ public class MessageController {
 
   @DeleteMapping("/{id}")
   @Transactional
-  public void deleteMessage(Long id) {
+  public void deleteMessage(@PathVariable Long id) {
     messageService.deleteMessage(id);
   }
 

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -27,7 +29,7 @@ public class UserController {
   }
 
   @GetMapping(value = "/{id}")
-  public User getUser(@PathVariable Long id) {
+  public Optional<User> getUser(@PathVariable Long id) {
     return userService.getUser(id);
   }
 
