@@ -37,6 +37,10 @@ public class Post {
   private User author;
 
   @OneToMany(mappedBy = "post")
+  @JsonIgnoreProperties(value = "post")
+  private List<Favorite> favorites;
+
+  @OneToMany(mappedBy = "post")
   private List<Comment> comments;
 
   @CreatedDate
