@@ -1,5 +1,6 @@
 package com.mention.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,37 +18,40 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
 
+
 @Entity
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Message {
-
+public class Comment {
   @Id
-  @Column(name = "message_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private int id;
+  @Column(name = "comment_id")
+  private Long id;
 
-  @Column(nullable = false, name = "message_content")
-  private String content;
-
-  @ManyToOne
-  @JoinColumn(name = "sender_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = "sentMessages")
-  private User sender;
+  @Column(nullable = false, name = "comment_body")
+  private String body;
 
   @ManyToOne
-  @JoinColumn(name = "receiver_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = "receivedMessages")
-  private User receiver;
+  @JoinColumn(name = "user_id", nullable = false)
+  @JsonIgnoreProperties(value = "comments")
+  private User commentator;
+
+  @ManyToOne
+  @JoinColumn(name = "post_id", nullable = false)
+  @JsonIgnoreProperties(value = "comments")
+  private Post post;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(nullable = false, name = "message_timestamp", updatable = false)
+  @Column(nullable = false, name = "comment_timestamp", updatable = false)
   private Date timestamp;
 
   @LastModifiedDate
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "message_modify_timestamp")
+  @Column(name = "comment_modify_timestamp")
   private Date modifyTimestamp;
+
+  @Column(name = "comment_mediafileurl")
+  private String mediafileUrl;
 
 }

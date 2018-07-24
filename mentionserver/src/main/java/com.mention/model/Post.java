@@ -1,11 +1,13 @@
 package com.mention.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,9 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
-import java.util.Objects;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
+@Data
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
   @Id
   @Column(name = "post_id")
@@ -27,99 +32,24 @@ public class Post {
   private String body;
 
   @ManyToOne
-  @JoinColumn(name = "user_id", nullable = false)
+  @JoinColumn(name = "user_id", nullable = false, updatable = false)
   @JsonIgnoreProperties(value = "posts")
   private User author;
 
-  @CreationTimestamp
-  @Column(name = "post_timestamp")
+  @OneToMany(mappedBy = "post")
+  private List<Comment> comments;
+
+  @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
+  @Column(nullable = false, name = "post_timestamp", updatable = false)
   private Date timestamp;
 
-  @UpdateTimestamp
+  @LastModifiedDate
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "post_modify_timestamp")
   private Date modifyTimestamp;
 
-  /*
-    @Column
-    private List<T> post_likes;
-  */
-
   @Column(name = "post_mediafile_url")
   private String mediafileUrl;
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    this.body = body;
-  }
-
-  public User getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(User author) {
-    this.author = author;
-  }
-
-  public Date getTimestamp() {
-    return timestamp;
-  }
-
-  public void setTimestamp(Date timestamp) {
-    this.timestamp = timestamp;
-  }
-
-  public Object getMediafileUrl() {
-    return mediafileUrl;
-  }
-
-  public void setMediafileUrl(String mediafileUrl) {
-    this.mediafileUrl = mediafileUrl;
-  }
-
-  public Date getModifyTimestamp() {
-    return modifyTimestamp;
-  }
-
-  public void setModifyTimestamp(Date modifyTimestamp) {
-    this.modifyTimestamp = modifyTimestamp;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!(obj instanceof Post)) {
-      return false;
-    }
-    Post post = (Post) obj;
-    return Objects.equals(id, post.id)
-        &&
-          Objects.equals(body, post.body)
-        &&
-          Objects.equals(author, post.author)
-        &&
-          Objects.equals(timestamp, post.timestamp)
-        &&
-          Objects.equals(mediafileUrl, post.mediafileUrl);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, body, author, timestamp, mediafileUrl);
-  }
 }
