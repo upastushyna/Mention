@@ -1,7 +1,7 @@
 package com.mention.controller;
 
-import com.mention.model.Post;
-import com.mention.service.PostService;
+import com.mention.model.Message;
+import com.mention.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,32 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/post")
-public class PostController {
+@RequestMapping("/message")
+public class MessageController {
 
   @Autowired
-  PostService postService;
+  MessageService messageService;
+
+  @GetMapping("/{id}")
+  public Message getMessage(@PathVariable Long id) {
+    return messageService.getMessage(id);
+  }
 
   @PostMapping
   @Transactional
-  public void addPost(@RequestBody Post post) { 
-    postService.addPost(post);
-  }
-
-  @GetMapping(value = "/{id}")
-  public Post getPost(@PathVariable Long id) {
-    return postService.getPost(id);
+  public void addMessage(@RequestBody Message message) {
+    messageService.addMessage(message);
   }
 
   @PutMapping
   @Transactional
-  public void updatePost(@RequestBody Post post) {
-    postService.updatePost(post);
+  public void updateMessage(@RequestBody Message message) {
+    messageService.updateMessage(message);
   }
 
-  @DeleteMapping(value = "/{id}")
+  @DeleteMapping("/{id}")
   @Transactional
-  public void deletePost(@PathVariable Long id) {
-    postService.deletePost(id);
+  public void deleteMessage(Long id) {
+    messageService.deleteMessage(id);
   }
+
 }

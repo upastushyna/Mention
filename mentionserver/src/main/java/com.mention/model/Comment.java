@@ -2,10 +2,10 @@ package com.mention.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -20,6 +20,7 @@ import java.util.Date;
 
 
 @Entity
+@Data
 @EntityListeners(AuditingEntityListener.class)
 public class Comment {
   @Id
@@ -40,72 +41,17 @@ public class Comment {
   @JsonIgnoreProperties(value = "comments")
   private Post post;
 
-  @CreationTimestamp
+  @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(nullable = false, name = "comment_timestamp")
+  @Column(nullable = false, name = "comment_timestamp", updatable = false)
   private Date timestamp;
 
-  public Date getModifyTimestamp() {
-    return modifyTimestamp;
-  }
-
-  public void setModifyTimestamp(Date modifyTimestamp) {
-    this.modifyTimestamp = modifyTimestamp;
-  }
-
-  @UpdateTimestamp
+  @LastModifiedDate
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "comment_modify_timestamp")
   private Date modifyTimestamp;
 
-  @Column(name = "post_mediafileurl")
+  @Column(name = "comment_mediafileurl")
   private String mediafileUrl;
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    this.body = body;
-  }
-
-  public User getCommentator() {
-    return commentator;
-  }
-
-  public void setCommentator(User commentator) {
-    this.commentator = commentator;
-  }
-
-  public Post getPost() {
-    return post;
-  }
-
-  public void setPost(Post post) {
-    this.post = post;
-  }
-
-  public Date getTimestamp() {
-    return timestamp;
-  }
-
-  public void setTimestamp(Date timestamp) {
-    this.timestamp = timestamp;
-  }
-
-  public String getMediafileUrl() {
-    return mediafileUrl;
-  }
-
-  public void setMediafileUrl(String mediafileUrl) {
-    this.mediafileUrl = mediafileUrl;
-  }
 }
