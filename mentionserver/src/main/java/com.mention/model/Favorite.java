@@ -2,7 +2,6 @@ package com.mention.model;
 
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -14,7 +13,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-@EntityListeners(AuditingEntityListener.class)
+
 public class Favorite {
   @Id
   @Column(name = "favorite_id")
