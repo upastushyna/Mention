@@ -17,15 +17,15 @@ public class Comment {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Column(nullable = false)
-  private String commentBody;
+  @Column(nullable = false, name = "comment_body")
+  private String body;
 
   @ManyToOne
-  @JoinColumn(name = "user_id")
+  @JoinColumn(name = "user_id", nullable = false)
   private User commentator;
 
   @ManyToOne
-  @JoinColumn(name = "post_id")
+  @JoinColumn(name = "post_id", nullable = false)
   private Post post;
 
   @Column(name = "post_timestamp")
@@ -42,28 +42,28 @@ public class Comment {
     this.id = id;
   }
 
-  public String getCommentBody() {
-    return commentBody;
+  public String getBody() {
+    return body;
   }
 
-  public void setCommentBody(String commentBody) {
-    this.commentBody = commentBody;
+  public void setBody(String body) {
+    this.body = body;
   }
 
-  public User getCommentCreator() {
+  public User getCommentator() {
     return commentator;
   }
 
-  public void setCommentCreator(User commentCreator) {
-    this.commentator = commentCreator;
+  public void setCommentator(User commentator) {
+    this.commentator = commentator;
   }
 
-  public Post getCommentedPost() {
+  public Post getPost() {
     return post;
   }
 
-  public void setCommentedPost(Post commentedPost) {
-    this.post = commentedPost;
+  public void setPost(Post post) {
+    this.post = post;
   }
 
   public Timestamp getTimestamp() {

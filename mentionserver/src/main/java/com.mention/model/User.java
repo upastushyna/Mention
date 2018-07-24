@@ -25,6 +25,9 @@ public class User {
   @OneToMany(mappedBy = "receiver")
   private List<Message> receivedMessages;
 
+  @OneToMany(mappedBy = "commenter")
+  private List<Comment> comments;
+
   @Column(nullable = false, unique = true, name = "user_username")
   private String username;
 
@@ -166,5 +169,14 @@ public class User {
   public void setPosts(List<Post> posts) {
     this.posts = posts;
   }
+
+  public List<Comment> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
+  }
+
 
 }
