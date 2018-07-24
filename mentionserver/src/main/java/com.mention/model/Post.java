@@ -11,11 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -32,7 +30,7 @@ public class Post {
   @JoinColumn(name = "user_id", nullable = false)
   @JsonIgnoreProperties(value = "posts")
   private User author;
-
+  
   @OneToMany(mappedBy = "post")
   private List<Comment> comments;
 
@@ -101,8 +99,8 @@ public class Post {
   public void setModifyTimestamp(Date modifyTimestamp) {
     this.modifyTimestamp = modifyTimestamp;
   }
-
-  public List<Comment> getComments() {
+  
+   public List<Comment> getComments() {
     return comments;
   }
 
@@ -120,14 +118,14 @@ public class Post {
     }
     Post post = (Post) obj;
     return Objects.equals(id, post.id)
-            &&
-            Objects.equals(body, post.body)
-            &&
-            Objects.equals(author, post.author)
-            &&
-            Objects.equals(timestamp, post.timestamp)
-            &&
-            Objects.equals(mediafileUrl, post.mediafileUrl);
+        &&
+          Objects.equals(body, post.body)
+        &&
+          Objects.equals(author, post.author)
+        &&
+          Objects.equals(timestamp, post.timestamp)
+        &&
+          Objects.equals(mediafileUrl, post.mediafileUrl);
   }
 
   @Override
