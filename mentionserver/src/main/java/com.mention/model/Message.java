@@ -25,19 +25,19 @@ public class Message {
   @Id
   @Column(name = "message_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private int id;
+  private Long id;
 
   @Column(nullable = false, name = "message_content")
   private String content;
 
   @ManyToOne
   @JoinColumn(name = "sender_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = "sentMessages")
+  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages"})
   private User sender;
 
   @ManyToOne
   @JoinColumn(name = "receiver_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = "receivedMessages")
+  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages"})
   private User receiver;
 
   @CreatedDate

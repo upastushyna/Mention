@@ -1,16 +1,10 @@
 package com.mention.dao;
 
 import com.mention.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserDao {
+public interface UserDao extends JpaRepository<User, Long> {
 
-  void addUser(User user);
-
-  User getUser(Long id);
-
-  void updateUser(User user);
-
-  void deleteUser(Long id);
 }

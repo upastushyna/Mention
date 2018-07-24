@@ -33,7 +33,7 @@ public class Post {
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = "posts")
+  @JsonIgnoreProperties({"sentMessages", "posts", "comments", "receivedMessages"})
   private User author;
 
   @OneToMany(mappedBy = "post")

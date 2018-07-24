@@ -1,10 +1,11 @@
 package com.mention.service;
 
 import com.mention.model.Message;
+import java.util.Optional;
 
 public interface MessageService {
 
-  Message getMessage(Long id);
+  Optional<Message> getMessage(Long id);
 
   void addMessage(Message message);
 
