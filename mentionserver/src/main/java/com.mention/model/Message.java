@@ -33,7 +33,6 @@ public class Message {
   @ManyToOne
   @JoinColumn(name = "sender_id", nullable = false, updatable = false)
   @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages"})
-
   private User sender;
 
   @ManyToOne
