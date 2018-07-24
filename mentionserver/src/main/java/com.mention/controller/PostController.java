@@ -19,8 +19,12 @@ import java.util.Optional;
 @RequestMapping("/post")
 public class PostController {
 
+  private PostService postService;
+
   @Autowired
-  PostService postService;
+  public PostController(PostService postService) {
+    this.postService = postService;
+  }
 
   @PostMapping
   @Transactional

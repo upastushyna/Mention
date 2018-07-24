@@ -19,8 +19,11 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
 
-  @Autowired
-  UserService userService;
+  private UserService userService;
+
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
 
   @PostMapping
   @Transactional

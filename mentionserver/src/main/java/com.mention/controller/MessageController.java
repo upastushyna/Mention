@@ -19,8 +19,12 @@ import java.util.Optional;
 @RequestMapping("/message")
 public class MessageController {
 
+  private MessageService messageService;
+
   @Autowired
-  MessageService messageService;
+  public MessageController(MessageService messageService) {
+    this.messageService = messageService;
+  }
 
   @GetMapping("/{id}")
   public Optional<Message> getMessage(@PathVariable Long id) {
