@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/post")
 public class PostController {
 
+  private PostService postService;
+
   @Autowired
-  PostService postService;
+  public PostController(PostService postService) {
+    this.postService = postService;
+  }
 
   @PostMapping
   @Transactional
@@ -27,7 +33,7 @@ public class PostController {
   }
 
   @GetMapping(value = "/{id}")
-  public Post getPost(@PathVariable Long id) {
+  public Optional<Post> getPost(@PathVariable Long id) {
     return postService.getPost(id);
   }
 

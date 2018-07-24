@@ -4,30 +4,35 @@ import com.mention.dao.MessageDao;
 import com.mention.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class MessageServiceImpl implements MessageService {
 
+  private MessageDao messageDao;
+
   @Autowired
-  MessageDao messageDao;
+  public MessageServiceImpl(MessageDao messageDao) {
+    this.messageDao = messageDao;
+  }
 
   @Override
-  public Message getMessage(Long id) {
-    return messageDao.getMessage(id);
+  public Optional<Message> getMessage(Long id) {
+    return messageDao.findById(id);
   }
 
   @Override
   public void addMessage(Message message) {
-    messageDao.addMessage(message);
+    messageDao.save(message);
   }
 
   @Override
   public void deleteMessage(Long id) {
-    messageDao.deleteMessage(id);
+    messageDao.deleteById(id);
   }
 
   @Override
   public void updateMessage(Message message) {
-    messageDao.updateMessage(message);
+    messageDao.save(message);
   }
 }

@@ -1,34 +1,41 @@
 package com.mention.service;
 
-import com.mention.dao.UserDaoImpl;
+import com.mention.dao.UserDao;
 import com.mention.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+  private UserDao userDao;
+
   @Autowired
-  UserDaoImpl userDao;
+  public UserServiceImpl(UserDao userDao) {
+    this.userDao = userDao;
+  }
 
   @Override
   public void addUser(User user) {
     user.setActive(true);
-    userDao.addUser(user);
+    userDao.save(user);
   }
 
   @Override
-  public User getUser(Long id) {
-    return userDao.getUser(id);
+  public Optional<User> getUser(Long id) {
+    return userDao.findById(id);
   }
 
   @Override
   public void updateUser(User user) {
-    userDao.updateUser(user);
+    userDao.save(user);
   }
 
   @Override
   public void deleteUser(Long id) {
-    userDao.deleteUser(id);
+    User user = userDao.findById(id).get();
+    user.setActive(false);
+    userDao.save(user);
   }
 }
