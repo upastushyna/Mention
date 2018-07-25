@@ -4,6 +4,8 @@ import com.mention.dao.PostDao;
 import com.mention.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Optional;
 
 @Service
@@ -17,6 +19,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  @Transactional
   public void addPost(Post post) {
     postDao.save(post);
   }
@@ -27,11 +30,13 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  @Transactional
   public void updatePost(Post post) {
     postDao.save(post);
   }
 
   @Override
+  @Transactional
   public void deletePost(Long id) {
     postDao.deleteById(id);
   }

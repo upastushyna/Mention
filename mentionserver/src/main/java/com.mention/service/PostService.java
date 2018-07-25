@@ -1,11 +1,9 @@
 package com.mention.service;
 
 import com.mention.model.Post;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
 public interface PostService {
 
   void addPost(Post post);
