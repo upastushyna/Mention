@@ -35,6 +35,10 @@ public class User {
   @JsonIgnoreProperties("commentator")
   private List<Comment> comments;
 
+  @OneToMany(mappedBy = "user")
+  @JsonIgnoreProperties("user")
+  private List<Favorite> favorites;
+
   @Column(nullable = false, unique = true, name = "user_username")
   private String username;
 
