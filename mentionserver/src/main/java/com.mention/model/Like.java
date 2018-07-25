@@ -23,28 +23,28 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public class Like {
 
-    @Id
-    @Column(name = "like_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+  @Id
+  @Column(name = "like_id")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, updatable = false)
-    @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
-    private User liker;
+  @ManyToOne
+  @JoinColumn(name = "user_id", nullable = false, updatable = false)
+  @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
+  private User liked;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false, updatable = false)
-    @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
-    private User post;
+  @ManyToOne
+  @JoinColumn(name = "post_id", nullable = false, updatable = false)
+  @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
+  private Post post;
 
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, name = "comment_timestamp", updatable = false)
-    private Date timestamp;
+  @CreatedDate
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(nullable = false, name = "comment_timestamp", updatable = false)
+  private Date timestamp;
 
-    @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "comment_modify_timestamp")
-    private Date modifyTimestamp;
+  @LastModifiedDate
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "comment_modify_timestamp")
+  private Date modifyTimestamp;
 }
