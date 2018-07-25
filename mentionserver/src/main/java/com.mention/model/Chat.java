@@ -14,7 +14,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Data
-@Table(uniqueConstraints= @UniqueConstraint(columnNames={"user1_id", "user2_id"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user1_id", "user2_id"}))
 public class Chat {
 
   @Id
