@@ -26,13 +26,15 @@ public class CommentServiceImpl implements CommentService {
 
   @Override
   @Transactional
-  public void updateComment(Comment comment) {commentDao.save(comment);
+  public void updateComment(Comment comment) {
+    commentDao.save(comment);
 
   }
 
   @Override
   @Transactional
-  public void deleteComment(Long id) {commentDao.deleteById(id);
+  public void deleteComment(Long id) {
+    commentDao.deleteById(id);
 
   }
 
