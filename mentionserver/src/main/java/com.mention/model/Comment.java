@@ -33,12 +33,12 @@ public class Comment {
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats"})
+  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
   private User commentator;
 
   @ManyToOne
   @JoinColumn(name = "post_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats"})
+  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
   private Post post;
 
   @CreatedDate
