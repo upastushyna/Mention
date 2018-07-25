@@ -43,13 +43,9 @@ public class User {
   @JsonIgnoreProperties(value = {"user1"})
   private List<Chat> chats;
 
-  @OneToMany(mappedBy = "liked")
-  @JsonIgnoreProperties("liked")
+  @OneToMany(mappedBy = "likedUser")
+  @JsonIgnoreProperties("likedUser")
   private List<Like> likedUser;
-
-  @OneToMany(mappedBy = "post")
-  @JsonIgnoreProperties("post")
-  private List<Post> likedPost;
 
   @Column(nullable = false, unique = true, name = "user_username")
   private String username;

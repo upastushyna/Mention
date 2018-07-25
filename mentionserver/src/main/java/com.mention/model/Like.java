@@ -31,12 +31,12 @@ public class Like {
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
   @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
-  private User liked;
+  private User likedUser;
 
   @ManyToOne
   @JoinColumn(name = "post_id", nullable = false, updatable = false)
   @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
-  private Post post;
+  private Post likedPost;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
