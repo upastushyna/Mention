@@ -3,7 +3,6 @@ package com.mention.controller;
 import com.mention.model.Favorite;
 import com.mention.service.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,13 +29,11 @@ public class FavoriteController {
   }
 
   @PostMapping
-  @Transactional
   public void addFavorite(@PathVariable Favorite favorite) {
     favoriteService.addFavorite(favorite);
   }
 
   @DeleteMapping("/{id}")
-  @Transactional
   public void deleteFavorite(@PathVariable Long id) {
     favoriteService.deleteFavorite(id);
   }
