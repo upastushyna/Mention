@@ -39,6 +39,10 @@ public class User {
   @JsonIgnoreProperties("user")
   private List<Favorite> favorites;
 
+  @OneToMany(mappedBy = "user1")
+  @JsonIgnoreProperties(value = {"user1"})
+  private List<Chat> chats;
+
   @Column(nullable = false, unique = true, name = "user_username")
   private String username;
 

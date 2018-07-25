@@ -32,12 +32,12 @@ public class Message {
 
   @ManyToOne
   @JoinColumn(name = "sender_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages"})
+  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats"})
   private User sender;
 
   @ManyToOne
   @JoinColumn(name = "receiver_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages"})
+  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats"})
   private User receiver;
 
   @CreatedDate

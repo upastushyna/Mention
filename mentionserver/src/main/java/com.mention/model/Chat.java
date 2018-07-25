@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,20 +14,22 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Data
-@Table(uniqueConstraints= @UniqueConstraint(columnNames={"user_id", "post_id"}))
-public class Favorite {
+@Table(uniqueConstraints= @UniqueConstraint(columnNames={"user1_id", "user2_id"}))
+public class Chat {
+
   @Id
-  @Column(name = "favorite_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @Column(name = "chat_id")
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "user_id", nullable = false, updatable = false)
+  @JoinColumn(name = "user1_id", nullable = false, updatable = false)
   @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats"})
-  private User user;
+  private User user1;
 
   @ManyToOne
-  @JoinColumn(name = "post_id", nullable = false, updatable = false)
+  @JoinColumn(name = "user2_id", nullable = false, updatable = false)
   @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats"})
-  private Post post;
+  private User user2;
+
 }
