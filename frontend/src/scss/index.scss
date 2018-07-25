@@ -1,8 +1,6 @@
 @import "reset";
-
-body {
-  background-color: lightblue;
-}
+@import "navigation";
+@import "modules/content-placement";
 
 h1 {
   font-size: 100px;
