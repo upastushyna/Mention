@@ -43,8 +43,8 @@ public class Post {
   @OneToMany(mappedBy = "post")
   private List<Comment> comments;
 
-  @OneToMany(mappedBy = "likedPost")
-  private List<Post> likedPost;
+  @OneToMany(mappedBy = "likedUser")
+  private List<Like> likedUser;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
