@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ProfileService {
 
-  void addProfile (Profile profile);
+  void addProfile(Profile profile);
 
   Optional<Profile> getProfile(Long id);
 
