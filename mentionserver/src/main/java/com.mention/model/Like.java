@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -16,47 +17,34 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
-import javax.persistence.OneToMany;
-import java.util.List;
 
 @Entity
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Post {
+public class Like {
+
   @Id
-  @Column(name = "post_id")
+  @Column(name = "like_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Column(nullable = false, name = "post_body")
-  private String body;
-
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
-  private User author;
+  @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
+  private User likedUser;
 
-  @OneToMany(mappedBy = "post")
-  @JsonIgnoreProperties(value = {"author", "favorites"})
-  private List<Favorite> favorites;
-
-  @OneToMany(mappedBy = "post")
-  private List<Comment> comments;
-
-  @OneToMany(mappedBy = "likedUser")
-  private List<Like> likedUser;
+  @ManyToOne
+  @JoinColumn(name = "post_id", nullable = false, updatable = false)
+  @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
+  private Post likedPost;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(nullable = false, name = "post_timestamp", updatable = false)
+  @Column(nullable = false, name = "comment_timestamp", updatable = false)
   private Date timestamp;
 
   @LastModifiedDate
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "post_modify_timestamp")
+  @Column(name = "comment_modify_timestamp")
   private Date modifyTimestamp;
-
-  @Column(name = "post_mediafile_url")
-  private String mediafileUrl;
-
 }
