@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -24,12 +25,12 @@ public class Chat {
 
   @ManyToOne
   @JoinColumn(name = "user1_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
   private User user1;
 
   @ManyToOne
   @JoinColumn(name = "user2_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
   private User user2;
 
 }

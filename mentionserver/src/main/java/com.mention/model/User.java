@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.sql.Date;
 import java.util.List;
 
@@ -43,26 +45,13 @@ public class User {
   @JsonIgnoreProperties(value = {"user1"})
   private List<Chat> chats;
 
+  @OneToOne
+  @JoinColumn(name = "profile_id", nullable = false, updatable = false, unique = true)
+  @JsonIgnoreProperties(value = {"user"})
+  private Profile profile;
+
   @Column(nullable = false, unique = true, name = "user_username")
   private String username;
-
-  @Column(name = "user_firstname")
-  private String firstName;
-
-  @Column(name = "user_secondname")
-  private String secondName;
-
-  @Column(name = "user_address")
-  private String address;
-
-  @Column(name = "user_birthdate")
-  private Date birthDate;
-
-  @Column(name = "user_avatar_url")
-  private String avatarUrl;
-
-  @Column(name = "user_background_url")
-  private String backgroundUrl;
 
   @Column(nullable = false, unique = true, name = "user_email")
   private String email;
