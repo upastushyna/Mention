@@ -6,21 +6,11 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Data
-@EntityListeners(AuditingEntityListener.class)
 public class Like {
 
   @Id
@@ -29,22 +19,12 @@ public class Like {
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "user_id", nullable = false, updatable = false)
+  @JoinColumn(name = "user_id", updatable = false)
   @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
   private User likedUser;
 
   @ManyToOne
-  @JoinColumn(name = "post_id", nullable = false, updatable = false)
+  @JoinColumn(name = "post_id", updatable = false)
   @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
   private Post likedPost;
-
-  @CreatedDate
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(nullable = false, name = "comment_timestamp", updatable = false)
-  private Date timestamp;
-
-  @LastModifiedDate
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "comment_modify_timestamp")
-  private Date modifyTimestamp;
 }
