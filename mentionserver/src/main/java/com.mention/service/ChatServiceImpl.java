@@ -4,7 +4,7 @@ import com.mention.dao.ChatDao;
 import com.mention.model.Chat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
@@ -23,11 +23,13 @@ public class ChatServiceImpl implements ChatService {
   }
 
   @Override
+  @Transactional
   public void addChat(Chat chat) {
     chatDao.save(chat);
   }
 
   @Override
+  @Transactional
   public void deleteChat(Long id) {
     chatDao.deleteById(id);
   }

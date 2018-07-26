@@ -1,41 +1,41 @@
 package com.mention.controller;
 
-import com.mention.model.Chat;
-import com.mention.service.ChatService;
+import com.mention.model.Favorite;
+import com.mention.service.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/chat")
-public class ChatController {
+@RequestMapping("/favorite")
+public class FavoriteController {
 
-  private ChatService chatService;
+  private FavoriteService favoriteService;
 
   @Autowired
-  public ChatController(ChatService chatService) {
-    this.chatService = chatService;
+  public FavoriteController(FavoriteService favoriteService) {
+    this.favoriteService = favoriteService;
   }
 
   @GetMapping("/{id}")
-  public Optional<Chat> getChat(@PathVariable Long id) {
-    return chatService.getChat(id);
+  public Optional<Favorite> getFavorite(@PathVariable Long id) {
+    return favoriteService.getFavorite(id);
   }
 
   @PostMapping
-  public void addChat(@RequestBody Chat chat) {
-    chatService.addChat(chat);
+  public void addFavorite(@PathVariable Favorite favorite) {
+    favoriteService.addFavorite(favorite);
   }
 
   @DeleteMapping("/{id}")
-  public void deleteChat(@PathVariable Long id) {
-    chatService.deleteChat(id);
+  public void deleteFavorite(@PathVariable Long id) {
+    favoriteService.deleteFavorite(id);
   }
 
 }
