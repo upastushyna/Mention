@@ -2,12 +2,14 @@ package com.mention.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.sql.Date;
@@ -44,6 +46,14 @@ public class User {
   @OneToMany(mappedBy = "user1")
   @JsonIgnoreProperties(value = {"user1"})
   private List<Chat> chats;
+
+  @OneToMany(mappedBy = "follower")
+  @JsonIgnoreProperties(value = {"follower"})
+  private List<Follow> followers;
+
+  @OneToMany(mappedBy = "signer")
+  @JsonIgnoreProperties(value = {"signer"})
+  private List<Follow> signers;
 
   @OneToOne
   @JoinColumn(name = "profile_id", nullable = false, updatable = false, unique = true)
