@@ -2,6 +2,7 @@ package com.mention.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,8 +46,7 @@ public class User {
   @JsonIgnoreProperties(value = {"user1"})
   private List<Chat> chats;
 
-  @OneToOne
-  @JoinColumn(name = "profile_id", nullable = false, updatable = false, unique = true)
+  @OneToOne(mappedBy = "user")
   @JsonIgnoreProperties(value = {"user"})
   private Profile profile;
 

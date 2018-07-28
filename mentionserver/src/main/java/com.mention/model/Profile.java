@@ -3,6 +3,7 @@ package com.mention.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,8 +41,8 @@ public class Profile {
   private String backgroundUrl;
 
   @OneToOne
-  @JoinColumn(name = "user_id", nullable = false, updatable = false, unique = true)
-  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
+  @JoinColumn(name = "user_id", updatable = false, unique = true, nullable = false)
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"}, allowSetters = true)
   private User user;
 
 }
