@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.sql.Date;
@@ -47,16 +46,7 @@ public class User {
   @JsonIgnoreProperties(value = {"user1"})
   private List<Chat> chats;
 
-  @OneToMany(mappedBy = "follower")
-  @JsonIgnoreProperties(value = {"follower"})
-  private List<Follow> followers;
-
-  @OneToMany(mappedBy = "signer")
-  @JsonIgnoreProperties(value = {"signer"})
-  private List<Follow> signers;
-
-  @OneToOne
-  @JoinColumn(name = "profile_id", nullable = false, updatable = false, unique = true)
+  @OneToOne(mappedBy = "user")
   @JsonIgnoreProperties(value = {"user"})
   private Profile profile;
 
