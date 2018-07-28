@@ -13,7 +13,7 @@ public class LikeServiceImpl implements LikeService {
   private LikeRepository likeRepository;
 
   @Autowired
-  public LikeServiceImpl(LikeRepository likeRepository){
+  public LikeServiceImpl(LikeRepository likeRepository) {
     this.likeRepository = likeRepository;
   }
 
