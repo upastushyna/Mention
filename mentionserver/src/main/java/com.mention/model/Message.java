@@ -32,13 +32,18 @@ public class Message {
 
   @ManyToOne
   @JoinColumn(name = "sender_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User sender;
 
   @ManyToOne
   @JoinColumn(name = "receiver_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User receiver;
+
+  @ManyToOne
+  @JoinColumn(name = "chat_id", nullable = false, updatable = false)
+  @JsonIgnoreProperties(value = {"messages"})
+  private Chat chat;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
