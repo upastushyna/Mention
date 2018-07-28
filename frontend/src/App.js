@@ -9,21 +9,22 @@ import CreatePost from './components/CreatePost'
 import Favorites from './components/Favorites'
 import HomePage from './components/HomePage'
 import NotFound from './components/NotFound'
+import Login from './components/Login'
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-        <Navigation/>
+        {/*<Navigation/>*/}
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route path='/messages' component={Messages}/>
+          <Route path="/login" component={Login}/>
           <Route path='/profile' component={Profile}/>
           <Route path='/createPost' component={CreatePost}/>
           <Route path='/favorites' component={Favorites}/>
           <Route path="*" component={NotFound}/>
         </Switch>
-
       </Fragment>
     )
   }
