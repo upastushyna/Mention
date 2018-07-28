@@ -1,6 +1,6 @@
-.login {
+.registration {
   height: 100vh;
-  background-color: rgb(245, 104, 61);
+  background-color: rgb(52, 213, 219);
   font-family: Lato, 'sans-serif';
 
   &__container {
@@ -33,8 +33,8 @@
       font-weight: 300;
     }
 
-    &--forgot {
-      margin-left: 145px;
+    &--member {
+      margin-left: 160px;
       color: #f5683d;
       font-size: 18px;
       text-decoration: none;

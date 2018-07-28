@@ -12,11 +12,11 @@ export default class Login extends React.Component {
                         <img className="login__container--img" src={logo} alt=""/>
                     </div>
                     <h1 className="login__container--title">Member Login</h1>
-                    <div className="login__form">
+                    <form className="login__form">
                         <input type="text" className="login__input" placeholder="Username"/>
                         <input type="password" className="login__input" placeholder="Password"/>
                         <input type="submit" className="login__btn" value="login"/>
-                    </div>
+                    </form>
                     <Link to="/" className="login__container--forgot">Forgot Password?</Link>
                 </div>
             </section>
