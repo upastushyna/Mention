@@ -26,7 +26,7 @@ public class Follow {
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "fw_follower")
+  @JoinColumn(name = "fw_follower", nullable = false, updatable = false)
   @JsonIgnoreProperties(value =
           {"profile", "sentMessages", "posts",
                   "comments", "receivedMessages",
@@ -34,7 +34,7 @@ public class Follow {
   private User follower;
 
   @ManyToOne
-  @JoinColumn(name = "fw_followed_user")
+  @JoinColumn(name = "fw_followed_user", nullable = false, updatable = false)
   @JsonIgnoreProperties(value =
           {"profile", "sentMessages", "posts",
                   "comments", "receivedMessages",
