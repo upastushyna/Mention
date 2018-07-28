@@ -40,9 +40,9 @@ public class Profile {
   @Column(name = "profile_background_url")
   private String backgroundUrl;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "user_id", updatable = false, unique = true)
-  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
+  @OneToOne
+  @JoinColumn(name = "user_id", updatable = false, unique = true, nullable = false)
+  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"}, allowSetters = true)
   private User user;
 
 }
