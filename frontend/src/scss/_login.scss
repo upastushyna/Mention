@@ -44,37 +44,32 @@
   &__form {
     width: 270px;
     margin: 31px auto;
+  }
 
-    &--name,
-    &--password,
-    &--btn {
-      display: block;
-      width: 266px;
-      margin-bottom: 20px;
-      padding: 11px 0;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      outline: none;
-      background-color: rgba(152, 152, 152, .3);
-      font-size: 18px;
-      text-align: center;
-    }
+  &__input,
+  &__btn {
+    display: block;
+    width: 266px;
+    margin-bottom: 20px;
+    padding: 11px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    outline: none;
+    background-color: rgba(152, 152, 152, .3);
+    font-size: 18px;
+    text-align: center;
+  }
 
-    &--name:focus {
-      border: 1px solid #4591fb;
-    }
+  &__input:focus {
+    border: 1px solid #4591fb;
+  }
 
-    &--password:focus {
-      border: 1px solid #4591fb;
-    }
-
-    &--btn {
-      padding: 15px 0;
-      border-bottom: 2px solid #108ede;
-      background-color: #4591fb;
-      color: #fff;
-      font-size: 20px;
-      text-transform: uppercase;
-    }
+  &__btn {
+    padding: 15px 0;
+    border-bottom: 2px solid #108ede;
+    background-color: #4591fb;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
   }
 }
