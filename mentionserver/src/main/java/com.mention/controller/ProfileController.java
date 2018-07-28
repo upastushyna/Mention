@@ -41,6 +41,7 @@ public class ProfileController {
     profileService.updateProfile(profile);
   }
 
+
   @DeleteMapping("/{id}")
   public void deleteProfile(@PathVariable Long id) {
     profileService.deletePrifile(id);
