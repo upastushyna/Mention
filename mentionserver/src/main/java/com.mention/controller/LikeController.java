@@ -23,14 +23,14 @@ public class LikeController {
     likeService.addLike(like);
   }
 
-  @GetMapping(value = "/{id}")
+  @GetMapping("/{id}")
   public Optional<Like> getLike(@PathVariable Long id){
     return likeService.getLike(id);
   }
 
-  @DeleteMapping(value = "/{id}")
-  public void deleteLike(@PathVariable Like like){
-    likeService.deleteLike(like);
+  @DeleteMapping("/{id}")
+  public void deleteLike(@PathVariable Long id){
+    likeService.deleteLike(id);
   }
 
 }

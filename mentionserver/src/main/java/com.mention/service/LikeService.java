@@ -10,6 +10,5 @@ public interface LikeService {
 
   void addLike(Like like);
 
-  void deleteLike(Like like);
-
+  void deleteLike(Long id);
 }
