@@ -26,14 +26,6 @@ public class User {
   @JsonIgnoreProperties("author")
   private List<Post> posts;
 
-  @OneToMany(mappedBy = "sender")
-  @JsonIgnoreProperties("sender")
-  private List<Message> sentMessages;
-
-  @OneToMany(mappedBy = "receiver")
-  @JsonIgnoreProperties("receiver")
-  private List<Message> receivedMessages;
-
   @OneToMany(mappedBy = "commentator")
   @JsonIgnoreProperties("commentator")
   private List<Comment> comments;
@@ -49,14 +41,14 @@ public class User {
   @OneToOne(mappedBy = "user")
   @JsonIgnoreProperties(value = {"user"})
   private Profile profile;
-  
+
+  @OneToMany(mappedBy = "followedUser")
+  @JsonIgnoreProperties(value = {"followedUser"})
+  private List<Follow> followedUsers;
+
   @OneToMany(mappedBy = "follower")
   @JsonIgnoreProperties(value = {"follower"})
   private List<Follow> followers;
-
-  @OneToMany(mappedBy = "signer")
-  @JsonIgnoreProperties(value = {"signer"})
-  private List<Follow> signers;
 
   @Column(nullable = false, unique = true, name = "user_username")
   private String username;

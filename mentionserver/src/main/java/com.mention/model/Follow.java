@@ -3,6 +3,7 @@ package com.mention.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,19 +28,28 @@ public class Follow {
   @ManyToOne
   @JoinColumn(name = "fw_follower")
   @JsonIgnoreProperties(value =
-          {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites", "followers", "signers"})
+          {"profile", "sentMessages", "posts",
+                  "comments", "receivedMessages",
+                  "chats", "favorites", "followers", "followedUsers"})
   private User follower;
 
   @ManyToOne
-  @JoinColumn(name = "fw_signer")
+  @JoinColumn(name = "fw_followed_user")
   @JsonIgnoreProperties(value =
-          {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites", "followers", "signers"})
-  private User signer;
+          {"profile", "sentMessages", "posts",
+                  "comments", "receivedMessages",
+                  "chats", "favorites", "followers", "followedUsers"})
+  private User followedUser;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
   @Column(nullable = false, name = "fw_timestamp", updatable = false)
   private Date timestamp;
+
+  @LastModifiedDate
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "fw_modify_timestamp")
+  private Date modifyTimestamp;
 
 
 }
