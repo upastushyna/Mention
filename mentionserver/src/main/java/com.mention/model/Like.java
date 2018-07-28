@@ -21,10 +21,10 @@ public class Like {
   @ManyToOne
   @JoinColumn(name = "user_id", updatable = false)
   @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
-  private User likedUser;
+  private User user;
 
   @ManyToOne
   @JoinColumn(name = "post_id", updatable = false)
   @JsonIgnoreProperties(value = {"posts", "sentMessages", "receivedMessages", "comments", "favorites", "chats"})
-  private Post likedPost;
+  private Post post;
 }
