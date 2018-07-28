@@ -46,8 +46,7 @@ public class User {
   @JsonIgnoreProperties(value = {"user1"})
   private List<Chat> chats;
 
-  @OneToOne
-  @JoinColumn(name = "profile_id", nullable = false, updatable = false, unique = true)
+  @OneToOne(mappedBy = "user")
   @JsonIgnoreProperties(value = {"user"})
   private Profile profile;
 
