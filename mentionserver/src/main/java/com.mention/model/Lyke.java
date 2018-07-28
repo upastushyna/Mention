@@ -36,7 +36,7 @@ public class Lyke {
     return id;
   }
 
-   public User getUser() {
+  public User getUser() {
     return user;
   }
 
