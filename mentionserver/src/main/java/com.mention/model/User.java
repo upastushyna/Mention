@@ -49,6 +49,14 @@ public class User {
   @OneToOne(mappedBy = "user")
   @JsonIgnoreProperties(value = {"user"})
   private Profile profile;
+  
+  @OneToMany(mappedBy = "follower")
+  @JsonIgnoreProperties(value = {"follower"})
+  private List<Follow> followers;
+
+  @OneToMany(mappedBy = "signer")
+  @JsonIgnoreProperties(value = {"signer"})
+  private List<Follow> signers;
 
   @Column(nullable = false, unique = true, name = "user_username")
   private String username;
