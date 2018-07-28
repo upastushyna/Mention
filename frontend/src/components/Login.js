@@ -9,7 +9,7 @@ export default class Login extends React.Component {
             <section className="login d-flex">
                 <div className="login__container">
                     <div className="login__container--icon">
-                        <img className="login__container--img" src={logo} alt=""/>
+                        <img className="login__img" src={logo} alt=""/>
                     </div>
                     <h1 className="login__container--title">Member Login</h1>
                     <form className="login__form">
