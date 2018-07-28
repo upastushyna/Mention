@@ -57,4 +57,8 @@ public class Post {
   @Column(name = "post_mediafile_url")
   private String mediafileUrl;
 
+  @OneToMany(mappedBy = "post")
+  @JsonIgnoreProperties(value = {"post"})
+  private List<Lyke> lykes;
+
 }
