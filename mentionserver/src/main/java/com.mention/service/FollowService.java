@@ -3,16 +3,17 @@ package com.mention.service;
 import com.mention.model.Follow;
 import com.mention.model.User;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface FollowService {
 
-  List<Follow> getUsersFollows(Long id);
+  void addFollow(Follow follow);
 
-  void followUser(Long id);
+  void updateFollow(Follow folow);
 
-  void unfollowUser(Long id);
+  void deleteFollow(Long id);
+
+  Optional<Follow> getFollow(Long id);
 
 
 }
