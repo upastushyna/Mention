@@ -31,7 +31,7 @@ public class ProfileController {
     profileService.addProfile(profile);
   }
 
-  @GetMapping(value = "/{id}")
+  @GetMapping("/{id}")
   public Optional<Profile> getProfile(@PathVariable Long id) {
     return profileService.getProfile(id);
   }
@@ -41,7 +41,7 @@ public class ProfileController {
     profileService.updateProfile(profile);
   }
 
-  @DeleteMapping(value = "/{id}")
+  @DeleteMapping("/{id}")
   public void deleteProfile(@PathVariable Long id) {
     profileService.deletePrifile(id);
   }
