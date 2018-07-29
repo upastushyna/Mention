@@ -10,10 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-
-public class Lyke {
+@Table(name = "Likes")
+public class Like {
 
   @Id
   @Column(name = "like_id")
@@ -23,13 +24,13 @@ public class Lyke {
 
   @ManyToOne
   @JoinColumn(name = "user_id", updatable = false)
-  @JsonIgnoreProperties(value = {"profile", "lykes", "posts", "comments", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "likes", "posts", "comments", "chats", "favorites"})
   private User user;
 
 
   @ManyToOne
   @JoinColumn(name = "post_id", updatable = false)
-  @JsonIgnoreProperties(value = {"author", "lykes", "comments", "favorites"})
+  @JsonIgnoreProperties(value = {"author", "likes", "comments", "favorites"})
   private Post post;
 
   public Long getId() {

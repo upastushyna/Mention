@@ -54,7 +54,7 @@ public class User {
 
   @OneToMany(mappedBy = "user")
   @JsonIgnoreProperties(value = {"user"})
-  private List<Lyke> lykes;
+  private List<Like> likes;
 
   public void setActive(boolean active) {
     isActive = active;

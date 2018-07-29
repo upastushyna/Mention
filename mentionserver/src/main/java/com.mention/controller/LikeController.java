@@ -1,6 +1,6 @@
 package com.mention.controller;
 
-import com.mention.model.Lyke;
+import com.mention.model.Like;
 import com.mention.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,12 +25,12 @@ public class LikeController {
   }
 
   @PostMapping
-  public void addLike(@RequestBody Lyke lyke) {
-    likeService.addLike(lyke);
+  public void addLike(@RequestBody Like like) {
+    likeService.addLike(like);
   }
 
   @GetMapping("/{id}")
-  public Optional<Lyke> getLike(@PathVariable Long id) {
+  public Optional<Like> getLike(@PathVariable Long id) {
     return likeService.getLike(id);
   }
 

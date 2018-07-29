@@ -1,7 +1,7 @@
 package com.mention.service;
 
 import com.mention.dao.LikeRepository;
-import com.mention.model.Lyke;
+import com.mention.model.Like;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +18,13 @@ public class LikeServiceImpl implements LikeService {
   }
 
   @Override
-  public Optional<Lyke> getLike(Long id) {
+  public Optional<Like> getLike(Long id) {
     return likeRepository.findById(id);
   }
 
   @Override
-  public void addLike(Lyke lyke) {
-    likeRepository.save(lyke);
+  public void addLike(Like like) {
+    likeRepository.save(like);
   }
 
   @Override

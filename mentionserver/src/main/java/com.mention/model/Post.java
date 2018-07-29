@@ -59,6 +59,6 @@ public class Post {
 
   @OneToMany(mappedBy = "post")
   @JsonIgnoreProperties(value = {"post"})
-  private List<Lyke> lykes;
+  private List<Like> likes;
 
 }

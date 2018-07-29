@@ -1,14 +1,14 @@
 package com.mention.service;
 
-import com.mention.model.Lyke;
+import com.mention.model.Like;
 
 import java.util.Optional;
 
 public interface LikeService {
 
-  Optional<Lyke> getLike(Long id);
+  Optional<Like> getLike(Long id);
 
-  void addLike(Lyke lyke);
+  void addLike(Like like);
 
   void deleteLike(Long id);
 
