@@ -1,6 +1,6 @@
 package com.mention.service;
 
-import com.mention.dao.ProfileDao;
+import com.mention.repository.ProfileRepository;
 import com.mention.model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,31 +10,31 @@ import java.util.Optional;
 @Service
 public class ProfileServiceImpl implements ProfileService{
 
-  private ProfileDao profileDao;
+  private ProfileRepository profileRepository;
 
 
   @Autowired
-  public ProfileServiceImpl(ProfileDao profileDao) {
-    this.profileDao = profileDao;
+  public ProfileServiceImpl(ProfileRepository profileRepository) {
+    this.profileRepository = profileRepository;
   }
 
   @Override
   public void addProfile(Profile profile) {
-    profileDao.save(profile);
+    profileRepository.save(profile);
   }
 
   @Override
   public Optional<Profile> getProfile(Long id) {
-    return profileDao.findById(id);
+    return profileRepository.findById(id);
   }
 
   @Override
   public void updateProfile(Profile profile) {
-    profileDao.save(profile);
+    profileRepository.save(profile);
   }
 
   @Override
   public void deletePrifile(Long id) {
-    profileDao.deleteById(id);
+    profileRepository.deleteById(id);
   }
 }
