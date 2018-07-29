@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-public class Like {
+public class Likes {
 
   @Id
   @Column(name = "like_id")

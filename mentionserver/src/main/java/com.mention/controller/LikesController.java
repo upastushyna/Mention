@@ -1,7 +1,7 @@
 package com.mention.controller;
 
-import com.mention.model.Like;
-import com.mention.service.LikeService;
+import com.mention.model.Likes;
+import com.mention.service.LikesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,28 +14,28 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/like")
-public class LikeController {
+public class LikesController {
 
-  private LikeService likeService;
+  private LikesService likesService;
 
   @Autowired
-  public LikeController(LikeService likeService){
-    this.likeService = likeService;
+  public LikesController(LikesService likesService){
+    this.likesService = likesService;
   }
 
   @PostMapping
-  public void addLike(@PathVariable Like like){
-    likeService.addLike(like);
+  public void addLike(@PathVariable Likes likes){
+    likesService.addLike(likes);
   }
 
   @GetMapping("/{id}")
-  public Optional<Like> getLike(@PathVariable Long id){
-    return likeService.getLike(id);
+  public Optional<Likes> getLike(@PathVariable Long id){
+    return likesService.getLike(id);
   }
 
   @DeleteMapping("/{id}")
   public void deleteLike(@PathVariable Long id){
-    likeService.deleteLike(id);
+    likesService.deleteLike(id);
   }
 
 }

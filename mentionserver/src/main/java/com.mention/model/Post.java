@@ -44,7 +44,7 @@ public class Post {
   private List<Comment> comments;
 
   @OneToMany(mappedBy = "post")
-  private List<Like> likedPost;
+  private List<Likes> likedPost;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)

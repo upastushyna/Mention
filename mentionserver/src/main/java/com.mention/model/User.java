@@ -45,7 +45,7 @@ public class User {
 
   @OneToMany(mappedBy = "user")
   @JsonIgnoreProperties("user")
-  private List<Like> likedUser;
+  private List<Likes> likedUser;
 
   @Column(nullable = false, unique = true, name = "user_username")
   private String username;
