@@ -24,14 +24,6 @@ public class User {
   @JsonIgnoreProperties("author")
   private List<Post> posts;
 
-  @OneToMany(mappedBy = "sender")
-  @JsonIgnoreProperties("sender")
-  private List<Message> sentMessages;
-
-  @OneToMany(mappedBy = "receiver")
-  @JsonIgnoreProperties("receiver")
-  private List<Message> receivedMessages;
-
   @OneToMany(mappedBy = "commentator")
   @JsonIgnoreProperties("commentator")
   private List<Comment> comments;
