@@ -14,7 +14,7 @@ public class LikesServiceImpl implements LikesService {
   private LikesDao likesDao;
 
   @Autowired
-  public LikesServiceImpl(LikesDao likesDao){
+  public LikesServiceImpl(LikesDao likesDao) {
     this.likesDao = likesDao;
   }
 

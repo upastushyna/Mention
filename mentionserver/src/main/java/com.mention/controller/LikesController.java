@@ -19,22 +19,22 @@ public class LikesController {
   private LikesService likesService;
 
   @Autowired
-  public LikesController(LikesService likesService){
+  public LikesController(LikesService likesService) {
     this.likesService = likesService;
   }
 
   @PostMapping
-  public void addLike(@PathVariable Likes likes){
+  public void addLike(@PathVariable Likes likes) {
     likesService.addLike(likes);
   }
 
   @GetMapping("/{id}")
-  public Optional<Likes> getLike(@PathVariable Long id){
+  public Optional<Likes> getLike(@PathVariable Long id) {
     return likesService.getLike(id);
   }
 
   @DeleteMapping("/{id}")
-  public void deleteLike(@PathVariable Long id){
+  public void deleteLike(@PathVariable Long id) {
     likesService.deleteLike(id);
   }
 
