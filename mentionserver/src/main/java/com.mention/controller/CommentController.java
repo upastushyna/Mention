@@ -1,7 +1,7 @@
 package com.mention.controller;
 
 import com.mention.model.Comment;
-import com.mention.service.CommentService;
+import com.mention.service002.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
