@@ -24,7 +24,7 @@ public class Favorite {
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User user;
 
   @ManyToOne
