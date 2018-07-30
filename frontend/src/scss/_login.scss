@@ -12,33 +12,33 @@
     border-radius: 4px;
     background-color: #ececec;
     filter: drop-shadow(5px 5px 10px black);
+  }
 
-    &--icon {
-      position: absolute;
-      top: -75px;
-      left: 150px;
-    }
+  &__icon {
+    position: absolute;
+    top: -75px;
+    left: 150px;
+  }
 
-    &--img {
-      position: relative;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, .3), 0 0 80px rgba(0, 0, 0, .1) inset;
-    }
+  &__img {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    filter: drop-shadow(2px 2px 5px black);
+  }
 
-    &--title {
-      margin-top: 88px;
-      font-size: 30px;
-      font-weight: 300;
-    }
+  &__title {
+    margin-top: 88px;
+    font-size: 30px;
+    font-weight: 300;
+  }
 
-    &--forgot {
-      margin-left: 145px;
-      color: #f5683d;
-      font-size: 18px;
-      text-decoration: none;
-    }
+  &__forgot-password {
+    margin-left: 145px;
+    color: #f5683d;
+    font-size: 18px;
+    text-decoration: none;
   }
 
   &__form {
@@ -71,7 +71,7 @@
     color: #fff;
     font-size: 20px;
     text-transform: uppercase;
-    filter: drop-shadow(2px 2px 2px black);
+    filter: drop-shadow(5px 5px 5px black);
   }
 
   &__btn:focus {
