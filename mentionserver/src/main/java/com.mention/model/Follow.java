@@ -41,7 +41,7 @@ public class Follow {
                   "chats", "favorites", "followers", "followedUsers"})
   private User followedUser;
 
-  @CreatedDate
+ /* @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
   @Column(nullable = false, name = "fw_timestamp", updatable = false)
   private Date timestamp;
@@ -50,6 +50,6 @@ public class Follow {
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "fw_modify_timestamp")
   private Date modifyTimestamp;
-
+*/
 
 }

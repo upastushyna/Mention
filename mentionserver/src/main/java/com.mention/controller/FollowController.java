@@ -38,7 +38,7 @@ public class FollowController {
     followService.deleteFollow(id);
   }
 
-  @GetMapping
+  @GetMapping(value = "/{id}")
   public Optional<Follow> getFollow(@PathVariable Long id) {
     return followService.getFollow(id);
   }
