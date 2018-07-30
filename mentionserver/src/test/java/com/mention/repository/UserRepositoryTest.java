@@ -67,18 +67,4 @@ public class UserRepositoryTest {
     Assert.assertNull(userRepository.findByUsername("Elly"));
   }
 
-  @Test
-  @Transactional
-  public void deleteTest() {
-    User user = new User();
-    user.setUsername("bobby");
-    user.setActive(true);
-    user.setPassword("1234");
-    user.setEmail("jake@gmail.com");
-    userRepository.save(user);
-    Assert.assertNotNull(userRepository.findByUsername("bobby"));
-    userRepository.deleteByUsername("bobby");
-    Assert.assertNull(userRepository.findByUsername("bobby"));
-
-  }
 }
