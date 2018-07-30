@@ -42,12 +42,12 @@ public class User {
   @JsonIgnoreProperties(value = {"user"})
   private Profile profile;
 
-  @OneToMany(mappedBy = "followedUser")
-  @JsonIgnoreProperties(value = {"followedUser"})
-  private List<Follow> followedUsers;
-
   @OneToMany(mappedBy = "follower")
   @JsonIgnoreProperties(value = {"follower"})
+  private List<Follow> followedUsers;
+
+  @OneToMany(mappedBy = "followedUser")
+  @JsonIgnoreProperties(value = {"followedUser"})
   private List<Follow> followers;
 
   @Column(nullable = false, unique = true, name = "user_username")
