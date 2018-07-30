@@ -1,6 +1,6 @@
 package com.mention.service;
 
-import com.mention.dao.LikeRepository;
+import com.mention.repository.LikeRepository;
 import com.mention.model.Like;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
