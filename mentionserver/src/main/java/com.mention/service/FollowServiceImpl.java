@@ -22,12 +22,6 @@ public class FollowServiceImpl implements FollowService {
     followDao.save(follow);
   }
 
-  @Override
-  @Transactional
-  public void updateFollow(Follow folow) {
-    followDao.save(folow);
-
-  }
 
   @Override
   @Transactional

@@ -28,11 +28,6 @@ public class FollowController {
     followService.addFollow(follow);
   }
 
-  @PutMapping
-  public void updateFollow(@RequestBody Follow follow) {
-    followService.updateFollow(follow);
-  }
-
   @DeleteMapping(value = "/{id}")
   public void deleteFollow(@PathVariable Long id) {
     followService.deleteFollow(id);

@@ -9,8 +9,6 @@ public interface FollowService {
 
   void addFollow(Follow follow);
 
-  void updateFollow(Follow folow);
-
   void deleteFollow(Long id);
 
   Optional<Follow> getFollow(Long id);
