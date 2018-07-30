@@ -1,4 +1,4 @@
-package com.mention.dao;
+package com.mention.repository;
 
 import com.mention.model.Like;
 import org.springframework.data.jpa.repository.JpaRepository;
