@@ -1,6 +1,6 @@
 package com.mention.service;
 
-import com.mention.dao.CommentDao;
+import com.mention.repository.CommentRepository;
 import com.mention.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,35 +11,35 @@ import java.util.Optional;
 @Service
 public class CommentServiceImpl implements CommentService {
 
-  private CommentDao commentDao;
+  private CommentRepository commentRepository;
 
   @Autowired
-  public CommentServiceImpl(CommentDao commentDao) {
-    this.commentDao = commentDao;
+  public CommentServiceImpl(CommentRepository commentRepository) {
+    this.commentRepository = commentRepository;
   }
 
   @Override
   @Transactional
   public void addComment(Comment comment) {
-    commentDao.save(comment);
+    commentRepository.save(comment);
   }
 
   @Override
   @Transactional
   public void updateComment(Comment comment) {
-    commentDao.save(comment);
+    commentRepository.save(comment);
 
   }
 
   @Override
   @Transactional
   public void deleteComment(Long id) {
-    commentDao.deleteById(id);
+    commentRepository.deleteById(id);
 
   }
 
   @Override
   public Optional<Comment> getComment(Long id) {
-    return commentDao.findById(id);
+    return commentRepository.findById(id);
   }
 }

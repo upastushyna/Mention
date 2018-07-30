@@ -1,6 +1,6 @@
 package com.mention.service;
 
-import com.mention.dao.ChatDao;
+import com.mention.repository.ChatRepository;
 import com.mention.model.Chat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,27 +10,27 @@ import java.util.Optional;
 @Service
 public class ChatServiceImpl implements ChatService {
 
-  private ChatDao chatDao;
+  private ChatRepository chatRepository;
 
   @Autowired
-  public ChatServiceImpl(ChatDao chatDao) {
-    this.chatDao = chatDao;
+  public ChatServiceImpl(ChatRepository chatRepository) {
+    this.chatRepository = chatRepository;
   }
 
   @Override
   public Optional<Chat> getChat(Long id) {
-    return chatDao.findById(id);
+    return chatRepository.findById(id);
   }
 
   @Override
   @Transactional
   public void addChat(Chat chat) {
-    chatDao.save(chat);
+    chatRepository.save(chat);
   }
 
   @Override
   @Transactional
   public void deleteChat(Long id) {
-    chatDao.deleteById(id);
+    chatRepository.deleteById(id);
   }
 }

@@ -1,6 +1,6 @@
 package com.mention.service;
 
-import com.mention.dao.UserDao;
+import com.mention.repository.UserRepository;
 import com.mention.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,36 +11,36 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-  private UserDao userDao;
+  private UserRepository userRepository;
 
   @Autowired
-  public UserServiceImpl(UserDao userDao) {
-    this.userDao = userDao;
+  public UserServiceImpl(UserRepository userRepository) {
+    this.userRepository = userRepository;
   }
 
   @Override
   @Transactional
   public void addUser(User user) {
     user.setActive(true);
-    userDao.save(user);
+    userRepository.save(user);
   }
 
   @Override
   public Optional<User> getUser(Long id) {
-    return userDao.findById(id);
+    return userRepository.findById(id);
   }
 
   @Override
   @Transactional
   public void updateUser(User user) {
-    userDao.save(user);
+    userRepository.save(user);
   }
 
   @Override
   @Transactional
   public void deleteUser(Long id) {
-    User user = userDao.findById(id).get();
+    User user = userRepository.findById(id).get();
     user.setActive(false);
-    userDao.save(user);
+    userRepository.save(user);
   }
 }
