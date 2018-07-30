@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -27,7 +28,7 @@ public class UserRepositoryTest {
 
 
   @Test
-  public void saveUserTest(){
+  public void saveUserTest() {
     User user = new User();
     user.setUsername("John Dou");
     user.setActive(true);
@@ -39,7 +40,7 @@ public class UserRepositoryTest {
   }
 
   @Test
-  public void updateUserTest(){
+  public void updateUserTest() {
     User updUser = new User();
     updUser.setUsername("Joe Dou");
     updUser.setPassword("321");
@@ -55,27 +56,31 @@ public class UserRepositoryTest {
   }
 
   @Test
+  @Transactional
+  public void deleteUserTest() {
+    User userDel = new User();
+    userDel.setUsername("Elly");
+    userDel.setActive(true);
+    userDel.setPassword("231");
+    userDel.setEmail("elly@ma.ma");
+    userRepository.save(userDel);
+    Assert.assertNotNull(userRepository.findByUsername("Elly"));
+    userRepository.deleteByUsername("Elly");
+    Assert.assertNull(userRepository.findByUsername("Elly"));
+  }
 
+  @Test
+  @Transactional
+  public void deleteTest() {
+    User user = new User();
+    user.setUsername("bobby");
+    user.setActive(true);
+    user.setPassword("1234");
+    user.setEmail("jake@gmail.com");
+    userRepository.save(user);
+    Assert.assertNotNull(userRepository.findByUsername("bobby"));
+    userRepository.deleteByUsername("bobby");
+    Assert.assertNull(userRepository.findByUsername("bobby"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
 }
