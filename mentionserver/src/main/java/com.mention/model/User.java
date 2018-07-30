@@ -8,10 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -61,6 +59,10 @@ public class User {
 
   @Column(nullable = false, name = "user_is_active")
   private boolean isActive;
+
+  @OneToMany(mappedBy = "user")
+  @JsonIgnoreProperties(value = {"user"})
+  private List<Like> likes;
 
   public void setActive(boolean active) {
     isActive = active;

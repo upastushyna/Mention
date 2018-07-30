@@ -33,7 +33,7 @@ public class Post {
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"profile", "sentMessages", "posts", "comments", "receivedMessages", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User author;
 
   @OneToMany(mappedBy = "post")
@@ -56,5 +56,9 @@ public class Post {
 
   @Column(name = "post_mediafile_url")
   private String mediafileUrl;
+
+  @OneToMany(mappedBy = "post")
+  @JsonIgnoreProperties(value = {"post"})
+  private List<Like> likes;
 
 }
