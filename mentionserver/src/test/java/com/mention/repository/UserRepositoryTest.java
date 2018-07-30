@@ -19,13 +19,11 @@ public class UserRepositoryTest {
   @Autowired
   private UserRepository userRepository;
 
- // @Test
+  @Test
   public void findTest() {
     String username = "mockName";
     Assert.assertNull(userRepository.findByUsername(username));
   }
-
-
 
   @Test
   public void saveUserTest() {

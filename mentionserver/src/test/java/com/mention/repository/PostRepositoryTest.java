@@ -1,9 +1,10 @@
 
-package com.mention.repository;
+
 /*
 public class PostRepositoryTest {
 }
 */
+package com.mention.repository;
 
 import com.mention.SpringBootConfiguration;
 import com.mention.model.User;
