@@ -1,9 +1,12 @@
+/*
 
 
+*/
 /*
 public class PostRepositoryTest {
 }
-*/
+*//*
+
 package com.mention.repository;
 
 import com.mention.SpringBootConfiguration;
@@ -30,7 +33,7 @@ public class PostRepositoryTest {
 
   public User createTestUser(){
     User author = new User();
-    author.setUsername("John Dou");
+    author.setUsername("John  Dou");
     author.setActive(true);
     author.setEmail("john@mail.com");
     author.setPassword("123");
@@ -84,4 +87,4 @@ public class PostRepositoryTest {
     Assert.assertNull(userRepository.findByUsername("bobby"));
 
   }
-}
+}*/
