@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/like")
+@RequestMapping("/api/like")
 public class LikeController {
 
   private LikeService likeService;

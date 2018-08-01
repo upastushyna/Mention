@@ -37,5 +37,10 @@
   },
   "devDependencies": {
     "standard": "^10.0.3"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:8080"
+    }
   }
 }
