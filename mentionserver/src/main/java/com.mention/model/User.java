@@ -64,8 +64,8 @@ public class User {
   @JsonIgnoreProperties(value = {"user"})
   private List<Like> likes;
 
-  protected User() {
-  }
+
+  protected User(){ }
 
   public User(String username, String email, String password) {
     this.username = username;

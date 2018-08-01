@@ -1,4 +1,4 @@
-package com.mention.service;
+package com.mention.service002;
 
 import com.mention.repository.LikeRepository;
 import com.mention.model.Like;
