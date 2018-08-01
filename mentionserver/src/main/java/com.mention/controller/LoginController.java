@@ -28,7 +28,7 @@ public class LoginController {
   @PostMapping
   @CrossOrigin
   public LoginDetailsRs login(@RequestBody LoginDetailsRq loginDetailsRq) {
-    log.info("__"+ loginDetailsRq.toString());
+    log.info("__" + loginDetailsRq.toString());
     return new LoginDetailsRs(authService.login(loginDetailsRq));
   }
 

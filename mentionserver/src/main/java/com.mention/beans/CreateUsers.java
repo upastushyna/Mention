@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CreateUsers {
   @Bean
-  public CommandLineRunner createUsersInDb (UserRepository userRepository) {
+  public CommandLineRunner createUsersInDb(UserRepository userRepository) {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {

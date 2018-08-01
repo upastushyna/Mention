@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public boolean login(LoginDetailsRq loginDetailsRq) {
     Optional<User> user = userRepository.findByUsername(loginDetailsRq.getUsername());
-    log.info("__"+ user.toString());
+    log.info("__" + user.toString());
     if (user.isPresent()) {
       return user.get().getPassword().equals(loginDetailsRq.getPassword());
     } else {
