@@ -64,7 +64,12 @@ public class User {
   @JsonIgnoreProperties(value = {"user"})
   private List<Like> likes;
 
-  public void setActive(boolean active) {
-    isActive = active;
+  protected User() {
+  }
+
+  public User(String username, String email, String password) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
   }
 }
