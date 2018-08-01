@@ -156,7 +156,7 @@
                 <version>0.7.6.201602180812</version>
                 <executions>
                     <execution>
-                        <id>prepare-agent</id>
+                        <id>jacoco-initialize</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
@@ -170,6 +170,9 @@
                 <version>4.3.0</version>
                 <configuration>
                     <repoToken>Lwul9CVxrqBG8mstM7uoWrxdIaIF1xTiF</repoToken>
+                    <sourceDirectories>
+                        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+                    </sourceDirectories>
                 </configuration>
             </plugin>
         </plugins>
