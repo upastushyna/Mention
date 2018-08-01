@@ -2,6 +2,7 @@ package com.mention.repository;
 
 import com.mention.SpringBootConfiguration;
 import com.mention.model.User;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,56 +30,48 @@ public class UserRepositoryTest {
 
   @Before
   public void before() {
+    Assert.assertNull(userRepository.findByUsername("username"));
     User user = new User();
     user.setUsername("username");
     user.setActive(true);
     user.setEmail("john@mail.com");
     user.setPassword("123");
     userRepository.save(user);
+    Assert.assertNotNull(userRepository.findByUsername("username"));
+  }
+
+  @After
+  public void after(){
+    userRepository.deleteByUsername("username");
+    Assert.assertNull(userRepository.findByUsername("username"));
   }
 
   @Test
-  public void findTest() {
-/*    String username = "username";*/
-    Assert.assertNull(userRepository.findByUsername("username"));
+  public void getUserTest() {
+    Assert.assertNotNull(userRepository.findUserByEmail("john@mail.com"));
   }
 
   @Test
   public void saveUserTest() {
     Assert.assertNotNull(userRepository.findByUsername("username"));
-
   }
 
   @Test
   public void updateUserTest() {
-/*
-    User updUser = new User();
-    updUser.setUsername("Joe Dou");
-    updUser.setPassword("321");
-    updUser.setActive(true);
-    updUser.setEmail("joe@2mail.com");
-    userRepository.save(updUser);
-*/
-
-    User updUser2 = userRepository.findByUsername("username");
-    updUser2.setUsername("Jack");
-    userRepository.save(updUser2);
-    Assert.assertNotEquals(updUser2, userRepository.findByUsername("username"));
-   // Assert.assertNotNull(userRepository.findByUsername(updUser2.getUsername()));
-  }
+    User updateUser = userRepository.findByUsername("username");
+    updateUser.setUsername("Jack");
+    userRepository.save(updateUser);
+    Assert.assertEquals(updateUser, userRepository.findByUsername("Jack"));
+    userRepository.deleteByUsername("Jack");
+    Assert.assertNull(userRepository.findByUsername("Jack"));
+   }
 
   @Test
   @Transactional
   public void deleteUserTest() {
-    User userDel = new User();
-    userDel.setUsername("Elly");
-    userDel.setActive(true);
-    userDel.setPassword("231");
-    userDel.setEmail("elly@ma.ma");
-    userRepository.save(userDel);
-    Assert.assertNotNull(userRepository.findByUsername("Elly"));
-    userRepository.deleteByUsername("Elly");
-    Assert.assertNull(userRepository.findByUsername("Elly"));
+    Assert.assertNotNull(userRepository.findByUsername("username"));
+    userRepository.deleteByUsername("username");
+    Assert.assertNull(userRepository.findByUsername("username"));
   }
 
 }
