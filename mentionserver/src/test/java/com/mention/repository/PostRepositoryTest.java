@@ -11,6 +11,7 @@ import com.mention.model.Post;
 import com.mention.model.User;
 import com.mention.repository.UserRepository;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class PostRepositoryTest {
   @Autowired
   private UserRepository userRepository;
 
-  public User createTestUser(){
+  private User createTestUser(){
     User author = new User();
     author.setUsername("John Dou");
     author.setActive(true);
@@ -40,6 +41,12 @@ public class PostRepositoryTest {
 
 
   @Test
+  public void findUserTest() {
+
+
+  }
+
+  @Test
   public void findTest() {
     String author = "assd";
     Assert.assertNull(postRepository.findByAuthor(author));
@@ -47,9 +54,15 @@ public class PostRepositoryTest {
 
   @Test
   public void saveTest() {
+    User author = new User();
+    author.setUsername("John Dou");
+    author.setActive(true);
+    author.setEmail("john@mail.com");
+    author.setPassword("123");
+    userRepository.save(author);
     createTestUser();
     Post post = new Post();
-    post.setAuthor("author");
+    post.setAuthor(author);
     post.setBody("Its nice to see test body");
     postRepository.save(post);
     Assert.assertNotNull(userRepository.findByUsername("username"));

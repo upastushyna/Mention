@@ -3,6 +3,7 @@ package com.mention.repository;
 import com.mention.SpringBootConfiguration;
 import com.mention.model.User;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+import org.junit.Rule;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -19,38 +21,50 @@ public class UserRepositoryTest {
   @Autowired
   private UserRepository userRepository;
 
-  @Test
-  public void findTest() {
-    String username = "mockName";
-    Assert.assertNull(userRepository.findByUsername(username));
-  }
+/*
+  @Rule
+  public UserRepoRule rule = new UserRepoRule();
+*/
 
-  @Test
-  public void saveUserTest() {
+
+  @Before
+  public void before() {
     User user = new User();
-    user.setUsername("John Dou");
+    user.setUsername("username");
     user.setActive(true);
     user.setEmail("john@mail.com");
     user.setPassword("123");
     userRepository.save(user);
-    Assert.assertNotNull(userRepository.findByUsername(user.getUsername()));
+  }
+
+  @Test
+  public void findTest() {
+/*    String username = "username";*/
+    Assert.assertNull(userRepository.findByUsername("username"));
+  }
+
+  @Test
+  public void saveUserTest() {
+    Assert.assertNotNull(userRepository.findByUsername("username"));
 
   }
 
   @Test
   public void updateUserTest() {
+/*
     User updUser = new User();
     updUser.setUsername("Joe Dou");
     updUser.setPassword("321");
     updUser.setActive(true);
     updUser.setEmail("joe@2mail.com");
     userRepository.save(updUser);
+*/
 
-    User updUser2 = userRepository.findByUsername("Joe Dou");
+    User updUser2 = userRepository.findByUsername("username");
     updUser2.setUsername("Jack");
     userRepository.save(updUser2);
-    Assert.assertNull(userRepository.findByUsername("Joe Dou"));
-    Assert.assertNotNull(userRepository.findByUsername(updUser2.getUsername()));
+    Assert.assertNotEquals(updUser2, userRepository.findByUsername("username"));
+   // Assert.assertNotNull(userRepository.findByUsername(updUser2.getUsername()));
   }
 
   @Test
