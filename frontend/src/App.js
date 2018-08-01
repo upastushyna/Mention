@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        {/*<Navigation/>*/}
+        <Navigation/>
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route path='/messages' component={Messages}/>
