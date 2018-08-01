@@ -1,8 +1,8 @@
 package com.mention.service;
 
-import com.mention.dto.LoginDetails;
+import com.mention.dto.LoginDetailsRq;
 
 public interface AuthService {
-    boolean login(String username, String password);
-    boolean login(LoginDetails loginDetails);
+
+  boolean login(LoginDetailsRq loginDetailsRq);
 }
