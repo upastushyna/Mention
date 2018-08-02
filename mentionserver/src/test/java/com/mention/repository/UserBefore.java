@@ -17,5 +17,6 @@ public class UserBefore {
     user.setPassword("123");
     userRepository.save(user);
     Assert.assertNotNull(userRepository.findByUsername("username"));
+    //sksfse
   }
 }
