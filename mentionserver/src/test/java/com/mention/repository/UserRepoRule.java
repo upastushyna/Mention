@@ -17,7 +17,7 @@ public class UserRepoRule implements TestRule {
     return new Statement() {
       @Override
       public void evaluate() throws Throwable {
-/*        Assert.assertNull(userRepository.findByUsername("username"));
+        Assert.assertNull(userRepository.findByUsername("username"));
         User user = new User();
         user.setUsername("username");
         user.setActive(true);
@@ -27,7 +27,7 @@ public class UserRepoRule implements TestRule {
         Assert.assertNotNull(userRepository.findByUsername("username"));
         base.evaluate();
         userRepository.deleteByUsername("username");
-        Assert.assertNull(userRepository.findByUsername("username"));*/
+        Assert.assertNull(userRepository.findByUsername("username"));
       }
     };
   }

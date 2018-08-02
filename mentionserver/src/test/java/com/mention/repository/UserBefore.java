@@ -8,11 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 public class UserBefore {
-
-  @Autowired
-  private UserRepository userRepository;
-
-  public void createNewUser() {
+  public static void createNewUser(UserRepository userRepository) {
     Assert.assertNull(userRepository.findByUsername("username"));
     User user = new User();
     user.setUsername("username");
