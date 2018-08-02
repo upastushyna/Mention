@@ -28,6 +28,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>1.5.3.RELEASE</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -35,6 +42,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
         <dependency>
@@ -75,12 +83,12 @@
             <version>1.7.25</version>
         </dependency>
              
-        <dependency>
+<!--        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.25</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -158,7 +166,7 @@
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.3.0</version>
                 <configuration>
-                    <repoToken>HvLH3kgsyCh5IYplJAmEaXkGXlt1X6JL0</repoToken>
+                    <repoToken>Lwul9CVxrqBG8mstM7uoWrxdIaIF1xTiF</repoToken>
                 </configuration>
             </plugin>
         </plugins>
