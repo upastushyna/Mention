@@ -7,8 +7,10 @@ public class ChatServiceImpl implements ChatService {
 
   private UserRepository userRepository;
 
+  private ChatDto chatDto;
+
   @Override
   public ChatDto getSingleChat(String username1, String username2) {
-    return null;
+    return chatDto;
   }
 }
