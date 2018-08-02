@@ -1,4 +1,4 @@
-package com.mention.service;
+package com.mention.service002;
 
 import com.mention.repository.FollowRepository;
 import com.mention.model.Follow;

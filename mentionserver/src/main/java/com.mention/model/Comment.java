@@ -54,4 +54,11 @@ public class Comment {
   @Column(name = "comment_mediafileurl")
   private String mediafileUrl;
 
+  protected Comment(){}
+
+  public Comment(String body, User commentator, Post post) {
+    this.body = body;
+    this.commentator = commentator;
+    this.post = post;
+  }
 }

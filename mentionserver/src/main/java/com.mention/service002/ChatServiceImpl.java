@@ -1,4 +1,4 @@
-package com.mention.service;
+package com.mention.service002;
 
 import com.mention.repository.ChatRepository;
 import com.mention.model.Chat;

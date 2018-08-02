@@ -1,7 +1,7 @@
 package com.mention.controller;
 
 import com.mention.model.Like;
-import com.mention.service.LikeService;
+import com.mention.service002.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/like")
+@RequestMapping("/api/like")
 public class LikeController {
 
   private LikeService likeService;
