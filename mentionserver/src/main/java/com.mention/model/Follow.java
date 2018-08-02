@@ -49,4 +49,10 @@ public class Follow {
   @Column(nullable = false, name = "fw_timestamp", updatable = false)
   private Date timestamp;
 
+  protected Follow(){}
+
+  public Follow(User follower, User followedUser) {
+    this.follower = follower;
+    this.followedUser = followedUser;
+  }
 }
