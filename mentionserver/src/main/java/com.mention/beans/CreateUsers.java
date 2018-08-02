@@ -7,6 +7,7 @@ import com.mention.model.Follow;
 import com.mention.model.Like;
 import com.mention.model.Message;
 import com.mention.model.Post;
+import com.mention.model.Profile;
 import com.mention.model.User;
 import com.mention.repository.ChatRepository;
 import com.mention.repository.CommentRepository;
@@ -15,10 +16,14 @@ import com.mention.repository.FollowRepository;
 import com.mention.repository.LikeRepository;
 import com.mention.repository.MessageRepository;
 import com.mention.repository.PostRepository;
+import com.mention.repository.ProfileRepository;
 import com.mention.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Configuration
 public class CreateUsers {
@@ -26,7 +31,8 @@ public class CreateUsers {
   public CommandLineRunner createUsersInDb(UserRepository userRepository, PostRepository postRepository,
                                            CommentRepository commentRepository, LikeRepository likeRepository,
                                            FavoriteRepository favoriteRepository, MessageRepository messageRepository,
-                                           ChatRepository chatRepository, FollowRepository followRepository) {
+                                           ChatRepository chatRepository, FollowRepository followRepository,
+                                           ProfileRepository profileRepository) {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {
@@ -122,6 +128,36 @@ public class CreateUsers {
             userRepository.findByUsername("dima").get(), userRepository.findByUsername("yarik").get()));
         followRepository.save(new Follow(
             userRepository.findByUsername("alex").get(), userRepository.findByUsername("superman").get()));
+        followRepository.save(new Follow(
+            userRepository.findByUsername("admin").get(), userRepository.findByUsername("dima").get()));
+        followRepository.save(new Follow(
+            userRepository.findByUsername("admin").get(), userRepository.findByUsername("superman").get()));
+        followRepository.save(new Follow(
+            userRepository.findByUsername("admin").get(), userRepository.findByUsername("yarik").get()));
+
+
+        //https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1
+
+        profileRepository.save(new Profile(null, null, null,
+            null,
+            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
+            null, userRepository.findByUsername("superman").get()));
+        profileRepository.save(new Profile(null, null, null,
+            null,
+            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
+            null, userRepository.findByUsername("admin").get()));
+        profileRepository.save(new Profile(null, null, null,
+            null,
+            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
+            null, userRepository.findByUsername("yarik").get()));
+        profileRepository.save(new Profile(null, null, null,
+            null,
+            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
+            null, userRepository.findByUsername("dima").get()));
+        profileRepository.save(new Profile(null, null, null,
+            null,
+            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
+            null, userRepository.findByUsername("alex").get()));
 
       }
     };
