@@ -12,7 +12,7 @@ public class UserBefore {
   @Autowired
   private UserRepository userRepository;
 
-  /*public void createNewUser() {
+  public void createNewUser() {
     Assert.assertNull(userRepository.findByUsername("username"));
     User user = new User();
     user.setUsername("username");
@@ -21,5 +21,5 @@ public class UserBefore {
     user.setPassword("123");
     userRepository.save(user);
     Assert.assertNotNull(userRepository.findByUsername("username"));
-  }*/
+  }
 }

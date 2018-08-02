@@ -24,8 +24,12 @@ public class UserRepositoryTest {
   @Autowired
   private UserRepository userRepository;
 
-  /*  UserBefore userBefore = new UserBefore();*/
+    UserBefore userBefore = new UserBefore();
 
+  @Before
+  public void before(){
+    userBefore.createNewUser();
+  }
   @Before
   public void before() {
     Assert.assertNull(userRepository.findByUsername("username"));
