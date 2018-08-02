@@ -31,4 +31,11 @@ public class Favorite {
   @JoinColumn(name = "post_id", nullable = false, updatable = false)
   @JsonIgnoreProperties(value = {"author", "comments", "favorites"})
   private Post post;
+
+  protected Favorite(){}
+
+  public Favorite(User user, Post post) {
+    this.user = user;
+    this.post = post;
+  }
 }
