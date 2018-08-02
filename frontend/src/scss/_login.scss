@@ -1,31 +1,29 @@
 .login {
   height: 100vh;
-  background-color: rgb(245, 104, 61);
+  background: linear-gradient(to right, #f5683d, #4591fb);
   font-family: Lato, 'sans-serif';
 
   &__container {
     position: relative;
-    width: 450px;
+    width: 400px;
     margin: 0 auto;
-    padding-top: 41px;
+    padding-top: 25px;
     padding-bottom: 37px;
     border-radius: 4px;
     background-color: #ececec;
-    filter: drop-shadow(5px 5px 10px black);
+    filter: drop-shadow(2px 2px 5px black);
   }
 
   &__icon {
     position: absolute;
     top: -75px;
-    left: 150px;
+    left: 32%;
   }
 
   &__img {
     position: relative;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    filter: drop-shadow(2px 2px 5px black);
+    width: 50%;
+    border-radius: 53%;
   }
 
   &__title {
@@ -35,7 +33,7 @@
   }
 
   &__forgot-password {
-    margin-left: 145px;
+    margin-left: 30%;
     color: #f5683d;
     font-size: 18px;
     text-decoration: none;
@@ -71,7 +69,7 @@
     color: #fff;
     font-size: 20px;
     text-transform: uppercase;
-    filter: drop-shadow(5px 5px 5px black);
+    filter: drop-shadow(2px 2px 5px black);
   }
 
   &__btn:focus {
