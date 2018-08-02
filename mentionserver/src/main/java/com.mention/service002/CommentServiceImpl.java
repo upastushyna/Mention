@@ -1,4 +1,4 @@
-package com.mention.service;
+package com.mention.service002;
 
 import com.mention.repository.CommentRepository;
 import com.mention.model.Comment;

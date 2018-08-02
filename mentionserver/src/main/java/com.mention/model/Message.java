@@ -55,4 +55,12 @@ public class Message {
   @Column(name = "message_modify_timestamp")
   private Date modifyTimestamp;
 
+  protected Message(){}
+
+  public Message(String content, User sender, User receiver, Chat chat) {
+    this.content = content;
+    this.sender = sender;
+    this.receiver = receiver;
+    this.chat = chat;
+  }
 }
