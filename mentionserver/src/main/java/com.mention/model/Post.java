@@ -61,4 +61,10 @@ public class Post {
   @JsonIgnoreProperties(value = {"post"})
   private List<Like> likes;
 
+  protected Post(){}
+
+  public Post(String body, User author) {
+    this.body = body;
+    this.author = author;
+  }
 }

@@ -33,6 +33,13 @@ public class Like {
   @JsonIgnoreProperties(value = {"author", "likes", "comments", "favorites"})
   private Post post;
 
+  protected Like(){}
+
+  public Like(User user, Post post) {
+    this.user = user;
+    this.post = post;
+  }
+
   public Long getId() {
     return id;
   }
