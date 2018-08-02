@@ -10,56 +10,59 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
-import org.junit.Rule;
+
 
 @RunWith(SpringRunner.class)
-//@RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
 @SpringBootTest(classes = SpringBootConfiguration.class)
 public class UserRepositoryTest {
+  private final static String USER_NAME = "username";
+  private final static String USER_NAME2 = "Jack";
+  private final static String USER_EMAIL = "john@mail.com";
+  private final static String USER_PASSWD = "123";
+  private final static boolean USER_ACTIVE = true;
 
   @Autowired
   private UserRepository userRepository;
 
   @Before
   public void before(){
-    UserBefore.createNewUser(userRepository);
+    new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
   }
 
   @After
   public void after(){
-    userRepository.deleteByUsername("username");
-    Assert.assertNull(userRepository.findByUsername("username"));
+    userRepository.deleteByUsername(USER_NAME);
+    Assert.assertNull(userRepository.findByUsername(USER_NAME));
   }
 
   @Test
   public void getUserTest() {
+    //Assert.assertNotNull(userRepository.findByUsername(USER_NAME));
     Assert.assertNotNull(userRepository.findUserByEmail("john@mail.com"));
   }
 
   @Test
   public void saveUserTest() {
-    Assert.assertNotNull(userRepository.findByUsername("username"));
+    Assert.assertNotNull(userRepository.findByUsername(USER_NAME));
   }
 
   @Test
   public void updateUserTest() {
-    User updateUser = userRepository.findByUsername("username");
+    User updateUser = userRepository.findByUsername(USER_NAME);
     updateUser.setUsername("Jack");
     userRepository.save(updateUser);
-    Assert.assertEquals(updateUser, userRepository.findByUsername("Jack"));
-    userRepository.deleteByUsername("Jack");
-    Assert.assertNull(userRepository.findByUsername("Jack"));
+    Assert.assertEquals(updateUser, userRepository.findByUsername(USER_NAME2));
+    userRepository.deleteByUsername(USER_NAME2);
+    Assert.assertNull(userRepository.findByUsername(USER_NAME2));
    }
 
   @Test
   public void deleteUserTest() {
-    Assert.assertNotNull(userRepository.findByUsername("username"));
-    userRepository.deleteByUsername("username");
-    Assert.assertNull(userRepository.findByUsername("username"));
+    Assert.assertNotNull(userRepository.findByUsername(USER_NAME));
+    userRepository.deleteByUsername(USER_NAME);
+    Assert.assertNull(userRepository.findByUsername(USER_NAME));
   }
 
 }

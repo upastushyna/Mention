@@ -29,17 +29,6 @@ public class PostRepositoryTest {
 
   @Autowired
   private UserRepository userRepository;
-/*
-  @Before
-  public void before() {
-    Assert.assertNull(userRepository.findByUsername("username"));
-    User user = new User();
-    user.setUsername("username");
-    user.setActive(true);
-    user.setEmail("john@mail.com");
-    user.setPassword("123");
-    userRepository.save(user);
-    Assert.assertNotNull(userRepository.findByUsername("username"));
-  }*/
+
 
 }
