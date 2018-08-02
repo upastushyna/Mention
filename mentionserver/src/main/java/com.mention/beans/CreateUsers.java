@@ -53,75 +53,75 @@ public class CreateUsers {
         commentRepository.save(new Comment("Really?", userRepository.findByUsername("alex").get(),
             postRepository.findById(7L).get()));   //15
 
-        likeRepository.save(new Like
-            (userRepository.findByUsername("superman").get(), postRepository.findById(6L).get()));    //16
-        likeRepository.save(new Like
-            (userRepository.findByUsername("superman").get(), postRepository.findById(7L).get()));    //17
-        likeRepository.save(new Like
-            (userRepository.findByUsername("admin").get(), postRepository.findById(8L).get()));   //18
-        likeRepository.save(new Like
-            (userRepository.findByUsername("admin").get(), postRepository.findById(10L).get()));   //19
-        likeRepository.save(new Like
-            (userRepository.findByUsername("yarik").get(), postRepository.findById(7L).get()));   //20
-        likeRepository.save(new Like
-            (userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));    //21
-        likeRepository.save(new Like
-            (userRepository.findByUsername("alex").get(), postRepository.findById(7L).get()));    //22
-        likeRepository.save(new Like
-            (userRepository.findByUsername("alex").get(), postRepository.findById(9L).get()));    //23
-        likeRepository.save(new Like
-            (userRepository.findByUsername("alex").get(), postRepository.findById(8L).get()));    //24
-        likeRepository.save(new Like
-            (userRepository.findByUsername("admin").get(), postRepository.findById(10L).get()));    //25
+        likeRepository.save(new Like(
+            userRepository.findByUsername("superman").get(), postRepository.findById(6L).get()));    //16
+        likeRepository.save(new Like(
+            userRepository.findByUsername("superman").get(), postRepository.findById(7L).get()));    //17
+        likeRepository.save(new Like(
+            userRepository.findByUsername("admin").get(), postRepository.findById(8L).get()));   //18
+        likeRepository.save(new Like(
+            userRepository.findByUsername("admin").get(), postRepository.findById(10L).get()));   //19
+        likeRepository.save(new Like(
+            userRepository.findByUsername("yarik").get(), postRepository.findById(7L).get()));   //20
+        likeRepository.save(new Like(
+            userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));    //21
+        likeRepository.save(new Like(
+            userRepository.findByUsername("alex").get(), postRepository.findById(7L).get()));    //22
+        likeRepository.save(new Like(
+            userRepository.findByUsername("alex").get(), postRepository.findById(9L).get()));    //23
+        likeRepository.save(new Like(
+            userRepository.findByUsername("alex").get(), postRepository.findById(8L).get()));    //24
+        likeRepository.save(new Like(
+            userRepository.findByUsername("admin").get(), postRepository.findById(10L).get()));    //25
 
-        favoriteRepository.save(new Favorite
-            (userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));  //26
-        favoriteRepository.save(new Favorite
-            (userRepository.findByUsername("alex").get(), postRepository.findById(7L).get()));    //27
-        favoriteRepository.save(new Favorite
-            (userRepository.findByUsername("admin").get(), postRepository.findById(8L).get()));   //28
-        favoriteRepository.save(new Favorite
-            (userRepository.findByUsername("yarik").get(), postRepository.findById(9L).get()));   //29
-        favoriteRepository.save(new Favorite
-            (userRepository.findByUsername("superman").get(), postRepository.findById(10L).get()));   //30
+        favoriteRepository.save(new Favorite(
+            userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));  //26
+        favoriteRepository.save(new Favorite(
+            userRepository.findByUsername("alex").get(), postRepository.findById(7L).get()));    //27
+        favoriteRepository.save(new Favorite(
+            userRepository.findByUsername("admin").get(), postRepository.findById(8L).get()));   //28
+        favoriteRepository.save(new Favorite(
+            userRepository.findByUsername("yarik").get(), postRepository.findById(9L).get()));   //29
+        favoriteRepository.save(new Favorite(
+            userRepository.findByUsername("superman").get(), postRepository.findById(10L).get()));   //30
 
-        chatRepository.save(new Chat
-            (userRepository.findByUsername("superman").get(), userRepository.findByUsername("yarik").get()));   //31
-        chatRepository.save(new Chat
-            (userRepository.findByUsername("admin").get(), userRepository.findByUsername("alex").get()));   //32
-        chatRepository.save(new Chat
-            (userRepository.findByUsername("yarik").get(), userRepository.findByUsername("admin").get()));    //33
-        chatRepository.save(new Chat
-            (userRepository.findByUsername("dima").get(), userRepository.findByUsername("alex").get()));    //34
-        chatRepository.save(new Chat
-            (userRepository.findByUsername("alex").get(), userRepository.findByUsername("admin").get()));   //35
+        chatRepository.save(new Chat(
+            userRepository.findByUsername("superman").get(), userRepository.findByUsername("yarik").get()));   //31
+        chatRepository.save(new Chat(
+            userRepository.findByUsername("admin").get(), userRepository.findByUsername("alex").get()));   //32
+        chatRepository.save(new Chat(
+            userRepository.findByUsername("yarik").get(), userRepository.findByUsername("admin").get()));    //33
+        chatRepository.save(new Chat(
+            userRepository.findByUsername("dima").get(), userRepository.findByUsername("alex").get()));    //34
+        chatRepository.save(new Chat(
+            userRepository.findByUsername("alex").get(), userRepository.findByUsername("admin").get()));   //35
 
-        messageRepository.save(new Message
-            ("Hello!", userRepository.findByUsername("superman").get(),
+        messageRepository.save(new Message(
+            "Hello!", userRepository.findByUsername("superman").get(),
             userRepository.findByUsername("yarik").get(), chatRepository.findById(31L).get()));
-        messageRepository.save(new Message
-            ("How are you?", userRepository.findByUsername("admin").get(),
+        messageRepository.save(new Message(
+            "How are you?", userRepository.findByUsername("admin").get(),
             userRepository.findByUsername("alex").get(), chatRepository.findById(32L).get()));
-        messageRepository.save(new Message
-            ("What you want?", userRepository.findByUsername("yarik").get(),
+        messageRepository.save(new Message(
+            "What you want?", userRepository.findByUsername("yarik").get(),
             userRepository.findByUsername("admin").get(), chatRepository.findById(33L).get()));
-        messageRepository.save(new Message
-            ("Where is my money b*tch!?", userRepository.findByUsername("dima").get(),
+        messageRepository.save(new Message(
+            "Where is my money b*tch!?", userRepository.findByUsername("dima").get(),
             userRepository.findByUsername("alex").get(), chatRepository.findById(34L).get()));
-        messageRepository.save(new Message
-            ("I'm fine", userRepository.findByUsername("alex").get(),
+        messageRepository.save(new Message(
+            "I'm fine", userRepository.findByUsername("alex").get(),
             userRepository.findByUsername("admin").get(), chatRepository.findById(35L).get()));
 
-        followRepository.save(new Follow
-            (userRepository.findByUsername("superman").get(), userRepository.findByUsername("dima").get()));
-        followRepository.save(new Follow
-            (userRepository.findByUsername("admin").get(), userRepository.findByUsername("alex").get()));
-        followRepository.save(new Follow
-            (userRepository.findByUsername("yarik").get(), userRepository.findByUsername("admin").get()));
-        followRepository.save(new Follow
-            (userRepository.findByUsername("dima").get(), userRepository.findByUsername("yarik").get()));
-        followRepository.save(new Follow
-            (userRepository.findByUsername("alex").get(), userRepository.findByUsername("superman").get()));
+        followRepository.save(new Follow(
+            userRepository.findByUsername("superman").get(), userRepository.findByUsername("dima").get()));
+        followRepository.save(new Follow(
+            userRepository.findByUsername("admin").get(), userRepository.findByUsername("alex").get()));
+        followRepository.save(new Follow(
+            userRepository.findByUsername("yarik").get(), userRepository.findByUsername("admin").get()));
+        followRepository.save(new Follow(
+            userRepository.findByUsername("dima").get(), userRepository.findByUsername("yarik").get()));
+        followRepository.save(new Follow(
+            userRepository.findByUsername("alex").get(), userRepository.findByUsername("superman").get()));
 
       }
     };
