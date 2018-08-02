@@ -1,69 +1,64 @@
-.navigation {
-  padding: 7px 0;
-  border-bottom: 1px solid #667580;
-
-  &__menu {
-    align-items: center;
-
-    &--link {
-      margin-right: 15px;
-      color: #667580;
-      font-size: 17px;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    &--link:hover {
-      color: #328dc7;
-    }
-
-    &--img {
-      width: 17px;
-      margin-right: 3px;
-    }
-  }
+.header-panel {
+  width: 100%;
+  background-color: #494c62;
+  font-family: Roboto, 'sans-serif';
 
   &__logo {
-    height: 31px;
-
-    &--img {
-      height: 31px;
-    }
+    width: 67px;
+    height: 65px;
+    background-color: #4591fb;
   }
 
-  &__control {
-    &--input {
-      margin-right: 15px;
-      padding: 7px 10px;
-      border: 1px solid #e6ecf0;
-      border-radius: 16px;
-      outline: none;
-    }
+  &__img {
+    width: 40px;
+    margin: 13px;
+  }
 
-    &--input:focus {
-      border: 1px solid #328dc7;
-    }
+  &__title {
+    padding: 25px 50px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
 
-    &--btn {
-      padding: 6px 20px;
-      border: 1px solid transparent;
-      border-radius: 16px;
-      background-color: #328dc7;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-    }
+  &__input {
+    width: 350px;
+    padding: 24px 0;
+    border: none;
+    outline: none;
+    background-color: #515365;
+    color: #888da8;
+    font-size: 15px;
+  }
 
-    &--btn:hover {
-      border: 1px solid #328dc7;
-      background-color: #fff;
-      color: #328dc7;
-    }
+  &__btn {
+    margin-left: 20px;
+    transition: color 1s;
+    border: none;
+    outline: none;
+    background-color: #494c62;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  &__btn:hover {
+    color: #ff5e3a;
   }
 }
 
-.test {
-  display: flex;
-  align-items: center;
+.navigation {
+  position: fixed;
+  width: 64px;
+  height: 100vh;
+  border-right: 1.5px solid rgba(0, 0, 0, .1);
+
+  &__item {
+    margin-top: 20px;
+    margin-left: 12px;
+  }
+
+  &__img {
+    width: 40px;
+  }
 }

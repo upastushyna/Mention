@@ -16,9 +16,11 @@ export default class Body extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <h1>OUR FINAL PROJECT</h1>
-        <h2>You'll see, everything will be fine.</h2>
-        <input id="input" type="text"/><button onClick={() => this.addPost()}>mention</button>
+        <div className="container">
+          <h1>OUR FINAL PROJECT</h1>
+          <h2>You'll see, everything will be fine.</h2>
+          <input id="input" type="text"/><button onClick={() => this.addPost()}>mention</button>
+        </div>
       </Fragment>
     )
   }
