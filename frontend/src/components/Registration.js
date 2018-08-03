@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../css/index.css'
-import logo from '../img/register-icon.png'
+import logo from '../img/register.png'
 
 export default class Registration extends React.Component {
   addUser = () => fetch('/api/user',
@@ -17,7 +17,7 @@ export default class Registration extends React.Component {
 
     render () {
         return (
-            <section className="registration d-flex">
+            <section className="registration d-flex items-center">
                 <div className="registration__container">
                     <div className="registration__icon">
                         <img className="registration__img" src={logo} alt=""/>

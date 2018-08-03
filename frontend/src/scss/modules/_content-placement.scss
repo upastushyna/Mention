@@ -1,10 +1,13 @@
 .container {
-  width: 1160px;
-  margin: 0 auto;
+  padding-top: 65px;
+  padding-left: 67px;
 }
 
 .d-flex {
   display: flex;
+}
+
+.items-center {
   align-items: center;
 }
 

@@ -5,7 +5,9 @@ export default class Favorites extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <p>There will be Favorites page</p>
+        <div className="container">
+          <p>There will be Favorites page</p>
+        </div>
       </Fragment>
     )
   }
