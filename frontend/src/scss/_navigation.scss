@@ -16,6 +16,31 @@
     margin: 13px;
   }
 
+  &__icon {
+    width: 30px;
+  }
+
+  &__item {
+    margin: 16px;
+  }
+
+  &__profile {
+    margin: 11px 60px;
+  }
+
+  &__profile-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__profile-name {
+    margin-top: 15px;
+    margin-left: 5px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
   &__title {
     padding: 25px 50px;
     color: #fff;

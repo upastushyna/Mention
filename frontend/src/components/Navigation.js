@@ -6,6 +6,10 @@ import favorites from '../img/favorite-icon.png'
 import profile from '../img/profile-icon.png'
 import messages from '../img/message-icon.png'
 import post from '../img/posts-icon.png'
+import event from '../img/calendar-icon.png'
+import chat from '../img/chat-icon.png'
+import notification from '../img/notification-icon.png'
+import user from '../img/user-img.png'
 
 class Navigation extends React.Component {
   render () {
@@ -22,7 +26,25 @@ class Navigation extends React.Component {
               <input type="submit" className="header-panel__btn" value="Search"/>
             </form>
           </div>
-          <div className="header-panel__right"></div>
+          <div className="header-panel__right d-flex">
+            <div className="header-panel__menu">
+              <ul className="header-panel__list d-flex">
+                <li className="header-panel__item">
+                  <Link to="/"><img src={event} alt="" className="header-panel__icon"/></Link>
+                </li>
+                <li className="header-panel__item">
+                  <Link to="/"><img src={chat} alt="" className="header-panel__icon"/></Link>
+                </li>
+                <li className="header-panel__item">
+                  <Link to="/"><img src={notification} alt="" className="header-panel__icon"/></Link>
+                </li>
+              </ul>
+            </div>
+            <div className="header-panel__profile d-flex">
+              <img src={user} alt="" className="header-panel__profile-img"/>
+              <h2 className="header-panel__profile-name">Mykhail Hryhoriev</h2>
+            </div>
+          </div>
         </div>
         <div className="navigation">
           <ul className="navigation__list">
