@@ -1,5 +1,7 @@
 .header-panel {
+  position: fixed;
   width: 100%;
+  margin-bottom: 65px;
   background-color: #494c62;
   font-family: Roboto, 'sans-serif';
 
@@ -40,6 +42,7 @@
     background-color: #494c62;
     color: #fff;
     font-weight: 700;
+    cursor: pointer;
   }
 
   &__btn:hover {
@@ -49,9 +52,10 @@
 
 .navigation {
   position: fixed;
-  width: 64px;
+  width: 65px;
   height: 100vh;
-  border-right: 1.5px solid rgba(0, 0, 0, .1);
+  margin-top: 65px;
+  border-right: 2.5px solid rgba(0, 0, 0, .1);
 
   &__item {
     margin-top: 20px;

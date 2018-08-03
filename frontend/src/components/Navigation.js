@@ -16,7 +16,7 @@ class Navigation extends React.Component {
             <div className="header-panel__logo">
               <Link to="/" ><img className="header-panel__img" src={logo} alt=""/></Link>
             </div>
-            <h2 className="header-panel__title">Name Component</h2>
+            <h2 className="header-panel__title">Component name</h2>
             <form action="" className="header-panel__search">
               <input type="text" className="header-panel__input" placeholder="Search here people or pages..."/>
               <input type="submit" className="header-panel__btn" value="Search"/>
@@ -49,16 +49,3 @@ class Navigation extends React.Component {
 }
 
 export default Navigation
-
-
-
-{/*<nav className="navigation__menu d-flex">
-              <Link to="/messages" className="navigation__menu--link d-flex">
-                <img className="navigation__menu--img" src={message} alt=""/>Message</Link>
-              <Link to="/favorites" className="navigation__menu--link d-flex">
-                <img className="navigation__menu--img" src={favorite} alt=""/>Favorites</Link>
-              <Link to="/profile" className="navigation__menu--link d-flex">
-                <img className="navigation__menu--img" src={profile} alt=""/>Profile</Link>
-              <Link to="/createPost" className="navigation__menu--link d-flex">
-                <img className="navigation__menu--img" src={post} alt=""/>Create post</Link>
-            </nav>*/}

@@ -5,7 +5,9 @@ export default class CreatePost extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <p>There will be CreatePost page</p>
+        <div className="container">
+          <p>There will be CreatePost page</p>
+        </div>
       </Fragment>
     )
   }

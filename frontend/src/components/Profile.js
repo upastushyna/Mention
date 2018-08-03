@@ -5,7 +5,9 @@ export default class Profile extends React.Component {
     return (
       <div>
         <Navigation/>
-        <p>There will be profile page</p>
+        <div className="container">
+          <p>There will be profile page</p>
+        </div>
       </div>
     )
   }
