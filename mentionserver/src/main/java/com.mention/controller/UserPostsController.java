@@ -22,8 +22,8 @@ public class UserPostsController {
     this.userPostsService = userPostsService;
   }
 
-  @GetMapping("/followed/{userId}")
-  public List<PostDto> getFollowedPosts(@PathVariable Long userId) {
-    return userPostsService.getFollowedPosts(userId);
+  @GetMapping("/followed/{username}")
+  public List<PostDto> getFollowedPosts(@PathVariable String username) {
+    return userPostsService.getFollowedPosts(username);
   }
 }

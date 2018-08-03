@@ -28,13 +28,15 @@ public class UserRepositoryTest {
 
   @Before
   public void before(){
-    new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
+    userRepository.save(new User(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE));
+
+    //new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
   }
 
   @After
   public void after(){
     userRepository.deleteByUsername(USER_NAME);
-    Assert.assertNull(userRepository.findByUsername(USER_NAME));
+    Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
   }
 
   @Test
@@ -50,19 +52,19 @@ public class UserRepositoryTest {
 
   @Test
   public void updateUserTest() {
-    User updateUser = userRepository.findByUsername(USER_NAME);
+    User updateUser = userRepository.findByUsername(USER_NAME).get();
     updateUser.setUsername("Jack");
     userRepository.save(updateUser);
-    Assert.assertEquals(updateUser, userRepository.findByUsername(USER_NAME2));
+    Assert.assertEquals(updateUser, userRepository.findByUsername(USER_NAME2).get());
     userRepository.deleteByUsername(USER_NAME2);
-    Assert.assertNull(userRepository.findByUsername(USER_NAME2));
+    Assert.assertNull(userRepository.findByUsername(USER_NAME2).orElse(null));
    }
 
   @Test
   public void deleteUserTest() {
     Assert.assertNotNull(userRepository.findByUsername(USER_NAME));
     userRepository.deleteByUsername(USER_NAME);
-    Assert.assertNull(userRepository.findByUsername(USER_NAME));
+    Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
   }
 
 }

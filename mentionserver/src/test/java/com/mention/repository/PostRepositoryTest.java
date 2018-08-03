@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootConfiguration.class)
-public class PostRepositoryTest {
+public abstract class PostRepositoryTest {
 
   @Autowired
   private PostRepository postRepository;
