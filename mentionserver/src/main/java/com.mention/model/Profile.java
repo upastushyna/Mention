@@ -45,4 +45,16 @@ public class Profile {
   @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"}, allowSetters = true)
   private User user;
 
+  protected Profile() { }
+
+  public Profile(String firstName, String secondName, String address,
+                 Date birthDate, String avatarUrl, String backgroundUrl, User user) {
+    this.firstName = firstName;
+    this.secondName = secondName;
+    this.address = address;
+    this.birthDate = birthDate;
+    this.avatarUrl = avatarUrl;
+    this.backgroundUrl = backgroundUrl;
+    this.user = user;
+  }
 }
