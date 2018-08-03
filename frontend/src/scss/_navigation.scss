@@ -84,11 +84,32 @@
   border-right: 2.5px solid rgba(0, 0, 0, .1);
 
   &__item {
+    position: relative;
     margin-top: 20px;
     margin-left: 12px;
   }
 
   &__img {
     width: 40px;
+  }
+
+  &__hover-name {
+    position: absolute;
+    top: 25%;
+    left: 45px;
+    padding: 5px 10px;
+    transition: visibility 0s, opacity .5s linear;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .8);
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__img:hover + &__hover-name {
+    opacity: 1;
+    visibility: visible;
   }
 }

@@ -30,13 +30,19 @@ class Navigation extends React.Component {
             <div className="header-panel__menu">
               <ul className="header-panel__list d-flex">
                 <li className="header-panel__item">
-                  <Link to="/"><img src={event} alt="" className="header-panel__icon"/></Link>
+                  <Link to="/">
+                    <img src={event} alt="" className="header-panel__icon"/>
+                  </Link>
                 </li>
                 <li className="header-panel__item">
-                  <Link to="/"><img src={chat} alt="" className="header-panel__icon"/></Link>
+                  <Link to="/">
+                    <img src={chat} alt="" className="header-panel__icon"/>
+                  </Link>
                 </li>
                 <li className="header-panel__item">
-                  <Link to="/"><img src={notification} alt="" className="header-panel__icon"/></Link>
+                  <Link to="/">
+                    <img src={notification} alt="" className="header-panel__icon"/>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -49,19 +55,34 @@ class Navigation extends React.Component {
         <div className="navigation">
           <ul className="navigation__list">
             <li className="navigation__item">
-              <Link to="/"><img className="navigation__img" src={home} alt=""/></Link>
+              <Link to="/">
+                <img className="navigation__img" src={home} alt=""/>
+                <h4 className="navigation__hover-name">home</h4>
+              </Link>
             </li>
             <li className="navigation__item">
-              <Link to="/profile"><img className="navigation__img" src={profile} alt=""/></Link>
+              <Link to="/profile">
+                <img className="navigation__img" src={profile} alt=""/>
+                <h4 className="navigation__hover-name">profile</h4>
+              </Link>
             </li>
             <li className="navigation__item">
-              <Link to="/createPost"><img className="navigation__img" src={post} alt=""/></Link>
+              <Link to="/createPost">
+                <img className="navigation__img" src={post} alt=""/>
+                <h4 className="navigation__hover-name">post</h4>
+              </Link>
             </li>
             <li className="navigation__item">
-              <Link to="/favorites"><img className="navigation__img" src={favorites} alt=""/></Link>
+              <Link to="/favorites">
+                <img className="navigation__img" src={favorites} alt=""/>
+                <h4 className="navigation__hover-name">favorites</h4>
+              </Link>
             </li>
             <li className="navigation__item">
-              <Link to="/messages"><img className="navigation__img" src={messages} alt=""/></Link>
+              <Link to="/messages">
+                <img className="navigation__img" src={messages} alt=""/>
+                <h4 className="navigation__hover-name">messages</h4>
+              </Link>
             </li>
           </ul>
         </div>
