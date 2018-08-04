@@ -1,0 +1,78 @@
+.post,
+.comment-container {
+  width: 523px;
+  padding: 25px;
+  border: 1px solid #e6ecf5;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #888da8;
+  font-family: Roboto, 'sans-serif';
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__more-img,
+  &__like-img,
+  &__comment-img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  &__comment-number,
+  &__like-number {
+    margin-left: 10px;
+  }
+
+  &__body {
+    margin: 25px 0;
+    text-align: justify;
+  }
+
+  &__footer {
+    padding: 20px 0 0;
+    border-top: 1px solid #e6ecf5;
+  }
+}
+
+.comment-container {
+  padding-bottom: 75px;
+
+  &__avatar {
+    max-width: 28px;
+    max-height: 28px;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+
+  &__input {
+    width: 523px;
+    min-height: 35px;
+    padding: 15px;
+    border: 1px solid #e6ecf5;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+  }
+
+  &__input:focus {
+    border: .5px solid #ff5e3a;
+  }
+
+  &__button {
+    margin-top: 15px;
+    padding: 15px 25px;
+    float: right;
+    border: 1px solid #ff5e3a;
+    border-radius: 5px;
+    background-color: #ff5e3a;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__button:hover {
+    opacity: .9;
+  }
+}

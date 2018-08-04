@@ -4,7 +4,7 @@ import logo from '../img/header-panel/logo.png'
 import event from '../img/header-panel/calendar-icon.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
-import user from '../img/header-panel/user-img.png'
+import avatar from '../img/header-panel/user-img.png'
 
 class HeaderPanel extends React.Component {
   render () {
@@ -41,14 +41,18 @@ class HeaderPanel extends React.Component {
                 </li>
               </ul>
             </div>
-            <div className="header__profile d-flex">
-              <img src={user} alt="" className="header__profile-img"/>
-              <h2 className="header__profile-name">Mykhail Hryhoriev</h2>
-              <div className="header__profile-active"/>
-              <span className="header__profile-arrow">&#711;</span>
+            <div className="profile d-flex profile--position">
+              <img src={avatar} alt="" className="profile__avatar"/>
+              <div className="profile__signature">
+                <h2 className="profile__username color-white">Mykhail Hryhoriev</h2>
+                <span className="profile__alias">DEVELOPER</span>
+              </div>
+              <div className="profile__isActive"/>
+              <span className="profile__arrow color-white">&#711;</span>
             </div>
           </div>
         </div>
+        <div className="header__space" />
       </Fragment>
     )
   }

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
-import Navigation from "./Navigation";
-import ProfileHeader from '../containers/ProfileHeader'
+import Navigation from "./Navigation"
+import '../css/index.css'
+import PostItem from '../containers/PostItem'
 
 export default class Body extends React.Component {
   addPost = () => fetch('/api/post',
@@ -17,7 +18,9 @@ export default class Body extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <ProfileHeader/>
+        <div className="container">
+          <PostItem />
+        </div>
       </Fragment>
     )
   }

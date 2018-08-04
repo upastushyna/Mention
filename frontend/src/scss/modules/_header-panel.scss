@@ -20,40 +20,9 @@
     margin: 16px;
   }
 
-  &__profile {
-    position: relative;
-    margin: 11px 60px;
-    cursor: pointer;
-  }
-
-  &__profile-active {
-    position: absolute;
-    left: 0;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: #32e4cd;
-  }
-
-  &__profile-arrow {
-    margin-top: 17px;
-    margin-left: 5px;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  &__profile-img {
-    width: 40px;
-    height: 40px;
-  }
-
-  &__profile-name {
-    margin-top: 15px;
-    margin-left: 5px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
+  &__space {
+    display: block;
+    height: 110px;
   }
 }
 
