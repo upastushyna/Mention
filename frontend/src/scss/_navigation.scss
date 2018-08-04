@@ -1,4 +1,4 @@
-.header-panel {
+.header {
   position: fixed;
   width: 100%;
   margin-bottom: 65px;
@@ -49,12 +49,17 @@
     font-weight: 700;
     text-transform: uppercase;
   }
+}
+
+.search {
+  &__non-line {
+    border: none;
+    outline: none;
+  }
 
   &__input {
     width: 350px;
     padding: 24px 0;
-    border: none;
-    outline: none;
     background-color: #515365;
     color: #888da8;
     font-size: 15px;
@@ -63,8 +68,6 @@
   &__btn {
     margin-left: 20px;
     transition: color 1s;
-    border: none;
-    outline: none;
     background-color: #494c62;
     color: #fff;
     font-weight: 700;
