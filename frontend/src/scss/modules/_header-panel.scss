@@ -1,0 +1,97 @@
+.header {
+  width: 100%;
+  margin-bottom: 65px;
+  background-color: #494c62;
+  font-family: Roboto, 'sans-serif';
+
+  &__title {
+    padding: 25px 50px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &__icon {
+    width: 30px;
+  }
+
+  &__item {
+    margin: 16px;
+  }
+
+  &__profile {
+    position: relative;
+    margin: 11px 60px;
+    cursor: pointer;
+  }
+
+  &__profile-active {
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #32e4cd;
+  }
+
+  &__profile-arrow {
+    margin-top: 17px;
+    margin-left: 5px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__profile-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__profile-name {
+    margin-top: 15px;
+    margin-left: 5px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.logo {
+  width: 67px;
+  height: 65px;
+  background-color: #4591fb;
+
+  &__img {
+    width: 40px;
+    margin: 13px;
+  }
+}
+
+.search {
+  &__input {
+    width: 350px;
+    padding: 24px 0;
+    background-color: #515365;
+    color: #888da8;
+    font-size: 15px;
+
+    &--non-line {
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__btn {
+    margin-left: 20px;
+    transition: color 1s;
+    background-color: #494c62;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__btn:hover {
+    color: #ff5e3a;
+  }
+}

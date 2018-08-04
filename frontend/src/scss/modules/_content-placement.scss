@@ -1,6 +1,10 @@
 .container {
-  padding-top: 65px;
-  padding-left: 67px;
+  padding-top: 90px;
+
+  &__box {
+    width: 1268px;
+    margin: 0 auto;
+  }
 }
 
 .d-flex {

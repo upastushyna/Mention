@@ -1,0 +1,37 @@
+.navigation {
+  width: 67px;
+  height: 100vh;
+  margin-top: 65px;
+  background-color: #fff;
+  box-shadow: 7px 0 5px -4px #888;
+
+  &__item {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 12px;
+  }
+
+  &__img {
+    width: 40px;
+  }
+
+  &__hover {
+    position: absolute;
+    top: 25%;
+    left: 45px;
+    padding: 5px 10px;
+    transition: visibility 0s, opacity .5s linear;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .8);
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__img:hover + &__hover {
+    opacity: 1;
+    visibility: visible;
+  }
+}
