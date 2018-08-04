@@ -3,9 +3,10 @@ import avatar from '../img/header-panel/user-img.png'
 import more from '../img/post-form/more-icon.png'
 import like from '../img/post-form/like-icon.png'
 import comment from '../img/post-form/comment-icon.png'
+import forward from '../img/post-form/forward-icon.png'
 import likeThis from '../img/post-form/set-like-icon.png'
 import commentThis from '../img/post-form/set-comment-icon.png'
-import forward from '../img/post-form/forward-icon.png'
+import forwardThis from '../img/post-form/set-forward-icon.png'
 
 const PostItem = props =>
   <Fragment>
@@ -39,6 +40,8 @@ const PostItem = props =>
         <div className="post__comment-icon d-flex items-center">
           <img src={comment} alt="" className="post__comment-img"/>
           <span className="post__comment-number">5</span>
+          <img src={forward} alt="" className="post__forward-img"/>
+          <span className="post__forward-number">5</span>
         </div>
       </div>
       <div className="post__controller">
@@ -50,7 +53,7 @@ const PostItem = props =>
             <img src={commentThis} alt="" className="post__item-icon"/>
           </li>
           <li className="post__item">
-            <img src={forward} alt="" className="post__item-icon"/>
+            <img src={forwardThis} alt="" className="post__item-icon"/>
           </li>
         </ul>
       </div>

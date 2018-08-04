@@ -16,14 +16,20 @@
 
   &__more-img,
   &__like-img,
-  &__comment-img {
+  &__comment-img,
+  &__forward-img {
     width: 30px;
     height: 30px;
     cursor: pointer;
   }
 
+  &__forward-img {
+    margin-left: 20px;
+  }
+
   &__comment-number,
-  &__like-number {
+  &__like-number,
+  &__forward-number {
     margin-left: 10px;
   }
 
@@ -49,6 +55,7 @@
     margin-top: 15px;
     border-radius: 50%;
     background-color: #9a9fbf;
+    cursor: pointer;
   }
 
   &__item:hover {
@@ -83,7 +90,7 @@
   }
 
   &__input:focus {
-    border: .5px solid #4591fb;
+    border: 1px solid #4591fb;
   }
 
   &__button {
