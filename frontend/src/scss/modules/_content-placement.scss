@@ -1,6 +1,6 @@
 .container {
-  padding-top: 65px;
-  padding-left: 67px;
+  max-width: 1268px;
+  margin: 0 auto;
 }
 
 .d-flex {
@@ -13,4 +13,12 @@
 
 .content-between {
   justify-content: space-between;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.color-dark-grey {
+  color: #515365;
 }
