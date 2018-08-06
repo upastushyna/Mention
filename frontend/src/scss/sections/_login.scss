@@ -1,6 +1,6 @@
-.registration {
+.login {
   height: 100vh;
-  background: linear-gradient(to right, #108ede, #40e0d0);
+  background: linear-gradient(to right, #f5683d, #4591fb);
   font-family: Lato, 'sans-serif';
 
   &__container {
@@ -17,7 +17,7 @@
   &__icon {
     position: absolute;
     top: -75px;
-    left: 32%;
+    left: 35%;
   }
 
   &__img {
@@ -32,8 +32,8 @@
     font-weight: 300;
   }
 
-  &__member-login {
-    margin-left: 34%;
+  &__forgot-password {
+    margin-left: 30%;
     color: #f5683d;
     font-size: 18px;
     text-decoration: none;

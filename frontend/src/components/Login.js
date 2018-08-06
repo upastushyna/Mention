@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../css/index.css'
-import logo from '../img/user-icon.png'
+import logo from '../img/login.png'
 
 export default class Login extends React.Component {
     render () {
         return (
-            <section className="login d-flex">
+            <section className="login d-flex items-center">
                 <div className="login__container">
                     <div className="login__icon">
                         <img className="login__img" src={logo} alt=""/>

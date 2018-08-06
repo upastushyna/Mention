@@ -5,7 +5,9 @@ export default class Messages extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <p>There will be page with list of user's messages</p>
+        <div className="container">
+          <p>There will be page with list of user's messages</p>
+        </div>
       </Fragment>
     )
   }
