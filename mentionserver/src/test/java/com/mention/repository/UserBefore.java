@@ -2,7 +2,6 @@ package com.mention.repository;
 
 import com.mention.model.User;
 import org.junit.Assert;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserBefore {
   private UserRepository userRepository;

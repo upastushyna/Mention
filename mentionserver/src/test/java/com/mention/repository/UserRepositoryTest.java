@@ -28,9 +28,7 @@ public class UserRepositoryTest {
 
   @Before
   public void before(){
-    userRepository.save(new User(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE));
-
-    //new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
+    new UserBefore(userRepository).createNewUser(USER_NAME, USER_PASSWD, USER_EMAIL, USER_ACTIVE);
   }
 
   @After
@@ -41,7 +39,11 @@ public class UserRepositoryTest {
 
   @Test
   public void getUserTest() {
-    //Assert.assertNotNull(userRepository.findByUsername(USER_NAME));
+    Assert.assertNotNull(userRepository.findByUsername(USER_NAME));
+  }
+
+  @Test
+  public void getUserByMailTest() {
     Assert.assertNotNull(userRepository.findUserByEmail("john@mail.com"));
   }
 
