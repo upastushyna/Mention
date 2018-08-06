@@ -1,5 +1,6 @@
 .post,
 .comment-container {
+  position: relative;
   width: 523px;
   padding: 25px;
   border: 1px solid #e6ecf5;
@@ -15,14 +16,20 @@
 
   &__more-img,
   &__like-img,
-  &__comment-img {
+  &__comment-img,
+  &__forward-img {
     width: 30px;
     height: 30px;
     cursor: pointer;
   }
 
+  &__forward-img {
+    margin-left: 20px;
+  }
+
   &__comment-number,
-  &__like-number {
+  &__like-number,
+  &__forward-number {
     margin-left: 10px;
   }
 
@@ -34,6 +41,31 @@
   &__footer {
     padding: 20px 0 0;
     border-top: 1px solid #e6ecf5;
+  }
+
+  &__controller {
+    position: absolute;
+    top: 17%;
+    right: -3%;
+  }
+
+  &__item {
+    width: 34px;
+    height: 34px;
+    margin-top: 15px;
+    border-radius: 50%;
+    background-color: #9a9fbf;
+    cursor: pointer;
+  }
+
+  &__item:hover {
+    background-color: #4591fb;
+  }
+
+  &__item-icon {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
   }
 }
 
@@ -58,16 +90,16 @@
   }
 
   &__input:focus {
-    border: .5px solid #ff5e3a;
+    border: 1px solid #4591fb;
   }
 
   &__button {
     margin-top: 15px;
     padding: 15px 25px;
     float: right;
-    border: 1px solid #ff5e3a;
+    border: 1px solid #4591fb;
     border-radius: 5px;
-    background-color: #ff5e3a;
+    background-color: #4591fb;
     font-weight: 700;
     cursor: pointer;
   }
