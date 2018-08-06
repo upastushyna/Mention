@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import more from '../img/post-form/more-icon.png'
-import like from '../img/post-form/like-icon.png'
+import more from '../img/post-container/more-icon.png'
+import like from '../img/post-container/like-icon.png'
 
 const CommentContainer = props =>
   props.comments.map(comment =>
