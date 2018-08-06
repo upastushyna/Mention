@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import Navigation from "./Navigation"
 import '../css/index.css'
 import PostItem from '../containers/PostItem'
-import PostItem2 from '../containers/PostItem2'
 import {loadFeed} from "../actions/feedActions";
 import {connect} from 'react-redux'
 
