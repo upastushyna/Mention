@@ -1,0 +1,44 @@
+.profile {
+  position: relative;
+  color: #9a9fbf;
+  cursor: pointer;
+
+  &--position {
+    margin: 11px 60px;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__username {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  &__isActive {
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #32e4cd;
+  }
+
+  &__arrow {
+    margin-top: 17px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__alias {
+    font-size: 8px;
+    font-weight: 700;
+  }
+
+  &__signature {
+    margin: 7px;
+  }
+}

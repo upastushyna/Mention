@@ -1,0 +1,44 @@
+.header-profile {
+  position: relative;
+  height: 520px;
+  font-family: Roboto, 'sans-serif';
+
+  &__background {
+    height: 422px;
+    border-radius: 5px;
+    background-image: url('../img/progile-bg.jpg');
+    background-size: cover;
+  }
+
+  &__user {
+    position: absolute;
+    bottom: 8%;
+    left: 45%;
+    width: 170px;
+  }
+
+  &__img {
+    width: 158px;
+    border: 6px solid #fff;
+    border-radius: 50%;
+  }
+
+  &__name {
+    transition: color .5s;
+    color: #515365;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__name:hover {
+    color: #4591fb;
+  }
+
+  &__location {
+    margin-top: 5px;
+    font-size: 11px;
+    text-align: center;
+  }
+}
