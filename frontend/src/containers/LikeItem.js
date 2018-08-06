@@ -2,8 +2,7 @@ import React, { Fragment } from 'react'
 
 const LikeItem = props =>
   <Fragment>
-    <button>{props.likes.length}</button>
-
+    <span>{props.likes.length}</span>
   </Fragment>
 
 export default LikeItem
