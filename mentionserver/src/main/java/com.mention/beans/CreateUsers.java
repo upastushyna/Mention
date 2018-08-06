@@ -36,11 +36,11 @@ public class CreateUsers {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {
-        userRepository.save(new User("admin", "admin@gmail.com", "ADMIN")); //1
-        userRepository.save(new User("alex", "alex@gmail.com", "ALEX1")); //2
-        userRepository.save(new User("dima", "dima@gmail.com", "DIMA2")); //3
-        userRepository.save(new User("yarik", "yarik@gmail.com", "YARIK")); //4
-        userRepository.save(new User("superman", "havenoidea@gmail.com", "amazing")); //5
+        userRepository.save(new User("admin", "admin@gmail.com", "ADMIN", true)); //1
+        userRepository.save(new User("alex", "alex@gmail.com", "ALEX1", true)); //2
+        userRepository.save(new User("dima", "dima@gmail.com", "DIMA2", true)); //3
+        userRepository.save(new User("yarik", "yarik@gmail.com", "YARIK", true)); //4
+        userRepository.save(new User("superman", "havenoidea@gmail.com", "amazing", true)); //5
 
         postRepository.save(new Post("My amazing post!", userRepository.findByUsername("alex").get())); //6
         postRepository.save(new Post("Something new!", userRepository.findByUsername("dima").get())); //7
