@@ -1,7 +1,7 @@
 package com.mention.service002;
 
+import com.mention.model.PostComment;
 import com.mention.repository.CommentRepository;
-import com.mention.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,14 +20,14 @@ public class CommentServiceImpl implements CommentService {
 
   @Override
   @Transactional
-  public void addComment(Comment comment) {
-    commentRepository.save(comment);
+  public void addComment(PostComment postComment) {
+    commentRepository.save(postComment);
   }
 
   @Override
   @Transactional
-  public void updateComment(Comment comment) {
-    commentRepository.save(comment);
+  public void updateComment(PostComment postComment) {
+    commentRepository.save(postComment);
 
   }
 
@@ -39,7 +39,7 @@ public class CommentServiceImpl implements CommentService {
   }
 
   @Override
-  public Optional<Comment> getComment(Long id) {
+  public Optional<PostComment> getComment(Long id) {
     return commentRepository.findById(id);
   }
 }

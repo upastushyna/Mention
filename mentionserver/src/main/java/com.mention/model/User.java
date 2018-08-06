@@ -26,7 +26,7 @@ public class User {
 
   @OneToMany(mappedBy = "commentator")
   @JsonIgnoreProperties("commentator")
-  private List<Comment> comments;
+  private List<PostComment> postComments;
 
   @OneToMany(mappedBy = "user")
   @JsonIgnoreProperties("user")
@@ -62,7 +62,7 @@ public class User {
 
   @OneToMany(mappedBy = "user")
   @JsonIgnoreProperties(value = {"user"})
-  private List<Like> likes;
+  private List<PostLike> postLikes;
 
 
   protected User(){ }

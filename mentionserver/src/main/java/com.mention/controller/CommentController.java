@@ -1,6 +1,6 @@
 package com.mention.controller;
 
-import com.mention.model.Comment;
+import com.mention.model.PostComment;
 import com.mention.service002.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,13 +25,13 @@ public class CommentController {
   }
 
   @PostMapping
-  public void addComment(@RequestBody Comment comment) {
-    commentService.addComment(comment);
+  public void addComment(@RequestBody PostComment postComment) {
+    commentService.addComment(postComment);
   }
 
   @PutMapping
-  public void updateComment(@RequestBody Comment comment) {
-    commentService.updateComment(comment);
+  public void updateComment(@RequestBody PostComment postComment) {
+    commentService.updateComment(postComment);
   }
 
   @DeleteMapping(value = "/{id}")
@@ -40,7 +40,7 @@ public class CommentController {
   }
 
   @GetMapping(value = "/{id}")
-  public Optional<Comment> getComment(@PathVariable Long id) {
+  public Optional<PostComment> getComment(@PathVariable Long id) {
     return commentService.getComment(id);
   }
 }

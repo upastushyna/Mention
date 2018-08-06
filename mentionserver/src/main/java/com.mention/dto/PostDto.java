@@ -1,8 +1,6 @@
 package com.mention.dto;
 
-import com.mention.model.Comment;
-import com.mention.model.Like;
-import com.mention.model.User;
+import com.mention.model.PostComment;
 import lombok.Data;
 
 import java.util.Date;

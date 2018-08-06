@@ -32,7 +32,7 @@ public class Follow {
   @JoinColumn(name = "fw_follower")
   @JsonIgnoreProperties(value =
           {"profile", "sentMessages", "posts",
-                  "comments", "receivedMessages",
+                  "postComments", "receivedMessages",
                   "chats", "favorites", "followers", "followedUsers"})
   private User follower;
 
@@ -40,7 +40,7 @@ public class Follow {
   @JoinColumn(name = "fw_followed_user")
   @JsonIgnoreProperties(value =
           {"profile", "sentMessages", "posts",
-                  "comments", "receivedMessages",
+                  "postComments", "receivedMessages",
                   "chats", "favorites", "followers", "followedUsers"})
   private User followedUser;
 
