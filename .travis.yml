@@ -12,5 +12,8 @@ cache:
 script:
    - mvn clean test
 
+after_success:
+  - mvn clean test jacoco:report coveralls:report
+
 # When any tests are present update script with:
 #- mvn clean test jacoco:report coveralls:report

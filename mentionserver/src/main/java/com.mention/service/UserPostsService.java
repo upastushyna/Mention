@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface UserPostsService {
 
-  List<PostDto> getFollowedPosts(Long id);
+  List<PostDto> getFollowedPosts(String username);
 }

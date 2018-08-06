@@ -26,9 +26,9 @@ public class UserPostsServiceImpl implements UserPostsService {
   }
 
   @Override
-  public List<PostDto> getFollowedPosts(Long id) {
+  public List<PostDto> getFollowedPosts(String username) {
     ModelMapper modelMapper = new ModelMapper();
-    Optional<User> currentUser = userRepository.findById(id);
+    Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
       User user = currentUser.get();
       List<Post> posts = new ArrayList<>();
@@ -39,7 +39,6 @@ public class UserPostsServiceImpl implements UserPostsService {
       List<PostDto> postDtos = posts.stream().map(post -> modelMapper.map(
           post, PostDto.class)).collect(Collectors.toList());
       return postDtos;
-
     }
     return null;
   }

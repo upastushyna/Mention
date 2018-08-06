@@ -1,7 +1,7 @@
-const initialState = {
-  articles: []
-};
+import {combineReducers} from 'redux';
+import feedReducer from './feedReducer'
 
-const rootReducer = (state = initialState, action) => state;
 
-export default rootReducer;
+export default combineReducers({
+  feed: feedReducer
+})
