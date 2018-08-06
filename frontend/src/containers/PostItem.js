@@ -39,7 +39,7 @@ const PostItem = props =>
       </div>
     </div>
     <CommentContainer comments={props.post.comments}/>
-    {/*<AddComment/>*/}
+    <AddComment/>
   </Fragment>
 
 export default PostItem

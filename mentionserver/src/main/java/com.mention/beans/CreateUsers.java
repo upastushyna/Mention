@@ -50,6 +50,10 @@ public class CreateUsers {
 
         commentRepository.save(new Comment("Not Bad", userRepository.findByUsername("superman").get(),
             postRepository.findById(6L).get())); //11
+        commentRepository.save(new Comment("So Bad", userRepository.findByUsername("superman").get(),
+            postRepository.findById(6L).get())); //11
+        commentRepository.save(new Comment("Chao bambino", userRepository.findByUsername("superman").get(),
+            postRepository.findById(6L).get())); //11
         commentRepository.save(new Comment("Comment", userRepository.findByUsername("yarik").get(),
             postRepository.findById(8L).get()));    //12
         commentRepository.save(new Comment("New Post", userRepository.findByUsername("admin").get(),
@@ -104,19 +108,19 @@ public class CreateUsers {
 
         messageRepository.save(new Message(
             "Hello!", userRepository.findByUsername("superman").get(),
-            userRepository.findByUsername("yarik").get(), chatRepository.findById(31L).get()));
+            userRepository.findByUsername("yarik").get(), chatRepository.findById(33L).get()));
         messageRepository.save(new Message(
             "How are you?", userRepository.findByUsername("admin").get(),
-            userRepository.findByUsername("alex").get(), chatRepository.findById(32L).get()));
-        messageRepository.save(new Message(
-            "What you want?", userRepository.findByUsername("yarik").get(),
-            userRepository.findByUsername("admin").get(), chatRepository.findById(33L).get()));
-        messageRepository.save(new Message(
-            "Where is my money b*tch!?", userRepository.findByUsername("dima").get(),
             userRepository.findByUsername("alex").get(), chatRepository.findById(34L).get()));
         messageRepository.save(new Message(
-            "I'm fine", userRepository.findByUsername("alex").get(),
+            "What you want?", userRepository.findByUsername("yarik").get(),
             userRepository.findByUsername("admin").get(), chatRepository.findById(35L).get()));
+        messageRepository.save(new Message(
+            "Where is my money b*tch!?", userRepository.findByUsername("dima").get(),
+            userRepository.findByUsername("alex").get(), chatRepository.findById(36L).get()));
+        messageRepository.save(new Message(
+            "I'm fine", userRepository.findByUsername("alex").get(),
+            userRepository.findByUsername("admin").get(), chatRepository.findById(37L).get()));
 
         followRepository.save(new Follow(
             userRepository.findByUsername("superman").get(), userRepository.findByUsername("dima").get()));

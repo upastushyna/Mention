@@ -1,6 +1,14 @@
 .add-comment {
+  position: relative;
+  width: 523px;
   margin: 0 auto;
-  padding-bottom: 75px;
+  padding: 25px 25px 70px;
+  border: 1px solid #e6ecf5;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #fff;
+  color: #888da8;
+  font-family: Roboto, 'sans-serif';
 
   &__avatar {
     max-width: 28px;
