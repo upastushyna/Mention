@@ -22,41 +22,41 @@ import java.util.Date;
 @Entity
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class PostComment {
+public class Comment {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  @Column(name = "post_comment_id")
+  @Column(name = "comment_id")
   private Long id;
 
-  @Column(nullable = false, name = "post_comment_body")
+  @Column(nullable = false, name = "comment_body")
   private String body;
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"profile", "posts", "postComments", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User commentator;
 
   @ManyToOne
   @JoinColumn(name = "post_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"author", "postComments", "favorites"})
+  @JsonIgnoreProperties(value = {"author", "comments", "favorites"})
   private Post post;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(nullable = false, name = "post_comment_timestamp", updatable = false)
+  @Column(nullable = false, name = "comment_timestamp", updatable = false)
   private Date timestamp;
 
   @LastModifiedDate
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "post_comment_modify_timestamp")
+  @Column(name = "comment_modify_timestamp")
   private Date modifyTimestamp;
 
-  @Column(name = "post_comment_mediafileurl")
+  @Column(name = "comment_mediafileurl")
   private String mediafileUrl;
 
-  protected PostComment(){}
+  protected Comment(){}
 
-  public PostComment(String body, User commentator, Post post) {
+  public Comment(String body, User commentator, Post post) {
     this.body = body;
     this.commentator = commentator;
     this.post = post;

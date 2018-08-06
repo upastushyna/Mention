@@ -1,17 +1,17 @@
 package com.mention.service002;
 
-import com.mention.model.PostComment;
+import com.mention.model.Comment;
 
 import java.util.Optional;
 
 public interface CommentService {
 
-  void addComment(PostComment postComment);
+  void addComment(Comment comment);
 
-  void updateComment(PostComment postComment);
+  void updateComment(Comment comment);
 
   void deleteComment(Long id);
 
-  Optional<PostComment> getComment(Long id);
+  Optional<Comment> getComment(Long id);
 
 }

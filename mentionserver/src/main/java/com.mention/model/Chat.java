@@ -27,12 +27,12 @@ public class Chat {
 
   @ManyToOne
   @JoinColumn(name = "user1_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"profile", "posts", "postComments", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User user1;
 
   @ManyToOne
   @JoinColumn(name = "user2_id", nullable = false, updatable = false)
-  @JsonIgnoreProperties(value = {"profile", "posts", "postComments", "chats", "favorites"})
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User user2;
 
   @OneToMany(mappedBy = "chat")

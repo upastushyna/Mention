@@ -1,5 +1,6 @@
 package com.mention.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,40 +19,40 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
 
-@Data
 @Entity
-@Table(name = "postLikes")
+@Data
+@Table(name = "commentLikes")
 @EntityListeners(AuditingEntityListener.class)
-public class PostLike {
-
+public class CommentLike {
     @Id
-    @Column(name = "post_like_id")
+    @Column(name = "comment_like_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
 
     @ManyToOne
     @JoinColumn(name = "user_id", updatable = false)
-    @JsonIgnoreProperties(value = {"profile", "postLikes", "posts", "comments", "chats", "favorites"})
+    @JsonIgnoreProperties(value = {"profile", "postLikes", "commentLikes", "posts", "comments", "chats", "favorites"})
     private User user;
 
 
     @ManyToOne
-    @JoinColumn(name = "post_id", updatable = false)
-    @JsonIgnoreProperties(value = {"author", "postLikes", "comments", "favorites"})
-    private Post post;
+    @JoinColumn(name = "comment_id", updatable = false)
+    @JsonIgnoreProperties(value = {"commentator", "commentLikes"})
+    private Comment comment;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, name = "post_timestamp", updatable = false)
+    @Column(nullable = false, name = "comment_timestamp", updatable = false)
     private Date timestamp;
 
-    protected PostLike() {
+    protected CommentLike() {
     }
 
-    public PostLike(User user, Post post) {
+    public CommentLike(User user, Comment comment) {
         this.user = user;
-        this.post = post;
+        this.comment = comment;
     }
 }
+
 

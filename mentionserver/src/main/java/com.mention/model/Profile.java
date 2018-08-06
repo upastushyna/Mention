@@ -42,7 +42,7 @@ public class Profile {
 
   @OneToOne
   @JoinColumn(name = "user_id", updatable = false, unique = true, nullable = false)
-  @JsonIgnoreProperties(value = {"profile", "posts", "postComments", "chats", "favorites"}, allowSetters = true)
+  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"}, allowSetters = true)
   private User user;
 
   protected Profile() { }

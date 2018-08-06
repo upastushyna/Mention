@@ -1,6 +1,6 @@
 package com.mention.dto;
 
-import com.mention.model.PostComment;
+import com.mention.model.Comment;
 import lombok.Data;
 
 import java.util.Date;
@@ -13,7 +13,7 @@ public class PostDto {
 
   private PostUserDetails author;
 
-  private List<PostComment> comments;
+  private List<Comment> comments;
 
   private Date timestamp;
 
