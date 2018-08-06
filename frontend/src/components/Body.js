@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
-import Navigation from "./Navigation";
+import Navigation from "./Navigation"
+import '../css/index.css'
+import PostItem from '../containers/PostItem'
 
 export default class Body extends React.Component {
   addPost = () => fetch('/api/post',
@@ -16,9 +18,9 @@ export default class Body extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <h1>OUR FINAL PROJECT</h1>
-        <h2>You'll see, everything will be fine.</h2>
-        <input id="input" type="text"/><button onClick={() => this.addPost()}>mention</button>
+        <div className="container">
+          <PostItem />
+        </div>
       </Fragment>
     )
   }

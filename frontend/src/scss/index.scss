@@ -1,10 +1,12 @@
-@import "reset";
-@import "navigation";
-@import "login";
-@import "registration";
+@import "config/reset";
+@import "sections/navigation";
+@import "sections/login";
+@import "sections/registration";
 @import "modules/content-placement";
+@import "modules/header-profile";
+@import "modules/post-item";
+@import "modules/profile-small";
 
-h1 {
-  font-size: 100px;
-  text-align: center;
+body {
+  background-color: #edf2f6;
 }
