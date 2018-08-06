@@ -1,8 +1,7 @@
 package com.mention.service002;
 
 import com.mention.model.PostLike;
-import com.mention.repository.PostLikeRepository;
-import com.mention.repository.PostLikeRepository;
+import com.mention.repository.CommentLikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +10,10 @@ import java.util.Optional;
 @Service
 public class LikeServiceImpl implements LikeService {
 
-  private PostLikeRepository postLikeRepository;
+  private CommentLikeRepository postLikeRepository;
 
   @Autowired
-  public LikeServiceImpl(PostLikeRepository postLikeRepository) {
+  public LikeServiceImpl(CommentLikeRepository postLikeRepository) {
     this.postLikeRepository = postLikeRepository;
   }
 

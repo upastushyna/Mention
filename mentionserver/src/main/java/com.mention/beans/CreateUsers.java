@@ -13,7 +13,7 @@ import com.mention.repository.ChatRepository;
 import com.mention.repository.CommentRepository;
 import com.mention.repository.FavoriteRepository;
 import com.mention.repository.FollowRepository;
-import com.mention.repository.PostLikeRepository;
+import com.mention.repository.CommentLikeRepository;
 import com.mention.repository.MessageRepository;
 import com.mention.repository.PostRepository;
 import com.mention.repository.ProfileRepository;
@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
 public class CreateUsers {
   @Bean
   public CommandLineRunner createUsersInDb(UserRepository userRepository, PostRepository postRepository,
-                                           CommentRepository commentRepository, PostLikeRepository postLikeRepository,
+                                           CommentRepository commentRepository, CommentLikeRepository postLikeRepository,
                                            FavoriteRepository favoriteRepository, MessageRepository messageRepository,
                                            ChatRepository chatRepository, FollowRepository followRepository,
                                            ProfileRepository profileRepository) {
