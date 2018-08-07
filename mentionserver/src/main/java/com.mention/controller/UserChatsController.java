@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/chats")
 public class UserChatsController {
 
   private UserChatsServiceImpl userChatsService;
@@ -21,9 +21,13 @@ public class UserChatsController {
     this.userChatsService = userChatsService;
   }
 
-  @GetMapping("/chats/{username}")
+  @GetMapping("/{username}")
   public List<ChatDtoRs> getChatsByUsername(@PathVariable String username) {
     return userChatsService.getChatsByUsername(username);
   }
-
+  
+  @GetMapping("/c/user1={username1}&user2={username2}")
+  public ChatDtoRs getChatByUsernames(@PathVariable String username1, @PathVariable String username2) {
+    return userChatsService.getChatByUsernames(username1, username2);
+  }
 }

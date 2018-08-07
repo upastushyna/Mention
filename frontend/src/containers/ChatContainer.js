@@ -1,14 +1,16 @@
-import React, { Fragment } from 'react'
+import React  from 'react'
+import {Link} from 'react-router-dom';
 
 const ChatContainer = props =>
   props.chats.map(chat =>
-    <Fragment>
+    <Link to={chat.user1.username === props.username?
+      '/messages/' + chat.user2.username:'/messages/' + chat.user1.username}>
       <img src={chat.user1.username === props.username?
         chat.user2.profile.avatarUrl:chat.user1.profile.avatarUrl}/>
       <h2>{chat.user1.username === props.username?
         chat.user2.username:chat.user1.username}</h2>
       <p>{chat.messages[chat.messages.length - 1].content}</p>
-    </Fragment>
+    </Link>
   )
 
 
