@@ -34,4 +34,17 @@ public class UserChatsServiceImpl implements UserChatsService {
     }
     return null;
   }
+
+  @Override
+  public ChatDtoRs getChatByUsernames(String username1, String username2) {
+    ModelMapper modelMapper = new ModelMapper();
+    Optional<Chat> chat =
+        chatRepository.findByUser1_UsernameAndUser2_UsernameOrUser2_UsernameAndUser1_Username(
+            username1, username2, username1, username2);
+    if (chat.isPresent()) {
+      ChatDtoRs currentChat = modelMapper.map(chat.get(), ChatDtoRs.class);
+      return currentChat;
+    }
+    return null;
+  }
 }

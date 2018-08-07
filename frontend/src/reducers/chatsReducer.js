@@ -2,7 +2,7 @@ import {CHATS_LOADED} from "../constants/action-types";
 
 const initialState = [];
 
-function chatReducer (state = initialState, action){
+function chatsReducer (state = initialState, action){
   switch(action.type) {
     case CHATS_LOADED:
       return [...action.payload];
@@ -11,4 +11,4 @@ function chatReducer (state = initialState, action){
   }
 }
 
-export default chatReducer
+export default chatsReducer
