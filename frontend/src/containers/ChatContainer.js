@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react'
-import {Link, Route, Switch} from 'react-router-dom';
-import ChatItem from './ChatItem'
+import React  from 'react'
+import {Link} from 'react-router-dom';
 
 const ChatContainer = props =>
   props.chats.map(chat =>

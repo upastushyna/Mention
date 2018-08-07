@@ -4,9 +4,9 @@ import Navigation from "./Navigation";
 import ChatContainer from '../containers/ChatContainer'
 import {loadChats} from "../actions/chatsActions";
 import {connect} from 'react-redux'
-import ChatItem from "../containers/ChatItem";
+import ChatItem from "./ChatItem";
 
-const username = "yarik"
+const username = "yarik";
 
 class Messages extends React.Component {
 
