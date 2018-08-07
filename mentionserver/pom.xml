@@ -19,6 +19,7 @@
     </dependencies>
 
 
+   <!-- add for coveralls fix-->
     <build>
         <plugins>
             <plugin>
