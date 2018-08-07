@@ -5,7 +5,7 @@ import PostItem from '../containers/PostItem'
 import {loadFeed} from "../actions/feedActions";
 import {connect} from 'react-redux'
 
-class Body extends React.Component {
+class Feed extends React.Component {
 
   componentWillMount(){
     if(this.props.feed.length === 0) {
@@ -48,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
   loadData: id => dispatch(loadFeed(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Body);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);
