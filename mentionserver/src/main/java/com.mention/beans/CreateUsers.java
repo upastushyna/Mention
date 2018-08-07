@@ -4,7 +4,7 @@ import com.mention.model.Chat;
 import com.mention.model.Comment;
 import com.mention.model.Favorite;
 import com.mention.model.Follow;
-import com.mention.model.PostLike;
+import com.mention.model.Like;
 import com.mention.model.Message;
 import com.mention.model.Post;
 import com.mention.model.Profile;
@@ -13,7 +13,7 @@ import com.mention.repository.ChatRepository;
 import com.mention.repository.CommentRepository;
 import com.mention.repository.FavoriteRepository;
 import com.mention.repository.FollowRepository;
-import com.mention.repository.CommentLikeRepository;
+import com.mention.repository.LikeRepository;
 import com.mention.repository.MessageRepository;
 import com.mention.repository.PostRepository;
 import com.mention.repository.ProfileRepository;
@@ -22,11 +22,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
+
 @Configuration
 public class CreateUsers {
   @Bean
   public CommandLineRunner createUsersInDb(UserRepository userRepository, PostRepository postRepository,
-                                           CommentRepository commentRepository, CommentLikeRepository postLikeRepository,
+                                           CommentRepository commentRepository, LikeRepository likeRepository,
                                            FavoriteRepository favoriteRepository, MessageRepository messageRepository,
                                            ChatRepository chatRepository, FollowRepository followRepository,
                                            ProfileRepository profileRepository) {
@@ -56,25 +60,25 @@ public class CreateUsers {
         commentRepository.save(new Comment("Really?", userRepository.findByUsername("alex").get(),
             postRepository.findById(7L).get()));   //15
 
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("superman").get(), postRepository.findById(6L).get()));    //16
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("superman").get(), postRepository.findById(7L).get()));    //17
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("admin").get(), postRepository.findById(8L).get()));   //18
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("admin").get(), postRepository.findById(10L).get()));   //19
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("yarik").get(), postRepository.findById(7L).get()));   //20
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));    //21
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("alex").get(), postRepository.findById(7L).get()));    //22
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("alex").get(), postRepository.findById(9L).get()));    //23
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("alex").get(), postRepository.findById(8L).get()));    //24
-        postLikeRepository.save(new PostLike(
+        likeRepository.save(new Like(
             userRepository.findByUsername("admin").get(), postRepository.findById(10L).get()));    //25
 
         favoriteRepository.save(new Favorite(
@@ -155,7 +159,6 @@ public class CreateUsers {
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
             null, userRepository.findByUsername("alex").get()));
-
       }
     };
   }

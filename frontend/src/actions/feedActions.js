@@ -1,7 +1,7 @@
 import { FEED_LOADED } from "../constants/action-types";
 
-export const loadFeed = id => dispatch => {
-  fetch('/api/followed/' + id ,
+export const loadFeed = username => dispatch => {
+  fetch('/api/followed/' + username ,
     {
       method: 'GET',
       headers: {
