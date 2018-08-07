@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Configuration
 public class CreateUsers {
@@ -158,7 +159,6 @@ public class CreateUsers {
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
             null, userRepository.findByUsername("alex").get()));
-
       }
     };
   }
