@@ -40,12 +40,12 @@ class Feed extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  feed: state.feed,
+  feed: state.feed
 
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadData: id => dispatch(loadFeed(id))
+  loadData: username => dispatch(loadFeed(username))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);
