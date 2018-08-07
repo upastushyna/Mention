@@ -8,7 +8,9 @@ export default class Profile extends React.Component {
     return (
       <div>
         <Navigation/>
-        <HeaderProfile/>
+        <div className='container'>
+        </div>
+
       </div>
     )
   }

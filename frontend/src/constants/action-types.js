@@ -1,1 +1,2 @@
 export const FEED_LOADED = "FEED_LOADED";
+export const USER_PAGE_LOADED = "USER_PAGE_LOADED";
