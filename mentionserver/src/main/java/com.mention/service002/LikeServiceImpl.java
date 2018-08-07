@@ -1,7 +1,7 @@
 package com.mention.service002;
 
-import com.mention.repository.LikeRepository;
-import com.mention.model.Like;
+import com.mention.model.PostLike;
+import com.mention.repository.CommentLikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,26 +10,26 @@ import java.util.Optional;
 @Service
 public class LikeServiceImpl implements LikeService {
 
-  private LikeRepository likeRepository;
+  private CommentLikeRepository postLikeRepository;
 
   @Autowired
-  public LikeServiceImpl(LikeRepository likeRepository) {
-    this.likeRepository = likeRepository;
+  public LikeServiceImpl(CommentLikeRepository postLikeRepository) {
+    this.postLikeRepository = postLikeRepository;
   }
 
   @Override
-  public Optional<Like> getLike(Long id) {
-    return likeRepository.findById(id);
+  public Optional<PostLike> getLike(Long id) {
+    return postLikeRepository.findById(id);
   }
 
   @Override
-  public void addLike(Like like) {
-    likeRepository.save(like);
+  public void addLike(PostLike postLike) {
+    postLikeRepository.save(postLike);
   }
 
   @Override
   public void deleteLike(Long id) {
-    likeRepository.deleteById(id);
+    postLikeRepository.deleteById(id);
 
   }
 }

@@ -1,14 +1,14 @@
 package com.mention.service002;
 
-import com.mention.model.Like;
+import com.mention.model.PostLike;
 
 import java.util.Optional;
 
 public interface LikeService {
 
-  Optional<Like> getLike(Long id);
+  Optional<PostLike> getLike(Long id);
 
-  void addLike(Like like);
+  void addLike(PostLike postLike);
 
   void deleteLike(Long id);
 
