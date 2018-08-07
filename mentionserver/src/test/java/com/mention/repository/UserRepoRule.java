@@ -1,3 +1,4 @@
+/*
 package com.mention.repository;
 
 import com.mention.model.User;
@@ -28,3 +29,4 @@ public class UserRepoRule implements TestRule {
     };
   }
 }
+*/

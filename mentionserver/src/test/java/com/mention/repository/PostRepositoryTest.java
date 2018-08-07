@@ -2,6 +2,7 @@ package com.mention.repository;
 
 import com.mention.SpringBootConfiguration;
 import com.mention.model.Post;
+import com.mention.model.User;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,9 +16,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @SpringBootTest(classes = SpringBootConfiguration.class)
-public abstract class PostRepositoryTest {
+public class PostRepositoryTest {
 
   private final static String USER_NAME = "username";
+  private final static String USER_NAME2 = "username2";
   private final static String USER_EMAIL = "john@mail.com";
   private final static String USER_PASSWD = "123";
   private final static boolean USER_ACTIVE = true;
@@ -29,17 +31,6 @@ public abstract class PostRepositoryTest {
   @Autowired
   private UserRepository userRepository;
 
- /* @BeforeClass
-  public void beforeClass() {
-    new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
-  }
-
-  @AfterClass
-  public void afterClass() {
-    userRepository.deleteByUsername(USER_NAME);
-    Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
-  }*/
-
   @Before
   public void before() {
     new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
@@ -48,35 +39,36 @@ public abstract class PostRepositoryTest {
 
   @After
   public void after() {
-    postRepository.deleteById(postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()).getId());
-    Assert.assertNull(postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()));
+    postRepository.deleteById(postRepository.findByAuthor_Username(USER_NAME).getId());
+    Assert.assertNull(postRepository.findByAuthor_Username(USER_NAME));
     userRepository.deleteByUsername(USER_NAME);
     Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
   }
 
   @Test
   public void savePostTest() {
-    Assert.assertNotNull(postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()));
+    Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
   }
 
   @Test
   public void getPostTest() {
-    Assert.assertNotNull(postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()));
+    Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
   }
 
  @Test
   public void updatePostTest() {
-    Post updatePost = postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get());
+    Post updatePost = postRepository.findByAuthor_Username(USER_NAME);
     updatePost.setBody("It's honey");
-    postRepository.save(updatePost);
-    Assert.assertNotEquals(updatePost, postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()));
-    postRepository.deleteById(postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()).getId());
-    Assert.assertNull(postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()));
+    Long post_id = postRepository.save(updatePost).getId();
+    Assert.assertNotEquals(updatePost, postRepository.findById(post_id));
+  //  postRepository.deleteById(post_id);
+  //  Assert.assertNull(postRepository.findById(post_id).orElse(null));
   }
 
  @Test
   public void deletePostTest() {
-   postRepository.deleteById(postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()).getId());
-   Assert.assertNull(postRepository.findByAuthor(userRepository.findByUsername(USER_NAME).get()));
+   Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
+   //postRepository.deleteById(postRepository.findByAuthor_Username(USER_NAME).getId());
+   //Assert.assertNull(postRepository.findByAuthor_Username(USER_NAME));
  }
 }

@@ -19,9 +19,9 @@ public class PostRepoBefore {
   }
 
   public void createNewPost(String body, User author) {
-    Assert.assertNull(postRepository.findByAuthor(author));
+    Assert.assertNull(postRepository.findByAuthor_Username(author.getUsername()));
     Post post = new Post(body, author);
-    postRepository.save(post);
-    Assert.assertNotNull(postRepository.findByAuthor(author));
+    Long before_post_id = postRepository.save(post).getId();
+    Assert.assertNotNull(postRepository.findByAuthor_Username(author.getUsername()));
   }
 }

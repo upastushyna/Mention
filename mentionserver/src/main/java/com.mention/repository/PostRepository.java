@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-  Post findByAuthor(User author);
+  Post findByAuthor_Username(String username);
 
 }
