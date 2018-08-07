@@ -41,7 +41,6 @@ class Feed extends React.Component {
 
 const mapStateToProps = state => ({
   feed: state.feed
-
 });
 
 const mapDispatchToProps = dispatch => ({
