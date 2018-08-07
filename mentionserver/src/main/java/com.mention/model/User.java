@@ -64,8 +64,13 @@ public class User {
   @JsonIgnoreProperties(value = {"user"})
   private List<PostLike> postLikes;
 
+  @OneToMany(mappedBy = "user")
+  @JsonIgnoreProperties(value = {"user"})
+  private List<CommentLike> commentLikes;
 
-  protected User(){ }
+
+  protected User() {
+  }
 
   public User(String username, String email, String password, boolean isActive) {
     this.username = username;
