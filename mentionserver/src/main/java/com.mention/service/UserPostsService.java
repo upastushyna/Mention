@@ -1,10 +1,12 @@
 package com.mention.service;
 
-import com.mention.dto.PostDto;
+import com.mention.dto.PostDtoRs;
 
 import java.util.List;
 
 public interface UserPostsService {
 
-  List<PostDto> getFollowedPosts(String username);
+  List<PostDtoRs> getFollowedPosts(String username);
+
+  List<PostDtoRs> getPostsByUsername(String username);
 }

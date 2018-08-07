@@ -3,7 +3,7 @@ package com.mention.dto;
 import lombok.Data;
 
 @Data
-public class ProfileAvatar {
+public class ProfileAvatarRs {
 
   private String avatarUrl;
 }

@@ -1,23 +1,22 @@
 package com.mention.dto;
 
-import com.mention.model.Comment;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class PostDto {
+public class PostDtoRs {
 
   private String body;
 
-  private PostUserDetails author;
+  private ShortUserDetailsRs author;
 
-  private List<Comment> comments;
+  private List<CommentDtoRs> comments;
 
   private Date timestamp;
 
   private String mediafileUrl;
 
-  private List<PostLike> likes;
+  private List<PostLikeRs> likes;
 }

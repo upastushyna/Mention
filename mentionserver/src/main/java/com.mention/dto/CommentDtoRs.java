@@ -1,18 +1,18 @@
 package com.mention.dto;
 
-import com.mention.model.User;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class PostComment {
+public class CommentDtoRs {
 
   private String body;
 
-  private PostUserDetails commentator;
+  private ShortUserDetailsRs commentator;
 
   private Date timestamp;
 
   private String mediafileUrl;
+
 }
