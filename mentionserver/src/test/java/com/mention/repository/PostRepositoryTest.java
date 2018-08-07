@@ -63,6 +63,7 @@ public class PostRepositoryTest {
     Assert.assertNotEquals(updatePost, postRepository.findById(post_id));
   //  postRepository.deleteById(post_id);
   //  Assert.assertNull(postRepository.findById(post_id).orElse(null));
+
   }
 
  @Test
