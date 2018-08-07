@@ -2,11 +2,10 @@ import React, { Fragment } from 'react'
 import Navigation from "./Navigation"
 import '../css/index.css'
 import PostItem from '../containers/PostItem'
-import PostItem2 from '../containers/PostItem2'
 import {loadFeed} from "../actions/feedActions";
 import {connect} from 'react-redux'
 
-class Body extends React.Component {
+class Feed extends React.Component {
 
   componentWillMount(){
     if(this.props.feed.length === 0) {
@@ -41,12 +40,11 @@ class Body extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  feed: state.feed,
-
+  feed: state.feed
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadData: id => dispatch(loadFeed(id))
+  loadData: username => dispatch(loadFeed(username))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Body);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

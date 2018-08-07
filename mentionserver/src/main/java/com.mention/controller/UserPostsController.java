@@ -1,7 +1,7 @@
 package com.mention.controller;
 
 
-import com.mention.dto.PostDto;
+import com.mention.dto.PostDtoRs;
 import com.mention.service.UserPostsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,13 @@ public class UserPostsController {
   }
 
   @GetMapping("/followed/{username}")
-  public List<PostDto> getFollowedPosts(@PathVariable String username) {
+  public List<PostDtoRs> getFollowedPosts(@PathVariable String username) {
     return userPostsService.getFollowedPosts(username);
   }
+
+  @GetMapping("/posts/{username}")
+  public List<PostDtoRs> getPostsByUsername(@PathVariable String username) {
+    return userPostsService.getPostsByUsername(username);
+  }
+
 }

@@ -1,0 +1,44 @@
+.comment-container {
+  position: relative;
+  width: 493px;
+  margin: 0 auto;
+  padding: 10px 40px;
+  border: 1px solid #e6ecf5;
+  background-color: #fafbfd;
+  color: #888da8;
+  font-family: Roboto, 'sans-serif';
+
+  &__body {
+    margin: 8px 0;
+    font-size: 13px;
+    text-align: justify;
+  }
+
+  &__footer {
+    padding: 15px 0 0;
+  }
+
+  &__more-img,
+  &__like-img {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  &__like-number {
+    margin-left: 10px;
+  }
+
+  &__header .profile-small__avatar {
+    max-width: 28px;
+    max-height: 28px;
+  }
+
+  &__header .profile-small__username {
+    font-size: 12px;
+  }
+
+  &__header .profile-small__alias {
+    font-size: 7px;
+  }
+}

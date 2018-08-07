@@ -1,7 +1,6 @@
 package com.mention.service;
 
-import com.mention.dto.PostDto;
-import com.mention.dto.PostUserDetails;
+import com.mention.dto.PostDtoRs;
 import com.mention.model.Follow;
 import com.mention.model.Post;
 import com.mention.model.User;
@@ -26,7 +25,7 @@ public class UserPostsServiceImpl implements UserPostsService {
   }
 
   @Override
-  public List<PostDto> getFollowedPosts(String username) {
+  public List<PostDtoRs> getFollowedPosts(String username) {
     ModelMapper modelMapper = new ModelMapper();
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
@@ -36,9 +35,21 @@ public class UserPostsServiceImpl implements UserPostsService {
            user.getFollowedUsers()) {
         posts.addAll(followed.getFollowedUser().getPosts());
       }
-      List<PostDto> postDtos = posts.stream().map(post -> modelMapper.map(
-          post, PostDto.class)).collect(Collectors.toList());
-      return postDtos;
+      List<PostDtoRs> postDtoRs = posts.stream().map(post -> modelMapper.map(
+          post, PostDtoRs.class)).collect(Collectors.toList());
+      return postDtoRs;
+    }
+    return null;
+  }
+
+  @Override
+  public List<PostDtoRs> getPostsByUsername(String username) {
+    ModelMapper modelMapper = new ModelMapper();
+    Optional<User> currentUser = userRepository.findByUsername(username);
+    if (currentUser.isPresent()) {
+      List<PostDtoRs> postDtoRs = currentUser.get().getPosts().stream().map(
+          post -> modelMapper.map(post, PostDtoRs.class)).collect(Collectors.toList());
+      return postDtoRs;
     }
     return null;
   }

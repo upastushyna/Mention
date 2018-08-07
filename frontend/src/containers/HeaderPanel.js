@@ -41,14 +41,14 @@ class HeaderPanel extends React.Component {
                 </li>
               </ul>
             </div>
-            <div className="profile d-flex profile--position">
-              <img src={avatar} alt="" className="profile__avatar"/>
-              <div className="profile__signature">
-                <h2 className="profile__username color-white">Mykhail Hryhoriev</h2>
-                <span className="profile__alias">DEVELOPER</span>
+            <div className="profile-small d-flex profile-small--position">
+              <img src={avatar} alt="" className="profile-small__avatar"/>
+              <div className="profile-small__signature">
+                <h2 className="profile-small__username color-white">Mykhail Hryhoriev</h2>
+                <span className="profile-small__alias">DEVELOPER</span>
               </div>
-              <div className="profile__isActive"/>
-              <span className="profile__arrow color-white">&#711;</span>
+              <div className="profile-small__isActive"/>
+              <span className="profile-small__arrow color-white">&#711;</span>
             </div>
           </div>
         </div>
