@@ -160,6 +160,22 @@ public class CreateUsers {
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
             null, userRepository.findByUsername("alex").get()));
+
+        messageRepository.save(new Message(
+            "What's up?", userRepository.findByUsername("superman").get(),
+            userRepository.findByUsername("yarik").get(), chatRepository.findById(31L).get()));
+        messageRepository.save(new Message(
+            "How are you?", userRepository.findByUsername("yarik").get(),
+            userRepository.findByUsername("superman").get(), chatRepository.findById(31L).get()));
+        messageRepository.save(new Message(
+            "cho tipa kak?", userRepository.findByUsername("yarik").get(),
+            userRepository.findByUsername("admin").get(), chatRepository.findById(33L).get()));
+        messageRepository.save(new Message(
+            "Where is my money b*tch!?", userRepository.findByUsername("admin").get(),
+            userRepository.findByUsername("yarik").get(), chatRepository.findById(33L).get()));
+        messageRepository.save(new Message(
+            "Where are you?", userRepository.findByUsername("yarik").get(),
+            userRepository.findByUsername("superman").get(), chatRepository.findById(31L).get()));
       }
     };
   }
