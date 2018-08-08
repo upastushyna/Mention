@@ -1,24 +1,47 @@
 import React, {Fragment} from 'react'
 import Navigation from "./Navigation";
-import EditUserProfile from "../containers/EditUserProfile"
 import {loadProfile} from "../actions/editProfileAction";
 import {connect} from 'react-redux'
 
 class EditProfile extends React.Component {
 
   componentWillMount() {
-    if (this.props.editProfile.length === 0) {
-      this.props.loadProfileId(49);
-    }
+    this.props.loadProfileId(49);
   }
 
   render() {
-    const edit = this.props.editProfile.map(editor =>
-        <EditProfile editor={editor}/>)
     return (
         <Fragment>
           <Navigation/>
-          <EditUserProfile/>
+          <div className="container">
+            <p className="edit-profile-list">
+              <input type="text" className="edit-profile_input" placeholder="firstname"/>
+              {this.props.editProfile.firstname}
+            </p>
+            <p className="edit-profile-list">
+              <input type="text" className="edit-profile_input" placeholder="secondname"/>
+              {this.props.editProfile.secondname}
+            </p>
+            <p className="edit-profile-list">
+              <input type="text" className="edit-profile_input" placeholder="address"/>
+              {this.props.editProfile.address}
+            </p>
+            <p className="edit-profile-list">
+              <input type="text" className="edit-profile_input" placeholder="birthdate"/>
+              {this.props.editProfile.birthdate}
+            </p>
+            <p className="edit-profile-list">
+              <input type="text" className="edit-profile_input" placeholder="avatar"/>
+              {this.props.editProfile.avatar}
+            </p>
+            <p className="edit-profile-list">
+              <input type="text" className="edit-profile_input" placeholder="background"/>
+              {this.props.editProfile.background}
+            </p>
+            <p className="edit-profile-list">
+              <input type="submit" className="edit-profile_button" value="Edit"/>
+            </p>
+          </div>
         </Fragment>
     )
   }
