@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react'
 import user from '../img/header-panel/user-img.png'
 
-class HeaderProfile extends React.Component {
-  render () {
-    return (
+const HeaderProfile = props =>
       <Fragment>
-        <div className="header-profile container">
+        <div className="header-profile">
           <div className="header-profile__background" />
           <div className="header-profile__user">
             <img src={user} alt="" className="header-profile__img"/>
@@ -14,8 +12,5 @@ class HeaderProfile extends React.Component {
           </div>
         </div>
       </Fragment>
-    )
-  }
-}
 
 export default HeaderProfile
