@@ -10,7 +10,7 @@ public class UserBefore {
     this.userRepository = userRepository;
   }
 
-  public void createNewUser(String name, String passwd, String email, boolean userActive) {
+  public void createNewUser(String name, String email, String passwd, boolean userActive) {
     Assert.assertNull(userRepository.findByUsername(name).orElse(null));
     User user = new User(name, email, passwd, userActive);
     userRepository.save(user);
