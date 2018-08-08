@@ -16,6 +16,7 @@ class EditProfile extends React.Component {
           <div className="container">
             <p className="edit-profile-list">
               <input type="text" className="edit-profile_input" placeholder="firstname"/>
+              {this.props.editProfile.id}
               {this.props.editProfile.firstname}
             </p>
             <p className="edit-profile-list">
