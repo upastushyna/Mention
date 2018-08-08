@@ -140,23 +140,23 @@ public class CreateUsers {
 
         //https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1
 
-        profileRepository.save(new Profile(null, null, null,
+        profileRepository.save(new Profile("Admin", "Adminovi4", "Bangladesh",
+            (new Date(106, 5, 6)),
+            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
+            "KoBeP Ha cTeHe", userRepository.findByUsername("admin").get()));
+        profileRepository.save(new Profile("Clark", "Kent", null,
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
             null, userRepository.findByUsername("superman").get()));
-        profileRepository.save(new Profile(null, null, null,
-            null,
-            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
-            null, userRepository.findByUsername("admin").get()));
-        profileRepository.save(new Profile(null, null, null,
+        profileRepository.save(new Profile("YaRiK", null, null,
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
             null, userRepository.findByUsername("yarik").get()));
-        profileRepository.save(new Profile(null, null, null,
+        profileRepository.save(new Profile("DimOn", null, null,
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
             null, userRepository.findByUsername("dima").get()));
-        profileRepository.save(new Profile(null, null, null,
+        profileRepository.save(new Profile("Alex", null, null,
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
             null, userRepository.findByUsername("alex").get()));

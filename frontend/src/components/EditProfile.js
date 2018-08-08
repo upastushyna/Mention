@@ -16,12 +16,11 @@ class EditProfile extends React.Component {
           <div className="container">
             <p className="edit-profile-list">
               <input type="text" className="edit-profile_input" placeholder="firstname"/>
-              {this.props.editProfile.id}
-              {this.props.editProfile.firstname}
+              {this.props.editProfile.firstName}
             </p>
             <p className="edit-profile-list">
               <input type="text" className="edit-profile_input" placeholder="secondname"/>
-              {this.props.editProfile.secondname}
+              {this.props.editProfile.secondName}
             </p>
             <p className="edit-profile-list">
               <input type="text" className="edit-profile_input" placeholder="address"/>
@@ -29,15 +28,15 @@ class EditProfile extends React.Component {
             </p>
             <p className="edit-profile-list">
               <input type="text" className="edit-profile_input" placeholder="birthdate"/>
-              {this.props.editProfile.birthdate}
+              {this.props.editProfile.birthDate}
             </p>
             <p className="edit-profile-list">
               <input type="text" className="edit-profile_input" placeholder="avatar"/>
-              {this.props.editProfile.avatar}
+              {this.props.editProfile.avatarUrl}
             </p>
             <p className="edit-profile-list">
               <input type="text" className="edit-profile_input" placeholder="background"/>
-              {this.props.editProfile.background}
+              {this.props.editProfile.backgroundUrl}
             </p>
             <p className="edit-profile-list">
               <input type="submit" className="edit-profile_button" value="Edit"/>
