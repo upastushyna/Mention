@@ -3,13 +3,15 @@
 @import "sections/navigation";
 @import "sections/login";
 @import "sections/registration";
+@import "sections/chats-list";
 @import "modules/content-placement";
 @import "modules/header-profile";
 @import "modules/post-container";
 @import "modules/profile-small";
 @import "modules/add-comment";
 @import "modules/comment-container";
-@import "modules/messages-container";
+@import "modules/chat-container";
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 
 body {
   background-color: #edf2f6;
