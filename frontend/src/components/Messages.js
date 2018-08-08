@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Navigation from "./Navigation";
-import MessagesContainer from '../containers/MessagesContainer'
+import ChatsContainer from '../containers/ChatsContainer'
 import {loadChats} from "../actions/chatsActions";
 import {connect} from 'react-redux'
 import ChatItem from "./Chat";
@@ -21,12 +21,19 @@ class Messages extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
-          <Switch>
-            <Route exact path={this.props.match.path}
-                   render={() => <MessagesContainer chats={this.props.chats} username={username}/>}/>
-            <Route path='/messages/:username' render={props =>
-              <ChatItem user1={username} user2={props.match.params.username}/>}/>
-          </Switch>
+          <div className="chats">
+            <div className="chats__header">
+              <h3 className="chats__title">Conversations</h3>
+            </div>
+            <div className="chats__list">
+              <Switch>
+                <Route exact path={this.props.match.path}
+                       render={() => <ChatsContainer chats={this.props.chats} username={username}/>}/>
+                <Route path='/messages/:username' render={props =>
+                    <ChatItem user1={username} user2={props.match.params.username}/>}/>
+              </Switch>
+            </div>
+          </div>
         </div>
       </Fragment>
     )

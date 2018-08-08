@@ -4,6 +4,7 @@ import '../css/index.css'
 import PostItem from '../containers/PostItem'
 import {connect} from 'react-redux'
 import {loadPosts} from "../actions/userPageActions";
+import HeaderProfile from "../containers/HeaderProfile";
 
 class UserPage extends React.Component {
 
@@ -20,6 +21,7 @@ class UserPage extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
+          <HeaderProfile/>
           {posts}
         </div>
       </Fragment>
