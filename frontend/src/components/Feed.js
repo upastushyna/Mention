@@ -1,13 +1,50 @@
 import React, { Fragment } from 'react'
-import PostItem from "../containers/PostItem"
-export default class Post extends React.Component {
+import Navigation from "./Navigation"
+import '../css/index.css'
+import PostItem from '../containers/PostItem'
+import {loadFeed} from "../actions/feedActions";
+import {connect} from 'react-redux'
+
+class Feed extends React.Component {
+
+  componentWillMount(){
+    if(this.props.feed.length === 0) {
+      this.props.loadData("admin");
+    }
+  }
+
+  /*addPost = () => fetch('/api/post',
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({body:document.getElementById("input").value, author:{id:1}})
+    })*/
+
+
+
   render () {
-    const posts = this.getPosts().map(post =>
-    <PostItem avatar={post.user.profile.avatarUrl} username={post.user.username} body={post.body}/>)
+    const feed = this.props.feed.map(post =>
+      <PostItem post={post}/>)
     return (
       <Fragment>
-        {posts}
+        <Navigation/>
+        <div className="container">
+          {feed}
+        </div>
       </Fragment>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  feed: state.feed
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadData: username => dispatch(loadFeed(username))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

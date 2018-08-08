@@ -1,0 +1,49 @@
+.post {
+  margin: 15px auto 0;
+}
+
+.post,
+.add-comment {
+  position: relative;
+  width: 523px;
+  padding: 25px;
+  border: 1px solid #e6ecf5;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #888da8;
+  font-family: Roboto, 'sans-serif';
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__more-img,
+  &__like-img,
+  &__comment-img,
+  &__forward-img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  &__forward-img {
+    margin-left: 20px;
+  }
+
+  &__comment-number,
+  &__like-number,
+  &__forward-number {
+    margin-left: 10px;
+  }
+
+  &__body {
+    margin: 25px 0;
+    text-align: justify;
+  }
+
+  &__footer {
+    padding: 20px 0 0;
+    border-top: 1px solid #e6ecf5;
+  }
+}

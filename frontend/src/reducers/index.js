@@ -1,7 +1,12 @@
-const initialState = {
-  articles: []
-};
+import {combineReducers} from 'redux';
+import feedReducer from './feedReducer'
+import userPageReducer from "./userPageReducer";
+import chatsReducer from "./chatsReducer";
+import singleChatReducer from "./singleChatReducer";
 
-const rootReducer = (state = initialState, action) => state;
-
-export default rootReducer;
+export default combineReducers({
+  feed: feedReducer,
+  userPosts: userPageReducer,
+  chats: chatsReducer,
+  chat: singleChatReducer
+})
