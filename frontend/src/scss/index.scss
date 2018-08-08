@@ -4,8 +4,10 @@
 @import "sections/registration";
 @import "modules/content-placement";
 @import "modules/header-profile";
-@import "modules/post-item";
+@import "modules/post-container";
 @import "modules/profile-small";
+@import "modules/add-comment";
+@import "modules/comment-container";
 
 body {
   background-color: #edf2f6;

@@ -59,7 +59,7 @@ public class Post {
 
   @OneToMany(mappedBy = "post")
   @JsonIgnoreProperties(value = {"post"})
-  private List<Like> likes;
+  private List<PostLike> postLikes;
 
   protected Post(){}
 
