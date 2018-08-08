@@ -27,12 +27,12 @@ public class UserRepositoryTest {
   private UserRepository userRepository;
 
   @Before
-  public void before(){
+  public void before() {
     new UserBefore(userRepository).createNewUser(USER_NAME, USER_PASSWD, USER_EMAIL, USER_ACTIVE);
   }
 
   @After
-  public void after(){
+  public void after() {
     userRepository.deleteByUsername(USER_NAME);
     Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
   }
@@ -60,7 +60,7 @@ public class UserRepositoryTest {
     Assert.assertEquals(updateUser, userRepository.findByUsername(USER_NAME2).get());
     userRepository.deleteByUsername(USER_NAME2);
     Assert.assertNull(userRepository.findByUsername(USER_NAME2).orElse(null));
-   }
+  }
 
   @Test
   public void deleteUserTest() {

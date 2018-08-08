@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react'
+import React, {Fragment} from 'react'
 import {loadChat} from "../actions/singleChatActions";
 import {connect} from "react-redux";
 
 class ChatItem extends React.Component {
 
-  componentWillMount(){
-      this.props.loadMessages(this.props.user1, this.props.user2);
+  componentWillMount() {
+    this.props.loadMessages(this.props.user1, this.props.user2);
   }
 
-  render () {
+  render() {
     console.log(this.props.chat)
 
     if (!this.props.chat || !this.props.chat.messages) {
@@ -17,11 +17,11 @@ class ChatItem extends React.Component {
 
 
     const messages = this.props.chat.messages.map(message =>
-    <p>{message.content}</p>)
+        <p>{message.content}</p>)
     return (
-      <Fragment>
-        {messages}
-      </Fragment>
+        <Fragment>
+          {messages}
+        </Fragment>
     )
   }
 }

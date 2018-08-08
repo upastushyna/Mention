@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, {Fragment} from 'react'
 import avatar from '../img/header-panel/user-img.png'
 
 const AddComment = props =>

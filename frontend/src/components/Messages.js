@@ -10,8 +10,8 @@ const username = "yarik";
 
 class Messages extends React.Component {
 
-  componentWillMount(){
-    if(this.props.chats.length === 0) {
+  componentWillMount() {
+    if (this.props.chats.length === 0) {
       this.props.loadData(username);
     }
   }
@@ -24,7 +24,7 @@ class Messages extends React.Component {
             <Route exact path={this.props.match.path}
                    render={() => <ChatContainer chats={this.props.chats} username={username}/>}/>
             <Route path='/messages/:username' render={props =>
-              <ChatItem user1={username} user2={props.match.params.username}/>}/>
+                <ChatItem user1={username} user2={props.match.params.username}/>}/>
           </Switch>
         </div>
       </Fragment>

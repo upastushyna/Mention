@@ -7,8 +7,8 @@ import {connect} from 'react-redux'
 
 class Feed extends React.Component {
 
-  componentWillMount(){
-    if(this.props.feed.length === 0) {
+  componentWillMount() {
+    if (this.props.feed.length === 0) {
       this.props.loadData("admin");
     }
   }
@@ -27,12 +27,12 @@ class Feed extends React.Component {
 
   render () {
     const feed = this.props.feed.map(post =>
-      <PostItem post={post}/>)
+        <PostItem post={post}/>)
     return (
       <Fragment>
         <Navigation/>
         <div className="container">
-          {feed}
+          {feed}P
         </div>
       </Fragment>
     )
