@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-mvn mention:run
+mvn -pl exec:exec &
+mvn -pl exec:java
