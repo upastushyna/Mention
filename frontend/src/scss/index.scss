@@ -1,3 +1,4 @@
+@import "modules/colors";
 @import "config/reset";
 @import "sections/navigation";
 @import "sections/login";
@@ -8,6 +9,7 @@
 @import "modules/profile-small";
 @import "modules/add-comment";
 @import "modules/comment-container";
+@import "modules/messages-container";
 
 body {
   background-color: #edf2f6;

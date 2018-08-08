@@ -15,7 +15,7 @@ class HeaderPanel extends React.Component {
             <div className="logo">
               <Link to="/" ><img className="logo__img" src={logo} alt=""/></Link>
             </div>
-            <h2 className="header__title">Component name</h2>
+            <h2 className="header__title">mention</h2>
             <form action="" className="search">
               <input type="text" className="search__input search__input--non-line" placeholder="Search here people or pages..."/>
               <input type="submit" className="search__btn search__input--non-line" value="Search"/>
