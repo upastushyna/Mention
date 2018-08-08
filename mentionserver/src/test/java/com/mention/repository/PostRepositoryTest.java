@@ -61,15 +61,10 @@ public class PostRepositoryTest {
     updatePost.setBody("It's honey");
     Long post_id = postRepository.save(updatePost).getId();
     Assert.assertNotEquals(updatePost, postRepository.findById(post_id));
-  //  postRepository.deleteById(post_id);
-  //  Assert.assertNull(postRepository.findById(post_id).orElse(null));
-
   }
 
  @Test
   public void deletePostTest() {
    Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
-   //postRepository.deleteById(postRepository.findByAuthor_Username(USER_NAME).getId());
-   //Assert.assertNull(postRepository.findByAuthor_Username(USER_NAME));
- }
+  }
 }
