@@ -1,0 +1,15 @@
+.messages-container {
+  width: 100%;
+  background-color: #fff;
+
+  &__header {
+    padding: 20px;
+    border: 1px solid #e6ecf5;
+    font-family: 'Permanent Marker', cursive;
+  }
+
+  &__body {
+    height: 500px;
+    border: 1px solid #e6ecf5;
+  }
+}

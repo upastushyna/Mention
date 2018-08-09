@@ -21,8 +21,8 @@ class Messages extends React.Component {
   render () {
     return (
       <Fragment>
-
-        <div className="container">
+        <Navigation/>
+        <div className="container d-flex">
           <div className="chats">
             <div className="chats__header">
               <h3 className="chats__title">Conversations</h3>
@@ -30,10 +30,17 @@ class Messages extends React.Component {
             <div className="chats__list">
               <ChatsContainer loadChat={this.props.loadMessages}
                 chats={this.props.chats} username={username}/>
+            </div>
+          </div>
+          <div className="messages-container">
+            <div className="messages-container__header">
+              <h3 className="messages-container__title">This is chat body</h3>
+            </div>
+            <div className="messages-container__body">
               <Switch>
                 <Route path='/messages/:username' component={props =>
-                    <Chat user1={username} user2={props.match.params.username}
-                          loadChat={this.props.loadMessages} chat={this.props.chat}/>}/>
+                  <Chat user1={username} user2={props.match.params.username}
+                        loadChat={this.props.loadMessages} chat={this.props.chat}/>}/>
               </Switch>
             </div>
           </div>

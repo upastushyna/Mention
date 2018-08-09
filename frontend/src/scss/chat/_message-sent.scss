@@ -1,0 +1,11 @@
+.message-sent {
+  &__text {
+    display: inline-block;
+    max-width: 60%;
+    padding: 10px 35px;
+    border-radius: 15px;
+    background-color: #edf2f6;
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
