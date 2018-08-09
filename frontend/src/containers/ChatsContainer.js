@@ -6,7 +6,8 @@ const ChatsContainer = props =>
       <Fragment>
         <Link className="message-container__link" to={chat.user1.username === props.username?
             '/messages/' + chat.user2.username:'/messages/' + chat.user1.username}>
-          <div className="message-container">
+          <div className="message-container"
+               onClick={() => props.loadChat(chat.user1.username, chat.user2.username)}>
             <div className="profile-small d-flex">
               <img src={chat.user1.username === props.username?
                   chat.user2.profile.avatarUrl:chat.user1.profile.avatarUrl} alt="" className="profile-small__avatar"/>

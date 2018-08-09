@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Navigation from "./Navigation";
+import {loadChat} from "../actions/singleChatActions";
 import ChatsContainer from '../containers/ChatsContainer'
 import {loadChats} from "../actions/chatsActions";
 import {connect} from 'react-redux'
-import ChatItem from "./Chat";
+import Chat from "../containers/Chat";
+
 
 const username = "yarik";
 
@@ -19,18 +21,19 @@ class Messages extends React.Component {
   render () {
     return (
       <Fragment>
-        <Navigation/>
+
         <div className="container">
           <div className="chats">
             <div className="chats__header">
               <h3 className="chats__title">Conversations</h3>
             </div>
             <div className="chats__list">
+              <ChatsContainer loadChat={this.props.loadMessages}
+                chats={this.props.chats} username={username}/>
               <Switch>
-                <Route exact path={this.props.match.path}
-                       render={() => <ChatsContainer chats={this.props.chats} username={username}/>}/>
-                <Route path='/messages/:username' render={props =>
-                    <ChatItem user1={username} user2={props.match.params.username}/>}/>
+                <Route path='/messages/:username' component={props =>
+                    <Chat user1={username} user2={props.match.params.username}
+                          loadChat={this.props.loadMessages} chat={this.props.chat}/>}/>
               </Switch>
             </div>
           </div>
@@ -41,12 +44,14 @@ class Messages extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  chats: state.chats
+  chats: state.chats,
+  chat: state.chat
 
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadData: username => dispatch(loadChats(username))
+  loadData: username => dispatch(loadChats(username)),
+  loadMessages: (username1, username2) => dispatch(loadChat(username1, username2))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);
