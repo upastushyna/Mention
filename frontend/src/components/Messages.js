@@ -6,7 +6,7 @@ import ChatsContainer from '../containers/ChatsContainer'
 import {loadChats} from "../actions/chatsActions";
 import {connect} from 'react-redux'
 import Chat from "../containers/Chat";
-
+import avatar from '../img/header-panel/user-img.png'
 
 const username = "yarik";
 
@@ -34,7 +34,13 @@ class Messages extends React.Component {
           </div>
           <div className="messages-container">
             <div className="messages-container__header">
-              <h3 className="messages-container__title">This is chat body</h3>
+              <div className="profile-small d-flex">
+                <img src={avatar} alt="" className="profile-small__avatar"/>
+                <div className="profile-small__signature">
+                  <h2 className="profile-small__username color-dark-grey">Admin</h2>
+                  <span className="profile-small__alias">Online</span>
+                </div>
+              </div>
             </div>
             <div className="messages-container__body">
               <Switch>

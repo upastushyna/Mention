@@ -14,13 +14,22 @@ const Chat = props => {
   return <Fragment>
         {props.chat.messages.map(message =>
           message.sender.username === props.user1?
-        <div className="message-sent">
-          <p className="message-sent__text">{message.content}</p>
-        </div>
+            <div className="message-body">
+              <div className="clear"></div>
+              <div className="message-sent d-flex items-center">
+                <img src={props.chat.user1.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+                <p className="message-sent__text">{message.content}</p>
+              </div>
+            </div>
          :
-        <div className="message-come">
-          <p className="message-come__text">{message.content}</p>
-        </div>)}
+            <div className="message-body">
+              <div className="clear"></div>
+              <div className="message-come d-flex items-center">
+                <p className="message-come__text">{message.content}</p>
+                <img src={props.chat.user2.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+              </div>
+            </div>
+        )}
       </Fragment>
 };
 

@@ -1,7 +1,11 @@
 .message-come {
+  margin-bottom: 20px;
+  float: right;
+
   &__text {
     display: inline-block;
-    max-width: 60%;
+    max-width: 50%;
+    margin-right: 10px;
     padding: 10px 35px;
     border-radius: 15px;
     background-color: #0fc19e;
