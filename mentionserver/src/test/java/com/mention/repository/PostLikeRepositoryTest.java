@@ -1,8 +1,11 @@
 package com.mention.repository;
 
 import com.mention.SpringBootConfiguration;
+import com.mention.model.User;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -34,15 +37,44 @@ public class PostLikeRepositoryTest {
     this.postLikeRepository = postLikeRepository;
   }
 
-
   @Before
   public void before() {
+    new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
+ //   new UserBefore(userRepository).createNewUser(USER_NAME2, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
+    new PostRepoBefore(postRepository).createNewPost(BODY, userRepository.findByUsername(USER_NAME).get());
+    new PostLikeRepoBefore(postLikeRepository).createNewPostLike(userRepository.findByUsername(USER_NAME).get(), postRepository.findByAuthor_Username(USER_NAME));
 
   }
 
   @After
   public void after() {
+    postRepository.deleteById(postRepository.findByAuthor_Username(USER_NAME).getId());
+    Assert.assertNull(postRepository.findByAuthor_Username(USER_NAME));
+    userRepository.deleteByUsername(USER_NAME);
+    userRepository.deleteByUsername(USER_NAME2);
+    Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
+    Assert.assertNull(userRepository.findByUsername(USER_NAME2).orElse(null));
+  }
+
+  @Test
+  public void savePostTest() {
+    Assert.assertNotNull(postLikeRepository.findByUser(USER_NAME));
+  }
+
+  @Test
+  public void getPostTest() {
 
   }
+
+  @Test
+  public void updatePostTest() {
+
+  }
+
+  @Test
+  public void deletePostTest() {
+
+  }
+
 
 }
