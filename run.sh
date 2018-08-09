@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-mvn mention:run
+mvn -pl frontend exec:exec &
+mvn -pl mentionserver exec:java &
