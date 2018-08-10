@@ -33,9 +33,9 @@ public class PostLikeRepositoryTest {
   @Autowired
   private PostLikeRepository postLikeRepository;
 
-  public PostLikeRepositoryTest(PostLikeRepository postLikeRepository) {
+  /*public PostLikeRepositoryTest(PostLikeRepository postLikeRepository) {
     this.postLikeRepository = postLikeRepository;
-  }
+  }*/
 
   @Before
   public void before() {
@@ -57,22 +57,22 @@ public class PostLikeRepositoryTest {
   }
 
   @Test
-  public void savePostTest() {
-    Assert.assertNotNull(postLikeRepository.findByUser(USER_NAME));
+  public void savePostLikeTest() {
+    Assert.assertNotNull(postLikeRepository.findByUserUsername(USER_NAME));
   }
 
   @Test
-  public void getPostTest() {
+  public void getPostLikeTest() {
+    Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
+  }
+
+  @Test
+  public void updatePostLikeTest() {
 
   }
 
   @Test
-  public void updatePostTest() {
-
-  }
-
-  @Test
-  public void deletePostTest() {
+  public void deletePostLikeTest() {
 
   }
 

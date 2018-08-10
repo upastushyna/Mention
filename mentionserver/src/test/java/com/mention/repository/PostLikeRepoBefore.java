@@ -6,8 +6,9 @@ import com.mention.model.User;
 import org.junit.Assert;
 
 public class PostLikeRepoBefore {
-  private PostLikeRepository postLikeRepository;
   private UserRepository userRepository;
+  private PostRepository postRepository;
+  private PostLikeRepository postLikeRepository;
 
   public PostLikeRepoBefore(PostLikeRepository postLikeRepository) {
     this.postLikeRepository = postLikeRepository;
@@ -17,10 +18,11 @@ public class PostLikeRepoBefore {
     this.userRepository = userRepository;
   }
 
+
   public void createNewPostLike(User author, Post post) {
-    Assert.assertNull(postLikeRepository.findByUser(author.getUsername()));
+    Assert.assertNull(postLikeRepository.findByUser(author));
     PostLike postLike = new PostLike(author, post);
     postLikeRepository.save(postLike);
-    Assert.assertNotNull(postLikeRepository.findByUser(author.getUsername()));
+    Assert.assertNotNull(postLikeRepository.findByUser(author));
   }
 }
