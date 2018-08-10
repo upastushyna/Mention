@@ -29,12 +29,10 @@ public class CommentLike {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-
   @ManyToOne
   @JoinColumn(name = "user_id", updatable = false)
   @JsonIgnoreProperties(value = {"profile", "postLikes", "commentLikes", "posts", "comments", "chats", "favorites"})
   private User user;
-
 
   @ManyToOne
   @JoinColumn(name = "comment_id", updatable = false)

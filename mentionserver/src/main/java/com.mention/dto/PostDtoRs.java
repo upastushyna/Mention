@@ -8,6 +8,8 @@ import java.util.List;
 @Data
 public class PostDtoRs {
 
+  private Long id;
+
   private String body;
 
   private ShortUserDetailsRs author;
@@ -16,7 +18,7 @@ public class PostDtoRs {
 
   private Date timestamp;
 
-  private String mediafileUrl;
+  private String mediaFileUrl;
 
   private List<PostLikeRs> likes;
 }

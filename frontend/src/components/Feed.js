@@ -4,18 +4,18 @@ import '../css/index.css'
 import PostItem from '../containers/PostItem'
 import {loadFeed} from "../actions/feedActions";
 import {connect} from 'react-redux'
+import {USERNAME, ID} from "../constants/hardcode";
 
-const username = "admin";
-const id = 1;
+
 class Feed extends React.Component {
 
   componentWillMount(){
     if(this.props.feed.length === 0) {
-      this.props.loadData(username);
+      this.props.loadData(USERNAME);
     }
   }
 
-  addPost = () => fetch('/api/post/add',
+  addPost = () => fetch('/api/posts/add',
     {
       method: 'POST',
       headers: {
@@ -23,14 +23,12 @@ class Feed extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({body:this.refs.postInput
-          .value, author:{id:id}})
-    })
-
-
+          .value, author:{id:ID}})
+    }).then(() => this.refs.postInput.value="");
 
   render () {
     const feed = this.props.feed.map(post =>
-      <PostItem post={post}/>)
+      <PostItem username={USERNAME} loadData={this.props.loadData} post={post}/>);
     return (
       <Fragment>
         <Navigation/>
