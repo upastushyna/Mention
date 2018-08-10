@@ -1,4 +1,4 @@
-.add-comment {
+.create-post {
   position: relative;
   width: 523px;
   margin: 0 auto;
@@ -9,12 +9,6 @@
   background-color: #fff;
   color: #888da8;
   font-family: Roboto, 'sans-serif';
-
-  &__avatar {
-    max-width: 28px;
-    max-height: 28px;
-    margin-right: 20px;
-  }
 
   &__input {
     width: 523px;

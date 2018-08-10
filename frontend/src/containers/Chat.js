@@ -20,6 +20,7 @@ const Chat = props => {
                 <img src={props.chat.user1.profile.avatarUrl} alt="" className="profile-small__avatar"/>
                 <p className="message-send__text">{message.content}</p>
               </div>
+              {/*<span className="message-send__time">{message.timestamp.substring(0, 10)}</span>*/}
             </div>
          :
             <div className="message-body">

@@ -6,7 +6,6 @@ import {loadFeed} from "../actions/feedActions";
 import {connect} from 'react-redux'
 import {USERNAME, ID} from "../constants/hardcode";
 
-
 const username = "admin";
 const id = 1;
 class Feed extends React.Component {
