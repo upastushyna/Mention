@@ -176,6 +176,9 @@ public class CreateUsers {
         messageRepository.save(new Message(
             "Where are you?", userRepository.findByUsername("yarik").get(),
             userRepository.findByUsername("superman").get(), chatRepository.findById(31L).get()));
+        messageRepository.save(new Message(
+            "Ты шо пёс?", userRepository.findByUsername("superman").get(),
+            userRepository.findByUsername("yarik").get(), chatRepository.findById(31L).get()));
       }
     };
   }
