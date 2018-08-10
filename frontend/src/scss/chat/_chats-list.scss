@@ -1,0 +1,31 @@
+.chats {
+  width: 30%;
+  background-color: #fff;
+
+  &__header {
+    padding: 15px;
+    border: 1px solid #e6ecf5;
+    font-family: 'Permanent Marker', cursive;
+  }
+
+  &__search {
+    padding: 10px 20px;
+    border: 1px solid #e6ecf5;
+  }
+
+  &__input {
+    width: 260px;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 4px;
+    outline: none;
+    background-color: #efeff0;
+    overflow: hidden;
+  }
+
+  &__button {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}

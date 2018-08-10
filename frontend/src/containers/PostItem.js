@@ -11,11 +11,11 @@ const PostItem = props =>
   <Fragment>
     <div className="post">
       <div className="post__header d-flex content-between items-center">
-        <div className="profile-small d-flex">
+        <div className="profile-small pointer d-flex">
           <img src={props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
           <div className="profile-small__signature">
             <h2 className="profile-small__username color-dark-grey">{props.post.author.username}</h2>
-            <span className="profile-small__alias">{props.post.timestamp}</span>
+            <span className="profile-small__alias">{props.post.timestamp.slice(0, 19).replace('T', ' ')}</span>
           </div>
         </div>
         <div className="post__more-icon">
