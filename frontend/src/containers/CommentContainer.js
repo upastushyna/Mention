@@ -24,7 +24,7 @@ const CommentContainer = props =>
       <div className="comment-container__footer d-flex content-between">
         <div className="comment-container__like-icon d-flex items-center">
           <img src={like} alt="" className="comment-container__like-img"/>
-          <span className="comment-container__like-number">4</span>
+          <span className="comment-container__like-number">{comment.commentLikes.length}</span>
         </div>
       </div>
     </div>

@@ -7,8 +7,9 @@ import CommentContainer from "./CommentContainer";
 import LikeItem from "./LikeItem";
 import AddComment from "./AddComment";
 
-const PostItem = props =>
-  <Fragment>
+const PostItem = props => {
+
+  return <Fragment>
     <div className="post">
       <div className="post__header d-flex content-between items-center">
         <div className="profile-small pointer d-flex">
@@ -38,8 +39,9 @@ const PostItem = props =>
         </div>
       </div>
     </div>
+    <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}/>
     <CommentContainer comments={props.post.comments}/>
-    {/*<AddComment/>*/}
   </Fragment>
+}
 
 export default PostItem

@@ -6,19 +6,18 @@ import ChatsContainer from '../containers/ChatsContainer'
 import {loadChats} from "../actions/chatsActions";
 import {connect} from 'react-redux'
 import Chat from "../containers/Chat";
+import {USERNAME} from "../constants/hardcode"
 import avatar from '../img/header-panel/user-img.png'
 import send from '../img/send.png'
 import emoji from '../img/emoji.png'
 import attach from '../img/attach.png'
 import search from '../img/search-icon.png'
 
-const username = "yarik";
-
 class Messages extends React.Component {
 
   componentWillMount(){
     if(this.props.chats.length === 0) {
-      this.props.loadData(username);
+      this.props.loadData(USERNAME);
     }
   }
 
@@ -37,7 +36,7 @@ class Messages extends React.Component {
             </div>
             <div className="chats__list">
               <ChatsContainer loadChat={this.props.loadMessages}
-                chats={this.props.chats} username={username}/>
+                chats={this.props.chats} username={USERNAME}/>
             </div>
           </div>
           <div className="messages-container">
@@ -53,7 +52,7 @@ class Messages extends React.Component {
             <div className="messages-container__body">
               <Switch>
                 <Route path='/messages/:username' component={props =>
-                  <Chat user1={username} user2={props.match.params.username}
+                  <Chat user1={USERNAME} user2={props.match.params.username}
                         loadChat={this.props.loadMessages} chat={this.props.chat}/>}/>
               </Switch>
             </div>

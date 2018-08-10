@@ -55,7 +55,7 @@ public class Post {
   private Date modifyTimestamp;
 
   @Column(name = "post_mediafile_url")
-  private String mediafileUrl;
+  private String mediaFileUrl;
 
   @OneToMany(mappedBy = "post")
   @JsonIgnoreProperties(value = {"post"})
