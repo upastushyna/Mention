@@ -10,5 +10,4 @@ public interface PostLikeRepository extends JpaRepository<PostLike, Long> {
 
   PostLike findByUser(User author);
   PostLike findByUserUsername(String username);
-  Long findByUserIdAndPostId (Long user_id, Long post_id);
 }
