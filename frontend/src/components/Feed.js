@@ -5,23 +5,26 @@ import PostItem from '../containers/PostItem'
 import {loadFeed} from "../actions/feedActions";
 import {connect} from 'react-redux'
 
+const username = "admin";
+const id = 1;
 class Feed extends React.Component {
 
   componentWillMount(){
     if(this.props.feed.length === 0) {
-      this.props.loadData("admin");
+      this.props.loadData(username);
     }
   }
 
-  /*addPost = () => fetch('/api/post',
+  addPost = () => fetch('/api/post/add',
     {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({body:document.getElementById("input").value, author:{id:1}})
-    })*/
+      body: JSON.stringify({body:this.refs.postInput
+          .value, author:{id:id}})
+    })
 
 
 
@@ -32,6 +35,8 @@ class Feed extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
+          <input id="postInput" type="text" placeholder="Share your thoughts" ref="postInput"
+                 maxLength={255}/><button onClick={() => this.addPost()}>Add new post</button>
           {feed}
         </div>
       </Fragment>

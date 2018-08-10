@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {loadPosts} from "../actions/userPageActions";
 import HeaderProfile from "../containers/HeaderProfile";
 
+const id = 1;
 class UserPage extends React.Component {
 
   componentWillMount(){
@@ -13,6 +14,17 @@ class UserPage extends React.Component {
       this.props.loadData(this.props.match.params.username);
     }
   }
+
+  addPost = () => fetch('/api/post/add',
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({body:this.refs.postInput
+          .value, author:{id:id}})
+    }).then(() => this.props.loadData(this.props.match.params.username))
 
   render() {
     const posts = this.props.userPosts.map(post =>
@@ -22,6 +34,8 @@ class UserPage extends React.Component {
         <Navigation/>
         <div className="container">
           <HeaderProfile/>
+          <input id="postInput" type="text" placeholder="Share your thoughts" ref="postInput"
+                 maxLength={255}/><button onClick={() => this.addPost()}>Add new post</button>
           {posts}
         </div>
       </Fragment>
