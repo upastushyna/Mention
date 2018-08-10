@@ -7,7 +7,7 @@ const CommentContainer = props =>
   <Fragment>
     <div className="comment-container">
       <div className="comment-container__header d-flex items-center content-between">
-        <div className="profile-small d-flex items-center">
+        <div className="profile-small pointer d-flex items-center">
           <img src={comment.commentator.profile.avatarUrl} alt="" className="profile-small__avatar"/>
           <div className="profile-small__signature">
             <h2 className="profile-small__username color-dark-grey">{comment.commentator.username}</h2>

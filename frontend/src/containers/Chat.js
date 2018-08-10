@@ -16,9 +16,9 @@ const Chat = props => {
           message.sender.username === props.user1?
             <div className="message-body">
               <div className="clear"></div>
-              <div className="message-sent d-flex items-center">
+              <div className="message-send d-flex items-center">
                 <img src={props.chat.user1.profile.avatarUrl} alt="" className="profile-small__avatar"/>
-                <p className="message-sent__text">{message.content}</p>
+                <p className="message-send__text">{message.content}</p>
               </div>
             </div>
          :
