@@ -1,15 +1,14 @@
-@import "modules/colors";
 @import "config/reset";
+@import "modules/colors";
+@import "modules/content-placement";
 @import "sections/navigation";
 @import "sections/login";
 @import "sections/registration";
-@import "modules/content-placement";
-@import "modules/header-profile";
-@import "modules/post-container";
-@import "modules/profile-small";
-@import "modules/add-comment";
-@import "modules/comment-container";
-@import "modules/messages-container";
+@import "sections/chat";
+@import "sections/post";
+@import "profile/header-profile";
+@import "profile/profile-small";
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 
 body {
   background-color: #edf2f6;

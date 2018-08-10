@@ -3,6 +3,7 @@ package com.mention.beans;
 
 import com.mention.model.Chat;
 import com.mention.model.Comment;
+import com.mention.model.CommentLike;
 import com.mention.model.Favorite;
 import com.mention.model.Follow;
 import com.mention.model.Message;
@@ -11,6 +12,7 @@ import com.mention.model.PostLike;
 import com.mention.model.Profile;
 import com.mention.model.User;
 import com.mention.repository.ChatRepository;
+import com.mention.repository.CommentLikeRepository;
 import com.mention.repository.CommentRepository;
 import com.mention.repository.FavoriteRepository;
 import com.mention.repository.FollowRepository;
@@ -30,11 +32,16 @@ import java.util.List;
 @Configuration
 public class CreateUsers {
   @Bean
-  public CommandLineRunner createUsersInDb(UserRepository userRepository, PostRepository postRepository,
-                                           CommentRepository commentRepository, PostLikeRepository postLikeRepository,
-                                           FavoriteRepository favoriteRepository, MessageRepository messageRepository,
-                                           ChatRepository chatRepository, FollowRepository followRepository,
-                                           ProfileRepository profileRepository) {
+  public CommandLineRunner createUsersInDb(UserRepository userRepository,
+                                           PostRepository postRepository,
+                                           CommentRepository commentRepository,
+                                           PostLikeRepository postLikeRepository,
+                                           FavoriteRepository favoriteRepository,
+                                           MessageRepository messageRepository,
+                                           ChatRepository chatRepository,
+                                           FollowRepository followRepository,
+                                           ProfileRepository profileRepository,
+                                           CommentLikeRepository commentLikeRepository) {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {
@@ -160,6 +167,42 @@ public class CreateUsers {
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
             null, userRepository.findByUsername("alex").get()));
+
+        messageRepository.save(new Message(
+            "What's up?", userRepository.findByUsername("superman").get(),
+            userRepository.findByUsername("yarik").get(), chatRepository.findById(31L).get()));
+        messageRepository.save(new Message(
+            "How are you?", userRepository.findByUsername("yarik").get(),
+            userRepository.findByUsername("superman").get(), chatRepository.findById(31L).get()));
+        messageRepository.save(new Message(
+            "cho tipa kak?", userRepository.findByUsername("yarik").get(),
+            userRepository.findByUsername("admin").get(), chatRepository.findById(33L).get()));
+        messageRepository.save(new Message(
+            "Where is my money b*tch!?", userRepository.findByUsername("admin").get(),
+            userRepository.findByUsername("yarik").get(), chatRepository.findById(33L).get()));
+        messageRepository.save(new Message(
+            "Where are you?", userRepository.findByUsername("yarik").get(),
+            userRepository.findByUsername("superman").get(), chatRepository.findById(31L).get()));
+        messageRepository.save(new Message(
+            "Ты шо пёс?", userRepository.findByUsername("superman").get(),
+            userRepository.findByUsername("yarik").get(), chatRepository.findById(31L).get()));
+
+        commentLikeRepository.save(new CommentLike(userRepository.findByUsername("yarik").get(),
+            commentRepository.findById(11L).get()));
+        commentLikeRepository.save(new CommentLike(userRepository.findByUsername("superman").get(),
+            commentRepository.findById(11L).get()));
+        commentLikeRepository.save(new CommentLike(userRepository.findByUsername("admin").get(),
+            commentRepository.findById(11L).get()));
+        commentLikeRepository.save(new CommentLike(userRepository.findByUsername("yarik").get(),
+            commentRepository.findById(12L).get()));
+        commentLikeRepository.save(new CommentLike(userRepository.findByUsername("superman").get(),
+            commentRepository.findById(12L).get()));
+        commentLikeRepository.save(new CommentLike(userRepository.findByUsername("admin").get(),
+            commentRepository.findById(12L).get()));
+        commentLikeRepository.save(new CommentLike(userRepository.findByUsername("yarik").get(),
+            commentRepository.findById(13L).get()));
+        commentLikeRepository.save(new CommentLike(userRepository.findByUsername("superman").get(),
+            commentRepository.findById(13L).get()));
       }
     };
   }

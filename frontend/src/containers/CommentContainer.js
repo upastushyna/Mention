@@ -7,7 +7,7 @@ const CommentContainer = props =>
   <Fragment>
     <div className="comment-container">
       <div className="comment-container__header d-flex items-center content-between">
-        <div className="profile-small d-flex items-center">
+        <div className="profile-small pointer d-flex items-center">
           <img src={comment.commentator.profile.avatarUrl} alt="" className="profile-small__avatar"/>
           <div className="profile-small__signature">
             <h2 className="profile-small__username color-dark-grey">{comment.commentator.username}</h2>
@@ -24,7 +24,7 @@ const CommentContainer = props =>
       <div className="comment-container__footer d-flex content-between">
         <div className="comment-container__like-icon d-flex items-center">
           <img src={like} alt="" className="comment-container__like-img"/>
-          <span className="comment-container__like-number">4</span>
+          <span className="comment-container__like-number">{comment.commentLikes.length}</span>
         </div>
       </div>
     </div>

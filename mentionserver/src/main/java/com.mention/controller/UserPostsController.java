@@ -1,18 +1,19 @@
 package com.mention.controller;
 
-
+import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
 import com.mention.service.UserPostsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/posts")
 public class UserPostsController {
 
   private UserPostsServiceImpl userPostsService;
@@ -27,9 +28,14 @@ public class UserPostsController {
     return userPostsService.getFollowedPosts(username);
   }
 
-  @GetMapping("/posts/{username}")
+  @GetMapping("/{username}")
   public List<PostDtoRs> getPostsByUsername(@PathVariable String username) {
     return userPostsService.getPostsByUsername(username);
+  }
+
+  @PostMapping("/add")
+  public void addPost(@RequestBody PostDtoRq post) {
+    userPostsService.addPost(post);
   }
 
 }
