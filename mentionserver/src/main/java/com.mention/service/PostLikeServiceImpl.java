@@ -24,7 +24,5 @@ public class PostLikeServiceImpl implements PostLikeService {
     ModelMapper modelMapper = new ModelMapper();
     PostLike insertPostLike = modelMapper.map(postLike, PostLike.class);
     postLikeRepository.save(insertPostLike);
-
-
   }
 }

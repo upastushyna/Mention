@@ -87,7 +87,7 @@ public class CreateUsers {
         postLikeRepository.save(new PostLike(
             userRepository.findByUsername("alex").get(), postRepository.findById(8L).get()));    //24
         postLikeRepository.save(new PostLike(
-            userRepository.findByUsername("admin").get(), postRepository.findById(10L).get()));    //25
+            userRepository.findByUsername("admin").get(), postRepository.findById(9L).get()));    //25
 
         favoriteRepository.save(new Favorite(
             userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));  //26

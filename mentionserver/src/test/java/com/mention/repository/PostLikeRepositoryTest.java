@@ -35,14 +35,15 @@ public class PostLikeRepositoryTest {
   public void before() {
     new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
     new PostRepoBefore(postRepository).createNewPost(BODY, userRepository.findByUsername(USER_NAME).get());
-    new PostLikeRepoBefore(postLikeRepository).createNewPostLike(userRepository.findByUsername(USER_NAME).get(), postRepository.findByAuthor_Username(USER_NAME));
+    new PostLikeRepoBefore(postLikeRepository).createNewPostLike(userRepository.findByUsername(USER_NAME).get(),
+        postRepository.findByAuthorUsername(USER_NAME));
 
   }
 
   @After
   public void after() {
     postLikeRepository.deleteById(postLikeRepository.findByUserUsername(USER_NAME).getId());
-    postRepository.deleteById(postRepository.findByAuthor_Username(USER_NAME).getId());
+    postRepository.deleteById(postRepository.findByAuthorUsername(USER_NAME).getId());
     userRepository.deleteByUsername(USER_NAME);
     Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
   }
