@@ -1,19 +1,17 @@
 .create-post {
   position: relative;
-  width: 523px;
+  width: 543px;
   margin: 0 auto;
-  padding: 25px 25px 75px;
+  padding: 15px;
   border: 1px solid #e6ecf5;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-radius: 5px;
   background-color: #fff;
   color: #888da8;
   font-family: Roboto, 'sans-serif';
 
   &__input {
-    width: 523px;
-    min-height: 35px;
-    padding: 15px;
+    width: 380px;
+    padding: 7px;
     border: 1px solid #e6ecf5;
     border-radius: 5px;
     outline: none;
@@ -25,12 +23,12 @@
   }
 
   &__button {
-    margin-top: 15px;
-    padding: 15px 25px;
-    float: right;
+    padding: 15px;
     border: 1px solid #4591fb;
     border-radius: 5px;
+    outline: none;
     background-color: #4591fb;
+    color: #fff;
     font-weight: 700;
     cursor: pointer;
   }

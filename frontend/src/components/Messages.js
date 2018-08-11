@@ -8,9 +8,9 @@ import {connect} from 'react-redux'
 import Chat from "../containers/Chat";
 import {USERNAME} from "../constants/hardcode"
 import avatar from '../img/header-panel/user-img.png'
-import send from '../img/send.png'
-import emoji from '../img/emoji.png'
-import attach from '../img/attach.png'
+import send from '../img/chat/send.png'
+import emoji from '../img/chat/emoji.png'
+import attach from '../img/chat/attach.png'
 import search from '../img/search-icon.png'
 
 class Messages extends React.Component {
