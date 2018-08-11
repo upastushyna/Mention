@@ -35,6 +35,7 @@ const Chat = props => {
                 <p className="message-send__text">{message.content}</p>
                 <span className="message-send__time">{message.timestamp.substring(0, 10)}</span>
               </div>
+              {/*<span className="message-send__time">{message.timestamp.substring(0, 10)}</span>*/}
             </div>
          :
             <div className="message-body">
