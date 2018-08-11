@@ -6,4 +6,5 @@ import lombok.Data;
 public class UserDtoRq {
 
   private Long id;
+
 }
