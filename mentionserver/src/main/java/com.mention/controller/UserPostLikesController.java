@@ -23,4 +23,8 @@ public class UserPostLikesController {
     postLikeService.addPostLike(postLike);
   }
 
+  @PostMapping("/delete")
+  public void deletePostLike(@RequestBody PostLikeRq postLike) {
+    postLikeService.deletePostLike(postLike);
+  }
 }
