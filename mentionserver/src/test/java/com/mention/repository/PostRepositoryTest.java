@@ -39,25 +39,25 @@ public class PostRepositoryTest {
 
   @After
   public void after() {
-    postRepository.deleteById(postRepository.findByAuthor_Username(USER_NAME).getId());
-    Assert.assertNull(postRepository.findByAuthor_Username(USER_NAME));
+    postRepository.deleteById(postRepository.findByAuthorUsername(USER_NAME).getId());
+    Assert.assertNull(postRepository.findByAuthorUsername(USER_NAME));
     userRepository.deleteByUsername(USER_NAME);
     Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
   }
 
   @Test
   public void savePostTest() {
-    Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
+    Assert.assertNotNull(postRepository.findByAuthorUsername(USER_NAME));
   }
 
   @Test
   public void getPostTest() {
-    Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
+    Assert.assertNotNull(postRepository.findByAuthorUsername(USER_NAME));
   }
 
  @Test
   public void updatePostTest() {
-    Post updatePost = postRepository.findByAuthor_Username(USER_NAME);
+    Post updatePost = postRepository.findByAuthorUsername(USER_NAME);
     updatePost.setBody("It's honey");
     Long post_id = postRepository.save(updatePost).getId();
     Assert.assertNotEquals(updatePost, postRepository.findById(post_id));
@@ -65,6 +65,6 @@ public class PostRepositoryTest {
 
  @Test
   public void deletePostTest() {
-   Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
+   Assert.assertNotNull(postRepository.findByAuthorUsername(USER_NAME));
   }
 }
