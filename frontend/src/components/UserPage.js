@@ -7,6 +7,7 @@ import {loadPosts} from "../actions/userPageActions";
 import HeaderProfile from "../containers/HeaderProfile";
 import {ID} from "../constants/hardcode"
 
+
 const id = 1;
 class UserPage extends React.Component {
 
