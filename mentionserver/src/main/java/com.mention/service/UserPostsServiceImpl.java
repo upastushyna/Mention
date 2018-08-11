@@ -37,8 +37,8 @@ public class UserPostsServiceImpl implements UserPostsService {
     if (currentUser.isPresent()) {
       User user = currentUser.get();
       List<Post> posts = new ArrayList<>();
-      for (Follow followed:
-           user.getFollowedUsers()) {
+      for (Follow followed :
+          user.getFollowedUsers()) {
         posts.addAll(followed.getFollowedUser().getPosts());
       }
       List<PostDtoRs> postDtoRs = posts.stream().map(post -> modelMapper.map(
@@ -70,4 +70,12 @@ public class UserPostsServiceImpl implements UserPostsService {
     Post insertPost = modelMapper.map(post, Post.class);
     postRepository.save(insertPost);
   }
+
+  @Override
+  public void updatePost(PostDtoRq post) {
+    ModelMapper modelMapper = new ModelMapper();
+    Post updatedPost = modelMapper.map(post, Post.class);
+    postRepository.save(updatedPost);
+  }
+
 }
