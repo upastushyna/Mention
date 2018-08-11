@@ -12,4 +12,4 @@ public interface PostLikeRepository extends JpaRepository<PostLike, Long> {
   
   PostLike findByUserUsername(String username);
   
- }
+}
