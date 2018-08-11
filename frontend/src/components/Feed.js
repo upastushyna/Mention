@@ -6,7 +6,6 @@ import {loadFeed} from "../actions/feedActions";
 import {connect} from 'react-redux'
 import {USERNAME, ID} from "../constants/hardcode";
 
-
 const username = "admin";
 const id = 1;
 class Feed extends React.Component {
@@ -35,8 +34,11 @@ class Feed extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
-          <input id="postInput" type="text" placeholder="Share your thoughts" ref="postInput"
-                 maxLength={255}/><button onClick={() => this.addPost()}>Add new post</button>
+          <div className="create-post d-flex items-center content-between">
+            <textarea className="create-post__input" id="postInput" placeholder="Share your thoughts" ref="postInput"
+                   maxLength={255}/>
+            <button className="create-post__button" onClick={() => this.addPost()}>Add post</button>
+          </div>
           {feed}
         </div>
       </Fragment>

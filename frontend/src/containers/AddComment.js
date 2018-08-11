@@ -23,8 +23,8 @@ const AddComment = props => {
         <textarea className="add-comment__input"
                   id={"commentInput" + props.postId} placeholder="Share your thoughts"
                   maxLength={255}/>
-        <button onClick={() => addComment()} className="add-comment__button color-white" value="Post Comment"/>
       </div>
+      <button onClick={() => addComment()} className="add-comment__button color-white">Post Comment</button>
     </div>
   </Fragment>;
 }
