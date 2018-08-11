@@ -9,6 +9,7 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Data
 @Service
@@ -24,6 +25,7 @@ public class PostLikeServiceImpl implements PostLikeService {
   }
 
   @Override
+  @Transactional
   public void addPostLike(PostLikeRq postLike) {
     ModelMapper modelMapper = new ModelMapper();
     PostLike insertPostLike = modelMapper.map(postLike, PostLike.class);
@@ -31,6 +33,7 @@ public class PostLikeServiceImpl implements PostLikeService {
   }
 
   @Override
+  @Transactional
   public void deletePostLike(PostLikeRq postLike) {
     postLikeRepository.deleteByUserIdAndPostId(
         postLike.getUser().getId(),
