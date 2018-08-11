@@ -38,7 +38,7 @@ class UserPage extends React.Component {
         <Navigation/>
         <div className="container">
           <HeaderProfile/>
-          <div className="create-post d-flex items-center content-between">
+          <div className="create-post d-flex items-center content-between white-background">
             <textarea className="create-post__input" id="postInput" placeholder="Share your thoughts" ref="postInput"
                       maxLength={255}/>
             <button className="create-post__button" onClick={() => this.addPost()}>Add post</button>

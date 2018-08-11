@@ -1,5 +1,6 @@
-import store from "../store/index.js";
-import { loadFeed } from "../actions/feedActions";
-
-window.store = store;
-window.loadFeed = loadFeed;
+/*
+$(document).ready(function(){
+  $(".test").click(function(){
+    alert("The paragraph was clicked.");
+  });
+});*/

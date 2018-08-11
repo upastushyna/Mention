@@ -9,7 +9,7 @@ import AddComment from "./AddComment";
 const PostItem = props => {
 
   return <Fragment>
-    <div className="post">
+    <div className="post white-background">
       <div className="post__header d-flex content-between items-center">
         <div className="profile-small pointer d-flex">
           <img src={props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
