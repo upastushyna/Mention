@@ -1,5 +1,6 @@
 package com.mention.service;
 
+import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
 import com.mention.model.Follow;
@@ -70,4 +71,7 @@ public class UserPostsServiceImpl implements UserPostsService {
     Post insertPost = modelMapper.map(post, Post.class);
     postRepository.save(insertPost);
   }
+
+
+
 }
