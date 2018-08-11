@@ -1,8 +1,6 @@
 package com.mention.repository;
 
 import com.mention.SpringBootConfiguration;
-import com.mention.model.Post;
-import com.mention.model.User;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,10 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @SpringBootTest(classes = SpringBootConfiguration.class)
-public class PostRepositoryTest {
+public class PostLikeRepositoryTest {
 
   private final static String USER_NAME = "username";
-  private final static String USER_NAME2 = "username2";
   private final static String USER_EMAIL = "john@mail.com";
   private final static String USER_PASSWD = "123";
   private final static boolean USER_ACTIVE = true;
@@ -31,40 +28,40 @@ public class PostRepositoryTest {
   @Autowired
   private UserRepository userRepository;
 
+  @Autowired
+  private PostLikeRepository postLikeRepository;
+
   @Before
   public void before() {
     new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
     new PostRepoBefore(postRepository).createNewPost(BODY, userRepository.findByUsername(USER_NAME).get());
+    new PostLikeRepoBefore(postLikeRepository).createNewPostLike(userRepository.findByUsername(USER_NAME).get(), postRepository.findByAuthor_Username(USER_NAME));
+
   }
 
   @After
   public void after() {
+    postLikeRepository.deleteById(postLikeRepository.findByUserUsername(USER_NAME).getId());
     postRepository.deleteById(postRepository.findByAuthor_Username(USER_NAME).getId());
-    Assert.assertNull(postRepository.findByAuthor_Username(USER_NAME));
     userRepository.deleteByUsername(USER_NAME);
     Assert.assertNull(userRepository.findByUsername(USER_NAME).orElse(null));
   }
 
   @Test
-  public void savePostTest() {
-    Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
+  public void savePostLikeTest() {
+    Assert.assertNotNull(postLikeRepository.findByUserUsername(USER_NAME));
   }
 
   @Test
-  public void getPostTest() {
-    Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
+  public void getPostLikeTest() {
+    Assert.assertNotNull(postLikeRepository.findByUserUsername(USER_NAME));
   }
 
- @Test
-  public void updatePostTest() {
-    Post updatePost = postRepository.findByAuthor_Username(USER_NAME);
-    updatePost.setBody("It's honey");
-    Long post_id = postRepository.save(updatePost).getId();
-    Assert.assertNotEquals(updatePost, postRepository.findById(post_id));
+
+  @Test
+  public void deletePostLikeTest() {
+    Assert.assertNotNull(postLikeRepository.findByUserUsername(USER_NAME));
   }
 
- @Test
-  public void deletePostTest() {
-   Assert.assertNotNull(postRepository.findByAuthor_Username(USER_NAME));
-  }
+
 }
