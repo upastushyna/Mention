@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class ShortUserDetailsRs {
 
+  private Long id;
+
   private String username;
 
   private ProfileAvatarRs profile;

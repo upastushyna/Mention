@@ -7,7 +7,9 @@ public class MessageDtoRq {
 
   private String content;
 
-  private UserDtoRq sender;
+  private UserDtoIdRq sender;
 
-  private UserDtoRq receiver;
+  private UserDtoIdRq receiver;
+
+  private ChatDtoIdRq chat;
 }

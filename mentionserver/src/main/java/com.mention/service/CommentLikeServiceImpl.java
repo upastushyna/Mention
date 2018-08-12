@@ -3,15 +3,12 @@ package com.mention.service;
 import com.mention.dto.CommentLikeDtoRq;
 import com.mention.model.CommentLike;
 import com.mention.repository.CommentLikeRepository;
-import com.mention.repository.PostRepository;
-import com.mention.repository.UserRepository;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Data
 @Service
 public class CommentLikeServiceImpl implements CommentLikeService {
 
