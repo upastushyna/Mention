@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import more from '../img/post-form/more-icon.png'
 import like from '../img/post-form/like-icon.png'
+import CommentLikeItem from "./CommentLikeItem";
 
 const CommentContainer = props =>
   props.comments.map(comment =>
@@ -22,10 +23,8 @@ const CommentContainer = props =>
         {comment.body}
       </p>
       <div className="comment-container__footer d-flex content-between">
-        <div className="comment-container__like-icon d-flex items-center">
-          <img src={like} alt="" className="comment-container__like-img"/>
-          <span className="comment-container__like-number">{comment.commentLikes.length}</span>
-        </div>
+        <CommentLikeItem likes={comment.commentLikes} username={props.username}
+                         commentId={comment.id} loadData={props.loadData}/>
       </div>
     </div>
   </Fragment>)

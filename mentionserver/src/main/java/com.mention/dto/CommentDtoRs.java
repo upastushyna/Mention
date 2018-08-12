@@ -8,6 +8,8 @@ import java.util.List;
 @Data
 public class CommentDtoRs {
 
+  private Long id;
+
   private String body;
 
   private ShortUserDetailsRs commentator;
