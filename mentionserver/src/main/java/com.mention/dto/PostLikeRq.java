@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PostLikeRq {
 
-  private UserDtoRq user;
+  private UserDtoIdRq user;
   private PostDtoIdRq post;
 
 }

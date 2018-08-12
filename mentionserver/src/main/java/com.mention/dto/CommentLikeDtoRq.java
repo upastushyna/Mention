@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class CommentLikeDtoRq {
 
-  private UserDtoRq user;
+  private UserDtoIdRq user;
+
   private CommentDtoIdRq comment;
 
 }

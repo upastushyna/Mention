@@ -9,5 +9,5 @@ public class PostDtoRq {
 
   private String mediaFileUrl;
 
-  private UserDtoRq author;
+  private UserDtoIdRq author;
 }

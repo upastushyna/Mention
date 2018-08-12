@@ -6,6 +6,7 @@ import com.mention.repository.MessageRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserMessagesServiceImpl implements UserMessagesService {
@@ -18,6 +19,7 @@ public class UserMessagesServiceImpl implements UserMessagesService {
   }
 
   @Override
+  @Transactional
   public void addMessage(MessageDtoRq message) {
     ModelMapper modelMapper = new ModelMapper();
     Message insertMessage = modelMapper.map(message, Message.class);

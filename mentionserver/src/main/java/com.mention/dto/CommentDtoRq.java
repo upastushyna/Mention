@@ -7,7 +7,7 @@ public class CommentDtoRq {
 
   private String body;
 
-  private UserDtoRq commentator;
+  private UserDtoIdRq commentator;
 
   private PostDtoIdRq post;
 
