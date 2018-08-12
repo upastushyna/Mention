@@ -7,6 +7,7 @@ import com.mention.repository.PostRepository;
 import com.mention.repository.UserRepository;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,9 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class CommentLikeServiceImpl implements CommentLikeService {
 
   private CommentLikeRepository commentLikeRepository;
-  private UserRepository userRepository;
-  private PostRepository postRepository;
 
+  @Autowired
   public CommentLikeServiceImpl(CommentLikeRepository commentLikeRepository) {
     this.commentLikeRepository = commentLikeRepository;
   }

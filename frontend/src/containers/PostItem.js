@@ -3,7 +3,7 @@ import more from '../img/post-form/more-icon.png'
 import comment from '../img/post-form/comment-icon.png'
 import forward from '../img/post-form/forward-icon.png'
 import CommentContainer from "./CommentContainer";
-import LikeItem from "./LikeItem";
+import PostLikeItem from "./PostLikeItem";
 import AddComment from "./AddComment";
 
 const PostItem = props => {
@@ -26,7 +26,7 @@ const PostItem = props => {
         {props.post.body}
       </p>
       <div className="post__footer d-flex content-between">
-        <LikeItem loadData={props.loadData} postId={props.post.id}
+        <PostLikeItem loadData={props.loadData} postId={props.post.id}
                   likes={props.post.likes} username={props.username}/>
         <div className="post__comment-icon d-flex items-center">
           <img src={comment} alt="" className="post__comment-img"/>
@@ -36,7 +36,8 @@ const PostItem = props => {
         </div>
       </div>
     </div>
-    <CommentContainer comments={props.post.comments}/>
+    <CommentContainer loadData={props.loadData} comments={props.post.comments}
+    postId={props.post.id} username={props.username}/>
     <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}/>
   </Fragment>
 }

@@ -3,7 +3,7 @@ import like from '../img/post-form/like-icon.png'
 import likeFilled from '../img/post-form/like-icon-filled.png'
 import {ID, USERNAME} from "../constants/hardcode";
 
-const LikeItem = props => {
+const PostLikeItem = props => {
 
   const addLike = () => fetch('/api/postlikes/add',
     {
@@ -28,12 +28,11 @@ const LikeItem = props => {
   return <div className="post__like-icon d-flex items-center">
     {props.likes.find(like => like.user.username === USERNAME)?
     <img onClick={() => deleteLike()} src={likeFilled} alt="" className="post__like-img"/>:
-    <img onClick={() => addLike()} src={like} alt="" className="post__like-img"/>
-      }
+    <img onClick={() => addLike()} src={like} alt="" className="post__like-img"/>}
     <span className="post__like-number">
       <span>{props.likes.length}</span>
     </span>
   </div>
 }
 
-export default LikeItem
+export default PostLikeItem
