@@ -53,7 +53,7 @@ const Chat = props => {
                   props.chat.user2.profile.avatarUrl:
                   props.chat.user1.profile.avatarUrl} alt="" className="profile-small__avatar"/>
                 <p className="message-send__text">{message.content}</p>
-                <span className="message-send__time">{message.timestamp.substring(0, 10)}</span>
+                <span className="message-send__time">{message.timestamp.substring(11, 19)}</span>
               </div>
               {/*<span className="message-send__time">{message.timestamp.substring(0, 10)}</span>*/}
             </div>
@@ -61,7 +61,7 @@ const Chat = props => {
             <div className="message-body">
               <div className="clear" />
               <div className="message-come d-flex items-center">
-                <span className="message-come__time">{message.timestamp.substring(0, 10)}</span>
+                <span className="message-come__time">{message.timestamp.substring(11, 19)}</span>
                 <p className="message-come__text">{message.content}</p>
                 <img src={props.chat.user2.username === props.user2?
                   props.chat.user1.profile.avatarUrl:
