@@ -12,31 +12,30 @@ class EditProfile extends React.Component {
   render() {
     return (
         <Fragment>
-          <Navigation/>
           <div className="container">
             <p className="edit-profile-list">
-              <input type="text" className="edit-profile_input" placeholder="firstname"/>
-              {this.props.editProfile.firstName}
+              <input type="text" className="edit-profile_input" defaultValue={this.props.editProfile.firstName}
+                     placeholder="First Name"/>
             </p>
             <p className="edit-profile-list">
-              <input type="text" className="edit-profile_input" placeholder="secondname"/>
-              {this.props.editProfile.secondName}
+              <input type="text" className="edit-profile_input" defaultValue={this.props.editProfile.secondName}
+                     placeholder="Second Name"/>
             </p>
             <p className="edit-profile-list">
-              <input type="text" className="edit-profile_input" placeholder="address"/>
-              {this.props.editProfile.address}
+              <input type="text" className="edit-profile_input" defaultValue={this.props.editProfile.address}
+                     placeholder="Address"/>
             </p>
             <p className="edit-profile-list">
-              <input type="text" className="edit-profile_input" placeholder="birthdate"/>
-              {this.props.editProfile.birthDate}
+              <input type="text" className="edit-profile_input" defaultValue={this.props.editProfile.birthDate}
+                     placeholder="BirthDay"/>
             </p>
             <p className="edit-profile-list">
-              <input type="text" className="edit-profile_input" placeholder="avatar"/>
-              {this.props.editProfile.avatarUrl}
+              <input type="text" className="edit-profile_input" defaultValue={this.props.editProfile.avatarUrl}
+                     placeholder="Avatar"/>
             </p>
             <p className="edit-profile-list">
-              <input type="text" className="edit-profile_input" placeholder="background"/>
-              {this.props.editProfile.backgroundUrl}
+              <input type="text" className="edit-profile_input" defaultValue={this.props.editProfile.backgroundUrl}
+                     placeholder="Background"/>
             </p>
             <p className="edit-profile-list">
               <input type="submit" className="edit-profile_button" value="Edit"/>
