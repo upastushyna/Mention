@@ -35,7 +35,7 @@ public class UserNewUserImpl implements UserNewUser {
   public void deleteUser(UserDtoIdRq user) {
     ModelMapper modelMapper = new ModelMapper();
     Optional<User> currentUser = userRepository.findById(user.getId());
-    if (currentUser.isPresent() && currentUser.get().isActive()){
+    if (currentUser.isPresent() && currentUser.get().isActive()) {
       currentUser.get().setActive(false);
       userRepository.save(currentUser.get());
     }
