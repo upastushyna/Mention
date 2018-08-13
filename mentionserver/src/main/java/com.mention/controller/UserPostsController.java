@@ -48,7 +48,7 @@ public class UserPostsController {
   }
 
   @DeleteMapping(value = "/{id}")
-  public void deletePost(@PathVariable Long id ){
+  public void deletePost(@PathVariable Long id) {
     userPostsService.deletePostById(id);
   }
 }
