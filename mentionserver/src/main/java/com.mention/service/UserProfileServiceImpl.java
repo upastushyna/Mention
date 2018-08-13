@@ -2,16 +2,20 @@ package com.mention.service;
 
 import com.mention.dto.ProfileDtoRq;
 import com.mention.dto.ProfileDtoRs;
+import com.mention.dto.UserDtoUsernameRq;
 import com.mention.model.Profile;
 import com.mention.model.User;
 import com.mention.repository.ProfileRepository;
 import com.mention.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserProfileServiceImpl implements UserProfileService {
 
   private ProfileRepository profileRepository;
@@ -33,22 +37,24 @@ public class UserProfileServiceImpl implements UserProfileService {
   }
 
   @Override
+  @Transactional
   public void updateProfile(ProfileDtoRq profile) {
     ModelMapper modelMapper = new ModelMapper();
     Profile updatedProfile = modelMapper.map(profile, Profile.class);
     profileRepository.save(updatedProfile);
   }
 
-  @Override
+ /* @Override
   public ProfileDtoRs getProfileByUserName(String username) {
-    /* ModelMapper modelMapper = new ModelMapper();
-    Optional<User> currentUser = userRepository.findByUsername(username);
-    if (currentUser.isPresent()){
-      ProfileDtoRs profile = modelMapper.map(currentUser.get().getProfile(),  Profile.class );
-        return profile;
-    }*/
+    ModelMapper modelMapper = new ModelMapper();
+    Profile currentProfile = profileRepository.findByUsername(username).get();
+  //  Optional<User> currentUser = userRepository.findByUsername(username);
+   // if (currentUser.isPresent()) {
+     // Profile currentProfile = profileRepository.findByUsername(username);
+     // return currentProfile;
     return null;
-  }
+    }
 
-
+    return null;
+  }*/
 }

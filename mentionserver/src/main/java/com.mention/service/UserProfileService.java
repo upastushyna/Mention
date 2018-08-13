@@ -2,6 +2,7 @@ package com.mention.service;
 
 import com.mention.dto.ProfileDtoRq;
 import com.mention.dto.ProfileDtoRs;
+import com.mention.dto.UserDtoUsernameRq;
 
 public interface UserProfileService {
 
@@ -10,5 +11,5 @@ public interface UserProfileService {
 
   void updateProfile(ProfileDtoRq profile);
 
-  ProfileDtoRs getProfileByUserName(String username);
+  /* ProfileDtoRs getProfileByUserName(String username);*/
 }
