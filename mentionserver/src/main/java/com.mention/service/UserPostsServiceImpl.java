@@ -82,6 +82,7 @@ public class UserPostsServiceImpl implements UserPostsService {
   }
 
   @Override
+  @Transactional
   public void deletePostById(Long id) {
     postRepository.deleteById(id);
   }
