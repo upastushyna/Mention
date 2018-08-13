@@ -65,12 +65,12 @@ public class UserChatsServiceImpl implements UserChatsService {
     Chat insertChat = modelMapper.map(chat, Chat.class);
     String username1 = chat.getUser1().getUsername();
     String username2 = chat.getUser2().getUsername();
-    if(!chatRepository.findByUser1UsernameAndUser2UsernameOrUser2UsernameAndUser1Username(
+    if (!chatRepository.findByUser1UsernameAndUser2UsernameOrUser2UsernameAndUser1Username(
         username1, username2, username1, username2
     ).isPresent() && userRepository.findByUsername(username2).isPresent()) {
-        insertChat.setUser1(userRepository.findByUsername(username1).get());
-        insertChat.setUser2(userRepository.findByUsername(username2).get());
-        chatRepository.save(insertChat);
+      insertChat.setUser1(userRepository.findByUsername(username1).get());
+      insertChat.setUser2(userRepository.findByUsername(username2).get());
+      chatRepository.save(insertChat);
     }
   }
 }
