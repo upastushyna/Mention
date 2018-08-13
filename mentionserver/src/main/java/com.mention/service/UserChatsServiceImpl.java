@@ -38,10 +38,8 @@ public class UserChatsServiceImpl implements UserChatsService {
     if (chats.isPresent()) {
       List<Chat> currentChats = chats.get();
       List<ChatDtoRs> chatDtoRs = currentChats.stream().map(chat ->
-          modelMapper.map(chat, ChatDtoRs.class))/*.
-          sorted((c1, c2) -> c2.getMessages().get(c2.getMessages().size()-1).getTimestamp()
-          .compareTo(c1.getMessages().get(c1.getMessages().size()-1)
-              .getTimestamp()))*/.collect(Collectors.toList());
+          modelMapper.map(chat, ChatDtoRs.class))
+          .collect(Collectors.toList());
       return chatDtoRs;
     }
     return null;
