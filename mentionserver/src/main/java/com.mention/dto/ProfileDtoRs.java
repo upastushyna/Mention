@@ -5,7 +5,7 @@ import lombok.Data;
 import java.sql.Date;
 
 @Data
-public class ProfileDtoRq {
+public class ProfileDtoRs {
 
   private Long id;
 
@@ -22,5 +22,5 @@ public class ProfileDtoRq {
   private String backgroundUrl;
 
   private UserDtoIdRq user;
-
 }
+
