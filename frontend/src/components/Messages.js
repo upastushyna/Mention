@@ -17,7 +17,22 @@ class Messages extends React.Component {
     }
   }
 
+  scrollToBottom = () => {
+    if (document.getElementById('scroller')) {
+    document.getElementById('scroller').scrollIntoView();
+    }
+  };
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   render () {
+
     return (
       <Fragment>
         <Navigation/>

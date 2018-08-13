@@ -5,12 +5,12 @@ import send from '../img/chat/send.png'
 import emoji from '../img/chat/emoji.png'
 import attach from '../img/chat/attach.png'
 import {ID} from "../constants/hardcode";
-//get sender's username: message.sender.username
-//get sender's avatar": message.sender.profile.avatarUrl
-//get message's timestamp: message.timestamp
-
 
 const Chat = props => {
+
+  const scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  };
 
   const addMessage = () => fetch('/api/messages/add',
     {
@@ -69,6 +69,8 @@ const Chat = props => {
               </div>
             </div>
         )}
+        <div id="scroller" style={{ float:"left", clear: "both" }}>
+        </div>
       </div>
     <div className="message-sender d-flex content-between white-background">
       <textarea id="messageInput" className="message-sender__input" placeholder="Type something & press enter"/>
