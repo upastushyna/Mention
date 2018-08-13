@@ -41,7 +41,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
   @Override
   public ProfileDtoRs getProfileByUserName(String username) {
-   /* ModelMapper modelMapper = new ModelMapper();
+    /* ModelMapper modelMapper = new ModelMapper();
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()){
       ProfileDtoRs profile = modelMapper.map(currentUser.get().getProfile(),  Profile.class );
