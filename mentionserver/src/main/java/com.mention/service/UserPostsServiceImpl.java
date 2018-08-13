@@ -1,5 +1,6 @@
 package com.mention.service;
 
+import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
 import com.mention.model.Follow;
@@ -10,6 +11,7 @@ import com.mention.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -37,8 +39,8 @@ public class UserPostsServiceImpl implements UserPostsService {
     if (currentUser.isPresent()) {
       User user = currentUser.get();
       List<Post> posts = new ArrayList<>();
-      for (Follow followed:
-           user.getFollowedUsers()) {
+      for (Follow followed :
+          user.getFollowedUsers()) {
         posts.addAll(followed.getFollowedUser().getPosts());
       }
       List<PostDtoRs> postDtoRs = posts.stream().map(post -> modelMapper.map(
@@ -65,12 +67,30 @@ public class UserPostsServiceImpl implements UserPostsService {
   }
 
   @Override
+  @Transactional
   public void addPost(PostDtoRq post) {
     ModelMapper modelMapper = new ModelMapper();
     Post insertPost = modelMapper.map(post, Post.class);
     postRepository.save(insertPost);
   }
 
+  @Override
+  @Transactional
+  public void updatePost(PostDtoRq post) {
+    ModelMapper modelMapper = new ModelMapper();
+    Post updatedPost = modelMapper.map(post, Post.class);
+    postRepository.save(updatedPost);
+  }
+
+  @Override
+  @Transactional
+  public void deletePost(PostDtoIdRq postDtoIdRq) {
+    ModelMapper modelMapper = new ModelMapper();
+    Post deletedPost = modelMapper.map(postDtoIdRq, Post.class);
+    postRepository.deleteById(
+        deletedPost.getId()
+    );
+  }
 
 
 }

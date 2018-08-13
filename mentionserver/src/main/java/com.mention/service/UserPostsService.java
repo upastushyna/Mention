@@ -15,4 +15,8 @@ public interface UserPostsService {
 
   void addPost(PostDtoRq post);
 
+  void updatePost(PostDtoRq post);
+
+  void deletePost(PostDtoIdRq post);
+
 }

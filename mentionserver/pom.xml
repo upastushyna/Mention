@@ -230,7 +230,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
                 <configuration>
-                    <mainClass>org.danit.mention.SpringBootConfiguration</mainClass>
+                    <mainClass>com.mention.SpringBootConfiguration</mainClass>
                 </configuration>
             </plugin>
         </plugins>

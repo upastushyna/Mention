@@ -1,15 +1,20 @@
 package com.mention.controller;
 
+import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
 import com.mention.service.UserPostsServiceImpl;
+import org.aspectj.lang.annotation.DeclareError;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
@@ -38,4 +43,13 @@ public class UserPostsController {
     userPostsService.addPost(post);
   }
 
+  @PutMapping("/update")
+  public void updatePost(@RequestBody PostDtoRq post) {
+    userPostsService.updatePost(post);
+  }
+
+  @DeleteMapping("/delete")
+  public void deletePost(@RequestBody PostDtoIdRq post) {
+    userPostsService.deletePost(post);
+  }
 }
