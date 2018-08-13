@@ -39,7 +39,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     profileRepository.save(updatedProfile);
   }
 
- @Override
+  @Override
   public ProfileDtoRs getProfileByUserName(String username) {
    /* ModelMapper modelMapper = new ModelMapper();
     Optional<User> currentUser = userRepository.findByUsername(username);
