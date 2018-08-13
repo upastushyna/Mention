@@ -5,8 +5,19 @@ import forward from '../img/post-form/forward-icon.png'
 import CommentContainer from "./CommentContainer";
 import PostLikeItem from "./PostLikeItem";
 import AddComment from "./AddComment";
+import {ID} from "../constants/hardcode";
 
 const PostItem = props => {
+
+  const rePost = () => fetch('/api/posts/add',
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({author:{id:ID}, parent:{id:props.post.parent?props.post.parent.id:props.post.id}})
+    }).then(() => props.loadData(props.username));
 
   return <Fragment>
     <div className="post white-background">
@@ -23,7 +34,7 @@ const PostItem = props => {
         </div>
       </div>
       <p className="post__body">
-        {props.post.body}
+        {props.post.parent?props.post.parent.body:props.post.body}
       </p>
       <div className="post__footer d-flex content-between">
         <PostLikeItem loadData={props.loadData} postId={props.post.id}
@@ -31,8 +42,8 @@ const PostItem = props => {
         <div className="post__comment-icon d-flex items-center">
           <img src={comment} alt="" className="post__comment-img"/>
           <span className="post__comment-number">{props.post.comments.length}</span>
-          <img src={forward} alt="" className="post__forward-img"/>
-          <span className="post__forward-number">5</span>
+          <img onClick={() => rePost()} src={forward} alt="" className="post__forward-img"/>
+          <span className="post__forward-number">{props.post.children.length}</span>
         </div>
       </div>
     </div>

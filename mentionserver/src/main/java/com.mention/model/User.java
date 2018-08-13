@@ -28,10 +28,6 @@ public class User {
   @JsonIgnoreProperties("commentator")
   private List<Comment> comments;
 
-  @OneToMany(mappedBy = "user")
-  @JsonIgnoreProperties("user")
-  private List<Favorite> favorites;
-
   @OneToMany(mappedBy = "user1")
   @JsonIgnoreProperties(value = {"user1"})
   private List<Chat> chats;
