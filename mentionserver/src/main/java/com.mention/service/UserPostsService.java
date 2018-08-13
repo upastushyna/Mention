@@ -1,7 +1,9 @@
 package com.mention.service;
 
+import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
+import com.mention.model.Post;
 
 import java.util.List;
 

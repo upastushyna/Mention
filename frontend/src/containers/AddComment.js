@@ -17,7 +17,7 @@ const AddComment = props => {
     .then(() => document.getElementById('commentInput' + props.postId).value = "");
 
   return <Fragment>
-    <div className="add-comment">
+    <div className="add-comment white-background">
       <div className="add-comment__form d-flex items-center">
         <img src={avatar} alt="" className="add-comment__avatar"/>
         <textarea className="add-comment__input"

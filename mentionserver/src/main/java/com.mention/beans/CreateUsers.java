@@ -87,7 +87,7 @@ public class CreateUsers {
         postLikeRepository.save(new PostLike(
             userRepository.findByUsername("alex").get(), postRepository.findById(8L).get()));    //24
         postLikeRepository.save(new PostLike(
-            userRepository.findByUsername("admin").get(), postRepository.findById(10L).get()));    //25
+            userRepository.findByUsername("admin").get(), postRepository.findById(9L).get()));    //25
 
         favoriteRepository.save(new Favorite(
             userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));  //26
@@ -149,7 +149,7 @@ public class CreateUsers {
 
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
+            "https://www.svgrepo.com/show/140760/man-with-short-hair-profile-avatar.svg",
             null, userRepository.findByUsername("superman").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
@@ -157,7 +157,7 @@ public class CreateUsers {
             null, userRepository.findByUsername("admin").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
+            "https://banner2.kisspng.com/20180531/twr/kisspng-profession-computer-icons-job-teacher-avatar-profile-avatar-5b101349880eb6.5943032815277801695573.jpg",
             null, userRepository.findByUsername("yarik").get()));
         profileRepository.save(new Profile(null, null, null,
             null,

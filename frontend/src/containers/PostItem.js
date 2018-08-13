@@ -1,16 +1,15 @@
 import React, { Fragment } from 'react'
 import more from '../img/post-form/more-icon.png'
-import like from '../img/post-form/like-icon.png'
 import comment from '../img/post-form/comment-icon.png'
 import forward from '../img/post-form/forward-icon.png'
 import CommentContainer from "./CommentContainer";
-import LikeItem from "./LikeItem";
+import PostLikeItem from "./PostLikeItem";
 import AddComment from "./AddComment";
 
 const PostItem = props => {
 
   return <Fragment>
-    <div className="post">
+    <div className="post white-background">
       <div className="post__header d-flex content-between items-center">
         <div className="profile-small pointer d-flex">
           <img src={props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
@@ -27,10 +26,8 @@ const PostItem = props => {
         {props.post.body}
       </p>
       <div className="post__footer d-flex content-between">
-        <div className="post__like-icon d-flex items-center">
-          <img src={like} alt="" className="post__like-img"/>
-          <span className="post__like-number"><LikeItem likes={props.post.likes}/></span>
-        </div>
+        <PostLikeItem loadData={props.loadData} postId={props.post.id}
+                  likes={props.post.likes} username={props.username}/>
         <div className="post__comment-icon d-flex items-center">
           <img src={comment} alt="" className="post__comment-img"/>
           <span className="post__comment-number">{props.post.comments.length}</span>
@@ -39,7 +36,8 @@ const PostItem = props => {
         </div>
       </div>
     </div>
-    <CommentContainer comments={props.post.comments}/>
+    <CommentContainer loadData={props.loadData} comments={props.post.comments}
+    postId={props.post.id} username={props.username}/>
     <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}/>
   </Fragment>
 }

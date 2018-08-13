@@ -17,11 +17,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "commentLikes")
+@Table(name = "commentLikes", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "comment_id"}))
 @EntityListeners(AuditingEntityListener.class)
 public class CommentLike {
   @Id

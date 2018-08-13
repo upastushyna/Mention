@@ -6,7 +6,6 @@ import com.mention.repository.ChatRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,7 +24,7 @@ public class UserChatsServiceImpl implements UserChatsService {
   public List<ChatDtoRs> getChatsByUsername(String username) {
     ModelMapper modelMapper = new ModelMapper();
     Optional<List<Chat>> chats = chatRepository
-        .findByUser1_UsernameOrUser2_Username(username, username);
+        .findByUser1UsernameOrUser2Username(username, username);
     if (chats.isPresent()) {
       List<Chat> currentChats = chats.get();
       List<ChatDtoRs> chatDtoRs = currentChats.stream().map(chat ->
@@ -39,7 +38,7 @@ public class UserChatsServiceImpl implements UserChatsService {
   public ChatDtoRs getChatByUsernames(String username1, String username2) {
     ModelMapper modelMapper = new ModelMapper();
     Optional<Chat> chat =
-        chatRepository.findByUser1_UsernameAndUser2_UsernameOrUser2_UsernameAndUser1_Username(
+        chatRepository.findByUser1UsernameAndUser2UsernameOrUser2UsernameAndUser1Username(
             username1, username2, username1, username2);
     if (chat.isPresent()) {
       ChatDtoRs currentChat = modelMapper.map(chat.get(), ChatDtoRs.class);
