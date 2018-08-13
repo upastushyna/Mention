@@ -10,6 +10,7 @@ import com.mention.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -65,6 +66,7 @@ public class UserPostsServiceImpl implements UserPostsService {
   }
 
   @Override
+  @Transactional
   public void addPost(PostDtoRq post) {
     ModelMapper modelMapper = new ModelMapper();
     Post insertPost = modelMapper.map(post, Post.class);
@@ -72,10 +74,17 @@ public class UserPostsServiceImpl implements UserPostsService {
   }
 
   @Override
+  @Transactional
   public void updatePost(PostDtoRq post) {
     ModelMapper modelMapper = new ModelMapper();
     Post updatedPost = modelMapper.map(post, Post.class);
     postRepository.save(updatedPost);
   }
+
+  @Override
+  public void deletePostById(Long id) {
+    postRepository.deleteById(id);
+  }
+
 
 }

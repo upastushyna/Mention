@@ -17,4 +17,6 @@ public interface UserPostsService {
 
   void updatePost(PostDtoRq post);
 
+  void deletePostById(Long postId);
+
 }

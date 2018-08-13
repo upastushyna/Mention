@@ -3,7 +3,9 @@ package com.mention.controller;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
 import com.mention.service.UserPostsServiceImpl;
+import org.aspectj.lang.annotation.DeclareError;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,5 +47,8 @@ public class UserPostsController {
     userPostsService.updatePost(post);
   }
 
-
+  @DeleteMapping(value = "/{id}")
+  public void deletePost(@PathVariable Long id ){
+    userPostsService.deletePostById(id);
+  }
 }
