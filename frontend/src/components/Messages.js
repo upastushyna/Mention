@@ -6,22 +6,22 @@ import ChatsContainer from '../containers/ChatsContainer'
 import {loadChats} from "../actions/chatsActions";
 import {connect} from 'react-redux'
 import Chat from "../containers/Chat";
-import {USERNAME} from "../constants/hardcode"
+import {ID, USERNAME} from "../constants/hardcode"
 import search from '../img/search-icon.png'
 
 class Messages extends React.Component {
-
-  componentWillMount(){
-    if(this.props.chats.length === 0) {
-      this.props.loadData(USERNAME);
-    }
-  }
 
   scrollToBottom = () => {
     if (document.getElementById('scroller')) {
     document.getElementById('scroller').scrollIntoView();
     }
   };
+
+  componentWillMount(){
+    if(this.props.chats.length === 0) {
+      this.props.loadData(USERNAME);
+    }
+  }
 
   componentDidMount() {
     this.scrollToBottom();
@@ -30,6 +30,19 @@ class Messages extends React.Component {
   componentDidUpdate() {
     this.scrollToBottom();
   }
+
+
+  addChat = () => fetch('/api/chats/add',
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user1:{username:USERNAME},
+        user2:{username:this.refs.chatInput.value}})
+    }).then(() => this.props.loadData(USERNAME))
+    .then(() => this.refs.chatInput.value = "");
 
   render () {
 
@@ -42,8 +55,9 @@ class Messages extends React.Component {
               <h3 className="chats__title">Conversations</h3>
             </div>
             <div className="chats__search d-flex items-center content-between white-background">
-              <input type="text" className="chats__input" placeholder="Search"/>
-              <img src={search} alt="" className="chats__button"/>
+              <input id="chatInput" ref="chatInput"
+                     type="text" className="chats__input" placeholder="Search"/>
+              <img onClick={() => this.addChat()} src={search} alt="" className="chats__button"/>
             </div>
             <div className="chats__list white-background">
               <ChatsContainer loadChat={this.props.loadMessages}

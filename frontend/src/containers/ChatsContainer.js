@@ -15,11 +15,13 @@ const ChatsContainer = props =>
                 <h2 className="profile-small__username color-dark-grey">{chat.user1.username === props.username?
                     chat.user2.username:chat.user1.username}</h2>
                 <span className="profile-small__alias">
-                  {chat.messages[chat.messages.length - 1].timestamp.slice(0, 19).replace('T', ' ')}
+                  {chat.messages.length !== 0?
+                    chat.messages[chat.messages.length - 1].timestamp.slice(0, 19).replace('T', ' '): ""}
                   </span>
               </div>
             </div>
-            <p className="message-container__text">{chat.messages[chat.messages.length - 1].content}</p>
+            <p className="message-container__text">{chat.messages.length !== 0?
+              chat.messages[chat.messages.length - 1].content:""}</p>
           </div>
         </Link>
       </Fragment>

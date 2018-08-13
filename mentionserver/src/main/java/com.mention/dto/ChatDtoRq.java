@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class ChatDtoRq {
 
-  private UserDtoIdRq user1;
+  private UserDtoUsernameRq user1;
 
-  private UserDtoIdRq user2;
+  private UserDtoUsernameRq user2;
+
 }
