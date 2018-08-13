@@ -1,0 +1,15 @@
+.messages-container {
+  position: relative;
+  width: 70%;
+
+  &__header {
+    padding: 20px;
+    border: 1px solid #e6ecf5;
+  }
+
+  &__body {
+    height: 400px;
+    padding: 20px;
+    border: 1px solid #e6ecf5;
+  }
+}

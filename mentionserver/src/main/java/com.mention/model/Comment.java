@@ -6,6 +6,8 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -14,9 +16,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -41,6 +45,10 @@ public class Comment {
   @JsonIgnoreProperties(value = {"author", "comments", "favorites"})
   private Post post;
 
+  @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+  @JsonIgnoreProperties(value = {"comment"})
+  private List<CommentLike> commentLikes;
+
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
   @Column(nullable = false, name = "comment_timestamp", updatable = false)
@@ -52,9 +60,10 @@ public class Comment {
   private Date modifyTimestamp;
 
   @Column(name = "comment_mediafileurl")
-  private String mediafileUrl;
+  private String mediaFileUrl;
 
-  protected Comment(){}
+  protected Comment() {
+  }
 
   public Comment(String body, User commentator, Post post) {
     this.body = body;

@@ -4,7 +4,6 @@ import home from '../img/left-panel/home-icon.png'
 import favorites from '../img/left-panel/favorite-icon.png'
 import profile from '../img/left-panel/profile-icon.png'
 import messages from '../img/left-panel/message-icon.png'
-import post from '../img/left-panel/posts-icon.png'
 
 class LeftPanel extends React.Component {
   render () {
@@ -22,12 +21,6 @@ class LeftPanel extends React.Component {
               <Link to="/profile">
                 <img className="navigation__img" src={profile} alt=""/>
                 <h4 className="navigation__hover">profile</h4>
-              </Link>
-            </li>
-            <li className="navigation__item">
-              <Link to="/createPost">
-                <img className="navigation__img" src={post} alt=""/>
-                <h4 className="navigation__hover">post</h4>
               </Link>
             </li>
             <li className="navigation__item">

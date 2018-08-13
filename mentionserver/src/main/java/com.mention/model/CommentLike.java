@@ -17,11 +17,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "commentLikes")
+@Table(name = "commentLikes", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "comment_id"}))
 @EntityListeners(AuditingEntityListener.class)
 public class CommentLike {
   @Id
@@ -29,12 +30,10 @@ public class CommentLike {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-
   @ManyToOne
   @JoinColumn(name = "user_id", updatable = false)
   @JsonIgnoreProperties(value = {"profile", "postLikes", "commentLikes", "posts", "comments", "chats", "favorites"})
   private User user;
-
 
   @ManyToOne
   @JoinColumn(name = "comment_id", updatable = false)

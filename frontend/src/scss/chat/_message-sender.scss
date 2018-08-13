@@ -1,0 +1,21 @@
+.message-sender {
+  padding: 8px 20px;
+  border: 1px solid #e6ecf5;
+  overflow: hidden;
+
+  &__input {
+    width: 80%;
+    border: 0;
+    outline: none;
+    resize: none;
+  }
+
+  &__button,
+  &__emoji,
+  &__attach {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+}

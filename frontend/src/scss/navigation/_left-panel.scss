@@ -1,9 +1,10 @@
 .navigation {
   width: 67px;
   height: 100vh;
-  margin-top: -45px;
+  margin-top: -43px;
   background-color: #fff;
   box-shadow: 7px 0 5px -4px #888;
+  z-index: 999;
 
   &__item {
     position: relative;

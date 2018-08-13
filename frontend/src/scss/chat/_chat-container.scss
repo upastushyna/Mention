@@ -1,0 +1,14 @@
+.message-container {
+  width: 358px;
+  padding: 10px;
+  border: 1px solid #e6ecf5;
+
+  &__link {
+    color: #515365;
+    text-decoration: none;
+  }
+}
+
+.message-container:hover {
+  opacity: .7;
+}

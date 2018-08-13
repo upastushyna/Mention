@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 @SpringBootTest(classes = SpringBootConfiguration.class)
 public class UserRepositoryTest {
+  
   private final static String USER_NAME = "username";
   private final static String USER_NAME2 = "Jack";
   private final static String USER_EMAIL = "john@mail.com";
@@ -28,7 +29,7 @@ public class UserRepositoryTest {
 
   @Before
   public void before() {
-    new UserBefore(userRepository).createNewUser(USER_NAME, USER_PASSWD, USER_EMAIL, USER_ACTIVE);
+    new UserBefore(userRepository).createNewUser(USER_NAME, USER_EMAIL, USER_PASSWD, USER_ACTIVE);
   }
 
   @After
@@ -60,7 +61,7 @@ public class UserRepositoryTest {
     Assert.assertEquals(updateUser, userRepository.findByUsername(USER_NAME2).get());
     userRepository.deleteByUsername(USER_NAME2);
     Assert.assertNull(userRepository.findByUsername(USER_NAME2).orElse(null));
-  }
+   }
 
   @Test
   public void deleteUserTest() {
