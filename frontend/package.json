@@ -44,7 +44,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://localhost:8080"
+      "target": "http://[::1]:8080"
     }
   }
 }

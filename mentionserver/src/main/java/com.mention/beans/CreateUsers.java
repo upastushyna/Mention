@@ -4,7 +4,6 @@ package com.mention.beans;
 import com.mention.model.Chat;
 import com.mention.model.Comment;
 import com.mention.model.CommentLike;
-import com.mention.model.Favorite;
 import com.mention.model.Follow;
 import com.mention.model.Message;
 import com.mention.model.Post;
@@ -14,7 +13,6 @@ import com.mention.model.User;
 import com.mention.repository.ChatRepository;
 import com.mention.repository.CommentLikeRepository;
 import com.mention.repository.CommentRepository;
-import com.mention.repository.FavoriteRepository;
 import com.mention.repository.FollowRepository;
 import com.mention.repository.MessageRepository;
 import com.mention.repository.PostLikeRepository;
@@ -25,10 +23,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
-
 @Configuration
 public class CreateUsers {
   @Bean
@@ -36,7 +30,6 @@ public class CreateUsers {
                                            PostRepository postRepository,
                                            CommentRepository commentRepository,
                                            PostLikeRepository postLikeRepository,
-                                           FavoriteRepository favoriteRepository,
                                            MessageRepository messageRepository,
                                            ChatRepository chatRepository,
                                            FollowRepository followRepository,
@@ -89,16 +82,16 @@ public class CreateUsers {
         postLikeRepository.save(new PostLike(
             userRepository.findByUsername("admin").get(), postRepository.findById(9L).get()));    //25
 
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));  //26
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("alex").get(), postRepository.findById(7L).get()));    //27
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("admin").get(), postRepository.findById(8L).get()));   //28
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("yarik").get(), postRepository.findById(9L).get()));   //29
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("superman").get(), postRepository.findById(10L).get()));   //30
+        commentRepository.save(new Comment("Good job", userRepository.findByUsername("superman").get(),
+            postRepository.findById(10L).get())); //26
+        commentRepository.save(new Comment("Thanks!", userRepository.findByUsername("yarik").get(),
+            postRepository.findById(10L).get()));    //27
+        commentRepository.save(new Comment("Bullshit!", userRepository.findByUsername("admin").get(),
+            postRepository.findById(10L).get()));    //28
+        commentRepository.save(new Comment("Hahahahaha", userRepository.findByUsername("dima").get(),
+            postRepository.findById(10L).get()));   //29
+        commentRepository.save(new Comment("Really?", userRepository.findByUsername("alex").get(),
+            postRepository.findById(10L).get()));   //30
 
         chatRepository.save(new Chat(
             userRepository.findByUsername("superman").get(), userRepository.findByUsername("yarik").get()));   //31

@@ -21,4 +21,8 @@ public class PostDtoRs {
   private String mediaFileUrl;
 
   private List<PostLikeRs> likes;
+
+  private List<PostDtoIdRq> children;
+
+  private PostDtoRs parent;
 }

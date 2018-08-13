@@ -10,4 +10,6 @@ public class PostDtoRq {
   private String mediaFileUrl;
 
   private UserDtoIdRq author;
+
+  private PostDtoIdRq parent;
 }
