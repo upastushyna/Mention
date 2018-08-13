@@ -5,6 +5,8 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -36,11 +38,11 @@ public class Post {
   @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User author;
 
-  @OneToMany(mappedBy = "post")
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @JsonIgnoreProperties(value = {"author", "favorites"})
   private List<Favorite> favorites;
 
-  @OneToMany(mappedBy = "post")
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @JsonIgnoreProperties(value = {"post"})
   private List<Comment> comments;
 
@@ -57,11 +59,12 @@ public class Post {
   @Column(name = "post_mediafile_url")
   private String mediaFileUrl;
 
-  @OneToMany(mappedBy = "post")
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @JsonIgnoreProperties(value = {"post"})
   private List<PostLike> postLikes;
 
-  protected Post(){}
+  protected Post() {
+  }
 
   public Post(String body, User author) {
     this.body = body;

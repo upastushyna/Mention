@@ -1,5 +1,6 @@
 package com.mention.controller;
 
+import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
 import com.mention.service.UserPostsServiceImpl;
@@ -47,8 +48,8 @@ public class UserPostsController {
     userPostsService.updatePost(post);
   }
 
-  @DeleteMapping(value = "/{id}")
-  public void deletePost(@PathVariable Long id) {
-    userPostsService.deletePostById(id);
+  @DeleteMapping("/delete")
+  public void deletePost(@RequestBody PostDtoIdRq post) {
+    userPostsService.deletePost(post);
   }
 }

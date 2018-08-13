@@ -1,5 +1,6 @@
 package com.mention.service;
 
+import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
 import com.mention.model.Follow;
@@ -83,8 +84,12 @@ public class UserPostsServiceImpl implements UserPostsService {
 
   @Override
   @Transactional
-  public void deletePostById(Long id) {
-    postRepository.deleteById(id);
+  public void deletePost(PostDtoIdRq postDtoIdRq) {
+    ModelMapper modelMapper = new ModelMapper();
+    Post deletedPost = modelMapper.map(postDtoIdRq, Post.class);
+    postRepository.deleteById(
+        deletedPost.getId()
+    );
   }
 
 
