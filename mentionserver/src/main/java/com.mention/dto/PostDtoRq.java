@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class PostDtoRq {
 
+  private Long id;
+
   private String body;
 
   private String mediaFileUrl;
