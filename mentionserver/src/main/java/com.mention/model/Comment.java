@@ -6,6 +6,8 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -43,7 +45,7 @@ public class Comment {
   @JsonIgnoreProperties(value = {"author", "comments", "favorites"})
   private Post post;
 
-  @OneToMany(mappedBy = "comment")
+  @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
   @JsonIgnoreProperties(value = {"comment"})
   private List<CommentLike> commentLikes;
 
@@ -60,7 +62,8 @@ public class Comment {
   @Column(name = "comment_mediafileurl")
   private String mediaFileUrl;
 
-  protected Comment(){}
+  protected Comment() {
+  }
 
   public Comment(String body, User commentator, Post post) {
     this.body = body;

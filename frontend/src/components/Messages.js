@@ -17,6 +17,12 @@ class Messages extends React.Component {
     }
   };
 
+  componentWillMount(){
+    if(this.props.chats.length === 0) {
+      this.props.loadData(USERNAME);
+    }
+  }
+
   componentDidMount() {
     this.scrollToBottom();
   }
