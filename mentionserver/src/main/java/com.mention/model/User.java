@@ -1,6 +1,7 @@
 package com.mention.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -37,7 +38,8 @@ public class User {
   private List<Chat> chats;
 
   @OneToOne(mappedBy = "user")
-  @JsonIgnoreProperties(value = {"user"})
+//  @JsonIgnoreProperties(value = {"user"})
+  @JsonManagedReference
   private Profile profile;
 
   @OneToMany(mappedBy = "follower")

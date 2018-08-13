@@ -1,7 +1,7 @@
 import {USER_PAGE_LOADED} from "../constants/action-types";
 
 export const loadPosts = username => dispatch => {
-  fetch('/api/posts/' + username,
+  fetch('/api/post/' + username,
       {
         method: 'GET',
         headers: {

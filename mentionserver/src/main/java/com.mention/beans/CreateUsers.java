@@ -147,10 +147,10 @@ public class CreateUsers {
 
         //https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1
 
-        profileRepository.save(new Profile(null, null, null,
-            null,
+        profileRepository.save(new Profile("Admin", "Adminovi4", "Kiev",
+            new Date(106, 06, 06),
             "https://www.svgrepo.com/show/140760/man-with-short-hair-profile-avatar.svg",
-            null, userRepository.findByUsername("superman").get()));
+            "KoBep Ha cTeHe", userRepository.findByUsername("superman").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",

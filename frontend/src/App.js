@@ -10,6 +10,7 @@ import NotFound from './components/NotFound'
 import Login from './components/Login'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
+import EditProfile from "./components/EditProfile";
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/login" component={Login}/>
           <Route path="/registration" component={Registration}/>
           <Route path='/profile' component={Profile}/>
+          <Route path='/editprofile' component={EditProfile}/>
           <Route path='/favorites' component={Favorites}/>
           <Route path='/:username' component={UserPage}/>
           <Route path="*" component={NotFound}/>

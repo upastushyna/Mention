@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react'
-import Navigation from "./Navigation";
 import {loadProfile} from "../actions/editProfileAction";
 import {connect} from 'react-redux'
 
