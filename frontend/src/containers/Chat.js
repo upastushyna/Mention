@@ -12,6 +12,10 @@ import {ID} from "../constants/hardcode";
 
 const Chat = props => {
 
+  const scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  };
+
   const addMessage = () => fetch('/api/messages/add',
     {
       method: 'POST',
@@ -69,6 +73,8 @@ const Chat = props => {
               </div>
             </div>
         )}
+        <div id="scroller" style={{ float:"left", clear: "both" }}>
+        </div>
       </div>
     <div className="message-sender d-flex content-between white-background">
       <textarea id="messageInput" className="message-sender__input" placeholder="Type something & press enter"/>

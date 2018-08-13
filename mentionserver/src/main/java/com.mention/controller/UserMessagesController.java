@@ -21,7 +21,6 @@ public class UserMessagesController {
 
   @PostMapping("/add")
   public void addMessage(@RequestBody MessageDtoRq message) {
-    System.out.println(message);
     userMessagesService.addMessage(message);
   }
 }
