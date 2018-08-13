@@ -5,10 +5,6 @@ import send from '../img/chat/send.png'
 import emoji from '../img/chat/emoji.png'
 import attach from '../img/chat/attach.png'
 import {ID} from "../constants/hardcode";
-//get sender's username: message.sender.username
-//get sender's avatar": message.sender.profile.avatarUrl
-//get message's timestamp: message.timestamp
-
 
 const Chat = props => {
 

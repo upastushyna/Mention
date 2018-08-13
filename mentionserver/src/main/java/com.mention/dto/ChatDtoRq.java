@@ -8,4 +8,5 @@ public class ChatDtoRq {
   private UserDtoUsernameRq user1;
 
   private UserDtoUsernameRq user2;
+
 }

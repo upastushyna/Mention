@@ -31,6 +31,7 @@ class Messages extends React.Component {
     this.scrollToBottom();
   }
 
+
   addChat = () => fetch('/api/chats/add',
     {
       method: 'POST',
