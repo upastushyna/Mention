@@ -8,10 +8,6 @@ import {ID} from "../constants/hardcode";
 
 const Chat = props => {
 
-  const scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-  };
-
   const addMessage = () => fetch('/api/messages/add',
     {
       method: 'POST',

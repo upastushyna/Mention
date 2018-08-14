@@ -38,6 +38,11 @@ public class UserPostsController {
     return userPostsService.getPostsByUsername(username);
   }
 
+  @GetMapping("/liked/{username}")
+  public List<PostDtoRs> getLikedPosts(@PathVariable String username) {
+    return userPostsService.getLikedPosts(username);
+  }
+
   @PostMapping("/add")
   public void addPost(@RequestBody PostDtoRq post) {
     userPostsService.addPost(post);
