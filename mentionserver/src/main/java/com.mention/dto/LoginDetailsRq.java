@@ -11,4 +11,5 @@ public class LoginDetailsRq {
 
   @Length(min = 6, max = 24)
   private String password;
+
 }
