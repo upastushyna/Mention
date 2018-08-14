@@ -31,6 +31,11 @@ class Messages extends React.Component {
     this.scrollToBottom();
   }
 
+  componentWillMount(){
+    if(this.props.chats.length === 0) {
+      this.props.loadData(USERNAME);
+    }
+  }
 
   addChat = () => fetch('/api/chats/add',
     {
