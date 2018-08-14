@@ -1,6 +1,6 @@
-import { FEED_LOADED } from "../constants/action-types";
+import {LIKED_LOADED} from "../constants/action-types";
 
-export const loadFeed = username => dispatch => {
+export const loadLiked = username => dispatch => {
   fetch('/api/posts/liked/' + username ,
     {
       method: 'GET',
@@ -9,5 +9,5 @@ export const loadFeed = username => dispatch => {
         'Content-Type': 'application/json',
       }
     }).then(res=>res.json())
-    .then(data => dispatch({type:FEED_LOADED, payload: data}))
+    .then(data => dispatch({type:LIKED_LOADED, payload: data}))
 }

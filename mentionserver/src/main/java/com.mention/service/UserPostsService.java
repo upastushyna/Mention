@@ -13,6 +13,8 @@ public interface UserPostsService {
 
   List<PostDtoRs> getPostsByUsername(String username);
 
+  List<PostDtoRs> getLikedPosts(String username);
+
   void addPost(PostDtoRq post);
 
   void updatePost(PostDtoRq post);

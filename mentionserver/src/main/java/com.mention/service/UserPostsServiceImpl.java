@@ -25,15 +25,17 @@ public class UserPostsServiceImpl implements UserPostsService {
 
   private PostRepository postRepository;
 
+  private ModelMapper modelMapper;
+
   @Autowired
   public UserPostsServiceImpl(UserRepository userRepository, PostRepository postRepository) {
     this.userRepository = userRepository;
     this.postRepository = postRepository;
+    this.modelMapper = new ModelMapper();
   }
 
   @Override
   public List<PostDtoRs> getFollowedPosts(String username) {
-    ModelMapper modelMapper = new ModelMapper();
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
       User user = currentUser.get();
@@ -53,7 +55,6 @@ public class UserPostsServiceImpl implements UserPostsService {
 
   @Override
   public List<PostDtoRs> getPostsByUsername(String username) {
-    ModelMapper modelMapper = new ModelMapper();
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
       List<PostDtoRs> postDtoRs = currentUser.get().getPosts().stream().map(
@@ -66,9 +67,21 @@ public class UserPostsServiceImpl implements UserPostsService {
   }
 
   @Override
+  public List<PostDtoRs> getLikedPosts(String username) {
+    Optional<User> currentUser = userRepository.findByUsername(username);
+    if (currentUser.isPresent()) {
+      List<PostDtoRs> likedPosts = currentUser.get()
+          .getPostLikes().stream()
+          .map(postLike -> modelMapper.map(postLike.getPost(), PostDtoRs.class))
+          .collect(Collectors.toList());
+      return likedPosts;
+    }
+    return null;
+  }
+
+  @Override
   @Transactional
   public void addPost(PostDtoRq post) {
-    ModelMapper modelMapper = new ModelMapper();
     Post insertPost = modelMapper.map(post, Post.class);
     postRepository.save(insertPost);
   }
@@ -76,7 +89,6 @@ public class UserPostsServiceImpl implements UserPostsService {
   @Override
   @Transactional
   public void updatePost(PostDtoRq post) {
-    ModelMapper modelMapper = new ModelMapper();
     Post updatedPost = modelMapper.map(post, Post.class);
     postRepository.save(updatedPost);
   }
@@ -84,7 +96,6 @@ public class UserPostsServiceImpl implements UserPostsService {
   @Override
   @Transactional
   public void deletePost(PostDtoIdRq postDtoIdRq) {
-    ModelMapper modelMapper = new ModelMapper();
     Post deletedPost = modelMapper.map(postDtoIdRq, Post.class);
     postRepository.deleteById(
         deletedPost.getId()
