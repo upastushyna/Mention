@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/profile")
+@RequestMapping("/api/profiles")
 public class UserProfileController {
 
   private UserProfileServiceImpl userProfileService;

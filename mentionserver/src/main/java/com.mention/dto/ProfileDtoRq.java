@@ -7,6 +7,8 @@ import java.sql.Date;
 @Data
 public class ProfileDtoRq {
 
+  private Long id;
+
   private String firstName;
 
   private String secondName;
