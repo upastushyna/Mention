@@ -12,5 +12,3 @@ public class CommentLikeDtoRq {
   private CommentDtoIdRq comment;
 
 }
-
-//s
