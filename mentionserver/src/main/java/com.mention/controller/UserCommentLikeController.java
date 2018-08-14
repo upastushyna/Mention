@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/commentlikes")
 public class UserCommentLikeController {
@@ -20,7 +22,7 @@ public class UserCommentLikeController {
   }
 
   @PostMapping("/add")
-  public void addCommentLike(@RequestBody CommentLikeDtoRq commentLikeDto) {
+  public void addCommentLike(@Valid @RequestBody CommentLikeDtoRq commentLikeDto) {
     commentLikeService.addCommentLike(commentLikeDto);
   }
 
