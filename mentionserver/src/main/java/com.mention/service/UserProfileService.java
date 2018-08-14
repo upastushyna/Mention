@@ -11,5 +11,6 @@ public interface UserProfileService {
 
   void updateProfile(ProfileDtoRq profile);
 
-  /* ProfileDtoRs getProfileByUserName(String username);*/
+  ProfileDtoRs getProfileByUserName(String username);
+
 }

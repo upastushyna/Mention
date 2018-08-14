@@ -44,17 +44,17 @@ public class UserProfileServiceImpl implements UserProfileService {
     profileRepository.save(updatedProfile);
   }
 
- /* @Override
+  @Override
   public ProfileDtoRs getProfileByUserName(String username) {
     ModelMapper modelMapper = new ModelMapper();
-    Profile currentProfile = profileRepository.findByUsername(username).get();
-  //  Optional<User> currentUser = userRepository.findByUsername(username);
-   // if (currentUser.isPresent()) {
-     // Profile currentProfile = profileRepository.findByUsername(username);
-     // return currentProfile;
-    return null;
+    Optional<User> currentUser = userRepository.findByUsername(username);
+    if (currentUser.isPresent()) {
+      Profile currentProfile = profileRepository.findByUsername(username).get();
+      return modelMapper.map(currentProfile, ProfileDtoRs.class);
     }
-
     return null;
-  }*/
+  }
+
 }
+
+
