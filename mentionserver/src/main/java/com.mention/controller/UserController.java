@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class UserController {
   }
 
   @PostMapping("/add")
-  public void createUser(@RequestBody UserDtoRq userDtoNewUser) {
+  public void createUser(@Valid @RequestBody UserDtoRq userDtoNewUser) {
     userService.createNewUser(userDtoNewUser);
   }
 

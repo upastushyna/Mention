@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -44,12 +45,12 @@ public class UserPostsController {
   }
 
   @PostMapping("/add")
-  public void addPost(@RequestBody PostDtoRq post) {
+  public void addPost(@Valid @RequestBody PostDtoRq post) {
     userPostsService.addPost(post);
   }
 
   @PutMapping("/update")
-  public void updatePost(@RequestBody PostDtoRq post) {
+  public void updatePost(@Valid @RequestBody PostDtoRq post) {
     userPostsService.updatePost(post);
   }
 
