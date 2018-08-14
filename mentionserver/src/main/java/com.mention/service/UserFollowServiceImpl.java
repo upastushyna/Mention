@@ -16,7 +16,7 @@ public class UserFollowServiceImpl implements UserFollowService {
   private UserRepository userRepository;
   private ModelMapper modelMapper;
 
-  public UserFollowServiceImpl(UserRepository userRepository){
+  public UserFollowServiceImpl(UserRepository userRepository) {
     this.userRepository = userRepository;
     this.modelMapper = new ModelMapper();
   }
