@@ -1,7 +1,10 @@
 package com.mention.controller;
 
 import com.mention.dto.ProfileDtoRq;
+import com.mention.dto.ProfileDtoRs;
 import com.mention.service.UserProfileServiceImpl;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +29,11 @@ public class UserProfileController {
   @PutMapping("/update")
   public void updateProfile(@RequestBody ProfileDtoRq profile) {
     userProfileService.updateProfile(profile);
+  }
+
+  @GetMapping("/{username}")
+  public ProfileDtoRs getProfileByUsername(@PathVariable String username) {
+    return userProfileService.getProfileByUserName(username);
   }
 
 }

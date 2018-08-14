@@ -49,7 +49,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     ModelMapper modelMapper = new ModelMapper();
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
-      Profile currentProfile = profileRepository.findByUsername(username).get();
+      Profile currentProfile = currentUser.get().getProfile();
       return modelMapper.map(currentProfile, ProfileDtoRs.class);
     }
     return null;
