@@ -1,5 +1,6 @@
 package com.mention.controller;
 
+import com.mention.dto.ShortUserDetailsRs;
 import com.mention.dto.UserDtoIdRq;
 import com.mention.dto.UserDtoRq;
 import com.mention.service.UserServiceImpl;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
