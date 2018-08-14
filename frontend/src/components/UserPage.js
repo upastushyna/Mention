@@ -43,6 +43,9 @@ class UserPage extends React.Component {
           <Link to={"/" + this.props.match.params.username + "/info"}>
             <p>Info</p>
           </Link>
+          <Link to={"/" + this.props.match.params.username}>
+            <p>Posts</p>
+          </Link>
           <div className="create-post d-flex items-center content-between white-background">
             <textarea className="create-post__input" id="postInput" placeholder="Share your thoughts" ref="postInput"
                       maxLength={255}/>
