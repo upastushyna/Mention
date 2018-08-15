@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import {loadFollowed} from "../actions/followedActions";
 import {loadFollowing} from "../actions/followingActions";
 import {loadLiked} from "../actions/likedActions";
-import {USERNAME} from "../constants/hardcode";
 
 class UserInfo extends React.Component {
 
@@ -20,15 +19,15 @@ class UserInfo extends React.Component {
     return (
       <Fragment>
         <div>
-          <NavLink to={"/" + this.props.username + "/info/followed"}>
-            <p onClick={() => this.props.loadFollowedUsers(this.props.username)}>Following</p>
-          </NavLink>
-          <NavLink to={"/" + this.props.username + "/info/following"}>
-            <p onClick={() => this.props.loadFollowers(this.props.username)}>Followed</p>
-          </NavLink>
-          <NavLink to={"/" + this.props.username + "/info/liked"}>
+          <Link to={"/" + this.props.username + "/info/followed"}>
+            <p onClick={() => this.props.loadFollowedUsers(this.props.username)}>Followed Users</p>
+          </Link>
+          <Link to={"/" + this.props.username + "/info/following"}>
+            <p onClick={() => this.props.loadFollowers(this.props.username)}>Following Users</p>
+          </Link>
+          <Link to={"/" + this.props.username + "/info/liked"}>
             <p>Likes</p>
-          </NavLink>
+          </Link>
         </div>
 
         <Switch>
