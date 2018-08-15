@@ -9,6 +9,8 @@ import {ID} from "../constants/hardcode";
 
 const PostItem = props => {
 
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
   const rePost = () => fetch('/api/posts/add',
     {
       method: 'POST',
@@ -20,17 +22,39 @@ const PostItem = props => {
     }).then(() => props.loadData(props.username));
 
   return <Fragment>
+    {props.post.parent?
+      <div className="repost-header">
+        <div className="profile-small d-flex">
+          <img src={props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+          <div className="profile-small__signature">
+            <h2 className="profile-small__username color-white">{props.post.author.username}</h2>
+            <span className="profile-small__alias color-white">
+              {props.post.timestamp.slice(0, 19).replace('T', ' ')}
+              </span>
+          </div>
+        </div>
+      </div>
+      :""}
     <div className="post white-background">
       <div className="post__header d-flex content-between items-center">
         <div className="profile-small pointer d-flex">
-          <img src={props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+          <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
+            : props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
           <div className="profile-small__signature">
-            <h2 className="profile-small__username color-dark-grey">{props.post.author.username}</h2>
-            <span className="profile-small__alias">{props.post.timestamp.slice(0, 19).replace('T', ' ')}</span>
+            <h2 className="profile-small__username color-dark-grey">{props.post.parent
+              ? props.post.parent.author.username : props.post.author.username}</h2>
+            <span className="profile-small__alias">
+              {props.post.parent ? props.post.parent.timestamp.slice(0, 19).replace('T', ' ')
+                : props.post.timestamp.slice(0, 19).replace('T', ' ')}
+              </span>
           </div>
         </div>
         <div className="post__more-icon">
-          <img src={more} alt="" className="post__more-img"/>
+          <img src={more} alt="" className="post__more-img main-item" tabindex="1"/>
+          <ul className="sub-menu">
+            <li className="sub-menu__item"><span>Delete post</span></li>
+            <li className="sub-menu__item"><span>Edit post</span></li>
+          </ul>
         </div>
       </div>
       <p className="post__body">

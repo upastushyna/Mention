@@ -1,0 +1,20 @@
+.follow-container {
+  width: 523px;
+  margin: 0 auto;
+  padding: 5px 10px 2px;
+  border: 1px solid #e6ecf5;
+  border-radius: 5px;
+  background-color: #fff;
+
+  &__delete {
+    padding: 5px 20px;
+    border: 1px solid #bf3d3d;
+    border-radius: 5px;
+    color: #bf3d3d;
+  }
+
+  &__delete:hover {
+    background-color: #bf3d3d;
+    color: #fff;
+  }
+}
