@@ -8,7 +8,8 @@ import HeaderProfile from "../containers/HeaderProfile";
 import {ID, USERNAME} from "../constants/hardcode"
 import PostsContainer from "../containers/PostsContainer"
 import UserInfo from "./UserInfo"
-
+import info from '../img/info-icon.png'
+import posts from '../img/posts-icon.png'
 
 const id = 1;
 class UserPage extends React.Component {
@@ -39,13 +40,17 @@ class UserPage extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
-          <HeaderProfile/>
-          <Link to={"/" + this.props.match.params.username + "/info"}>
-            <p>Info</p>
-          </Link>
-          <Link to={"/" + this.props.match.params.username}>
-            <p>Posts</p>
-          </Link>
+          <div className="user-navigation">
+            <HeaderProfile/>
+            <Link className="user-navigation__info" to={"/" + this.props.match.params.username + "/info"}>
+              <img src={info} alt="" className="user-navigation__icon"/>
+              <h4 className="user-navigation__hover">info</h4>
+            </Link>
+            <Link className="user-navigation__posts" to={"/" + this.props.match.params.username}>
+              <img src={posts} alt="" className="user-navigation__icon"/>
+              <h4 className="user-navigation__hover">profile</h4>
+            </Link>
+          </div>
           <div className="create-post d-flex items-center content-between white-background">
             <textarea className="create-post__input" id="postInput" placeholder="Share your thoughts" ref="postInput"
                       maxLength={255}/>
