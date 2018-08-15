@@ -19,12 +19,19 @@ import com.mention.repository.PostLikeRepository;
 import com.mention.repository.PostRepository;
 import com.mention.repository.ProfileRepository;
 import com.mention.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 
 @Configuration
 public class CreateUsers {
+
+  @Autowired
+  PasswordEncoder encoder;
+
   @Bean
   public CommandLineRunner createUsersInDb(UserRepository userRepository,
                                            PostRepository postRepository,
@@ -38,11 +45,11 @@ public class CreateUsers {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {
-        userRepository.save(new User("admin", "admin@gmail.com", "ADMIN", true)); //1
-        userRepository.save(new User("alex", "alex@gmail.com", "ALEX1", true)); //2
-        userRepository.save(new User("dima", "dima@gmail.com", "DIMA2", true)); //3
-        userRepository.save(new User("yarik", "yarik@gmail.com", "YARIK", true)); //4
-        userRepository.save(new User("superman", "havenoidea@gmail.com", "amazing", true)); //5
+        userRepository.save(new User("admin", "admin@gmail.com", encoder.encode("ADMIN"), true)); //1
+        userRepository.save(new User("alex", "alex@gmail.com", encoder.encode("ALEX1"), true)); //2
+        userRepository.save(new User("dima", "dima@gmail.com", encoder.encode("DIMA2"), true)); //3
+        userRepository.save(new User("yarik", "yarik@gmail.com", encoder.encode("YARIK"), true)); //4
+        userRepository.save(new User("superman", "havenoidea@gmail.com", encoder.encode("amazing"), true)); //5
 
         postRepository.save(new Post("My amazing post!", userRepository.findByUsername("alex").get())); //6
         postRepository.save(new Post("Something new!", userRepository.findByUsername("dima").get())); //7
