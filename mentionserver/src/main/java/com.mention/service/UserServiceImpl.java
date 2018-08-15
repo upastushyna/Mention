@@ -1,5 +1,6 @@
 package com.mention.service;
 
+import com.mention.dto.ShortUserDetailsRs;
 import com.mention.dto.UserDtoIdRq;
 import com.mention.dto.UserDtoRq;
 import com.mention.repository.UserRepository;
@@ -17,9 +18,22 @@ public class UserServiceImpl implements UserService {
 
   private UserRepository userRepository;
 
+  private ModelMapper modelMapper;
+
   @Autowired
   public UserServiceImpl(UserRepository userRepository) {
     this.userRepository = userRepository;
+    this.modelMapper = new ModelMapper();
+  }
+
+  @Override
+  public ShortUserDetailsRs getUser(String username) {
+    Optional<User> user = userRepository.findByUsername(username);
+    if (user.isPresent()) {
+      ShortUserDetailsRs currentUser = modelMapper.map(user.get(), ShortUserDetailsRs.class);
+      return currentUser;
+    }
+    return null;
   }
 
   @Override
