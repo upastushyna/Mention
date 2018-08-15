@@ -35,13 +35,13 @@ public class SmartUserDetailsService implements UserDetailsService {
       throw new UsernameNotFoundException(String.format("User with login `%s` not found", email));
     }
     User u = byEmail.get(0);
-    return new org.springframework.security.core.userdetails.
-        User(
+    return new org.springframework.security.core.userdetails
+        .User(
         u.getEmail(), u.getPassword(), getAuthorities(u.getRoles())
     );
   }
 
-  private static List<GrantedAuthority> getAuthorities (List<String> roles) {
+  private static List<GrantedAuthority> getAuthorities(List<String> roles) {
     List<GrantedAuthority> authorities = new ArrayList<>();
     for (String role : roles) {
       authorities.add(new SimpleGrantedAuthority(role));
