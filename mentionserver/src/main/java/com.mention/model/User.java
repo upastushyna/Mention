@@ -68,6 +68,10 @@ public class User {
   protected User() {
   }
 
+  public User(Long id) {
+    this.id = id;
+  }
+
   public User(String username, String email, String password, boolean isActive) {
     this.username = username;
     this.email = email;

@@ -11,7 +11,6 @@ import UserInfo from "./UserInfo"
 import info from '../img/info-icon.png'
 import posts from '../img/posts-icon.png'
 
-const id = 1;
 class UserPage extends React.Component {
 
   componentWillMount(){
@@ -20,17 +19,24 @@ class UserPage extends React.Component {
     }
   }
 
-  addPost = () => fetch('/api/posts/add',
-    {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({body:this.refs.postInput
-          .value, author:{id:ID}})
-    }).then(() => this.props.loadData(this.props.match.params.username))
-    .then(() => this.refs.postInput.value="");
+  addPost = event => {
+    event.preventDefault();
+    const data = new FormData();
+    data.append("body", this.refs.postInput.value);
+    data.append("id", ID)
+    if(this.refs.inputFile) {
+      const image = this.refs.inputFile.files[0];
+      data.append("image", image)
+    }
+
+    fetch('/api/posts/add',
+      {
+        method: 'POST',
+        body: data
+      }).then(() => this.props.loadData(this.props.match.params.username))
+      .then(() => this.refs.postInput.value="")
+      .then(() => this.refs.inputFile.value=null);
+  };
 
   render() {
     /*const posts = this.props.userPosts.map(post =>
@@ -52,9 +58,13 @@ class UserPage extends React.Component {
             </Link>
           </div>
           <div className="create-post d-flex items-center content-between white-background">
-            <textarea className="create-post__input" id="postInput" placeholder="Share your thoughts" ref="postInput"
-                      maxLength={255}/>
-            <button className="create-post__button" onClick={() => this.addPost()}>Add post</button>
+            <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
+              <textarea className="create-post__input" id="postInput"
+                        placeholder="Share your thoughts" ref="postInput"
+                        maxLength={255}/>
+              <input id="inputFile" ref="inputFile" type="file"/>
+              <button type="submit" className="create-post__button">Add post</button>
+            </form>
           </div>
           {/*{posts}*/}
           <Switch>

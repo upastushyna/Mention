@@ -1,8 +1,12 @@
 package com.mention.service;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.mention.config.AmazonS3Configuration;
 import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
+import com.mention.dto.UserDtoIdRq;
 import com.mention.model.Follow;
 import com.mention.model.Post;
 import com.mention.model.User;
@@ -12,7 +16,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +27,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserPostsServiceImpl implements UserPostsService {
+
+  final AmazonS3 s3 = AmazonS3Configuration.S3_BUILDER;
+  final String bucket = AmazonS3Configuration.BUCKET_NAME;
 
   private UserRepository userRepository;
 
@@ -81,7 +91,27 @@ public class UserPostsServiceImpl implements UserPostsService {
 
   @Override
   @Transactional
-  public void addPost(PostDtoRq post) {
+  public void addPost(String body, Long userId, MultipartFile file) throws IOException {
+    User user = new User(userId);
+    Post post = new Post(body, user);
+    if (file != null) {
+      String key = "pictures/" + file.getOriginalFilename();
+      InputStream myFile = file.getInputStream();
+      s3.putObject(
+          bucket,
+          key,
+          myFile,
+          new ObjectMetadata());
+      String url = s3.getUrl(bucket,key).toString();
+      post.setMediaFileUrl(url);
+      post.setAmazonKey(key);
+    }
+    postRepository.save(post);
+  }
+
+  @Override
+  @Transactional
+  public void rePost(PostDtoRq post) {
     Post insertPost = modelMapper.map(post, Post.class);
     postRepository.save(insertPost);
   }
