@@ -1,0 +1,40 @@
+.user-navigation {
+  position: relative;
+
+  &__info,
+  &__posts {
+    position: absolute;
+    bottom: 14%;
+    left: 23%;
+  }
+
+  &__posts {
+    left: 28%;
+  }
+
+  &__icon {
+    width: 40px;
+    padding: 4px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  &__hover {
+    position: absolute;
+    left: -4px;
+    padding: 5px 10px;
+    transition: visibility 0s, opacity .5s linear;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .8);
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__icon:hover + &__hover {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -150,7 +150,7 @@ public class CreateUsers {
             null, userRepository.findByUsername("admin").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://banner2.kisspng.com/20180531/twr/kisspng-profession-computer-icons-job-teacher-avatar-profile-avatar-5b101349880eb6.5943032815277801695573.jpg",
+            "https://www.shareicon.net/download/2016/11/09/851666_user_512x512.png",
             null, userRepository.findByUsername("yarik").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
