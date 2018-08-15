@@ -61,13 +61,15 @@ class UserPage extends React.Component {
               <h4 className="user-navigation__hover">profile</h4>
             </Link>
           </div>
-          <div className="create-post d-flex items-center content-between white-background">
+          <div className="create-post white-background">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <textarea className="create-post__input" id="postInput"
-                        placeholder="Share your thoughts" ref="postInput"
-                        maxLength={255}/>
-              <input id="inputFile" ref="inputFile" type="file"/>
-              <button type="submit" className="create-post__button">Add post</button>
+              <div className="d-flex items-center content-between">
+                <textarea className="create-post__input" id="postInput"
+                          placeholder="Share your thoughts" ref="postInput"
+                          maxLength={255}/>
+                <button type="submit" className="create-post__button">Add post</button>
+              </div>
+              <input className="upload" id="inputFile" ref="inputFile" type="file"/>
             </form>
           </div>
           {/*{posts}*/}
