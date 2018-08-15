@@ -22,11 +22,14 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+/*
     auth
         .inMemoryAuthentication()
         .withUser("u1").password(specificEncoder.encode("p1")).roles("USER");
-        //.userDetailsService(userDetailsService)
-        //.passwordEncoder(specificEncoder);
+*/
+    auth
+        .userDetailsService(userDetailsService)
+        .passwordEncoder(specificEncoder);
   }
 
   @Override
@@ -34,7 +37,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     http.csrf().disable()
 
         .authorizeRequests()
-        .antMatchers("/*").permitAll()
+        .antMatchers("/xu*", "/root").permitAll()
+        .antMatchers("/xs*").authenticated()
         /*
                 .antMatchers("/login/**").anonymous() // or .permitAll()
                 .antMatchers("/reg*").permitAll()
@@ -43,6 +47,20 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         */
         .and()
 
+        .formLogin()
+          .loginPage("/login")
+          //.loginProcessingUrl("/login_perform")
+          .defaultSuccessUrl("/")
+          //.failureUrl("/login?error=true")
+          .and()
+
+        // logout section
+        .logout()
+          .logoutUrl("/logout") // this will triggered on "/logout POST"
+          //.logoutSuccessUrl("/logouts")
+          //.deleteCookies("JSESSIONID")
+          .permitAll()
+          .and()
     ;
   }
 

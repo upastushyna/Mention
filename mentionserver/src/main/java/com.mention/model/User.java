@@ -82,4 +82,8 @@ public class User {
   public List<String> getRoles() {
     return Arrays.asList("ROLE_USER");
   }
+
+  public String toString1() {
+    return String.format("_User{id=%d, username='%s', email='%s', password='%s'}", id, username, email, password);
+  }
 }
