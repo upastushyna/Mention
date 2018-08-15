@@ -11,7 +11,7 @@ export default class Login extends React.Component {
                     <div className="login__icon">
                         <img className="login__img" src={logo} alt=""/>
                     </div>
-                    <h1 className="login__title">Member Login</h1>
+                    <h1 className="login__title">Login</h1>
                     <form className="login__form">
                         <input type="text" className="login__input" placeholder="Username"/>
                         <input type="password" className="login__input" placeholder="Password"/>
