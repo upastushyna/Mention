@@ -4,8 +4,9 @@ import {Route, Switch, Link} from 'react-router-dom'
 import '../css/index.css'
 import {connect} from 'react-redux'
 import {loadPosts} from "../actions/userPageActions";
+import {loadUser} from "../actions/userPicturesActions";
 import HeaderProfile from "../containers/HeaderProfile";
-import {ID, USERNAME} from "../constants/hardcode"
+import {ID} from "../constants/hardcode"
 import PostsContainer from "../containers/PostsContainer"
 import UserInfo from "./UserInfo"
 import info from '../img/info-icon.png'
@@ -16,6 +17,9 @@ class UserPage extends React.Component {
   componentWillMount(){
     if(this.props.userPosts.length === 0) {
       this.props.loadData(this.props.match.params.username);
+    }
+    if(!this.props.user || !this.props.user.username) {
+      this.props.loadUser(this.props.match.params.username);
     }
   }
 
@@ -47,7 +51,7 @@ class UserPage extends React.Component {
         <Navigation/>
         <div className="container">
           <div className="user-navigation">
-            <HeaderProfile/>
+            <HeaderProfile user={this.props.user}/>
             <Link className="user-navigation__info" to={"/" + this.props.match.params.username + "/info"}>
               <img src={info} alt="" className="user-navigation__icon"/>
               <h4 className="user-navigation__hover">info</h4>
@@ -84,11 +88,13 @@ class UserPage extends React.Component {
 
 const mapStateToProps = state => ({
   userPosts: state.userPosts,
+  user: state.user
 
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadData: username => dispatch(loadPosts(username))
+  loadData: username => dispatch(loadPosts(username)),
+  loadUser: username => dispatch(loadUser(username))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
