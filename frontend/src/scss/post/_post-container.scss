@@ -20,8 +20,8 @@
   &__forward-img {
     width: 30px;
     height: 30px;
-    cursor: pointer;
     outline: none;
+    cursor: pointer;
   }
 
   &__forward-img {
@@ -39,6 +39,13 @@
     text-align: justify;
   }
 
+  &__img {
+    display: block;
+    max-width: 515px;
+    max-height: 515px;
+    margin: 0 auto 10px;
+  }
+
   &__footer {
     padding: 20px 0 0;
     border-top: 1px solid #e6ecf5;
@@ -48,16 +55,16 @@
 .sub-menu {
   display: none;
   position: absolute;
-  width: 95px;
+  width: 125px;
   border: 1px solid #e6ecf5;
   border-radius: 5px;
   background-color: #fff;
 
   &__item {
     padding: 5px 10px;
-    cursor: pointer;
     border: 1px solid #e6ecf5;
     color: black;
+    cursor: pointer;
   }
 
   &__item:hover {

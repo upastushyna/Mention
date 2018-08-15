@@ -23,18 +23,18 @@ const PostItem = props => {
 
   return <Fragment>
     {props.post.parent?
-      <div className="repost-header">
-        <div className="profile-small d-flex">
-          <img src={props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
-          <div className="profile-small__signature">
-            <h2 className="profile-small__username color-white">{props.post.author.username}</h2>
-            <span className="profile-small__alias color-white">
+        <div className="repost-header">
+          <div className="profile-small d-flex">
+            <img src={props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+            <div className="profile-small__signature">
+              <h2 className="profile-small__username color-white">{props.post.author.username}</h2>
+              <span className="profile-small__alias color-white">
               {props.post.timestamp.slice(0, 19).replace('T', ' ')}
               </span>
+            </div>
           </div>
         </div>
-      </div>
-      :""}
+        :""}
     <div className="post white-background">
       <div className="post__header d-flex content-between items-center">
         <div className="profile-small pointer d-flex">
@@ -58,11 +58,11 @@ const PostItem = props => {
         </div>
       </div>
       <p className="post__body">
-        {props.post.parent?props.post.parent.body:props.post.body}
+        {props.post.parent ? props.post.parent.body : props.post.body}
       </p>
-      {props.post.parent?props.post.parent.mediaFileUrl?
-      <img src={props.post.parent.mediaFileUrl}/> : "":props.post.mediaFileUrl?
-      <img src={props.post.mediaFileUrl}/>:""}
+        {props.post.parent?props.post.parent.mediaFileUrl?
+            <img className="post__img" src={props.post.parent.mediaFileUrl}/> : "":props.post.mediaFileUrl?
+            <img className="post__img" src={props.post.mediaFileUrl}/>:""}
       <div className="post__footer d-flex content-between">
         <PostLikeItem loadData={props.loadData} postId={props.post.id}
                   likes={props.post.likes} username={props.username}/>
