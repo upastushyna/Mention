@@ -11,7 +11,7 @@ const PostItem = props => {
 
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-  const rePost = () => fetch('/api/posts/add',
+  const rePost = () => fetch('/api/posts/repost',
     {
       method: 'POST',
       headers: {
@@ -60,6 +60,9 @@ const PostItem = props => {
       <p className="post__body">
         {props.post.parent?props.post.parent.body:props.post.body}
       </p>
+      {props.post.parent?props.post.parent.mediaFileUrl?
+      <img src={props.post.parent.mediaFileUrl}/> : "":props.post.mediaFileUrl?
+      <img src={props.post.mediaFileUrl}/>:""}
       <div className="post__footer d-flex content-between">
         <PostLikeItem loadData={props.loadData} postId={props.post.id}
                   likes={props.post.likes} username={props.username}/>

@@ -3,6 +3,8 @@ package com.mention.controller;
 import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
+import com.mention.dto.UserDtoIdRq;
+import com.mention.dto.UserDtoRq;
 import com.mention.service.UserPostsServiceImpl;
 import org.aspectj.lang.annotation.DeclareError;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -44,8 +51,16 @@ public class UserPostsController {
   }
 
   @PostMapping("/add")
-  public void addPost(@RequestBody PostDtoRq post) {
-    userPostsService.addPost(post);
+  public void addPost(@RequestParam("body") String body,
+                      @RequestParam("id") Long id,
+                      @RequestParam(value = "image", required = false) MultipartFile file)
+      throws IOException {
+    userPostsService.addPost(body, id, file);
+  }
+
+  @PostMapping("/repost")
+  public void rePost(@RequestBody PostDtoRq post) {
+    userPostsService.rePost(post);
   }
 
   @PutMapping("/update")
