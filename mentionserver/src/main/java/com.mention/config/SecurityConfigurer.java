@@ -20,7 +20,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         .antMatchers("/ul/**").permitAll()
         .antMatchers("/l/**","/").authenticated()
 */
-        .and();
+      .and();
 
 
   }
