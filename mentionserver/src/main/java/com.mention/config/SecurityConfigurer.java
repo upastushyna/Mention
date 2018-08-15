@@ -14,12 +14,12 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
         .authorizeRequests()
         .antMatchers("/*").permitAll()
-/*
+        /*
                 .antMatchers("/login/**").anonymous() // or .permitAll()
                 .antMatchers("/reg*").permitAll()
                 .antMatchers("/ul/**").permitAll()
                 .antMatchers("/l/**","/").authenticated()
-*/
+        */
         .and()
 
     ;
