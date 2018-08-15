@@ -15,15 +15,6 @@
         <version>2.0.3.RELEASE</version>
     </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-s3</artifactId>
-            <version>1.11.313</version>
-        </dependency>
-    </dependencies>
-
-
     <modules>
         <module>mentionserver</module>
         <module>frontend</module>
@@ -85,5 +76,3 @@
         </profile>
     </profiles>
 </project>
-
-
