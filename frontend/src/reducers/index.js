@@ -7,6 +7,8 @@ import followedReducer from "./followedReducer";
 import followingReducer from "./followingReducer";
 import likedReducer from "./likedReducer";
 import userPicturesReducer from "./userPicturesReducer";
+import searchUsersReducer from "./searchUsersReducer";
+import searchPostsReducer from "./searchPostsReducer";
 
 export default combineReducers({
   feed: feedReducer,
@@ -16,5 +18,7 @@ export default combineReducers({
   followed: followedReducer,
   following: followingReducer,
   likedPosts: likedReducer,
-  user: userPicturesReducer
+  user: userPicturesReducer,
+  foundUsers: searchUsersReducer,
+  foundPosts: searchPostsReducer
 })

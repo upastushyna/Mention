@@ -7,6 +7,14 @@ import notification from '../img/header-panel/notification-icon.png'
 import avatar from '../img/header-panel/user-img.png'
 
 class HeaderPanel extends React.Component {
+  constructor(anyparams){
+    super(anyparams)
+
+    this.state = {
+      input: ""
+    }
+  }
+
   render () {
     return (
       <Fragment>
@@ -17,8 +25,12 @@ class HeaderPanel extends React.Component {
             </div>
             <h2 className="header__title">mention</h2>
             <form action="" className="search">
-              <input type="text" className="search__input search__input--non-line" placeholder="Search here people or pages..."/>
-              <input type="submit" className="search__btn search__input--non-line" value="Search"/>
+              <input onKeyUp={() => this.setState({input:this.refs.searchInput.value})} id="searchInput"
+                     ref="searchInput" type="text" className="search__input search__input--non-line"
+                     placeholder="Search here people or pages..."/>
+              <Link to={"/search/" + this.state.input}>
+                <input className="search__btn search__input--non-line" value="Search"/>
+              </Link>
             </form>
           </div>
           <div className="header__right d-flex">

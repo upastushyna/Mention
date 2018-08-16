@@ -31,6 +31,11 @@ public class UserController {
     return userService.getUser(username);
   }
 
+  @GetMapping("/search/{username}")
+  public List<ShortUserDetailsRs> getUsersByUsername(@PathVariable String username) {
+    return userService.getUsersByUsername(username.replace("%20", " "));
+  }
+
   @PostMapping("/add")
   public void createUser(@RequestBody UserDtoRq userDtoNewUser) {
     userService.createNewUser(userDtoNewUser);

@@ -8,6 +8,6 @@ export const loadChats = username => dispatch => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       }
-    }).then(res=>res.json())
+    }).then(res=> res.json())
     .then(data => dispatch({type:CHATS_LOADED, payload: data}))
 }

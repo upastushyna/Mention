@@ -17,6 +17,8 @@ public interface UserPostsService {
 
   List<PostDtoRs> getLikedPosts(String username);
 
+  List<PostDtoRs> getPostsByBody(String body);
+
   void addPost(String body, Long userId, MultipartFile file) throws IOException;
 
   void updatePost(PostDtoRq post);

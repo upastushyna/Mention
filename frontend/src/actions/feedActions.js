@@ -10,4 +10,4 @@ export const loadFeed = username => dispatch => {
       }
     }).then(res=>res.json())
     .then(data => dispatch({type:FEED_LOADED, payload: data}))
-}
+};
