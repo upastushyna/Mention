@@ -1,10 +1,13 @@
 package com.mention.service;
 
+import com.mention.dto.FollowDtoRq;
 import com.mention.dto.ShortUserDetailsRs;
+import com.mention.dto.UserDtoIdRq;
 import com.mention.model.User;
 import com.mention.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,4 +49,16 @@ public class UserFollowServiceImpl implements UserFollowService {
     }
     return null;
   }
+
+  @Override
+  public void addFollow(FollowDtoRq follow) {
+
+  }
+
+  @Override
+  public void removeFollow(FollowDtoRq follow) {
+
+  }
+
+
 }
