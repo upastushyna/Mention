@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import {Route, Switch, Link, NavLink} from 'react-router-dom'
+import {Route, Switch, Link} from 'react-router-dom'
 import UsersContainer from "../containers/UsersContainer"
 import PostsContainer from "../containers/PostsContainer"
 import {connect} from "react-redux";

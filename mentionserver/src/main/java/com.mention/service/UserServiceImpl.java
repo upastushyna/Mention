@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,6 +34,18 @@ public class UserServiceImpl implements UserService {
     if (user.isPresent()) {
       ShortUserDetailsRs currentUser = modelMapper.map(user.get(), ShortUserDetailsRs.class);
       return currentUser;
+    }
+    return null;
+  }
+
+  @Override
+  public List<ShortUserDetailsRs> getUsersByUsername(String username) {
+    List<User> users = userRepository.findByUsernameContainingIgnoreCase(username);
+    if (!users.isEmpty()) {
+      List<ShortUserDetailsRs> currentUsers = users.stream()
+          .map(user -> modelMapper.map(user, ShortUserDetailsRs.class))
+          .collect(Collectors.toList());
+      return currentUsers;
     }
     return null;
   }

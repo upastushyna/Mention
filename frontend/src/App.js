@@ -10,6 +10,7 @@ import NotFound from './components/NotFound'
 import Login from './components/Login'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
+import SearchPage from "./components/SearchPage";
 
 class App extends Component {
   render() {
@@ -22,8 +23,10 @@ class App extends Component {
           <Route path="/registration" component={Registration}/>
           <Route path='/profile' component={Profile}/>
           <Route path='/favorites' component={Favorites}/>
+          <Route path='/search/:input' component={SearchPage}/>
           <Route path='/:username' component={UserPage}/>
           <Route path="*" component={NotFound}/>
+
         </Switch>
       </Fragment>
     )
