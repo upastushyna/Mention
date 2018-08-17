@@ -1,28 +1,12 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../img/header-panel/logo.png'
-import event from '../img/header-panel/calendar-icon.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
 import avatar from '../img/header-panel/user-img.png'
-import {connect} from "react-redux";
-import {loadSearchPosts} from "../actions/searchPostsActions";
-import {loadSearchUsers} from "../actions/searchUsersActions";
+import SearchContainer from "./SearchContainer";
 
 class HeaderPanel extends React.Component {
-  constructor(anyparams){
-    super(anyparams)
-
-    this.state = {
-      input: ""
-    }
-  }
-
-
-  onClick = () => {
-    this.props.loadPosts(this.state.input);
-    this.props.loadUsers(this.state.input);
-  }
 
   render () {
     return (
@@ -33,26 +17,13 @@ class HeaderPanel extends React.Component {
               <Link to="/" ><img className="logo__img" src={logo} alt=""/></Link>
             </div>
             <h2 className="header__title">mention</h2>
-            <form action="" className="search">
-              <input onKeyUp={() => this.setState({input:this.refs.searchInput.value})} id="searchInput"
-                     ref="searchInput" type="text" className="search__input search__input--non-line"
-                     placeholder="Search here people or pages..."/>
-              <Link to={"/search/" + this.state.input} onClick={() => this.onClick()}>
-
-                <input className="search__btn search__input--non-line" value="Search"/>
-              </Link>
-            </form>
+            <SearchContainer/>
           </div>
           <div className="header__right d-flex">
             <div className="header__menu">
               <ul className="header__list d-flex">
                 <li className="header__item">
-                  <Link to="/">
-                    <img src={event} alt="" className="header__icon"/>
-                  </Link>
-                </li>
-                <li className="header__item">
-                  <Link to="/">
+                  <Link to="/messages">
                     <img src={chat} alt="" className="header__icon"/>
                   </Link>
                 </li>
@@ -80,14 +51,4 @@ class HeaderPanel extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  foundPosts: state.foundPosts,
-  foundUsers: state.foundUsers
-});
-
-const mapDispatchToProps = dispatch => ({
-  loadPosts: input => dispatch(loadSearchPosts(input)),
-  loadUsers: input => dispatch(loadSearchUsers(input))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderPanel);
+export default HeaderPanel;
