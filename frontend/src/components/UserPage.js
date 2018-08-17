@@ -66,7 +66,7 @@ class UserPage extends React.Component {
               <div className="d-flex items-center content-between">
                 <textarea className="create-post__input" id="postInput"
                           placeholder="Share your thoughts" ref="postInput"
-                          maxLength={255}/>
+                          maxLength={280}/>
                 <button type="submit" className="create-post__button">Add post</button>
               </div>
               <input className="upload" id="inputFile" ref="inputFile" type="file"/>

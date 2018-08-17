@@ -22,7 +22,7 @@ const AddComment = props => {
         <img src={avatar} alt="" className="add-comment__avatar"/>
         <textarea className="add-comment__input"
                   id={"commentInput" + props.postId} placeholder="Share your thoughts"
-                  maxLength={255}/>
+                  maxLength={280}/>
       </div>
       <button onClick={() => addComment()} className="add-comment__button color-white">Post Comment</button>
     </div>
