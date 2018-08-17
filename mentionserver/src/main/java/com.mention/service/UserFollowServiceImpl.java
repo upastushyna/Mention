@@ -64,7 +64,9 @@ public class UserFollowServiceImpl implements UserFollowService {
   @Override
   @Transactional
   public void removeFollow(FollowDtoRq follow) {
-    followRepository.deleteByFollowedUser_Id(follow.getFollowedUser().getId());
+    ModelMapper modelMapper = new ModelMapper();
+    Follow deletedFollow = modelMapper.map(follow, Follow.class);
+    followRepository.delete(deletedFollow);
   }
 
 
