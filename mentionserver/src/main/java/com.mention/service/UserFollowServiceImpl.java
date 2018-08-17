@@ -2,6 +2,7 @@ package com.mention.service;
 
 import com.mention.dto.FollowDtoRq;
 import com.mention.dto.ShortUserDetailsRs;
+import com.mention.dto.UserDtoIdRq;
 import com.mention.model.Follow;
 import com.mention.model.User;
 import com.mention.repository.FollowRepository;
@@ -30,9 +31,7 @@ public class UserFollowServiceImpl implements UserFollowService {
   public List<ShortUserDetailsRs> getFollowedUsers(String username) {
     Optional<User> user = userRepository.findByUsername(username);
     if (user.isPresent()) {
-      List<ShortUserDetailsRs> followedUsers = user.get()
-          .getFollowedUsers().stream()
-          .map(follow -> modelMapper.map(follow.getFollowedUser(), ShortUserDetailsRs.class))
+      List<ShortUserDetailsRs> followedUsers = user.get().getFollowedUsers().stream().map(follow -> modelMapper.map(follow.getFollowedUser(), ShortUserDetailsRs.class))
           .collect(Collectors.toList());
       return followedUsers;
     }
@@ -43,9 +42,7 @@ public class UserFollowServiceImpl implements UserFollowService {
   public List<ShortUserDetailsRs> getFollowingUsers(String username) {
     Optional<User> user = userRepository.findByUsername(username);
     if (user.isPresent()) {
-      List<ShortUserDetailsRs> followingUsers = user.get()
-          .getFollowers().stream()
-          .map(follow -> modelMapper.map(follow.getFollower(), ShortUserDetailsRs.class))
+      List<ShortUserDetailsRs> followingUsers = user.get().getFollowers().stream().map(follow -> modelMapper.map(follow.getFollower(), ShortUserDetailsRs.class))
           .collect(Collectors.toList());
       return followingUsers;
     }
@@ -54,19 +51,22 @@ public class UserFollowServiceImpl implements UserFollowService {
 
   @Override
   @Transactional
-  public void addFollow(FollowDtoRq follow) {
+  public void addFollow(UserDtoIdRq follower, UserDtoIdRq followedUser) {
     ModelMapper modelMapper = new ModelMapper();
-    Follow newFollow = modelMapper.map(follow, Follow.class);
-    followRepository.save(newFollow);
+    User createdFollower = modelMapper.map(follower, User.class);
+    User createdFolloweduser = modelMapper.map(followedUser, User.class);
+    Follow follow = new Follow(createdFollower, createdFolloweduser);
+    followRepository.save(follow);
 
   }
 
   @Override
   @Transactional
-  public void removeFollow(FollowDtoRq follow) {
+  public void deleteFollow(UserDtoIdRq follower, UserDtoIdRq followedUser) {
     ModelMapper modelMapper = new ModelMapper();
-    Follow deletedFollow = modelMapper.map(follow, Follow.class);
-    followRepository.delete(deletedFollow);
+    User createdFollower = modelMapper.map(follower, User.class);
+    User createdFolloweduser = modelMapper.map(followedUser, User.class);
+    followRepository.deleteByFollowedUserAndAndFollower(createdFollower, createdFolloweduser);
   }
 
 

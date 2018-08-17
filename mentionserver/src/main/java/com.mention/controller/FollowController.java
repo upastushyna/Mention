@@ -2,6 +2,7 @@ package com.mention.controller;
 
 import com.mention.dto.FollowDtoRq;
 import com.mention.dto.ShortUserDetailsRs;
+import com.mention.dto.UserDtoIdRq;
 import com.mention.model.Follow;
 import com.mention.service.UserFollowServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +39,11 @@ public class FollowController {
 
   @PostMapping("/add")
   public void addFollow(@RequestBody FollowDtoRq follow) {
-    followService.addFollow(follow);
+    followService.addFollow(follow.getFollower(), follow.getFollowedUser());
   }
 
   @DeleteMapping("/delete")
   public void deleteFollow(@RequestBody FollowDtoRq follow) {
-    followService.removeFollow(follow);
+    followService.deleteFollow(follow.getFollower(), follow.getFollowedUser());
   }
 }
