@@ -90,6 +90,18 @@ public class UserPostsServiceImpl implements UserPostsService {
   }
 
   @Override
+  public List<PostDtoRs> getPostsByBody(String body) {
+    List<Post> posts = postRepository.findByBodyContainingIgnoreCase(body);
+    if (!posts.isEmpty()) {
+      List<PostDtoRs> currentPosts = posts.stream()
+          .map(post -> modelMapper.map(post, PostDtoRs.class))
+          .collect(Collectors.toList());
+      return currentPosts;
+    }
+    return null;
+  }
+
+  @Override
   @Transactional
   public void addPost(String body, Long userId, MultipartFile file) throws IOException {
     User user = new User(userId);

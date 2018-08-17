@@ -50,6 +50,11 @@ public class UserPostsController {
     return userPostsService.getLikedPosts(username);
   }
 
+  @GetMapping("/search/{body}")
+  public List<PostDtoRs> getPostsByBody(@PathVariable String body) {
+    return userPostsService.getPostsByBody(body.replace("%20", " "));
+  }
+
   @PostMapping("/add")
   public void addPost(@RequestParam("body") String body,
                       @RequestParam("id") Long id,

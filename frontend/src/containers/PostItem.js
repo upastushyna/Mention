@@ -9,8 +9,6 @@ import {ID} from "../constants/hardcode";
 
 const PostItem = props => {
 
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
   const rePost = () => fetch('/api/posts/repost',
     {
       method: 'POST',
