@@ -6,11 +6,11 @@ import {connect} from 'react-redux'
 import {loadPosts} from "../actions/userPageActions";
 import {loadUser} from "../actions/userPicturesActions";
 import HeaderProfile from "../containers/HeaderProfile";
-import {ID} from "../constants/hardcode"
 import PostsContainer from "../containers/PostsContainer"
 import UserInfo from "./UserInfo"
 import info from '../img/info-icon.png'
 import posts from '../img/posts-icon.png'
+import {loadCurrentUser} from "../actions/currentUserActions";
 
 class UserPage extends React.Component {
 
@@ -21,13 +21,16 @@ class UserPage extends React.Component {
     if(!this.props.user || !this.props.user.username) {
       this.props.loadUser(this.props.match.params.username);
     }
+    if(!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser();
+    }
   }
 
   addPost = event => {
     event.preventDefault();
     const data = new FormData();
     data.append("body", this.refs.postInput.value);
-    data.append("id", ID)
+    data.append("id", this.props.currentUser.username)
     if(this.refs.inputFile) {
       const image = this.refs.inputFile.files[0];
       data.append("image", image)
@@ -77,9 +80,12 @@ class UserPage extends React.Component {
             <Route exact path={this.props.match.path} component={() =>
               <PostsContainer username={this.props.match.params.username}
                               userPosts={this.props.userPosts}
-                              loadData={this.props.loadData}/>}/>
+                              loadData={this.props.loadData}
+                              currentUser={this.props.currentUser}/>}/>
             <Route path='/:username/info' component={() =>
-              <UserInfo username={this.props.match.params.username}/>}/>
+              <UserInfo username={this.props.match.params.username}
+                        currentUser={this.props.currentUser}
+                        loadCurrentUser={this.props.loadCurrentUser}/>}/>
           </Switch>
         </div>
       </Fragment>
@@ -90,13 +96,15 @@ class UserPage extends React.Component {
 
 const mapStateToProps = state => ({
   userPosts: state.userPosts,
-  user: state.user
+  user: state.user,
+  currentUser: state.currentUser
 
 });
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadPosts(username)),
-  loadUser: username => dispatch(loadUser(username))
+  loadUser: username => dispatch(loadUser(username)),
+  loadCurrentUser: () => dispatch(loadCurrentUser())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

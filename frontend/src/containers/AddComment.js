@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import avatar from '../img/header-panel/user-img.png'
-import {ID} from "../constants/hardcode";
 
 const AddComment = props => {
 
@@ -12,7 +11,7 @@ const AddComment = props => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({body:document.getElementById('commentInput' + props.postId)
-          .value, commentator:{id:ID}, post:{id:props.postId}})
+          .value, commentator:{id:props.currentUser.id}, post:{id:props.postId}})
     }).then(() => props.loadData(props.username))
     .then(() => document.getElementById('commentInput' + props.postId).value = "");
 

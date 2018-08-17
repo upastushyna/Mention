@@ -10,4 +10,4 @@ export const loadFollowed = username => dispatch => {
       }
     }).then(res=>res.json())
     .then(data => dispatch({type:FOLLOWED_LOADED, payload: data}))
-}
+};
