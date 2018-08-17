@@ -16,3 +16,6 @@ frontend/build/
 node_modules/
 target/
 log/
+package-lock.json
+frontend/package-lock.json
+

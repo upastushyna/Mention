@@ -11,25 +11,54 @@ import Login from './components/Login'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
 import EditProfile from "./components/EditProfile";
+import SearchPage from "./components/SearchPage";
+import {connect} from "react-redux";
+import {loadCurrentUser} from "./actions/currentUserActions";
+import withRouter from "react-router-dom/es/withRouter";
 
 class App extends Component {
+
+  componentWillMount(){
+    if(!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser();
+    }
+  }
+
   render() {
+
     return (
       <Fragment>
         <Switch>
-          <Route exact path='/' component={HomePage}/>
-          <Route path='/messages' component={Messages}/>
+          <Route exact path='/' component={() => <HomePage
+            currentUser={this.props.currentUser}
+            loadCurrentUser={this.props.loadCurrentUser}/>}/>
+          <Route path='/messages' component={() => <Messages
+            currentUser={this.props.currentUser}
+            loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path="/login" component={Login}/>
           <Route path="/registration" component={Registration}/>
           <Route path='/profile' component={Profile}/>
           <Route path='/editprofile' component={EditProfile}/>
+          <Route path='/profile' component={() => <Profile
+            currentUser={this.props.currentUser}
+            loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path='/favorites' component={Favorites}/>
+          <Route path='/search/:input' component={SearchPage}/>
           <Route path='/:username' component={UserPage}/>
           <Route path="*" component={NotFound}/>
+
         </Switch>
       </Fragment>
     )
   }
 }
 
-export default App
+const mapStateToProps = state => ({
+  currentUser: state.currentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadCurrentUser: () => dispatch(loadCurrentUser())
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

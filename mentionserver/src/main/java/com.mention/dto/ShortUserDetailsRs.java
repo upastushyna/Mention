@@ -9,5 +9,5 @@ public class ShortUserDetailsRs {
 
   private String username;
 
-  private ProfileAvatarRs profile;
+  private ProfilePicturesRs profile;
 }

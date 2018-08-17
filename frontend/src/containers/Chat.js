@@ -8,10 +8,6 @@ import {ID} from "../constants/hardcode";
 
 const Chat = props => {
 
-  const scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-  };
-
   const addMessage = () => fetch('/api/messages/add',
     {
       method: 'POST',
@@ -23,6 +19,7 @@ const Chat = props => {
         sender:{id:ID}, receiver:{id:props.chat.user2.username === props.user2?
       props.chat.user2.id:props.chat.user1.id}, chat:{id:props.chat.id}})
     }).then(() => props.loadChat(props.user1, props.user2))
+    .then(() => props.loadData(props.user1))
     .then(() => document.getElementById("messageInput").value = "");
 
   if (!props.chat || !props.chat.messages){
@@ -73,7 +70,8 @@ const Chat = props => {
         </div>
       </div>
     <div className="message-sender d-flex content-between white-background">
-      <textarea id="messageInput" className="message-sender__input" placeholder="Type something & press enter"/>
+      <textarea id="messageInput" className="message-sender__input"
+                placeholder="Type something & press enter" maxLength={1000}/>
       <div className="message-sender_controller d-flex">
         <img onClick={() => addMessage()} src={send} alt="" className="message-sender__button"/>
         <img src={emoji} alt="" className="message-sender__emoji"/>

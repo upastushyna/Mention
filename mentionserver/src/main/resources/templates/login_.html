@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Login Page (custom)</title>
+<!--
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+-->
+</head>
+<body onload='document.f.username.focus();'>
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+
+    <h3>#Login with Username and Password</h3>
+
+    <form name="f" th:action="@{/login}" method="POST">
+        <table>
+            <tr><td>User:</td><td><input type='text' name='username' value=''></td></tr>
+            <tr><td>Password:</td><td><input type='password' name='password'/></td></tr>
+            <tr><td colspan='2'><input name="submit" type="submit" value="Login"/></td></tr>
+<!--
+            <input th:name="${_csrf.parameterName}" type="hidden" th:value="${_csrf.token}"/>
+-->
+<!--
+        when login page generated automatically, somehow "_csrf" added.
+            <input name="_csrf" type="hidden" value="619dca4f-cd10-41ab-a6eb-eac5ca07982d" />
+-->
+        </table>
+    </form>
+    <form th:action="@{/reg}" method="get">
+        <input type="submit" value="Register"/>
+    </form>
+</body>
+</html>
+
+

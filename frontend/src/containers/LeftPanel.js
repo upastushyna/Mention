@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import home from '../img/left-panel/home-icon.png'
-import favorites from '../img/left-panel/favorite-icon.png'
+import feed from '../img/left-panel/feed-icon.png'
 import profile from '../img/left-panel/profile-icon.png'
 import messages from '../img/left-panel/message-icon.png'
 
@@ -13,20 +12,14 @@ class LeftPanel extends React.Component {
           <ul className="navigation__menu">
             <li className="navigation__item">
               <Link to="/">
-                <img className="navigation__img" src={home} alt=""/>
-                <h4 className="navigation__hover">home</h4>
+                <img className="navigation__img" src={feed} alt=""/>
+                <h4 className="navigation__hover">feed</h4>
               </Link>
             </li>
             <li className="navigation__item">
-              <Link to="/profile">
+              <Link to="/yarik">
                 <img className="navigation__img" src={profile} alt=""/>
                 <h4 className="navigation__hover">profile</h4>
-              </Link>
-            </li>
-            <li className="navigation__item">
-              <Link to="/favorites">
-                <img className="navigation__img" src={favorites} alt=""/>
-                <h4 className="navigation__hover">favorites</h4>
               </Link>
             </li>
             <li className="navigation__item">

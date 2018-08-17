@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react'
 import avatar from '../img/header-panel/user-img.png'
-import {ID} from "../constants/hardcode";
 
 const AddComment = props => {
 
@@ -12,7 +11,7 @@ const AddComment = props => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({body:document.getElementById('commentInput' + props.postId)
-          .value, commentator:{id:ID}, post:{id:props.postId}})
+          .value, commentator:{id:props.currentUser.id}, post:{id:props.postId}})
     }).then(() => props.loadData(props.username))
     .then(() => document.getElementById('commentInput' + props.postId).value = "");
 
@@ -22,7 +21,7 @@ const AddComment = props => {
         <img src={avatar} alt="" className="add-comment__avatar"/>
         <textarea className="add-comment__input"
                   id={"commentInput" + props.postId} placeholder="Share your thoughts"
-                  maxLength={255}/>
+                  maxLength={280}/>
       </div>
       <button onClick={() => addComment()} className="add-comment__button color-white">Post Comment</button>
     </div>

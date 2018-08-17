@@ -1,46 +1,55 @@
 package com.mention.controller;
 
-import com.mention.model.User;
-import com.mention.service002.UserService;
+import com.mention.dto.CurrentUserDtoRs;
+import com.mention.dto.ShortUserDetailsRs;
+import com.mention.dto.UserDtoIdRq;
+import com.mention.dto.UserDtoRq;
+import com.mention.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
-  private UserService userService;
+  private UserServiceImpl userService;
 
-  public UserController(UserService userService) {
+  @Autowired
+  public UserController(UserServiceImpl userService) {
     this.userService = userService;
   }
 
-  @PostMapping
-  public void addUser(@RequestBody User user) {
-    userService.addUser(user);
+  @GetMapping("/{username}")
+  public ShortUserDetailsRs getUser(@PathVariable String username) {
+    return userService.getUser(username);
   }
 
-  @GetMapping(value = "/{id}")
-  public Optional<User> getUser(@PathVariable Long id) {
-    return userService.getUser(id);
+  @GetMapping("/search/{username}")
+  public List<ShortUserDetailsRs> getUsersByUsername(@PathVariable String username) {
+    return userService.getUsersByUsername(username.replace("%20", " "));
   }
 
-  @PutMapping
-  public void updateUser(@RequestBody User user) {
-    userService.updateUser(user);
+  @GetMapping("/current")
+  public CurrentUserDtoRs getCurrentUser() {
+    return userService.getCurrentUser();
   }
 
-  @DeleteMapping(value = "/{id}")
-  public void deleteUser(@PathVariable Long id) {
-    userService.deleteUser(id);
+  @PostMapping("/add")
+  public void createUser(@Valid @RequestBody UserDtoRq userDtoNewUser) {
+    userService.createNewUser(userDtoNewUser);
   }
 
+  @DeleteMapping("/delete")
+  public void deleteUser(@RequestBody UserDtoIdRq userDtoIdRq) {
+    userService.deleteUser(userDtoIdRq);
+  }
 }

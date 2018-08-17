@@ -4,7 +4,6 @@ package com.mention.beans;
 import com.mention.model.Chat;
 import com.mention.model.Comment;
 import com.mention.model.CommentLike;
-import com.mention.model.Favorite;
 import com.mention.model.Follow;
 import com.mention.model.Message;
 import com.mention.model.Post;
@@ -14,29 +13,29 @@ import com.mention.model.User;
 import com.mention.repository.ChatRepository;
 import com.mention.repository.CommentLikeRepository;
 import com.mention.repository.CommentRepository;
-import com.mention.repository.FavoriteRepository;
 import com.mention.repository.FollowRepository;
 import com.mention.repository.MessageRepository;
 import com.mention.repository.PostLikeRepository;
 import com.mention.repository.PostRepository;
 import com.mention.repository.ProfileRepository;
 import com.mention.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class CreateUsers {
+
+  @Autowired
+  PasswordEncoder encoder;
+
   @Bean
   public CommandLineRunner createUsersInDb(UserRepository userRepository,
                                            PostRepository postRepository,
                                            CommentRepository commentRepository,
                                            PostLikeRepository postLikeRepository,
-                                           FavoriteRepository favoriteRepository,
                                            MessageRepository messageRepository,
                                            ChatRepository chatRepository,
                                            FollowRepository followRepository,
@@ -45,11 +44,11 @@ public class CreateUsers {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {
-        userRepository.save(new User("admin", "admin@gmail.com", "ADMIN", true)); //1
-        userRepository.save(new User("alex", "alex@gmail.com", "ALEX1", true)); //2
-        userRepository.save(new User("dima", "dima@gmail.com", "DIMA2", true)); //3
-        userRepository.save(new User("yarik", "yarik@gmail.com", "YARIK", true)); //4
-        userRepository.save(new User("superman", "havenoidea@gmail.com", "amazing", true)); //5
+        userRepository.save(new User("admin", "admin@gmail.com", encoder.encode("ADMIN"), true)); //1
+        userRepository.save(new User("alex", "alex@gmail.com", encoder.encode("ALEX1"), true)); //2
+        userRepository.save(new User("dima", "dima@gmail.com", encoder.encode("DIMA2"), true)); //3
+        userRepository.save(new User("yarik", "yarik@gmail.com", encoder.encode("YARIK"), true)); //4
+        userRepository.save(new User("superman", "havenoidea@gmail.com", encoder.encode("amazing"), true)); //5
 
         postRepository.save(new Post("My amazing post!", userRepository.findByUsername("alex").get())); //6
         postRepository.save(new Post("Something new!", userRepository.findByUsername("dima").get())); //7
@@ -89,16 +88,16 @@ public class CreateUsers {
         postLikeRepository.save(new PostLike(
             userRepository.findByUsername("admin").get(), postRepository.findById(9L).get()));    //25
 
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("dima").get(), postRepository.findById(6L).get()));  //26
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("alex").get(), postRepository.findById(7L).get()));    //27
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("admin").get(), postRepository.findById(8L).get()));   //28
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("yarik").get(), postRepository.findById(9L).get()));   //29
-        favoriteRepository.save(new Favorite(
-            userRepository.findByUsername("superman").get(), postRepository.findById(10L).get()));   //30
+        commentRepository.save(new Comment("Good job", userRepository.findByUsername("superman").get(),
+            postRepository.findById(10L).get())); //26
+        commentRepository.save(new Comment("Thanks!", userRepository.findByUsername("yarik").get(),
+            postRepository.findById(10L).get()));    //27
+        commentRepository.save(new Comment("Bullshit!", userRepository.findByUsername("admin").get(),
+            postRepository.findById(10L).get()));    //28
+        commentRepository.save(new Comment("Hahahahaha", userRepository.findByUsername("dima").get(),
+            postRepository.findById(10L).get()));   //29
+        commentRepository.save(new Comment("Really?", userRepository.findByUsername("alex").get(),
+            postRepository.findById(10L).get()));   //30
 
         chatRepository.save(new Chat(
             userRepository.findByUsername("superman").get(), userRepository.findByUsername("yarik").get()));   //31
@@ -147,26 +146,31 @@ public class CreateUsers {
 
         //https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1
 
-        profileRepository.save(new Profile("Admin", "Adminovi4", "Kiev",
-            new Date(106, 06, 06),
+        profileRepository.save(new Profile(null, null, null,
+            null,
             "https://www.svgrepo.com/show/140760/man-with-short-hair-profile-avatar.svg",
-            "KoBep Ha cTeHe", userRepository.findByUsername("superman").get()));
+            "https://www.50-best.com/images/twitter_backgrounds/black_and_white_city_twitter_background.jpg",
+            userRepository.findByUsername("superman").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
-            null, userRepository.findByUsername("admin").get()));
+            "https://www.50-best.com/images/twitter_backgrounds/new_york_city_twitter_background.jpg",
+            userRepository.findByUsername("admin").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://banner2.kisspng.com/20180531/twr/kisspng-profession-computer-icons-job-teacher-avatar-profile-avatar-5b101349880eb6.5943032815277801695573.jpg",
-            null, userRepository.findByUsername("yarik").get()));
+            "https://www.shareicon.net/download/2016/11/09/851666_user_512x512.png",
+            "https://i.pinimg.com/originals/2c/84/0e/2c840e86d494c5e809f850b00a69ad29.jpg",
+            userRepository.findByUsername("yarik").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
-            null, userRepository.findByUsername("dima").get()));
+            "http://panificadoramarcelo.cl/wp-content/uploads/2016/07/default-avatar-tech-guy.png",
+            "http://www.twitterbackgroundsize.com/wp-content/uploads/2016/05/Twitter-Backgrounds-and-Covers.jpg",
+            userRepository.findByUsername("dima").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
-            null, userRepository.findByUsername("alex").get()));
+            "http://i63.tinypic.com/fymsnt.png",
+            "https://images.template.net/wp-content/uploads/2014/11/twitter-background.jpg",
+            userRepository.findByUsername("alex").get()));
 
         messageRepository.save(new Message(
             "What's up?", userRepository.findByUsername("superman").get(),

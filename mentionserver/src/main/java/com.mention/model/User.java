@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -28,10 +29,6 @@ public class User {
   @OneToMany(mappedBy = "commentator")
   @JsonIgnoreProperties("commentator")
   private List<Comment> comments;
-
-  @OneToMany(mappedBy = "user")
-  @JsonIgnoreProperties("user")
-  private List<Favorite> favorites;
 
   @OneToMany(mappedBy = "user1")
   @JsonIgnoreProperties(value = {"user1"})
@@ -70,8 +67,11 @@ public class User {
   @JsonIgnoreProperties(value = {"user"})
   private List<CommentLike> commentLikes;
 
-
   protected User() {
+  }
+
+  public User(Long id) {
+    this.id = id;
   }
 
   public User(String username, String email, String password, boolean isActive) {
@@ -79,5 +79,13 @@ public class User {
     this.email = email;
     this.password = password;
     this.isActive = isActive;
+  }
+
+  public List<String> getRoles() {
+    return Arrays.asList("ROLE_USER");
+  }
+
+  public String toString1() {
+    return String.format("_User{id=%d, username='%s', email='%s', password='%s'}", id, username, email, password);
   }
 }

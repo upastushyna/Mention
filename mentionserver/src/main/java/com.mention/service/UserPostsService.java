@@ -4,7 +4,9 @@ import com.mention.dto.PostDtoIdRq;
 import com.mention.dto.PostDtoRq;
 import com.mention.dto.PostDtoRs;
 import com.mention.model.Post;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface UserPostsService {
@@ -13,10 +15,16 @@ public interface UserPostsService {
 
   List<PostDtoRs> getPostsByUsername(String username);
 
-  void addPost(PostDtoRq post);
+  List<PostDtoRs> getLikedPosts(String username);
+
+  List<PostDtoRs> getPostsByBody(String body);
+
+  void addPost(String body, Long userId, MultipartFile file) throws IOException;
 
   void updatePost(PostDtoRq post);
 
   void deletePost(PostDtoIdRq post);
+
+  void rePost(PostDtoRq post);
 
 }
