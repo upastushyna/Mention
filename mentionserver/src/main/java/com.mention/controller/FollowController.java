@@ -40,6 +40,7 @@ public class FollowController {
   @PostMapping("/add")
   public void addFollow(@RequestBody FollowDtoRq follow) {
     followService.addFollow(follow);
+
   }
 
   @DeleteMapping("/delete")
@@ -47,3 +48,4 @@ public class FollowController {
     followService.deleteFollow(follow);
   }
 }
+
