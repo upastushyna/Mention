@@ -4,6 +4,8 @@ import PostItem from './PostItem'
 const PostsContainer = props =>
   props.userPosts.map(post =>
     <PostItem username={props.username}
-              loadData={props.loadData} post={post}/>);
+              loadData={props.loadData}
+              post={post}
+              currentUser={this.props.currentUser}/>);
 
 export default PostsContainer

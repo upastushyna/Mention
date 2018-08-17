@@ -73,8 +73,9 @@ const PostItem = props => {
       </div>
     </div>
     <CommentContainer loadData={props.loadData} comments={props.post.comments}
-    postId={props.post.id} username={props.username}/>
-    <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}/>
+    postId={props.post.id} username={props.username} currentUser={this.props.currentUser}/>
+    <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
+                currentUser={this.props.currentUser}/>
   </Fragment>
 }
 
