@@ -1,4 +1,6 @@
 import React from 'react'
+import UnffollowButton from "./UnffollowButton";
+import FollowButton from "./FollowButton";
 
 const UserItem = props =>
   <div className="follow-container d-flex content-between items-center">
@@ -9,7 +11,10 @@ const UserItem = props =>
         <span className="profile-small__alias">developer</span>
       </div>
     </div>
-    <span className="follow-container__delete pointer">Unfollow</span>
+    <div className="d-flex">
+      <FollowButton/>
+      <UnffollowButton/>
+    </div>
   </div>
 
 export default UserItem
