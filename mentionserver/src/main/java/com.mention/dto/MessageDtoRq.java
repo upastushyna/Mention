@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 public class MessageDtoRq {
 
-  @Length(min = 2, max = 1000)
+  @Length(min = 1, max = 1000)
   private String content;
 
   private UserDtoIdRq sender;

@@ -60,7 +60,9 @@ public class UserPostsController {
                       @RequestParam("id") Long id,
                       @RequestParam(value = "image", required = false) MultipartFile file)
       throws IOException {
-    userPostsService.addPost(body, id, file);
+    if(body.length() > 0 && body.length() <= 280){
+      userPostsService.addPost(body, id, file);
+    }
   }
 
   @PostMapping("/repost")
