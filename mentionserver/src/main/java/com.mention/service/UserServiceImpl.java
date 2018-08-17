@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
   public CurrentUserDtoRs getCurrentUser() {
     User user = userRepository.findByUsername("yarik").get();
     CurrentUserDtoRs currentUser = modelMapper.map(user, CurrentUserDtoRs.class);
+    System.out.println(currentUser);
     return currentUser;
   }
 
