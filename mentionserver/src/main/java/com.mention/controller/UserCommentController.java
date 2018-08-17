@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/comments")
 public class UserCommentController {
@@ -20,7 +22,7 @@ public class UserCommentController {
   }
 
   @PostMapping("/add")
-  public void addComment(@RequestBody CommentDtoRq comment) {
+  public void addComment(@Valid @RequestBody CommentDtoRq comment) {
     userCommentsService.addComment(comment);
   }
 }

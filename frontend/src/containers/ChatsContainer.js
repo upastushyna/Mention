@@ -17,11 +17,11 @@ const ChatsContainer = props =>
                 <span className="profile-small__alias">
                   {chat.messages.length !== 0?
                     chat.messages[chat.messages.length - 1].timestamp.slice(0, 19).replace('T', ' '): ""}
-                  </span>
+                </span>
               </div>
             </div>
             <p className="message-container__text">{chat.messages.length !== 0?
-              chat.messages[chat.messages.length - 1].content:""}</p>
+              chat.messages[chat.messages.length - 1].content.substring(0, 41):""}</p>
           </div>
         </Link>
       </Fragment>

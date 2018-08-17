@@ -69,7 +69,8 @@ const Chat = props => {
         </div>
       </div>
     <div className="message-sender d-flex content-between white-background">
-      <textarea id="messageInput" className="message-sender__input" placeholder="Type something & press enter"/>
+      <textarea id="messageInput" className="message-sender__input"
+                placeholder="Type something & press enter" maxLength={1000}/>
       <div className="message-sender_controller d-flex">
         <img onClick={() => addMessage()} src={send} alt="" className="message-sender__button"/>
         <img src={emoji} alt="" className="message-sender__emoji"/>
