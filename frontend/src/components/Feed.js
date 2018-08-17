@@ -52,7 +52,8 @@ class Feed extends React.Component {
           </div>
           <PostsContainer username={this.props.currentUser.username}
                           userPosts={this.props.feed}
-                          loadData={this.props.loadData}/>
+                          loadData={this.props.loadData}
+                          currentUser={this.props.currentUser}/>
         </div>
       </Fragment>
     )

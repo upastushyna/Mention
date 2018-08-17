@@ -12,7 +12,7 @@ const CommentLikeItem = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user:{id:this.props.currentUser.id}, comment:{id:props.commentId}})
+      body: JSON.stringify({user:{id:props.currentUser.id}, comment:{id:props.commentId}})
     }).then(() => props.loadData(props.username));
 
   const deleteLike = () => fetch('/api/commentlikes/delete',
@@ -22,11 +22,11 @@ const CommentLikeItem = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user:{id:this.props.currentUser.id}, comment:{id:props.commentId}})
+      body: JSON.stringify({user:{id:props.currentUser.id}, comment:{id:props.commentId}})
     }).then(() => props.loadData(props.username));
 
   return <div className="comment-container__like-icon d-flex items-center">
-    {props.likes.find(like => like.user.username === this.props.currentUser.username)?
+    {props.likes.find(like => like.user.username === props.currentUser.username)?
       <img onClick={() => deleteLike()} src={likeFilled} alt="" className="comment-container__like-img"/>:
       <img onClick={() => addLike()} src={like} alt="" className="comment-container__like-img"/>}
     <span className="comment-container__like-number">{props.likes.length}</span>

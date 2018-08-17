@@ -11,7 +11,7 @@ const AddComment = props => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({body:document.getElementById('commentInput' + props.postId)
-          .value, commentator:{id:this.props.currentUser.id}, post:{id:props.postId}})
+          .value, commentator:{id:props.currentUser.id}, post:{id:props.postId}})
     }).then(() => props.loadData(props.username))
     .then(() => document.getElementById('commentInput' + props.postId).value = "");
 

@@ -10,6 +10,7 @@ import PostsContainer from "../containers/PostsContainer"
 import UserInfo from "./UserInfo"
 import info from '../img/info-icon.png'
 import posts from '../img/posts-icon.png'
+import {loadCurrentUser} from "../actions/currentUserActions";
 
 class UserPage extends React.Component {
 
@@ -19,6 +20,9 @@ class UserPage extends React.Component {
     }
     if(!this.props.user || !this.props.user.username) {
       this.props.loadUser(this.props.match.params.username);
+    }
+    if(!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser();
     }
   }
 
@@ -92,13 +96,15 @@ class UserPage extends React.Component {
 
 const mapStateToProps = state => ({
   userPosts: state.userPosts,
-  user: state.user
+  user: state.user,
+  currentUser: state.currentUser
 
 });
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadPosts(username)),
-  loadUser: username => dispatch(loadUser(username))
+  loadUser: username => dispatch(loadUser(username)),
+  loadCurrentUser: () => dispatch(loadCurrentUser())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

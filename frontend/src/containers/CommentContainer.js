@@ -24,7 +24,7 @@ const CommentContainer = props =>
       <div className="comment-container__footer d-flex content-between">
         <CommentLikeItem likes={comment.commentLikes} username={props.username}
                          commentId={comment.id} loadData={props.loadData}
-        currentUser={this.props.currentUser}/>
+        currentUser={props.currentUser}/>
       </div>
     </div>
   </Fragment>)

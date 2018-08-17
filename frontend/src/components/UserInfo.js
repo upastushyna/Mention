@@ -42,7 +42,8 @@ class UserInfo extends React.Component {
           <Route exact path='/:username/info/liked' component={() =>
             <PostsContainer username={this.props.username}
                             userPosts={this.props.likedPosts}
-                            loadData={this.props.loadData}/>}/>
+                            loadData={this.props.loadData}
+                            currentUser={this.props.currentUser}/>}/>
         </Switch>
       </Fragment>
     )

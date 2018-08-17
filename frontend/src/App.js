@@ -13,7 +13,7 @@ import UserPage from './components/UserPage'
 import SearchPage from "./components/SearchPage";
 import {connect} from "react-redux";
 import {loadCurrentUser} from "./actions/currentUserActions";
-import {USERNAME} from "./constants/hardcode";
+import withRouter from "react-router-dom/es/withRouter";
 
 class App extends Component {
 
@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <Fragment>
         <Switch>
@@ -40,9 +41,7 @@ class App extends Component {
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path='/favorites' component={Favorites}/>
           <Route path='/search/:input' component={SearchPage}/>
-          <Route path='/:username' component={() => <UserPage
-            currentUser={this.props.currentUser}
-            loadCurrentUser={this.props.loadCurrentUser}/>}/>
+          <Route path='/:username' component={UserPage}/>
           <Route path="*" component={NotFound}/>
 
         </Switch>
@@ -56,7 +55,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  loadCurrentUser: () => dispatch(loadCurrentUser())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

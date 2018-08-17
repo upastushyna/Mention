@@ -63,7 +63,8 @@ const PostItem = props => {
             <img className="post__img" src={props.post.mediaFileUrl}/>:""}
       <div className="post__footer d-flex content-between">
         <PostLikeItem loadData={props.loadData} postId={props.post.id}
-                  likes={props.post.likes} username={props.username}/>
+                  likes={props.post.likes} username={props.username}
+        currentUser={props.currentUser}/>
         <div className="post__comment-icon d-flex items-center">
           <img src={comment} alt="" className="post__comment-img"/>
           <span className="post__comment-number">{props.post.comments.length}</span>
@@ -73,9 +74,9 @@ const PostItem = props => {
       </div>
     </div>
     <CommentContainer loadData={props.loadData} comments={props.post.comments}
-    postId={props.post.id} username={props.username} currentUser={this.props.currentUser}/>
+    postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
     <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
-                currentUser={this.props.currentUser}/>
+                currentUser={props.currentUser}/>
   </Fragment>
 }
 
