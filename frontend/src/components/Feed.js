@@ -25,7 +25,7 @@ class Feed extends React.Component {
       data.append("image", image)
     }
 
-    fetch('/api/posts/add',
+    fetch('/api/post/add',
       {
         method: 'POST',
         body: data
