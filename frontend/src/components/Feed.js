@@ -35,7 +35,7 @@ class Feed extends React.Component {
         <div className="container">
           <div className="create-post d-flex items-center content-between white-background">
             <textarea className="create-post__input" id="postInput" placeholder="Share your thoughts" ref="postInput"
-                   maxLength={255}/>
+                   maxLength={280}/>
             <button className="create-post__button" onClick={() => this.addPost()}>Add post</button>
           </div>
           <PostsContainer username={USERNAME}

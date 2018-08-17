@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/messages")
 public class UserMessagesController {
@@ -20,7 +22,7 @@ public class UserMessagesController {
   }
 
   @PostMapping("/add")
-  public void addMessage(@RequestBody MessageDtoRq message) {
+  public void addMessage(@Valid @RequestBody MessageDtoRq message) {
     userMessagesService.addMessage(message);
   }
 }
