@@ -20,3 +20,12 @@
 .pointer {
   cursor: pointer;
 }
+
+.left-margin {
+  margin-left: 10px;
+}
+
+.shadow-button:focus,
+.shadow-button:active {
+  filter: none;
+}
