@@ -18,6 +18,7 @@ class HeaderPanel extends React.Component {
     }
   }
 
+
   onClick = () => {
     this.props.loadPosts(this.state.input);
     this.props.loadUsers(this.state.input);
@@ -37,6 +38,7 @@ class HeaderPanel extends React.Component {
                      ref="searchInput" type="text" className="search__input search__input--non-line"
                      placeholder="Search here people or pages..."/>
               <Link to={"/search/" + this.state.input} onClick={() => this.onClick()}>
+
                 <input className="search__btn search__input--non-line" value="Search"/>
               </Link>
             </form>
