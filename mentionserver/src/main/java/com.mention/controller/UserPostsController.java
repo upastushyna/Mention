@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -71,7 +72,7 @@ public class UserPostsController {
   }
 
   @PutMapping("/update")
-  public void updatePost(@RequestBody PostDtoRq post) {
+  public void updatePost(@Valid @RequestBody PostDtoRq post) {
     userPostsService.updatePost(post);
   }
 
