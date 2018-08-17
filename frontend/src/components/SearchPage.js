@@ -22,14 +22,16 @@ class SearchPage extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
-          {this.props.foundPosts.length === 0 ? "Sorry, no results found matching your search" :
+          {this.props.foundPosts.length === 0 ? "Sorry, no posts found matching your search" :
             <PostsContainer username={this.props.match.params.input}
                             userPosts={this.props.foundPosts}
                             loadData={this.props.loadPosts}/>}
-          {this.props.foundUsers.length === 0 ? "Sorry, no results found matching your search" :
-          <UsersContainer username={this.props.match.params.input}
-                          loadUsers={this.props.loadUsers}
-                          users={this.props.foundUsers}/>}
+           <div className="users-panel">
+               {this.props.foundUsers.length === 0 ? "" :
+                   <UsersContainer username={this.props.match.params.input}
+                                   loadUsers={this.props.loadUsers}
+                                   users={this.props.foundUsers}/>}
+           </div>
         </div>
       </Fragment>
     )
