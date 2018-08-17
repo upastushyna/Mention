@@ -39,11 +39,13 @@ public class FollowController {
 
   @PostMapping("/add")
   public void addFollow(@RequestBody FollowDtoRq follow) {
-    followService.addFollow(follow.getFollower(), follow.getFollowedUser());
+    followService.addFollow(follow);
+
   }
 
   @DeleteMapping("/delete")
   public void deleteFollow(@RequestBody FollowDtoRq follow) {
-    followService.deleteFollow(follow.getFollower(), follow.getFollowedUser());
+    followService.deleteFollow(follow);
   }
 }
+

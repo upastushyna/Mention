@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -64,7 +65,6 @@ public class User {
   @JsonIgnoreProperties(value = {"user"})
   private List<CommentLike> commentLikes;
 
-
   protected User() {
   }
 
@@ -77,5 +77,13 @@ public class User {
     this.email = email;
     this.password = password;
     this.isActive = isActive;
+  }
+
+  public List<String> getRoles() {
+    return Arrays.asList("ROLE_USER");
+  }
+
+  public String toString1() {
+    return String.format("_User{id=%d, username='%s', email='%s', password='%s'}", id, username, email, password);
   }
 }
