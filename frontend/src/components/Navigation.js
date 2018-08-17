@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {loadCurrentUser} from "../actions/currentUserActions";
 
 class Navigation extends React.Component {
-  compomentWillMount() {
+  componentWillMount() {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       this.props.loadCurrentUser();
     }
@@ -15,6 +15,7 @@ class Navigation extends React.Component {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return "Loading..."
     }
+
     return (
       <Fragment>
         <HeaderPanel currentUser={this.props.currentUser}/>
