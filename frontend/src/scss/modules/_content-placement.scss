@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   max-width: 1268px;
   margin: 0 auto;
   padding-left: 65px;
@@ -18,4 +19,13 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.left-margin {
+  margin-left: 10px;
+}
+
+.shadow-button:focus,
+.shadow-button:active {
+  filter: none;
 }

@@ -6,11 +6,8 @@
 @import "sections/registration";
 @import "sections/chat";
 @import "sections/post";
-@import "profile/header-profile";
-@import "profile/profile-small";
-@import "profile/user-navigation";
-@import "profile/info-controller";
-@import "profile/follow-container";
+@import "sections/profile";
+@import "search/search-container";
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 
 body {

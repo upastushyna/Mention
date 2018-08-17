@@ -19,6 +19,7 @@ const Chat = props => {
         sender:{id:ID}, receiver:{id:props.chat.user2.username === props.user2?
       props.chat.user2.id:props.chat.user1.id}, chat:{id:props.chat.id}})
     }).then(() => props.loadChat(props.user1, props.user2))
+    .then(() => props.loadData(props.user1))
     .then(() => document.getElementById("messageInput").value = "");
 
   if (!props.chat || !props.chat.messages){

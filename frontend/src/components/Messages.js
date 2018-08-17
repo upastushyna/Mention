@@ -6,7 +6,6 @@ import ChatsContainer from '../containers/ChatsContainer'
 import {loadChats} from "../actions/chatsActions";
 import {connect} from 'react-redux'
 import Chat from "../containers/Chat";
-import {ID, USERNAME} from "../constants/hardcode"
 import search from '../img/search-icon.png'
 
 class Messages extends React.Component {
@@ -19,7 +18,7 @@ class Messages extends React.Component {
 
   componentWillMount(){
     if(this.props.chats.length === 0) {
-      this.props.loadData(USERNAME);
+      this.props.loadData(this.props.currentUser.username);
     }
   }
 
@@ -31,12 +30,6 @@ class Messages extends React.Component {
     this.scrollToBottom();
   }
 
-  componentWillMount(){
-    if(this.props.chats.length === 0) {
-      this.props.loadData(USERNAME);
-    }
-  }
-
   addChat = () => fetch('/api/chats/add',
     {
       method: 'POST',
@@ -44,9 +37,9 @@ class Messages extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user1:{username:USERNAME},
+      body: JSON.stringify({user1:{username:this.props.currentUser.username},
         user2:{username:this.refs.chatInput.value}})
-    }).then(() => this.props.loadData(USERNAME))
+    }).then(() => this.props.loadData(this.props.currentUser.username))
     .then(() => this.refs.chatInput.value = "");
 
   render () {
@@ -66,14 +59,15 @@ class Messages extends React.Component {
             </div>
             <div className="chats__list white-background">
               <ChatsContainer loadChat={this.props.loadMessages}
-                chats={this.props.chats} username={USERNAME}/>
+                chats={this.props.chats} username={this.props.currentUser.username}/>
             </div>
           </div>
           <div className="messages-container">
             <Switch>
               <Route path='/messages/:username' component={props =>
-                  <Chat user1={USERNAME} user2={props.match.params.username}
-                        loadChat={this.props.loadMessages} chat={this.props.chat}/>}/>
+                  <Chat user1={this.props.currentUser.username} user2={props.match.params.username}
+                        loadChat={this.props.loadMessages} chat={this.props.chat}
+                        loadData={this.props.loadData}/>}/>
             </Switch>
           </div>
         </div>
