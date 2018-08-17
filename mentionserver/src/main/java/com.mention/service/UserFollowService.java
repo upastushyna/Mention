@@ -12,7 +12,7 @@ public interface UserFollowService {
 
   List<ShortUserDetailsRs> getFollowingUsers(String username);
 
-  void addFollow(FollowDtoRq follow);
+  void addFollow(UserDtoIdRq follower, UserDtoIdRq followedUser);
 
-  void removeFollow(FollowDtoRq follow);
+  void deleteFollow(UserDtoIdRq follower, UserDtoIdRq followedUser);
 }
