@@ -1,5 +1,6 @@
 package com.mention.service;
 
+import com.mention.dto.CurrentUserDtoRs;
 import com.mention.dto.ShortUserDetailsRs;
 import com.mention.dto.UserDtoIdRq;
 import com.mention.dto.UserDtoRq;
@@ -15,4 +16,6 @@ public interface UserService {
   ShortUserDetailsRs getUser(String username);
 
   List<ShortUserDetailsRs> getUsersByUsername(String username);
+
+  CurrentUserDtoRs getCurrentUser();
 }
