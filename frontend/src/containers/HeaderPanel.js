@@ -5,6 +5,9 @@ import event from '../img/header-panel/calendar-icon.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
 import avatar from '../img/header-panel/user-img.png'
+import {connect} from "react-redux";
+import {loadSearchPosts} from "../actions/searchPostsActions";
+import {loadSearchUsers} from "../actions/searchUsersActions";
 
 class HeaderPanel extends React.Component {
   constructor(anyparams){
@@ -13,6 +16,11 @@ class HeaderPanel extends React.Component {
     this.state = {
       input: ""
     }
+  }
+
+  onClick = () => {
+    this.props.loadPosts(this.state.input);
+    this.props.loadUsers(this.state.input);
   }
 
   render () {
@@ -28,7 +36,7 @@ class HeaderPanel extends React.Component {
               <input onKeyUp={() => this.setState({input:this.refs.searchInput.value})} id="searchInput"
                      ref="searchInput" type="text" className="search__input search__input--non-line"
                      placeholder="Search here people or pages..."/>
-              <Link to={"/search/" + this.state.input}>
+              <Link to={"/search/" + this.state.input} onClick={() => this.onClick()}>
                 <input className="search__btn search__input--non-line" value="Search"/>
               </Link>
             </form>
@@ -70,4 +78,14 @@ class HeaderPanel extends React.Component {
   }
 }
 
-export default HeaderPanel
+const mapStateToProps = state => ({
+  foundPosts: state.foundPosts,
+  foundUsers: state.foundUsers
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadPosts: input => dispatch(loadSearchPosts(input)),
+  loadUsers: input => dispatch(loadSearchUsers(input))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderPanel);
