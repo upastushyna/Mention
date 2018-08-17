@@ -1,7 +1,7 @@
 .create-post {
   position: relative;
   width: 543px;
-  margin: 0 auto;
+  margin: 0 auto 15px;
   padding: 15px;
   border: 1px solid #e6ecf5;
   border-radius: 5px;
@@ -9,7 +9,7 @@
   font-family: Roboto, 'sans-serif';
 
   &__input {
-    width: 380px;
+    width: 80%;
     padding: 7px;
     border: 1px solid #e6ecf5;
     border-radius: 5px;
@@ -35,4 +35,9 @@
   &__button:hover {
     opacity: .9;
   }
+}
+
+.upload {
+  margin-top: 10px;
+  outline: none;
 }

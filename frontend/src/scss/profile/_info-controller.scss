@@ -1,0 +1,20 @@
+.info-controller {
+  width: 380px;
+  margin: 25px auto;
+
+  &__link {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: 1px solid #4591fb;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: #4591fb;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  &__link:hover {
+    background-color: #fff;
+    color: #4591fb;
+  }
+}

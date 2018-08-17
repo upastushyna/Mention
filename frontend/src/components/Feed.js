@@ -5,6 +5,7 @@ import PostItem from '../containers/PostItem'
 import {loadFeed} from "../actions/feedActions";
 import {connect} from 'react-redux'
 import {USERNAME, ID} from "../constants/hardcode";
+import PostsContainer from "../containers/PostsContainer";
 
 const username = "admin";
 const id = 1;
@@ -28,8 +29,6 @@ class Feed extends React.Component {
     }).then(() => this.refs.postInput.value="");
 
   render () {
-    const feed = this.props.feed.map(post =>
-      <PostItem username={USERNAME} loadData={this.props.loadData} post={post}/>);
     return (
       <Fragment>
         <Navigation/>
@@ -39,7 +38,9 @@ class Feed extends React.Component {
                    maxLength={255}/>
             <button className="create-post__button" onClick={() => this.addPost()}>Add post</button>
           </div>
-          {feed}
+          <PostsContainer username={USERNAME}
+                          userPosts={this.props.feed}
+                          loadData={this.props.loadData}/>
         </div>
       </Fragment>
     )

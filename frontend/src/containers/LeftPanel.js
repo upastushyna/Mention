@@ -18,17 +18,17 @@ class LeftPanel extends React.Component {
               </Link>
             </li>
             <li className="navigation__item">
-              <Link to="/profile">
+              <Link to="/yarik">
                 <img className="navigation__img" src={profile} alt=""/>
                 <h4 className="navigation__hover">profile</h4>
               </Link>
             </li>
-            <li className="navigation__item">
+            {/*<li className="navigation__item">
               <Link to="/favorites">
                 <img className="navigation__img" src={favorites} alt=""/>
                 <h4 className="navigation__hover">favorites</h4>
               </Link>
-            </li>
+            </li>*/}
             <li className="navigation__item">
               <Link to="/messages">
                 <img className="navigation__img" src={messages} alt=""/>

@@ -143,23 +143,28 @@ public class CreateUsers {
         profileRepository.save(new Profile(null, null, null,
             null,
             "https://www.svgrepo.com/show/140760/man-with-short-hair-profile-avatar.svg",
-            null, userRepository.findByUsername("superman").get()));
+            "https://www.50-best.com/images/twitter_backgrounds/black_and_white_city_twitter_background.jpg",
+            userRepository.findByUsername("superman").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
             "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
-            null, userRepository.findByUsername("admin").get()));
+            "https://www.50-best.com/images/twitter_backgrounds/new_york_city_twitter_background.jpg",
+            userRepository.findByUsername("admin").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://banner2.kisspng.com/20180531/twr/kisspng-profession-computer-icons-job-teacher-avatar-profile-avatar-5b101349880eb6.5943032815277801695573.jpg",
-            null, userRepository.findByUsername("yarik").get()));
+            "https://www.shareicon.net/download/2016/11/09/851666_user_512x512.png",
+            "https://i.pinimg.com/originals/2c/84/0e/2c840e86d494c5e809f850b00a69ad29.jpg",
+            userRepository.findByUsername("yarik").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
-            null, userRepository.findByUsername("dima").get()));
+            "http://panificadoramarcelo.cl/wp-content/uploads/2016/07/default-avatar-tech-guy.png",
+            "http://www.twitterbackgroundsize.com/wp-content/uploads/2016/05/Twitter-Backgrounds-and-Covers.jpg",
+            userRepository.findByUsername("dima").get()));
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
-            null, userRepository.findByUsername("alex").get()));
+            "http://i63.tinypic.com/fymsnt.png",
+            "https://images.template.net/wp-content/uploads/2014/11/twitter-background.jpg",
+            userRepository.findByUsername("alex").get()));
 
         messageRepository.save(new Message(
             "What's up?", userRepository.findByUsername("superman").get(),

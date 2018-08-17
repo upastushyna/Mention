@@ -37,6 +37,9 @@ public class Post {
   @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User author;
 
+  @Column(name = "post_amazon_key")
+  private String amazonKey;
+
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @JsonIgnoreProperties(value = {"post"})
   private List<Comment> comments;

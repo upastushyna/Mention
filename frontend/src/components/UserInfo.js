@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import {Route, Switch, Link, NavLink} from 'react-router-dom'
+import {Route, Switch, Link} from 'react-router-dom'
 import UsersContainer from "../containers/UsersContainer"
 import PostsContainer from "../containers/PostsContainer"
 import {connect} from "react-redux";
@@ -18,16 +18,12 @@ class UserInfo extends React.Component {
   render () {
     return (
       <Fragment>
-        <div>
-          <Link to={"/" + this.props.username + "/info/followed"}>
-            <p onClick={() => this.props.loadFollowedUsers(this.props.username)}>Followed Users</p>
-          </Link>
-          <Link to={"/" + this.props.username + "/info/following"}>
-            <p onClick={() => this.props.loadFollowers(this.props.username)}>Following Users</p>
-          </Link>
-          <Link to={"/" + this.props.username + "/info/liked"}>
-            <p>Likes</p>
-          </Link>
+        <div className="info-controller">
+          <Link className="info-controller__link color-white" to={"/" + this.props.username + "/info/followed"}
+                onClick={() => this.props.loadFollowedUsers(this.props.username)}>Followed Users</Link>
+          <Link className="info-controller__link color-white" to={"/" + this.props.username + "/info/following"}
+                onClick={() => this.props.loadFollowers(this.props.username)}>Following Users</Link>
+          <Link className="info-controller__link color-white" to={"/" + this.props.username + "/info/liked"}>Likes</Link>
         </div>
 
         <Switch>

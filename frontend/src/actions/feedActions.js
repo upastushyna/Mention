@@ -1,7 +1,7 @@
 import { FEED_LOADED } from "../constants/action-types";
 
 export const loadFeed = username => dispatch => {
-  fetch('/api/posts/liked/' + username ,
+  fetch('/api/posts/followed/' + username ,
     {
       method: 'GET',
       headers: {
@@ -10,4 +10,4 @@ export const loadFeed = username => dispatch => {
       }
     }).then(res=>res.json())
     .then(data => dispatch({type:FEED_LOADED, payload: data}))
-}
+};
