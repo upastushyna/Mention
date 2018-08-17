@@ -1,5 +1,6 @@
 package com.mention.controller;
 
+import com.mention.dto.CurrentUserDtoRs;
 import com.mention.dto.ShortUserDetailsRs;
 import com.mention.dto.UserDtoIdRq;
 import com.mention.dto.UserDtoRq;
@@ -35,6 +36,11 @@ public class UserController {
   @GetMapping("/search/{username}")
   public List<ShortUserDetailsRs> getUsersByUsername(@PathVariable String username) {
     return userService.getUsersByUsername(username.replace("%20", " "));
+  }
+
+  @GetMapping("/current")
+  public CurrentUserDtoRs getCurrentUser() {
+    return userService.getCurrentUser();
   }
 
   @PostMapping("/add")

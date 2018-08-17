@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/login")
+//@RequestMapping("/login")
 public class LoginController {
 
   static Logger log = LoggerFactory.getLogger(LoginController.class);
