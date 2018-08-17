@@ -1,5 +1,6 @@
 package com.mention.service;
 
+import com.mention.dto.CurrentUserDtoRs;
 import com.mention.dto.ShortUserDetailsRs;
 import com.mention.dto.UserDtoIdRq;
 import com.mention.dto.UserDtoRq;
@@ -32,8 +33,7 @@ public class UserServiceImpl implements UserService {
   public ShortUserDetailsRs getUser(String username) {
     Optional<User> user = userRepository.findByUsername(username);
     if (user.isPresent()) {
-      ShortUserDetailsRs currentUser = modelMapper.map(user.get(), ShortUserDetailsRs.class);
-      return currentUser;
+      return modelMapper.map(user.get(), ShortUserDetailsRs.class);
     }
     return null;
   }
@@ -51,9 +51,15 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public CurrentUserDtoRs getCurrentUser() {
+    User user = userRepository.findByUsername("yarik").get();
+    CurrentUserDtoRs currentUser = modelMapper.map(user, CurrentUserDtoRs.class);
+    return currentUser;
+  }
+
+  @Override
   @Transactional
   public void createNewUser(UserDtoRq userDtoNewUser) {
-    ModelMapper modelMapper = new ModelMapper();
     User insertUser = modelMapper.map(userDtoNewUser, User.class);
     userRepository.save(insertUser);
   }
@@ -61,7 +67,6 @@ public class UserServiceImpl implements UserService {
   @Override
   @Transactional
   public void deleteUser(UserDtoIdRq user) {
-    ModelMapper modelMapper = new ModelMapper();
     Optional<User> currentUser = userRepository.findById(user.getId());
     if (currentUser.isPresent()) {
       currentUser.get().setActive(false);
