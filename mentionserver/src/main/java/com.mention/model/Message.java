@@ -2,6 +2,7 @@ package com.mention.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -27,7 +28,7 @@ public class Message {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Column(nullable = false, name = "message_content")
+  @Column(nullable = false, name = "message_content", length = 1000)
   private String content;
 
   @ManyToOne

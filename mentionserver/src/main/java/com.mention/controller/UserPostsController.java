@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -60,7 +61,9 @@ public class UserPostsController {
                       @RequestParam("id") Long id,
                       @RequestParam(value = "image", required = false) MultipartFile file)
       throws IOException {
-    userPostsService.addPost(body, id, file);
+    if (body.length() > 0 && body.length() <= 280) {
+      userPostsService.addPost(body, id, file);
+    }
   }
 
   @PostMapping("/repost")
@@ -69,7 +72,7 @@ public class UserPostsController {
   }
 
   @PutMapping("/update")
-  public void updatePost(@RequestBody PostDtoRq post) {
+  public void updatePost(@Valid @RequestBody PostDtoRq post) {
     userPostsService.updatePost(post);
   }
 
