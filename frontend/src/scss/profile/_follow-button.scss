@@ -1,0 +1,16 @@
+.follow-button {
+  &__text {
+    padding: 10px 20px;
+    border: 1px solid #198C19;
+    border-radius: 5px;
+    background-color: #198C19;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__text:active,
+  &__text:focus {
+    filter: none;
+  }
+}
