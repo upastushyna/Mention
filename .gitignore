@@ -18,4 +18,5 @@ target/
 log/
 package-lock.json
 frontend/package-lock.json
+mentionserver/src/main/resources/config.properties
 
