@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserPostsServiceImpl implements UserPostsService {
 
-  final private String bucket = AmazonS3Configuration.BUCKET_NAME;
+  final String bucket = AmazonS3Configuration.BUCKET_NAME;
 
   private UserRepository userRepository;
 

@@ -14,7 +14,7 @@ public final class AmazonS3Configuration {
 
   public static final String BUCKET_NAME = "mention-project";
 
-  public static AmazonS3 getAmazonS3 () throws IOException {
+  public static AmazonS3 getAmazonS3() throws IOException {
     Properties prop = new Properties();
     InputStream input = new FileInputStream("mentionserver/src/main/resources/config.properties");
     prop.load(input);
