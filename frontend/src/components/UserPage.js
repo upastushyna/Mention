@@ -31,7 +31,7 @@ class UserPage extends React.Component {
     event.preventDefault();
     const data = new FormData();
     data.append("body", this.refs.postInput.value);
-    data.append("id", this.props.currentUser.username)
+    data.append("id", this.props.currentUser.id)
     if(this.refs.inputFile) {
       const image = this.refs.inputFile.files[0];
       data.append("image", image)

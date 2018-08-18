@@ -17,7 +17,7 @@ class LeftPanel extends React.Component {
               </Link>
             </li>
             <li className="navigation__item">
-              <Link to="/yarik">
+              <Link to={"/" + this.props.currentUser.username}>
                 <img className="navigation__img" src={profile} alt=""/>
                 <h4 className="navigation__hover">profile</h4>
               </Link>
