@@ -1,0 +1,16 @@
+.unfollow-button {
+  &__text {
+    padding: 10px 20px;
+    border: 1px solid #bf3d3d;
+    border-radius: 5px;
+    background-color: #bf3d3d;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__text:active,
+  &__text:focus {
+    filter: none;
+  }
+}

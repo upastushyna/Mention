@@ -11,6 +11,7 @@ class Navigation extends React.Component {
       this.props.loadCurrentUser();
     }
   }
+
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return "Loading..."

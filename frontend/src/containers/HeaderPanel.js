@@ -8,7 +8,17 @@ import SearchContainer from "./SearchContainer";
 
 class HeaderPanel extends React.Component {
 
+  componentWillMount() {
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser();
+    }
+  }
+
   render () {
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      return "Loading..."
+    }
+
     return (
       <Fragment>
         <div className="header d-flex content-between">

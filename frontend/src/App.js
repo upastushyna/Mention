@@ -27,8 +27,7 @@ class App extends Component {
     if(!this.props.currentUser || !this.props.currentUser.username) {
       return "Loading...";
     }
-
-
+    
     return (
       <Fragment>
         <Switch>
