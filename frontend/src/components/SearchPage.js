@@ -5,6 +5,7 @@ import {loadSearchPosts} from "../actions/searchPostsActions";
 import {loadSearchUsers} from "../actions/searchUsersActions";
 import PostsContainer from "../containers/PostsContainer";
 import UsersContainer from "../containers/UsersContainer";
+import {loadCurrentUser} from "../actions/currentUserActions";
 
 class SearchPage extends React.Component {
 
@@ -14,9 +15,15 @@ class SearchPage extends React.Component {
       this.props.loadPosts(this.props.match.params.input);
       this.props.loadUsers(this.props.match.params.input);
     }
+    if(!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser()
+    }
   }
 
   render () {
+    if(!this.props.currentUser || !this.props.currentUser.username) {
+      return "Loading..."
+    }
 
     return (
       <Fragment>
@@ -25,12 +32,14 @@ class SearchPage extends React.Component {
           {this.props.foundPosts.length === 0 ? "Sorry, no posts found matching your search" :
             <PostsContainer username={this.props.match.params.input}
                             userPosts={this.props.foundPosts}
-                            loadData={this.props.loadPosts}/>}
+                            loadData={this.props.loadPosts}
+                            currentUser={this.props.currentUser}/>}
            <div className="users-panel">
                {this.props.foundUsers.length === 0 ? "" :
                    <UsersContainer username={this.props.match.params.input}
                                    loadUsers={this.props.loadUsers}
-                                   users={this.props.foundUsers}/>}
+                                   users={this.props.foundUsers}
+                                   currentUser={this.props.currentUser}/>}
            </div>
         </div>
       </Fragment>
@@ -40,13 +49,15 @@ class SearchPage extends React.Component {
 
 const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
-  foundUsers: state.foundUsers
+  foundUsers: state.foundUsers,
+  currentUser: state.currentUser
 
 });
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
-  loadUsers: input => dispatch(loadSearchUsers(input))
+  loadUsers: input => dispatch(loadSearchUsers(input)),
+  loadCurrentUser: () => (loadCurrentUser)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

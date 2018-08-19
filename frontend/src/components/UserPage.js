@@ -11,6 +11,7 @@ import UserInfo from "./UserInfo"
 import info from '../img/info-icon.png'
 import posts from '../img/posts-icon.png'
 import {loadCurrentUser} from "../actions/currentUserActions";
+import FollowButton from "../containers/FollowButton";
 
 class UserPage extends React.Component {
 
@@ -30,7 +31,7 @@ class UserPage extends React.Component {
     event.preventDefault();
     const data = new FormData();
     data.append("body", this.refs.postInput.value);
-    data.append("id", this.props.currentUser.username)
+    data.append("id", this.props.currentUser.id)
     if(this.refs.inputFile) {
       const image = this.refs.inputFile.files[0];
       data.append("image", image)
@@ -63,6 +64,9 @@ class UserPage extends React.Component {
               <img src={posts} alt="" className="user-navigation__icon"/>
               <h4 className="user-navigation__hover">profile</h4>
             </Link>
+          </div>
+          <div className="following shadow-button">
+            <FollowButton/>
           </div>
           <div className="create-post white-background">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>

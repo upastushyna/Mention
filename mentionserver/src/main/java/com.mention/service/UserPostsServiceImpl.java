@@ -28,12 +28,12 @@ import java.util.stream.Collectors;
 @Service
 public class UserPostsServiceImpl implements UserPostsService {
 
-  final AmazonS3 s3 = AmazonS3Configuration.S3_BUILDER;
   final String bucket = AmazonS3Configuration.BUCKET_NAME;
 
   private UserRepository userRepository;
 
   private PostRepository postRepository;
+
 
   private ModelMapper modelMapper;
 
@@ -104,6 +104,7 @@ public class UserPostsServiceImpl implements UserPostsService {
   @Override
   @Transactional
   public void addPost(String body, Long userId, MultipartFile file) throws IOException {
+    AmazonS3 s3 = AmazonS3Configuration.getAmazonS3();
     User user = new User(userId);
     Post post = new Post(body, user);
     if (file != null) {
