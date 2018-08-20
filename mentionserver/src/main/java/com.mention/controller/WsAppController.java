@@ -13,7 +13,7 @@ import org.springframework.web.util.HtmlUtils;
 
 @Controller
 public class WsAppController {
-  private final String WS_PATH = "/front/endpoint1";
+  private final String wsPath = "/front/endpoint1";
 
   @Autowired
   private SimpMessagingTemplate template;
@@ -28,7 +28,7 @@ public class WsAppController {
   // receive and response
   @MessageMapping("/hello")
   // actually "/back/hello", see WebSocketConfig.java and front.js
-  @SendTo(WS_PATH) // response path
+  @SendTo(wsPath) // response path
   public WsRsDto get_and_respond(WsRqDto dto) {
     System.out.println("OBJECT RECEIVED:" + dto);
     return new WsRsDto(String.format("Hello, %s", HtmlUtils.htmlEscape(dto.getName())));
@@ -44,13 +44,13 @@ public class WsAppController {
       dto = new WsRsDto("This message sent from backend Java code");
       System.out.println("Done");
       System.out.print("Sending DTO to frontend...");
-      template.convertAndSend(WS_PATH, dto);
+      template.convertAndSend(wsPath, dto);
       System.out.println("Done");
       System.out.print("Sleeping 1s...");
       Thread.sleep(1000);
       System.out.println("Done");
     }
-    template.convertAndSend(WS_PATH, new WsRsDto("Done"));
+    template.convertAndSend(wsPath, new WsRsDto("Done"));
     return "10 items sent";
   }
 
