@@ -16,7 +16,7 @@ public final class AmazonS3Configuration {
   public static AmazonS3 getAmazonS3() throws IOException {
     Properties prop = new Properties();
     AmazonS3 s3Builder;
-    try (InputStream input = new FileInputStream("mentionserver/src/main/resources/config.properties")){
+    try (InputStream input = new FileInputStream("mentionserver/src/main/resources/config.properties")) {
       prop.load(input);
       String key = prop.getProperty("Access_key");
       String secret = prop.getProperty("Secret_key");
