@@ -32,7 +32,13 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.headers().frameOptions().disable().and().csrf().disable()
+    http
+      .headers()
+        .frameOptions()
+        .disable()
+        .and()
+
+      .csrf().disable()
 
         .authorizeRequests()
         .antMatchers("/xu*", "/root").permitAll()
