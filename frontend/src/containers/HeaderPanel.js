@@ -4,19 +4,18 @@ import logo from '../img/header-panel/logo.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
 import avatar from '../img/header-panel/user-img.png'
-import SearchContainer from "./SearchContainer";
+import SearchContainer from './SearchContainer'
 
 class HeaderPanel extends React.Component {
-
-  componentWillMount() {
+  componentWillMount () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser();
+      this.props.loadCurrentUser()
     }
   }
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return "Loading..."
+      return 'Loading...'
     }
 
     return (
@@ -63,4 +62,4 @@ class HeaderPanel extends React.Component {
   }
 }
 
-export default HeaderPanel;
+export default HeaderPanel

@@ -1,4 +1,4 @@
-import {CURRENT_USER_LOADED} from "../constants/action-types";
+import {CURRENT_USER_LOADED} from '../constants/action-types'
 
 export const loadCurrentUser = () => dispatch => {
   fetch('/api/user/current',
@@ -6,8 +6,8 @@ export const loadCurrentUser = () => dispatch => {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }
-    }).then(res=>res.json())
-    .then(data => dispatch({type:CURRENT_USER_LOADED, payload: data}))
+    }).then(res => res.json())
+    .then(data => dispatch({type: CURRENT_USER_LOADED, payload: data}))
 }

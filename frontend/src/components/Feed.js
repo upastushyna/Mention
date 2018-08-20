@@ -1,17 +1,16 @@
 import React, { Fragment } from 'react'
-import Navigation from "./Navigation"
+import Navigation from './Navigation'
 import '../css/index.css'
-import {loadFeed} from "../actions/feedActions";
+import {loadFeed} from '../actions/feedActions'
 import {connect} from 'react-redux'
-import PostsContainer from "../containers/PostsContainer";
+import PostsContainer from '../containers/PostsContainer'
 
-const username = "admin";
-const id = 1;
+const username = 'admin'
+const id = 1
 class Feed extends React.Component {
-
-  componentWillMount(){
-    if(this.props.feed.length === 0) {
-      this.props.loadData(this.props.currentUser.username);
+  componentWillMount () {
+    if (this.props.feed.length === 0) {
+      this.props.loadData(this.props.currentUser.username)
     }
   }
 
@@ -30,8 +29,8 @@ class Feed extends React.Component {
         method: 'POST',
         body: data
       }).then(() => this.props.loadData(this.props.currentUser.username))
-      .then(() => this.refs.postInput.value="")
-      .then(() => this.refs.inputFile.value=null);
+      .then(() => this.refs.postInput.value = '')
+      .then(() => this.refs.inputFile.value = null)
   };
 
   render () {
@@ -43,17 +42,17 @@ class Feed extends React.Component {
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
               <div className="d-flex items-center content-between">
                 <textarea className="create-post__input" id="postInput"
-                          placeholder="Share your thoughts" ref="postInput"
-                          maxLength={280}/>
+                  placeholder="Share your thoughts" ref="postInput"
+                  maxLength={280}/>
                 <button type="submit" className="create-post__button">Add post</button>
               </div>
               <input className="upload" id="inputFile" ref="inputFile" type="file"/>
             </form>
           </div>
           <PostsContainer username={this.props.currentUser.username}
-                          userPosts={this.props.feed}
-                          loadData={this.props.loadData}
-                          currentUser={this.props.currentUser}/>
+            userPosts={this.props.feed}
+            loadData={this.props.loadData}
+            currentUser={this.props.currentUser}/>
         </div>
       </Fragment>
     )
@@ -62,10 +61,10 @@ class Feed extends React.Component {
 
 const mapStateToProps = state => ({
   feed: state.feed
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username))
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)
