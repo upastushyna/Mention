@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Navigation from "./Navigation";
+import Navigation from './Navigation'
 
 export default class Favorites extends React.Component {
   render () {
