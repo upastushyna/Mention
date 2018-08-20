@@ -15,9 +15,11 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
+    "sockjs-client": "^1.1.5",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",
-    "stylelint-order": "^0.7.0"
+    "stylelint-order": "^0.7.0",
+    "webstomp-client": "^1.2.4"
   },
   "watch": {
     "stylelint-dev": {
