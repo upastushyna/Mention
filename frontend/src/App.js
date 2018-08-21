@@ -11,22 +11,21 @@ import Login from './components/Login'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
 import EditProfile from "./components/EditProfile";
-import SearchPage from "./components/SearchPage";
-import {connect} from "react-redux";
-import {loadCurrentUser} from "./actions/currentUserActions";
-import withRouter from "react-router-dom/es/withRouter";
+import SearchPage from './components/SearchPage'
+import {connect} from 'react-redux'
+import {loadCurrentUser} from './actions/currentUserActions'
+import withRouter from 'react-router-dom/es/withRouter'
 
 class App extends Component {
-
-  componentWillMount(){
-    if(!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser();
+  componentWillMount () {
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser()
     }
   }
 
-  render() {
-    if(!this.props.currentUser || !this.props.currentUser.username) {
-      return "Loading...";
+  render () {
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      return 'Loading...'
     }
     
     return (
@@ -40,7 +39,6 @@ class App extends Component {
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path="/login" component={Login}/>
           <Route path="/registration" component={Registration}/>
-          <Route path='/profile' component={Profile}/>
           <Route path='/editprofile' component={EditProfile}/>
           <Route path='/profile' component={() => <Profile
             currentUser={this.props.currentUser}
@@ -58,10 +56,10 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser())
-});
+})
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

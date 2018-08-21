@@ -1,13 +1,13 @@
-import {FOLLOWED_LOADED} from "../constants/action-types";
+import {FOLLOWED_LOADED} from '../constants/action-types'
 
-const initialState = [];
+const initialState = []
 
-function followedReducer (state = initialState, action){
-  switch(action.type) {
+function followedReducer (state = initialState, action) {
+  switch (action.type) {
     case FOLLOWED_LOADED:
-      return [...action.payload];
+      return [...action.payload]
     default:
-      return state;
+      return state
   }
 }
 

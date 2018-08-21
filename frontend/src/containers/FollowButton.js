@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 
 const FollowButton = props => {
-
   return <Fragment>
     <div className="follow-button">
       <span className="follow-button__text">Follow</span>
@@ -9,4 +8,4 @@ const FollowButton = props => {
   </Fragment>
 }
 
-export default FollowButton;
+export default FollowButton

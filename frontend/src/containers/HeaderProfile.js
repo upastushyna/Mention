@@ -2,9 +2,8 @@ import React, { Fragment } from 'react'
 import user from '../img/header-panel/user-img.png'
 
 const HeaderProfile = props => {
-
-  if(!props.user || !props.user.username) {
-    return "loading..."
+  if (!props.user || !props.user.username) {
+    return 'loading...'
   }
 
   return <Fragment>

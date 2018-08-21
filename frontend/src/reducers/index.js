@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import {combineReducers} from 'redux'
 import feedReducer from './feedReducer'
 import userPageReducer from "./userPageReducer";
 import chatsReducer from "./chatsReducer";
@@ -18,7 +18,6 @@ export default combineReducers({
   chats: chatsReducer,
   chat: singleChatReducer,
   editProfile: editProfileReducer,
-  chat: singleChatReducer,
   followed: followedReducer,
   following: followingReducer,
   likedPosts: likedReducer,
