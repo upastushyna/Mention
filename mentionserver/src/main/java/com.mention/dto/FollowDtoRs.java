@@ -7,6 +7,6 @@ import java.util.List;
 @Data
 public class FollowDtoRs {
 
-  private List<UserDtoIdRq> followedUsers;
+  private UserDtoIdRq followedUser;
 
 }

@@ -65,7 +65,7 @@ class Messages extends React.Component {
               <Route path='/messages/:username' component={props =>
                 <Chat user1={this.props.currentUser.username} user2={props.match.params.username}
                   loadChat={this.props.loadMessages} chat={this.props.chat}
-                  loadData={this.props.loadData}/>}/>
+                  loadData={this.props.loadData} currentUser={this.props.currentUser}/>}/>
             </Switch>
           </div>
         </div>
