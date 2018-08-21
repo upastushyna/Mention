@@ -1,18 +1,18 @@
 .notFound {
   &__errorText {
     padding-top: 40px;
+  }
 
-    &--errorHeader {
-      margin-left: 42%;
-      font-size: 160px;
-    }
+  &__errorHeader {
+    margin-left: 42%;
+    font-size: 160px;
+  }
 
-    &--errorBody {
-      margin-left: 21%;
-      font-size: 35px;
+  &__errorBody {
+    margin-left: 21%;
+    font-size: 35px;
     }
   }
-}
 
 .returnButton {
   margin-top: 30px;

@@ -7,10 +7,10 @@
     color: #fff;
     font-weight: 700;
     cursor: pointer;
-  }
 
-  &__text:active,
-  &__text:focus {
-    filter: none;
+    &:active,
+    &:focus {
+      filter: none;
+    }
   }
 }

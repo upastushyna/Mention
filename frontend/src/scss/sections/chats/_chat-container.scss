@@ -7,8 +7,9 @@
     color: #515365;
     text-decoration: none;
   }
+
+  &:hover {
+    opacity: .7;
+  }
 }
 
-.message-container:hover {
-  opacity: .7;
-}

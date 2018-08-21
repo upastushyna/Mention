@@ -11,10 +11,10 @@
     background-color: #4591fb;
     font-weight: 700;
     text-decoration: none;
-  }
 
-  &__link:hover {
-    background-color: #fff;
-    color: #4591fb;
-  }
+    &:hover {
+      background-color: #fff;
+      color: #4591fb;
+    }
+  } 
 }

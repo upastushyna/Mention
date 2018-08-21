@@ -1,0 +1,51 @@
+body {
+ background-color: #f0f6f6;
+}
+
+.container {
+ position: relative;
+ max-width: 1268px;
+ margin: 0 auto;
+ padding-left: 65px;
+}
+
+.d-flex {
+ display: flex;
+}
+
+.items-center {
+ align-items: center;
+}
+
+.content-between {
+ justify-content: space-between;
+}
+
+.pointer {
+ cursor: pointer;
+}
+
+.left-margin {
+ margin-left: 10px;
+}
+
+.shadow-button:focus,
+.shadow-button:active {
+ filter: none;
+}
+
+.color-white {
+ color: #fff;
+}
+
+.color-dark-grey {
+ color: #515365;
+}
+
+.white-background {
+ background-color: #fff;
+}
+
+.shadow-button {
+ filter: drop-shadow(2px 2px 5px black);
+}

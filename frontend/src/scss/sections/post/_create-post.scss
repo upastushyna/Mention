@@ -15,10 +15,10 @@
     border-radius: 5px;
     outline: none;
     resize: none;
-  }
 
-  &__input:focus {
-    border: 1px solid #4591fb;
+    &:focus {
+      border: 1px solid #4591fb;
+    }
   }
 
   &__button {
@@ -30,10 +30,10 @@
     color: #fff;
     font-weight: 700;
     cursor: pointer;
-  }
 
-  &__button:hover {
-    opacity: .9;
+    &:hover {
+      opacity: .9;
+    }
   }
 }
 

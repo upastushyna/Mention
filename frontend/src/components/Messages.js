@@ -48,7 +48,7 @@ class Messages extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container d-flex">
-          <div className="chats">
+          <div className="chats__list">
             <div className="chats__header white-background">
               <h3 className="chats__title">Conversations</h3>
             </div>
@@ -57,7 +57,7 @@ class Messages extends React.Component {
                      type="text" className="chats__input" placeholder="Search"/>
               <img onClick={() => this.addChat()} src={search} alt="" className="chats__button"/>
             </div>
-            <div className="chats__list white-background">
+            <div className="white-background">
               <ChatsContainer loadChat={this.props.loadMessages}
                 chats={this.props.chats} username={this.props.currentUser.username}/>
             </div>

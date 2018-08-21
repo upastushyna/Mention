@@ -1,6 +1,8 @@
 .chats {
-  width: 30%;
-
+  &__list {
+   width: 50%;
+   margin: 0 auto; 
+  }
   &__header {
     padding: 15px;
     border: 1px solid #e6ecf5;

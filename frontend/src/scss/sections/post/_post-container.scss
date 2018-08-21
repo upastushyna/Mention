@@ -65,10 +65,10 @@
     border: 1px solid #e6ecf5;
     color: black;
     cursor: pointer;
-  }
 
-  &__item:hover {
-    opacity: .7;
+    &:hover {
+      opacity: .7;
+    }
   }
 }
 
