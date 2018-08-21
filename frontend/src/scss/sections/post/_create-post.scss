@@ -1,32 +1,33 @@
 .create-post {
-  position: relative;
+  background-color: #fff;
   width: 543px;
   margin: 0 auto 15px;
   padding: 15px;
   border: 1px solid #e6ecf5;
   border-radius: 5px;
   color: #888da8;
-  font-family: Roboto, 'sans-serif';
 
   &__input {
+    @include clear-default-input-style();
     width: 80%;
     padding: 7px;
-    border: 1px solid #e6ecf5;
+    border: 1px solid #f0f2f7;
     border-radius: 5px;
-    outline: none;
-    resize: none;
-
-    &:focus {
-      border: 1px solid #4591fb;
-    }
+    @include placeholder(){
+      font-size: 15px;
+      color: #737d9b;
+      letter-spacing: 0.3px;
+      font-weight: 300;
+      }  
   }
 
   &__button {
-    padding: 15px;
-    border: 1px solid #4591fb;
+    @include clear-default-input-style();
+    width: 20%;
+    padding: 14px;
+    font-size: 14px;
     border-radius: 5px;
-    outline: none;
-    background-color: #4591fb;
+    background-color: #3a5eff;
     color: #fff;
     font-weight: 700;
     cursor: pointer;
