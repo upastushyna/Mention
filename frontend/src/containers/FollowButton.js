@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 const FollowButton = props => {
   return <Fragment>
-    <div onClick={() => props.follow()} className="follow-button">
+    <div onClick={() => props.follow(props.followedUser)} className="follow-button">
       <span className="follow-button__text">Follow</span>
     </div>
   </Fragment>
