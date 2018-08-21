@@ -1,6 +1,6 @@
 import React from 'react'
-import UnffollowButton from "./UnffollowButton";
-import FollowButton from "./FollowButton";
+import UnffollowButton from './UnffollowButton'
+import FollowButton from './FollowButton'
 
 const UserItem = props =>
   <div className="follow-container d-flex content-between items-center">

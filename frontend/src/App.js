@@ -10,24 +10,24 @@ import NotFound from './components/NotFound'
 import Login from './components/Login'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
-import SearchPage from "./components/SearchPage";
-import {connect} from "react-redux";
-import {loadCurrentUser} from "./actions/currentUserActions";
-import withRouter from "react-router-dom/es/withRouter";
+import SearchPage from './components/SearchPage'
+import {connect} from 'react-redux'
+import {loadCurrentUser} from './actions/currentUserActions'
+import withRouter from 'react-router-dom/es/withRouter'
+import Websocket from './components/Websocket'
 
 class App extends Component {
-
-  componentWillMount(){
-    if(!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser();
+  componentWillMount () {
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser()
     }
   }
 
-  render() {
+  render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return "loading..."
+      return 'Loading...'
     }
-
+    
     return (
       <Fragment>
         <Switch>
@@ -43,6 +43,7 @@ class App extends Component {
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path='/favorites' component={Favorites}/>
+          <Route exact path='/websocket' component={Websocket}/>
           <Route path='/search/:input' component={SearchPage}/>
           <Route path='/:username' component={UserPage}/>
           <Route path="*" component={NotFound}/>
@@ -55,10 +56,10 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser())
-});
+})
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
