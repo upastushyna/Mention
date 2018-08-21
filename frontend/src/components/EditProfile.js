@@ -1,30 +1,32 @@
 import React, {Fragment} from 'react'
-import {loadProfile} from "../actions/editProfileAction";
+import {loadProfileById} from "../actions/editProfileAction";
 import {connect} from 'react-redux'
 import Navigation from "./Navigation";
 
 class EditProfile extends React.Component {
 
   componentWillMount() {
-    this.props.loadProfileId(49);
+    this.props.loadProfileById(49);
   }
 
   updateProfile = () =>
 
-    fetch('/api/profiles/update',
-        {
-          method: "PUT",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({id:49, firstName:document.getElementById("inputFirstName").value,
-            secondName:document.getElementById("inputSecondName").value,
-            address:document.getElementById("inputAddress").value,
-            birthDate:document.getElementById("inputBirthDate").value,
-            avatarUrl:document.getElementById("inputAvatarUrl").value,
-            backgroundUrl:document.getElementById("inputBackgroundUrl").value})
-    });
+      fetch('/api/profiles/update',
+          {
+            method: "PUT",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              id: 49, firstName: document.getElementById("inputFirstName").value,
+              secondName: document.getElementById("inputSecondName").value,
+              address: document.getElementById("inputAddress").value,
+              birthDate: document.getElementById("inputBirthDate").value,
+              avatarUrl: document.getElementById("inputAvatarUrl").value,
+              backgroundUrl: document.getElementById("inputBackgroundUrl").value
+            })
+          });
 
   render() {
     return (
@@ -63,7 +65,7 @@ class EditProfile extends React.Component {
             </p>
             <p className="edit-profile-list">
               <input type="submit" onClick={() => this.updateProfile()}
-                     className="edit-profile_button" defaultValue="hui"/>
+                     className="edit-profile_button" defaultValue="Edit"/>
             </p>
           </div>
         </Fragment>
@@ -77,7 +79,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadProfileId: id => dispatch(loadProfile(id))
+  loadProfileById: id => dispatch(loadProfileById(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)

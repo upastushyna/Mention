@@ -1,6 +1,6 @@
 import {EDIT_PROFILE_LOADED} from "../constants/action-types"
 
-export const loadProfile = id => dispatch => {
+export const loadProfileById = id => dispatch => {
   fetch('/api/profile/' + id,
       {
         method: 'GET',
