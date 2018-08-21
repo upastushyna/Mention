@@ -2,8 +2,24 @@ import React, {Fragment} from 'react'
 import {loadProfileById} from "../actions/editProfileAction";
 import {connect} from 'react-redux'
 import Navigation from "./Navigation";
+import DatePicker from "react-datepicker/es/index";
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from "moment";
 
 class EditProfile extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      startDate: moment()
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  }
 
   componentWillMount() {
     this.props.loadProfileById(49);
@@ -22,13 +38,18 @@ class EditProfile extends React.Component {
               id: 49, firstName: document.getElementById("inputFirstName").value,
               secondName: document.getElementById("inputSecondName").value,
               address: document.getElementById("inputAddress").value,
-              birthDate: document.getElementById("inputBirthDate").value,
+              birthDate: this.state.startDate,
               avatarUrl: document.getElementById("inputAvatarUrl").value,
               backgroundUrl: document.getElementById("inputBackgroundUrl").value
             })
           });
 
   render() {
+    if (!this.props.editProfile || !this.props.editProfile.birthDate) {
+      return "Loading..."
+    }
+    this.setState({startDate:moment(this.props.editProfile.birthDate)});
+
     return (
         <Fragment>
           <Navigation/>
@@ -48,11 +69,15 @@ class EditProfile extends React.Component {
                      defaultValue={this.props.editProfile.address}
                      placeholder="Address"/>
             </p>
-            <p className="edit-profile-list">
-              <input type="text" id="inputBirthDate" className="edit-profile_input"
-                     defaultValue={this.props.editProfile.birthDate}
-                     placeholder="BirthDay"/>
-            </p>
+            {/*<p className="edit-profile-list">*/}
+              {/*<input type="text" id="inputBirthDate" className="edit-profile_input"*/}
+                     {/*defaultValue={this.props.editProfile.birthDate}*/}
+                     {/*placeholder="BirthDay"/>*/}
+            {/*</p>*/}
+            <DatePicker
+                selected={this.state.startDate}
+                onChange={this.handleChange}
+            />
             <p className="edit-profile-list">
               <input type="text" id="inputAvatarUrl" className="edit-profile_input"
                      defaultValue={this.props.editProfile.avatarUrl}
