@@ -5,7 +5,6 @@ import forward from '../img/post-form/forward-icon.png'
 import CommentContainer from './CommentContainer'
 import PostLikeItem from './PostLikeItem'
 import AddComment from './AddComment'
-import {ID} from '../constants/hardcode'
 
 const PostItem = props => {
   const rePost = () => fetch('/api/posts/repost',
@@ -15,8 +14,8 @@ const PostItem = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({author: {id: ID}, parent: {id: props.post.parent ? props.post.parent.id : props.post.id}})
-    }).then(() => props.loadData(props.username))
+      body: JSON.stringify({author: {id: props.currentUser.id}, parent: {id: props.post.parent ? props.post.parent.id : props.post.id}})
+    }).then(() => props.loadData(props.username));
 
   return <Fragment>
     {props.post.parent

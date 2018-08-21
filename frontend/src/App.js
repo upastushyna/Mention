@@ -15,6 +15,7 @@ import SearchPage from './components/SearchPage'
 import {connect} from 'react-redux'
 import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
+import Websocket from './components/Websocket'
 
 class App extends Component {
   componentWillMount () {
@@ -44,6 +45,7 @@ class App extends Component {
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path='/favorites' component={Favorites}/>
+          <Route exact path='/websocket' component={Websocket}/>
           <Route path='/search/:input' component={SearchPage}/>
           <Route path='/:username' component={UserPage}/>
           <Route path="*" component={NotFound}/>

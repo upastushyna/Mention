@@ -12,10 +12,20 @@ import info from '../img/info-icon.png'
 import posts from '../img/posts-icon.png'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import FollowButton from '../containers/FollowButton'
+import UnffollowButton from "../containers/UnffollowButton";
 
 class UserPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.props.history.listen((location, action) => {
+      this.props.loadData(this.props.match.params.username);
+    });
+  }
+
   componentWillMount () {
     if (this.props.userPosts.length === 0) {
+
       this.props.loadData(this.props.match.params.username)
     }
     if (!this.props.user || !this.props.user.username) {
@@ -25,6 +35,30 @@ class UserPage extends React.Component {
       this.props.loadCurrentUser()
     }
   }
+
+  follow = followedUser => fetch('/api/follow/add',
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        follower: {id: this.props.currentUser.id},
+        followedUser: {id: followedUser}})
+    }).then(() => this.props.loadCurrentUser());
+
+  unfollow = followedUser => fetch('/api/follow/delete',
+    {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        follower: {id: this.props.currentUser.id},
+        followedUser: {id: followedUser}})
+    }).then(() => this.props.loadCurrentUser());
 
   addPost = event => {
     event.preventDefault();
@@ -66,7 +100,11 @@ class UserPage extends React.Component {
             </Link>
           </div>
           <div className="following shadow-button">
-            <FollowButton/>
+            {this.props.currentUser.followedUsers.find(follow =>
+            follow.followedUser.id === this.props.user.id)?
+              <UnffollowButton unfollow={this.unfollow} followedUser={this.props.user.id}/> :
+              <FollowButton follow={this.follow} followedUser={this.props.user.id}/>
+            }
           </div>
           <div className="create-post white-background">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
@@ -89,7 +127,8 @@ class UserPage extends React.Component {
             <Route path='/:username/info' component={() =>
               <UserInfo username={this.props.match.params.username}
                 currentUser={this.props.currentUser}
-                loadCurrentUser={this.props.loadCurrentUser}/>}/>
+                loadCurrentUser={this.props.loadCurrentUser}
+                        follow={this.follow} unfollow={this.unfollow}/>}/>
           </Switch>
         </div>
       </Fragment>

@@ -30,10 +30,10 @@
     font-weight: 700;
     text-align: center;
     cursor: pointer;
-  }
 
-  &__name:hover {
-    color: #4591fb;
+    &:hover {
+      color: #4591fb;
+    }
   }
 
   &__location {

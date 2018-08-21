@@ -31,13 +31,17 @@ class UserInfo extends React.Component {
               loadUsers={this.props.loadFollowedUsers}
               users={this.props.followed}
               currentUser={this.props.currentUser}
-              loadCurrentUser={this.props.loadCurrentUser}/>}/>
+              loadCurrentUser={this.props.loadCurrentUser}
+                            follow={this.props.follow}
+                            unfollow={this.props.unfollow}/>}/>
           <Route exact path='/:username/info/following' component={() =>
             <UsersContainer username={this.props.username}
               loadUsers={this.props.loadFollowers}
               users={this.props.following}
               currentUser={this.props.currentUser}
-              loadCurrentUser={this.props.loadCurrentUser}/>}/>
+              loadCurrentUser={this.props.loadCurrentUser}
+                            follow={this.props.follow}
+                            unfollow={this.props.unfollow}/>}/>
           <Route exact path='/:username/info/liked' component={() =>
             <PostsContainer username={this.props.username}
               userPosts={this.props.likedPosts}

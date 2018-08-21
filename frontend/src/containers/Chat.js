@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react'
 import '../css/index.css'
-import avatar from '../img/header-panel/user-img.png'
 import send from '../img/chat/send.png'
 import emoji from '../img/chat/emoji.png'
 import attach from '../img/chat/attach.png'
-import {ID} from '../constants/hardcode'
 
 const Chat = props => {
   const addMessage = () => fetch('/api/messages/add',
@@ -15,7 +13,7 @@ const Chat = props => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({content: document.getElementById('messageInput').value,
-        sender: {id: ID},
+        sender: {id: props.currentUser.id},
         receiver: {id: props.chat.user2.username === props.user2
           ? props.chat.user2.id : props.chat.user1.id},
         chat: {id: props.chat.id}})

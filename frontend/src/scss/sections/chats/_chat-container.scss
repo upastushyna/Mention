@@ -1,5 +1,4 @@
 .message-container {
-  width: 358px;
   padding: 10px;
   border: 1px solid #e6ecf5;
 
@@ -7,8 +6,9 @@
     color: #515365;
     text-decoration: none;
   }
+
+  &:hover {
+    opacity: .7;
+  }
 }
 
-.message-container:hover {
-  opacity: .7;
-}
