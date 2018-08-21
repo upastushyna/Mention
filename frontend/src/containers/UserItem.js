@@ -12,9 +12,12 @@ const UserItem = props =>
       </div>
     </div>
     <div className="d-flex">
-      <FollowButton/>
-      <UnffollowButton/>
+      {props.currentUser.followedUsers.find(follow =>
+        follow.followedUser.id === props.user.id)?
+        <UnffollowButton unfollow={props.unfollow} followedUser={props.user.id}/> :
+        <FollowButton follow={props.follow} followedUser={props.user.id}/>
+      }
     </div>
-  </div>
+  </div>;
 
 export default UserItem
