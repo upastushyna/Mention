@@ -48,6 +48,7 @@
 .profile{
 
   &__nav {
+    display: none;
     list-style: none;
     position: absolute;
     top: 67px;
@@ -67,4 +68,19 @@
     font-weight: 500;
     text-decoration: none;
   }
-}  
+}
+
+
+.profile-card{
+  &__avatar{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+
+  &__username{
+    color: #fff;
+    font-size: 25px;
+    margin-left: 16px;
+  }
+}

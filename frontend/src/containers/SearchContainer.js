@@ -21,12 +21,12 @@ class SearchContainer extends React.Component {
   render () {
     return (
       <Fragment>
-        <form action="" className="search">
+        <form action="#" className="d-flex items-center">
           <input onKeyUp={() => this.setState({input: this.refs.searchInput.value})} id="searchInput"
-            ref="searchInput" type="text" className="search__input search__input--non-line"
-            placeholder="Search here people or pages..."/>
-          <Link to={'/search/' + this.state.input} onClick={() => this.onClick()}>
-            <input className="search__btn search__input--non-line" value="Search"/>
+            ref="searchInput" type="text" className="search__input"
+            placeholder="Search..."/>
+          <Link to={'/search/' + this.state.input} className="search__btn search__input--non-line" onClick={() => this.onClick()}>
+            Go!
           </Link>
         </form>
       </Fragment>
