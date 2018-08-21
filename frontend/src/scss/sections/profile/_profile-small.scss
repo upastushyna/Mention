@@ -42,3 +42,27 @@
     margin: 7px;
   }
 }
+
+.profile{
+
+  &__nav {
+    list-style: none;
+    position: absolute;
+    top: 67px;
+    right: 60px;
+    background-color: #fff;
+    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+  }
+
+  &__option{
+     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+     padding: 25px;
+  }
+
+  &__link{
+    color: #203152;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+}  

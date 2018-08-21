@@ -1,3 +1,8 @@
+.navigation,
+.header {
+  position: fixed;
+}
+
 .header {
   width: 100%;
   margin-bottom: 65px;
@@ -60,9 +65,9 @@
     color: #fff;
     font-weight: 700;
     cursor: pointer;
-  }
 
-  &__btn:hover {
-    color: #ff5e3a;
+    &:hover {
+      color: #ff5e3a;
+    }
   }
 }

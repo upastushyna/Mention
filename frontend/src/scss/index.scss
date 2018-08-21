@@ -1,15 +1,5 @@
-@import "config/reset";
-@import "modules/colors";
-@import "modules/content-placement";
-@import "sections/navigation";
-@import "sections/login";
-@import "sections/registration";
-@import "sections/chat";
-@import "sections/post";
-@import "sections/profile";
-@import "search/search-container";
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
-
-body {
-  background-color: #edf2f6;
-}
+@import "reset";
+@import "mixins";
+@import "base";
+@import "modules/modules";
+@import "sections/sections";
