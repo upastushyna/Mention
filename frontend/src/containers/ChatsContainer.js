@@ -4,13 +4,11 @@ import {Link} from 'react-router-dom'
 const ChatsContainer = props =>
   props.chats.map(chat =>
     <Fragment>
-      <Link className="message-container__link" to={chat.user1.username === props.username
-        ? '/messages/' + chat.user2.username : '/messages/' + chat.user1.username}>
-        <div className="message-container"
-          onClick={() => props.loadChat(chat.user1.username, chat.user2.username)}>
-          <div className="profile-small d-flex">
+      <Link className="chat-container" to={chat.user1.username === props.username
+        ? '/messages/' + chat.user2.username : '/messages/' + chat.user1.username} onClick={() => props.loadChat(chat.user1.username, chat.user2.username)}>
+          <div className="d-flex items-center">
             <img src={chat.user1.username === props.username
-              ? chat.user2.profile.avatarUrl : chat.user1.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+              ? chat.user2.profile.avatarUrl : chat.user1.profile.avatarUrl} alt="icon-search" className="profile-small__avatar"/>
             <div className="profile-small__signature">
               <h2 className="profile-small__username color-dark-grey">{chat.user1.username === props.username
                 ? chat.user2.username : chat.user1.username}</h2>
@@ -20,9 +18,9 @@ const ChatsContainer = props =>
               </span>
             </div>
           </div>
-          <p className="message-container__text">{chat.messages.length !== 0
-            ? chat.messages[chat.messages.length - 1].content.substring(0, 41) : ''}</p>
-        </div>
+          <p className="chat-container__text">{chat.messages.length !== 0
+            ? chat.messages[chat.messages.length - 1].content.substring(0, 35) : ''}</p>
+      
       </Link>
     </Fragment>
   )

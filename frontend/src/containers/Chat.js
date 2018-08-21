@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react'
 import '../css/index.css'
 import send from '../img/chat/send.png'
-import emoji from '../img/chat/emoji.png'
-import attach from '../img/chat/attach.png'
 
 const Chat = props => {
   const addMessage = () => fetch('/api/messages/add',
@@ -27,54 +25,50 @@ const Chat = props => {
   }
 
   return <Fragment>
-    <div className="messages-container__header white-background">
-      <div className="profile-small d-flex">
+    <div className="messages-container__header">
+      <div className="d-flex items-center">
         <img src={props.chat.user2.username === props.user2
           ? props.chat.user2.profile.avatarUrl
           : props.chat.user1.profile.avatarUrl}
-        alt="" className="profile-small__avatar"/>
+        alt="user-photo" className="profile-small__avatar"/>
         <div className="profile-small__signature">
-          <h2 className="profile-small__username color-dark-grey">{props.user2}</h2>
+          <h2 className="profile-small__username">{props.user2}</h2>
           <span className="profile-small__alias">Online</span>
         </div>
       </div>
     </div>
-    <div className="messages-container__body white-background">
+    <div className="messages-container__body">
+      <div className="flex-column">
       {props.chat.messages.map(message =>
         message.sender.username === props.user2
-          ? <div className="message-body">
-            <div className="clear" />
-            <div className="message-send d-flex items-center">
+          ?        
+            <div className="message message_sent">
               <img src={props.chat.user2.username === props.user2
                 ? props.chat.user2.profile.avatarUrl
                 : props.chat.user1.profile.avatarUrl} alt="" className="profile-small__avatar"/>
-              <p className="message-send__text">{message.content}</p>
-              <span className="message-send__time">{message.timestamp.substring(11, 19)}</span>
+              <p className="message__text message__text_sent">{message.content}</p>
+              <span className="message__time">{message.timestamp.substring(11, 19)}</span>
             </div>
-            {/* <span className="message-send__time">{message.timestamp.substring(0, 10)}</span> */}
-          </div>
-          : <div className="message-body">
-            <div className="clear" />
-            <div className="message-come d-flex items-center">
-              <span className="message-come__time">{message.timestamp.substring(11, 19)}</span>
-              <p className="message-come__text">{message.content}</p>
+            /* {<span className="message-send__time">{message.timestamp.substring(0, 10)}</span> }*/
+         
+          :       
+            <div className="message message_received">
+              <span className="message__time">{message.timestamp.substring(11, 19)}</span>
+              <p className="message__text message__text_received">{message.content}</p>
               <img src={props.chat.user2.username === props.user2
                 ? props.chat.user1.profile.avatarUrl
                 : props.chat.user2.profile.avatarUrl} alt="" className="profile-small__avatar"/>
             </div>
-          </div>
+         
       )}
       <div id="scroller" style={{ float: 'left', clear: 'both' }}>
       </div>
-    </div>
-    <div className="message-sender d-flex content-between white-background">
-      <textarea id="messageInput" className="message-sender__input"
-        placeholder="Type something & press enter" maxLength={1000}/>
-      <div className="message-sender_controller d-flex">
-        <img onClick={() => addMessage()} src={send} alt="" className="message-sender__button"/>
-        <img src={emoji} alt="" className="message-sender__emoji"/>
-        <img src={attach} alt="" className="message-sender__attach"/>
       </div>
+    </div>
+    <div className="message-sender">
+      <textarea id="messageInput" className="message-sender__input"
+        placeholder="Say hi to your friend :)" maxLength={1000}/>   
+        <img onClick={() => addMessage()} src={send} alt="icon-send-msg" className="message-sender__actions"/>
     </div>
   </Fragment>
 }
