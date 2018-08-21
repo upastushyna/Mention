@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react'
 import '../css/index.css'
 import send from '../img/chat/send.png'
-import emoji from '../img/chat/emoji.png'
-import attach from '../img/chat/attach.png'
 
 const Chat = props => {
   const addMessage = () => fetch('/api/messages/add',
@@ -28,13 +26,13 @@ const Chat = props => {
 
   return <Fragment>
     <div className="messages-container__header">
-      <div className="profile-small d-flex">
+      <div className="d-flex items-center">
         <img src={props.chat.user2.username === props.user2
           ? props.chat.user2.profile.avatarUrl
           : props.chat.user1.profile.avatarUrl}
         alt="user-photo" className="profile-small__avatar"/>
         <div className="profile-small__signature">
-          <h2 className="profile-small__username color-dark-grey">{props.user2}</h2>
+          <h2 className="profile-small__username">{props.user2}</h2>
           <span className="profile-small__alias">Online</span>
         </div>
       </div>
@@ -69,12 +67,8 @@ const Chat = props => {
     </div>
     <div className="message-sender">
       <textarea id="messageInput" className="message-sender__input"
-        placeholder="Say hi to your friend :)" maxLength={1000}/>
-      <div className="message-sender_controller d-flex">
+        placeholder="Say hi to your friend :)" maxLength={1000}/>   
         <img onClick={() => addMessage()} src={send} alt="icon-send-msg" className="message-sender__actions"/>
-        <img src={emoji} alt="icon-smile" className="message-sender__actions"/>
-        <img src={attach} alt="icon-attach" className="message-sender__actions"/>
-      </div>
     </div>
   </Fragment>
 }

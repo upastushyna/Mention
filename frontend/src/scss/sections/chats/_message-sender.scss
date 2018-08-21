@@ -1,13 +1,21 @@
 .message-sender {
+	height: 10%;
 	padding: 8px 20px;
-	border: 1px solid #e6ecf5;
+	border-top: 1px solid #f0f2f7;
+	border-left: 1px solid #f0f2f7;
 	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
   
 	&__input {
-	  width: 80%;
-	  border: 0;
-	  outline: none;
-	  resize: none;
+		@include clear-default-input-style();
+		width: 80%;
+		@include placeholder(){
+      color: #737d9b;
+      letter-spacing: 0.3px;
+      font-weight: 300;
+    }
 	}
   
 	&__actions {
