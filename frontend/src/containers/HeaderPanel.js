@@ -24,7 +24,7 @@ class HeaderPanel extends React.Component {
         <div className="container main-header-wrapper">
           <div className="d-flex items-center">       
               <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo} alt="logo-img"/>
-              <h2 className="main-header__title">mention</h2>            
+              <h2 className="main-header__title">ention</h2>            
               </Link>
             
             <SearchContainer/>

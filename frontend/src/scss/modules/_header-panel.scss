@@ -28,7 +28,6 @@
   &__logo-img{
     width: 67px;
     height: 100%;
-    margin-right: 16px;
   }
   &__title {
     color: #fff;
@@ -46,8 +45,7 @@
 .header-menu {
   display: flex;
   align-items: center; 
-  margin-right: 36px;
- 
+
   &__item{
     padding: 16px;
   }
