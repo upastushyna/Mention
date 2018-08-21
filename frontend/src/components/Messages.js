@@ -6,7 +6,7 @@ import ChatsContainer from '../containers/ChatsContainer'
 import {loadChats} from '../actions/chatsActions'
 import {connect} from 'react-redux'
 import Chat from '../containers/Chat'
-import search from '../img/search-icon.png'
+import search from '../img/search-icon.svg'
 
 class Messages extends React.Component {
   scrollToBottom = () => {
@@ -45,12 +45,9 @@ class Messages extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <div className="container d-flex">
-          <div className="chats__list">
-            <div className="chats__header white-background">
-              <h3 className="chats__title">Conversations</h3>
-            </div>
-            <div className="chats__search d-flex items-center content-between white-background">
+        <main className="container d-flex">
+          <section className="chats__list">
+            <div className="chats__search">
               <input id="chatInput" ref="chatInput"
                 type="text" className="chats__input" placeholder="Search"/>
               <img onClick={() => this.addChat()} src={search} alt="" className="chats__button"/>
@@ -59,7 +56,7 @@ class Messages extends React.Component {
               <ChatsContainer loadChat={this.props.loadMessages}
                 chats={this.props.chats} username={this.props.currentUser.username}/>
             </div>
-          </div>
+          </section>
           <div className="messages-container">
             <Switch>
               <Route path='/messages/:username' component={props =>
@@ -68,7 +65,7 @@ class Messages extends React.Component {
                   loadData={this.props.loadData} currentUser={this.props.currentUser}/>}/>
             </Switch>
           </div>
-        </div>
+        </main>
       </Fragment>
     )
   }

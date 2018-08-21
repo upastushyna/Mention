@@ -54,6 +54,12 @@ class HeaderPanel extends React.Component {
               <div className="profile-small__isActive"/>
               <span className="profile-small__arrow color-white">&#711;</span>
             </div>
+
+            <ul className="profile__nav">
+             <li className="profile__option"><a href="#" className="profile__link">Chats</a></li>
+             <li className="profile__option"><a href="#" className="profile__link">Option 1</a></li>
+             <li className="profile__option"><a href="#" className="profile__link">Option 2</a></li>
+            </ul>
           </div>
         </div>
         <div className="header__space" />

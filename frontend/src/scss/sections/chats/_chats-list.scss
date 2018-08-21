@@ -2,26 +2,31 @@
   &__list {
    width: 50%;
    margin: 0 auto; 
-  }
-  &__header {
-    padding: 15px;
-    border: 1px solid #e6ecf5;
-    font-family: 'Permanent Marker', cursive;
+   background-color: #fff;
+   @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
   }
 
   &__search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 20px;
     border: 1px solid #e6ecf5;
   }
 
   &__input {
-    width: 260px;
-    padding: 10px 20px;
-    border: 0;
-    border-radius: 4px;
-    outline: none;
-    background-color: #efeff0;
-    overflow: hidden;
+    @include clear-default-input-style();
+    width: 85%;
+    padding: 10px 20px;   
+    border-radius: 4px;   
+    background-color: #f0f2f7;
+    color: #0a1331;
+    font-size: 16px;
+    @include placeholder(){
+      color: #737d9b;
+      letter-spacing: 0.3px;
+      font-weight: 300;
+    }
   }
 
   &__button {
