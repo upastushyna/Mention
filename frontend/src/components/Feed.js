@@ -61,10 +61,10 @@ class Feed extends React.Component {
 
 const mapStateToProps = state => ({
   feed: state.feed
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)
