@@ -1,6 +1,14 @@
 .chats {
+
+  &__view{
+    display: flex;
+    height: 80vh;
+  }
+
   &__list {
-   width: 50%;
+   width: 30%;
+   height: 80vh;
+   overflow-y: auto;
    margin: 0 auto; 
    background-color: #fff;
    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
@@ -11,13 +19,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    border: 1px solid #e6ecf5;
+    border-bottom: 1px solid #f0f2f7;
   }
 
   &__input {
     @include clear-default-input-style();
     width: 85%;
-    padding: 10px 20px;   
+    padding: 10px 20px; 
+    margin-right: 8px;  
     border-radius: 4px;   
     background-color: #f0f2f7;
     color: #0a1331;
@@ -33,5 +42,21 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
+  }
+}
+
+.chat-container {
+  display: block;
+  padding: 20px;
+  border-bottom: 1px solid #f0f2f7; 
+  color: #515365;
+  text-decoration: none;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &__text{
+    margin: 8px;
   }
 }

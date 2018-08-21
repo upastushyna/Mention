@@ -1,0 +1,40 @@
+.message {
+ display: flex;
+ align-items: center;
+ margin-bottom: 20px;
+
+ &_sent {
+  align-self: flex-start;
+  justify-content: flex-start;
+ }
+
+ &_received {
+  align-self: flex-end;
+  justify-content: flex-end;
+ }
+
+ &__text {
+  max-width: 500px;
+  word-wrap: break-word;
+  padding: 16px;
+  border-radius: 15px;
+  font-size: 15px;
+  line-height: 22px;
+  margin: 0 16px;
+
+  &_sent {
+   background-color: #f1f1f1;
+   color: #203152;
+  }
+
+  &_received {
+   background-color: #3a5eff;
+   color: #fff;
+  }
+ }
+
+ &__time{
+	 font-size: 12px;
+	 color: #a1a8bd;
+ }
+}

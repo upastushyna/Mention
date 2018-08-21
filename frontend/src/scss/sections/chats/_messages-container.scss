@@ -1,16 +1,19 @@
 .messages-container {
   position: relative;
   width: 70%;
+  height: 100%;
+  background-color: #fff;
+  border: 1px solid #f0f2f7;
 
   &__header {
+    height: 10%;
     padding: 20px;
-    border: 1px solid #e6ecf5;
+    border-bottom: 1px solid #f0f2f7;  
   }
 
   &__body {
-    height: 400px;
+    height: 80%;
     padding: 20px;
-    border: 1px solid #e6ecf5;
     overflow-y: scroll;
 
     &::-webkit-scrollbar{
