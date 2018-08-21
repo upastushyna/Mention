@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 
 const UnffollowButton = props => {
   return <Fragment>
-    <div className="unfollow-button left-margin">
-      <span className="unfollow-button__text">Follow</span>
+    <div onClick={() => props.unfollow()} className="unfollow-button left-margin">
+      <span className="unfollow-button__text">Unfollow</span>
     </div>
   </Fragment>
 }

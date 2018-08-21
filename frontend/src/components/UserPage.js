@@ -12,6 +12,7 @@ import info from '../img/info-icon.png'
 import posts from '../img/posts-icon.png'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import FollowButton from '../containers/FollowButton'
+import UnffollowButton from "../containers/UnffollowButton";
 
 class UserPage extends React.Component {
   componentWillMount () {
@@ -25,6 +26,30 @@ class UserPage extends React.Component {
       this.props.loadCurrentUser()
     }
   }
+
+  follow = () => fetch('/api/follow/add',
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        follower: {id: this.props.currentUser.id},
+        followedUser: {id: this.props.user.id}})
+    }).then(() => this.props.loadCurrentUser());
+
+  unfollow = () => fetch('/api/follow/delete',
+    {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        follower: {id: this.props.currentUser.id},
+        followedUser: {id: this.props.user.id}})
+    }).then(() => this.props.loadCurrentUser());
 
   addPost = event => {
     event.preventDefault();
@@ -66,7 +91,11 @@ class UserPage extends React.Component {
             </Link>
           </div>
           <div className="following shadow-button">
-            <FollowButton/>
+            {this.props.currentUser.followedUsers.find(follow =>
+            follow.followedUser.id === this.props.user.id)?
+              <UnffollowButton unfollow={this.unfollow}/> :
+              <FollowButton follow={this.follow}/>
+            }
           </div>
           <div className="create-post white-background">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
