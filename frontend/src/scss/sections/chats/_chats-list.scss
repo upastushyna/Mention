@@ -25,8 +25,8 @@
   &__input {
     @include clear-default-input-style();
     width: 85%;
-    padding: 10px 20px; 
-    margin-right: 8px;  
+    padding: 10px 20px;
+    margin-right: 8px;
     border-radius: 4px;   
     background-color: #f0f2f7;
     color: #0a1331;
@@ -48,7 +48,7 @@
 .chat-container {
   display: block;
   padding: 20px;
-  border-bottom: 1px solid #f0f2f7; 
+  border-bottom: 1px solid #f0f2f7;
   color: #515365;
   text-decoration: none;
 

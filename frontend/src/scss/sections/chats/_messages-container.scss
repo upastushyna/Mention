@@ -1,27 +1,25 @@
 .messages-container {
-  position: relative;
-  width: 70%;
-  height: 100%;
-  background-color: #fff;
-  border: 1px solid #f0f2f7;
-
-  &__header {
-    height: 10%;
-    padding: 20px;
-    border-bottom: 1px solid #f0f2f7;  
+	position: relative;
+	width: 70%;
+	background-color: #fff;
+  
+	&__header {
+	  padding: 20px;
+	  border-bottom: 1px solid #f0f2f7;
+	}
+  
+	&__body {
+	  height: 400px;
+	  padding: 20px;
+	  border: 1px solid #f0f2f7;
+	  overflow-y: scroll;
+  
+	  &::-webkit-scrollbar{
+		width: 5px;
+		background-color: #f0f2f7;
+	  } 
+	  &::-webkit-scrollbar-thumb{
+		background-color: #a1a8bd;
+	  }
+	}
   }
-
-  &__body {
-    height: 80%;
-    padding: 20px;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar{
-      width: 5px;
-      background-color: #f0f2f7;
-    } 
-    &::-webkit-scrollbar-thumb{
-      background-color: #a1a8bd;
-    }
-  }
-}

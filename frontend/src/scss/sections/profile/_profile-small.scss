@@ -7,17 +7,15 @@
   }
 
   &__avatar {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
   }
 
   &__username {
     display: block;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 700;
-    color: #0a1331;
-    line-height: 30px;
   }
 
   &__isActive {
@@ -38,7 +36,7 @@
   &__alias {
     font-size: 12px;
     font-weight: 500;
-    color: #a1a8bd;
+    color: #9a9fbf;
   }
 
   &__signature {
