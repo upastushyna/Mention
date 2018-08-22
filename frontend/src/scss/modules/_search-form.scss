@@ -1,7 +1,7 @@
 .search {
 	&__input {
       @include clear-default-input-style();
-	  padding: 16px 0;
+	  padding: 8px 0;
 	  background-color: transparent;
 	  border-bottom: 2px solid #9cbfff;
 	  color: #888da8;
@@ -15,20 +15,12 @@
 }
   
 	&__btn {
-      padding: 12px;
-	  background-color: #fff;
-	  color: #3a5eff;
-	  font-weight: 700;
-	  margin-left: 20px;
-	  transition: color 1s;
-	  text-decoration: none;
-	  border-radius: 100px;
-	  min-width: 128px;
-	  text-align: center;
-	  @include box-shadow(0 10px 12px 0 rgba(58, 94, 255, 0.08));
+		text-decoration: none;
+		margin-left: 16px;
+	  width: 20px;
   
-	  &:hover {
-		color: #ff5e3a;
-	  }
+	 img {
+		 width: 100%;
+	 }
 	}
   }

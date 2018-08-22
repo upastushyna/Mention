@@ -4,6 +4,8 @@ import logo from '../img/header-panel/logo.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
 import avatar from '../img/header-panel/user-img.png'
+import arrow from '../img/white-down-arrow.png'
+import feed from '../img/header-panel/icon-feed.png'
 import SearchContainer from './SearchContainer'
 
 class HeaderPanel extends React.Component {
@@ -38,7 +40,12 @@ class HeaderPanel extends React.Component {
                 </li>
                 <li className="header-menu__item">
                   <Link to="/">
-                    <img src={notification} alt="icon-notify" className="header-menu__icon"/>
+                    <img src={notification} alt="notify" className="header-menu__icon"/>
+                  </Link>
+                </li>
+                <li className="header-menu__item">
+                  <Link to="/">
+                    <img src={feed} alt="feed" className="header-menu__icon"/>
                   </Link>
                 </li>
               </ul>
@@ -49,7 +56,8 @@ class HeaderPanel extends React.Component {
                 <h2 className="profile-card__username">
                   {this.props.currentUser.username}
                 </h2>
-              <span className="profile-small__arrow">&#711;</span>
+                <img src={arrow} alt="icon-arrow" className="profile-small__arrow"/>
+           
             </div>
 
             <ul className="profile__nav">

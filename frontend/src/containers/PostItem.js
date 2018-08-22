@@ -46,11 +46,8 @@ const PostItem = props => {
           </div>
         </div>
         <div className="post__more-icon">
-          <img src={more} alt="" className="post__more-img main-item" tabindex="1"/>
-          <ul className="sub-menu">
-            <li className="sub-menu__item"><span>Delete post</span></li>
-            <li className="sub-menu__item"><span>Edit post</span></li>
-          </ul>
+          <img src={more} alt="actions" className="post__more-img main-item" tabindex="1"/>
+          <div className="post__action">Delete post</div>
         </div>
       </div>
       <p className="post__body">
