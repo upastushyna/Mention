@@ -6,15 +6,13 @@
 .header {
   width: 100%;
   margin-bottom: 65px;
-  background-color: #494c62;
-  font-family: Roboto, 'sans-serif';
+  background-color: #3a5eff;
   z-index: 999;
 
   &__title {
     padding: 24px 50px;
     color: #fff;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 18px;
+    font-size: 30px;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -36,7 +34,7 @@
 .logo {
   width: 67px;
   height: 67px;
-  background-color: #4591fb;
+  background-color: #3a5eff;
 
   &__img {
     width: 40px;
