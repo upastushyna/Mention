@@ -3,9 +3,9 @@ import UnffollowButton from './UnffollowButton'
 import FollowButton from './FollowButton'
 
 const UserItem = props =>
-  <div className="follow-container d-flex content-between items-center">
-    <div className="profile-small d-flex">
-      <img src={props.user.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+  <div className="follow-container">
+    <div className="d-flex items-center">
+      <img src={props.user.profile.avatarUrl} alt="avatar" className="profile-small__avatar"/>
       <div className="profile-small__signature">
         <h2 className="profile-small__username color-dark-grey">{props.user.username}</h2>
         <span className="profile-small__alias">developer</span>

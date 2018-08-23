@@ -54,7 +54,7 @@
     display: none;
     position: absolute;
     min-width: 128px;
-    border: 1px solid #f0f2f7;
+    border: 1px solid $border-color;
     border-radius: 5px;
     background-color: #fff;
     @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
@@ -62,7 +62,7 @@
     color: #0a1331;
     cursor: pointer;
     &:hover {
-      background-color: #f0f2f7;
+      background-color: $border-color;
     }
   }
 }

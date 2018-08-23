@@ -1,9 +1,12 @@
 .info-controller {
-  width: 380px;
-  margin: 25px auto;
+ width: 80%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 25px auto;
 
   &__link {
-    margin-right: 10px;
+    margin-right: 16px;
     padding: 10px 20px;
     border: 1px solid #4591fb;
     border-top-right-radius: 15px;

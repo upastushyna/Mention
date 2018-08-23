@@ -11,7 +11,7 @@
     @include clear-default-input-style();
     width: 80%;
     padding: 7px;
-    border: 1px solid #f0f2f7;
+    border: 1px solid $border-color;
     border-radius: 5px;
     @include placeholder(){
       font-size: 15px;
@@ -27,7 +27,7 @@
     padding: 14px;
     font-size: 14px;
     border-radius: 5px;
-    background-color: #3a5eff;
+    background-color: $main-color;
     color: #fff;
     font-weight: 700;
     cursor: pointer;

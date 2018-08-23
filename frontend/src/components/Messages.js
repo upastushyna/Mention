@@ -45,7 +45,9 @@ class Messages extends React.Component {
     return (
       <Fragment>
         <Navigation/>
+        <div className="chats__header">Go back</div>
         <main className="container chats__view">
+       
           <section className="chats__list">
             <div className="chats__search">
               <input id="chatInput" ref="chatInput"
