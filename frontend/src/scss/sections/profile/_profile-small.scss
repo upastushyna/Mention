@@ -16,7 +16,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 700;
-    color: #0a1331;
+    color: $black-text-color;
   }
 
   &__isActive {
@@ -36,8 +36,7 @@
 
   &__alias {
     font-size: 12px;
-    font-weight: 500;
-    color: #9a9fbf;
+    color: #a1a8bd;
   }
 
   &__signature {

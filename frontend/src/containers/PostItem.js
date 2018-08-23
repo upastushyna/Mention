@@ -31,11 +31,11 @@ const PostItem = props => {
         </div>
       </div>
       : ''}
-    <div className="post white-background">
-      <div className="post__header d-flex content-between items-center">
-        <div className="profile-small pointer d-flex">
+    <div className="post">
+      <div className="post__header">
+        <div className="profile-small pointer d-flex items-center">
           <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
-            : props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+            : props.post.author.profile.avatarUrl} alt="avatar" className="profile-small__avatar"/>
           <div className="profile-small__signature">
             <h2 className="profile-small__username color-dark-grey">{props.post.parent
               ? props.post.parent.author.username : props.post.author.username}</h2>
@@ -44,26 +44,24 @@ const PostItem = props => {
                 : props.post.timestamp.slice(0, 19).replace('T', ' ')}
             </span>
           </div>
-        </div>
-        <div className="post__more-icon">
-          <img src={more} alt="actions" className="post__more-img main-item" tabindex="1"/>
+        </div>    
+          <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
           <div className="post__action">Delete post</div>
-        </div>
       </div>
       <p className="post__body">
         {props.post.parent ? props.post.parent.body : props.post.body}
       </p>
       {props.post.parent ? props.post.parent.mediaFileUrl
-        ? <img className="post__img" src={props.post.parent.mediaFileUrl}/> : '' : props.post.mediaFileUrl
-        ? <img className="post__img" src={props.post.mediaFileUrl}/> : ''}
+        ? <img className="post__img" alt="like" src={props.post.parent.mediaFileUrl}/> : '' : props.post.mediaFileUrl
+        ? <img className="post__img" alt="like-active" src={props.post.mediaFileUrl}/> : ''}
       <div className="post__footer d-flex content-between">
         <PostLikeItem loadData={props.loadData} postId={props.post.id}
           likes={props.post.likes} username={props.username}
           currentUser={props.currentUser}/>
         <div className="post__comment-icon d-flex items-center">
-          <img src={comment} alt="" className="post__comment-img"/>
+          <img src={comment} alt="comment" className="post__comment-img"/>
           <span className="post__comment-number">{props.post.comments.length}</span>
-          <img onClick={() => rePost()} src={forward} alt="" className="post__forward-img"/>
+          <img onClick={() => rePost()} src={forward} alt="repost" className="post__forward-img"/>
           <span className="post__forward-number">{props.post.children.length}</span>
         </div>
       </div>

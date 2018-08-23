@@ -1,22 +1,21 @@
 .user-navigation {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 48px;
 
-  &__info,
-  &__posts {
+  &__links {
     position: absolute;
-    bottom: 14%;
-    left: 23%;
-  }
-
-  &__posts {
-    left: 28%;
+    bottom: 25%;
+    left: 25%;
   }
 
   &__icon {
     width: 40px;
     padding: 4px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: $main-color;
   }
 
   &__hover {

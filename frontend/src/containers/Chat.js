@@ -30,7 +30,7 @@ const Chat = props => {
         <img src={props.chat.user2.username === props.user2
           ? props.chat.user2.profile.avatarUrl
           : props.chat.user1.profile.avatarUrl}
-        alt="user-photo" className="profile-small__avatar"/>
+        alt="avatar" className="profile-small__avatar"/>
         <div className="profile-small__signature">
           <h2 className="profile-small__username">{props.user2}</h2>
           <span className="profile-small__alias">Online</span>
@@ -45,7 +45,7 @@ const Chat = props => {
             <div className="message message_sent">
               <img src={props.chat.user2.username === props.user2
                 ? props.chat.user2.profile.avatarUrl
-                : props.chat.user1.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+                : props.chat.user1.profile.avatarUrl} alt="avatar" className="profile-small__avatar"/>
               <p className="message__text message__text_sent">{message.content}</p>
               <span className="message__time">{message.timestamp.substring(11, 19)}</span>
             </div>
@@ -57,7 +57,7 @@ const Chat = props => {
               <p className="message__text message__text_received">{message.content}</p>
               <img src={props.chat.user2.username === props.user2
                 ? props.chat.user1.profile.avatarUrl
-                : props.chat.user2.profile.avatarUrl} alt="" className="profile-small__avatar"/>
+                : props.chat.user2.profile.avatarUrl} alt="avatar" className="profile-small__avatar"/>
             </div>
          
       )}

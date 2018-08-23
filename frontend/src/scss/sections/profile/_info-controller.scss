@@ -8,16 +8,17 @@
   &__link {
     margin-right: 16px;
     padding: 10px 20px;
-    border: 1px solid #4591fb;
+    border: 1px solid $main-color;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    background-color: #4591fb;
+    background-color: $main-color;
     font-weight: 700;
     text-decoration: none;
+    color: #fff;
 
     &:hover {
       background-color: #fff;
-      color: #4591fb;
+      color: $main-color;
     }
   } 
 }

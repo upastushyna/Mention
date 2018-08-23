@@ -12,7 +12,7 @@
    overflow-y: auto;
    margin: 0 auto; 
    background-color: #fff;
-   @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+   border: 1px solid $border-color;
   }
 
   &__search {
@@ -30,7 +30,7 @@
     margin-right: 8px;
     border-radius: 4px;   
     background-color: $border-color;
-    color: #0a1331;
+    color: $black-text-color;
     font-size: 16px;
     @include placeholder(){
       color: #737d9b;

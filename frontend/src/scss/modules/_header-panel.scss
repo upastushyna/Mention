@@ -20,7 +20,7 @@
    display: flex;
    align-items: center;
    text-decoration: none;
-   margin-right: 16px;
+   margin-right: 24px;
   }
 
   &__logo-img{
@@ -45,11 +45,29 @@
   align-items: center;
 
   &__item{
-    padding: 16px;
+   margin-right: 24px;
+  }
+
+  &__link{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+    line-height: 25px;
+
+    &:hover{
+      text-decoration: underline;
+    }
   }
 
   &__icon{
-    width: 40px;
+    width: 25px;
+    margin-right: 8px;
+
+    &_small{
+      width: 20px;
+    }
   }
 }
 

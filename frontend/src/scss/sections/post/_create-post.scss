@@ -10,13 +10,13 @@
   &__input {
     @include clear-default-input-style();
     width: 80%;
-    padding: 7px;
+    padding: 16px 7px;
     border: 1px solid $border-color;
     border-radius: 5px;
-    @include placeholder(){
+    @include placeholder(){ 
       font-size: 15px;
       color: #737d9b;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
       font-weight: 300;
       }  
   }
@@ -37,8 +37,26 @@
     }
   }
 }
+.upload-file{
+  display: flex;
+  align-items: flex-end;
+  font-size: 12px;
+  line-height: 20px;
+  color: #a1a8bd;
+  margin-top: 16px;
+  height: 25px;
+  position: relative;
 
-.upload {
-  margin-top: 10px;
-  outline: none;
+  &__icon{
+    width: 25px;
+    height: 25px;
+  }
+
+  input{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+  }
+   
 }
+

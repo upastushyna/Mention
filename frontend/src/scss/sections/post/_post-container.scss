@@ -33,9 +33,22 @@
     margin-left: 10px;
   }
 
+  &__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 16px;
+  }
+
   &__body {
     margin: 25px 0;
     text-align: justify;
+    color: $black-text-color;
+    font-size: 18px;
+    line-height: 25px;
+    max-width: 100%;
+    word-wrap: break-word;
   }
 
   &__img {
@@ -50,16 +63,25 @@
     border-top: 1px solid #e6ecf5;
   }
 
+  &__action-img {
+    width: 30px;
+    height: 30px;
+    outline: none;
+    cursor: pointer;
+  }
+
   &__action{
     display: none;
     position: absolute;
+    right: 0;
+    top: 30%;
     min-width: 128px;
     border: 1px solid $border-color;
     border-radius: 5px;
     background-color: #fff;
     @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
     padding: 16px;
-    color: #0a1331;
+    color: $black-text-color;
     cursor: pointer;
     &:hover {
       background-color: $border-color;
@@ -67,8 +89,8 @@
   }
 }
 
-.main-item:focus ~ .post__action,
-.main-item:active ~ .post__action,
+.post__action-img:focus ~ .post__action,
+.post__action-img:active ~ .post__action,
 .sub-menu:hover {
   display: block;
 }
