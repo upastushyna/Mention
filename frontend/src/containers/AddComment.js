@@ -21,6 +21,7 @@ const AddComment = props => {
       <div className="add-comment__form d-flex items-center">
         <img src={props.currentUser.profile.avatarUrl} alt="" className="add-comment__avatar"/>
         <textarea className="add-comment__input"
+                  onKeyPress={(e) => {(e.key === 'Enter' ?  addComment(): null)}}
           id={'commentInput' + props.postId} placeholder="Share your thoughts"
           maxLength={280}/>
       </div>

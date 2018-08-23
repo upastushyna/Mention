@@ -39,9 +39,12 @@ class Feed extends React.Component {
         <Navigation/>
         <div className="container">
           <div className="create-post">
-            <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
+            <form encType="multipart/form-data"
+                  onSubmit={event => this.addPost(event)}
+                  /*onKeyPress={(e) => {(e.key === 'Enter' ? event => this.addPost(event): null)}}*/>
               <div className="d-flex items-center">
                 <textarea className="create-post__input" id="postInput"
+                          onKeyPress={(e) => {(e.key === 'Enter' ? event => this.addPost(event): null)}}
                   placeholder="Share your thoughts" ref="postInput"
                   maxLength={280}/>
                 <button type="submit" className="create-post__button">Add post</button>
