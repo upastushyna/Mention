@@ -1,4 +1,4 @@
-export const calculateTimestamp = dateDB => {
+export const getDateFromDb = dateDB => {
   let year = dateDB.substr(0, 4)
   let month = dateDB.substr(5, 2)
   let day = dateDB.substr(8, 2)
