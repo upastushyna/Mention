@@ -45,11 +45,11 @@ class EditProfile extends React.Component {
           });
 
   render() {
-    if (!this.props.editProfile || !this.props.editProfile.birthDate) {
+    /*if (!this.props.editProfile || !this.props.editProfile.birthDate) {
       return "Loading..."
-    }
-    this.setState({startDate:moment(this.props.editProfile.birthDate)});
-
+    }*/
+    /*this.setState({startDate:moment(this.props.editProfile.birthDate)});
+*/
     return (
         <Fragment>
           <Navigation/>
@@ -75,8 +75,12 @@ class EditProfile extends React.Component {
                      {/*placeholder="BirthDay"/>*/}
             {/*</p>*/}
             <DatePicker
-                selected={this.state.startDate}
+                selected={moment(this.props.editProfile.birthDate)}
                 onChange={this.handleChange}
+                peekNextMonth
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
             />
             <p className="edit-profile-list">
               <input type="text" id="inputAvatarUrl" className="edit-profile_input"
