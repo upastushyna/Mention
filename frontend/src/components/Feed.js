@@ -38,9 +38,9 @@ class Feed extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
-          <div className="create-post white-background">
+          <div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex items-center content-between">
+              <div className="d-flex items-center">
                 <textarea className="create-post__input" id="postInput"
                   placeholder="Share your thoughts" ref="postInput"
                   maxLength={280}/>

@@ -7,7 +7,6 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   color: #888da8;
-  font-family: Roboto, 'sans-serif';
 
   &__avatar {
     width: 40px;
@@ -47,33 +46,29 @@
   }
 
   &__footer {
-    padding: 20px 0 0;
+    padding: 20px 0 0;    
     border-top: 1px solid #e6ecf5;
   }
-}
 
-.sub-menu {
-  display: none;
-  position: absolute;
-  width: 125px;
-  border: 1px solid #e6ecf5;
-  border-radius: 5px;
-  background-color: #fff;
-
-  &__item {
-    padding: 5px 10px;
-    border: 1px solid #e6ecf5;
-    color: black;
+  &__action{
+    display: none;
+    position: absolute;
+    min-width: 128px;
+    border: 1px solid #f0f2f7;
+    border-radius: 5px;
+    background-color: #fff;
+    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+    padding: 16px;
+    color: #0a1331;
     cursor: pointer;
-
     &:hover {
-      opacity: .7;
+      background-color: #f0f2f7;
     }
   }
 }
 
-.main-item:focus ~ .sub-menu,
-.main-item:active ~ .sub-menu,
+.main-item:focus ~ .post__action,
+.main-item:active ~ .post__action,
 .sub-menu:hover {
   display: block;
 }

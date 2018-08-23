@@ -4,6 +4,8 @@ import logo from '../img/header-panel/logo.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
 import avatar from '../img/header-panel/user-img.png'
+import arrow from '../img/white-down-arrow.png'
+import feed from '../img/header-panel/icon-feed.png'
 import SearchContainer from './SearchContainer'
 
 class HeaderPanel extends React.Component {
@@ -20,39 +22,42 @@ class HeaderPanel extends React.Component {
 
     return (
       <Fragment>
-        <div className="header d-flex content-between">
-          <div className="header__left d-flex">
-            <div className="logo">
-              <Link to="/" ><img className="logo__img" src={logo} alt=""/></Link>
-            </div>
-            <h2 className="header__title">mention</h2>
+        <div className="main-header">
+        <div className="container main-header-wrapper">
+          <div className="d-flex items-center">       
+              <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo} alt="logo-img"/>
+              <h2 className="main-header__title">ention</h2>            
+              </Link>
+            
             <SearchContainer/>
           </div>
-          <div className="header__right d-flex">
-            <div className="header__menu">
-              <ul className="header__list d-flex">
-                <li className="header__item">
+
+             <ul className="header-menu d-flex">
+                <li className="header-menu__item">
                   <Link to="/messages">
-                    <img src={chat} alt="" className="header__icon"/>
+                    <img src={chat} alt="icon-messages" className="header-menu__icon"/>
                   </Link>
                 </li>
-                <li className="header__item">
+                <li className="header-menu__item">
                   <Link to="/">
-                    <img src={notification} alt="" className="header__icon"/>
+                    <img src={notification} alt="notify" className="header-menu__icon"/>
+                  </Link>
+                </li>
+                <li className="header-menu__item">
+                  <Link to="/">
+                    <img src={feed} alt="feed" className="header-menu__icon"/>
                   </Link>
                 </li>
               </ul>
-            </div>
-            <div className="profile-small pointer d-flex profile-small--position">
-              <img src={this.props.currentUser.profile.avatarUrl} alt="" className="profile-small__avatar"/>
-              <div className="profile-small__signature">
-                <h2 className="profile-small__username color-white">
+          <div className="d-flex items-center">
+        
+            <div className="d-flex items-center">
+              <img src={this.props.currentUser.profile.avatarUrl} alt="user-photo" className="profile-card__avatar"/>          
+                <h2 className="profile-card__username">
                   {this.props.currentUser.username}
                 </h2>
-                <span className="profile-small__alias">DEVELOPER</span>
-              </div>
-              <div className="profile-small__isActive"/>
-              <span className="profile-small__arrow color-white">&#711;</span>
+                <img src={arrow} alt="icon-arrow" className="profile-small__arrow"/>
+           
             </div>
 
             <ul className="profile__nav">
@@ -62,7 +67,7 @@ class HeaderPanel extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="header__space" />
+        </div>
       </Fragment>
     )
   }
