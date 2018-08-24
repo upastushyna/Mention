@@ -1,6 +1,9 @@
 .follow-container {
-  width: 523px;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  margin: 16px auto;
   padding: 5px 5px 1px;
   border: 1px solid #e6ecf5;
   border-radius: 5px;

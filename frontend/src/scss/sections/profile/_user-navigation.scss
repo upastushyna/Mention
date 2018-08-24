@@ -1,25 +1,36 @@
 .user-navigation {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 48px;
 
-  &__info,
-  &__posts {
+  &__links {
     position: absolute;
-    bottom: 14%;
-    left: 23%;
-  }
-
-  &__posts {
-    left: 28%;
+    bottom: 25%;
+    left: 25%;
   }
 
   &__icon {
     width: 40px;
     padding: 4px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: $main-color;
   }
 
-  &__hover {
+  &__icon:hover + .user-nav-links__text {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.user-nav-links{
+   &__item {
+     margin-right: 16px;
+     position: relative;
+   }
+
+   &__text {
     position: absolute;
     left: -4px;
     padding: 5px 10px;
@@ -31,10 +42,6 @@
     text-transform: uppercase;
     opacity: 0;
     visibility: hidden;
-  }
+   }
 
-  &__icon:hover + &__hover {
-    opacity: 1;
-    visibility: visible;
-  }
 }

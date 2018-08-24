@@ -1,7 +1,8 @@
 .header-profile {
   position: relative;
   height: 520px;
-  font-family: Roboto, 'sans-serif';
+  width: 100%;
+  
 
   &__background {
     width: 100%;
@@ -13,7 +14,8 @@
   &__user {
     position: absolute;
     bottom: 8%;
-    left: 43%;
+    left: 50%;
+    transform: translateX(-50%);
     width: 170px;
   }
 
