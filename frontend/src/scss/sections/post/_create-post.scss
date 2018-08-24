@@ -13,12 +13,12 @@
     padding: 16px 7px;
     border: 1px solid $border-color;
     border-radius: 5px;
-    @include placeholder(){ 
+    @include placeholder(){
       font-size: 15px;
       color: #737d9b;
       letter-spacing: 0.5px;
       font-weight: 300;
-      }  
+      }
   }
 
   &__btn {
@@ -58,6 +58,6 @@
     position: absolute;
     left: 0;
   }
-   
+
 }
 

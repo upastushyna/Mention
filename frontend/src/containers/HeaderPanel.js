@@ -4,8 +4,6 @@ import logo from '../img/header-panel/logo.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
 import avatar from '../img/header-panel/user-img.png'
-import arrow from '../img/white-down-arrow.png'
-import feed from '../img/header-panel/icon-feed.png'
 import SearchContainer from './SearchContainer'
 
 class HeaderPanel extends React.Component {
@@ -24,11 +22,11 @@ class HeaderPanel extends React.Component {
       <Fragment>
         <div className="main-header">
         <div className="container main-header-wrapper">
-          <div className="d-flex items-center">       
+          <div className="d-flex items-center">
               <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo} alt="logo-img"/>
-              <h2 className="main-header__title">ention</h2>            
+              <h2 className="main-header__title">ention</h2>
               </Link>
-            
+
             <SearchContainer/>
           </div>
 
@@ -54,7 +52,7 @@ class HeaderPanel extends React.Component {
               </ul>
        <div className="d-flex items-center">
           <Link to={"/" + this.props.currentUser.username} className="d-flex items-center">
-          <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar"/>                   
+          <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar"/>
           </Link>
             <h2 className="profile-card__username">
                   {this.props.currentUser.username}
