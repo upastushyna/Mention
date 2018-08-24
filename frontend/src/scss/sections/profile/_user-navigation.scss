@@ -18,7 +18,19 @@
     background-color: $main-color;
   }
 
-  &__hover {
+  &__icon:hover + .user-nav-links__text {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.user-nav-links{
+   &__item {
+     margin-right: 16px;
+     position: relative;
+   }
+
+   &__text {
     position: absolute;
     left: -4px;
     padding: 5px 10px;
@@ -30,10 +42,6 @@
     text-transform: uppercase;
     opacity: 0;
     visibility: hidden;
-  }
+   }
 
-  &__icon:hover + &__hover {
-    opacity: 1;
-    visibility: visible;
-  }
 }

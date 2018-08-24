@@ -1,13 +1,10 @@
 .add-comment {
+  display: flex;
+  align-items: center;
   position: relative;
-  width: 523px;
-  margin: 0 auto;
   padding: 25px 25px 75px;
-  border: 1px solid #e6ecf5;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  color: #888da8;
-  font-family: Roboto, 'sans-serif';
+  border-top: 1px solid $border-color;
+  color: $black-text-color;
 
   &__avatar {
     max-width: 28px;

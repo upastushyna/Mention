@@ -59,7 +59,7 @@ class HeaderPanel extends React.Component {
             <h2 className="profile-card__username">
                   {this.props.currentUser.username}
             </h2>
-              <img src={arrow} alt="arrow" className="profile-small__arrow"/>
+              <img src={arrow} alt="arrow" className="profile-info__arrow"/>
               </div>
             <ul className="profile__nav">
              <li className="profile__option"><a href="#" className="profile__link">Chats</a></li>

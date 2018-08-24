@@ -20,11 +20,11 @@ const PostItem = props => {
   return <Fragment>
     {props.post.parent
       ? <div className="repost-header">
-        <div className="profile-small d-flex">
-          <img src={props.post.author.profile.avatarUrl} alt="" className="profile-small__avatar"/>
-          <div className="profile-small__signature">
-            <h2 className="profile-small__username color-white">{props.post.author.username}</h2>
-            <span className="profile-small__alias color-white">
+        <div className="profile-info">
+          <img src={props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
+          <div className="profile-info__signature">
+            <h2 className="profile-info__username color-white">{props.post.author.username}</h2>
+            <span className="profile-info__alias">
               {props.post.timestamp.slice(0, 19).replace('T', ' ')}
             </span>
           </div>
@@ -33,20 +33,22 @@ const PostItem = props => {
       : ''}
     <div className="post">
       <div className="post__header">
-        <div className="profile-small pointer d-flex items-center">
+        <div className="profile-info pointer d-flex items-center">
           <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
-            : props.post.author.profile.avatarUrl} alt="avatar" className="profile-small__avatar"/>
-          <div className="profile-small__signature">
-            <h2 className="profile-small__username color-dark-grey">{props.post.parent
+            : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
+          <div className="profile-info__signature">
+            <h2 className="profile-info__username">{props.post.parent
               ? props.post.parent.author.username : props.post.author.username}</h2>
-            <span className="profile-small__alias">
+            <span className="profile-info__alias">
               {props.post.parent ? props.post.parent.timestamp.slice(0, 19).replace('T', ' ')
                 : props.post.timestamp.slice(0, 19).replace('T', ' ')}
             </span>
           </div>
-        </div>    
+        </div> 
+        <div className="pos-relative">   
           <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
           <div className="post__action">Delete post</div>
+        </div>
       </div>
       <p className="post__body">
         {props.post.parent ? props.post.parent.body : props.post.body}
@@ -65,11 +67,12 @@ const PostItem = props => {
           <span className="post__forward-number">{props.post.children.length}</span>
         </div>
       </div>
-    </div>
-    <CommentContainer loadData={props.loadData} comments={props.post.comments}
+      <CommentContainer loadData={props.loadData} comments={props.post.comments}
       postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
     <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
       currentUser={props.currentUser}/>
+    </div>
+
   </Fragment>
 }
 

@@ -17,15 +17,16 @@ const AddComment = props => {
     .then(() => document.getElementById('commentInput' + props.postId).value = '')
 
   return <Fragment>
-    <div className="add-comment white-background">
-      <div className="add-comment__form d-flex items-center">
-        <img src={props.currentUser.profile.avatarUrl} alt="" className="add-comment__avatar"/>
-        <textarea className="add-comment__input"
-          id={'commentInput' + props.postId} placeholder="Share your thoughts"
+   
+      <div className="add-comment">
+        <img src={props.currentUser.profile.avatarUrl} alt="avatar" className="add-comment__avatar"/>
+        <textarea className="create-post__input"
+          id={'commentInput' + props.postId} placeholder="Add comment"
           maxLength={280}/>
+          <button onClick={() => addComment()} className="create-post__btn">Add</button>
       </div>
-      <button onClick={() => addComment()} className="add-comment__button color-white">Post Comment</button>
-    </div>
+    
+    
   </Fragment>
 }
 

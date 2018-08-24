@@ -94,11 +94,11 @@ class UserPage extends React.Component {
             <div className="user-navigation__links">
             <Link className="user-nav-links__item" to={'/' + this.props.match.params.username + '/info'}>
               <img src={info} alt="info" className="user-navigation__icon"/>
-              <h4 className="user-navigation__hover">info</h4>
+              <h4 className="user-nav-links__text">info</h4>
             </Link>
-            <Link className="user-navigation__posts" to={'/' + this.props.match.params.username}>
+            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username}>
               <img src={posts} alt="feed" className="user-navigation__icon"/>
-              <h4 className="user-navigation__hover">profile</h4>
+              <h4 className="user-nav-links__text">profile</h4>
             </Link>
             </div>
             <div className="following shadow-button">
@@ -116,7 +116,7 @@ class UserPage extends React.Component {
                 <textarea className="create-post__input" id="postInput"
                   placeholder="Share your thoughts" ref="postInput"
                   maxLength={280}/>
-                <button type="submit" className="create-post__button">Add post</button>
+                <button type="submit" className="create-post__btn">Add post</button>
               </div>
               <div className="upload-file">
               <img src={upload} alt="upload" className="upload-file__icon"/>
