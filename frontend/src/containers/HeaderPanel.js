@@ -4,6 +4,8 @@ import logo from '../img/header-panel/logo.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
 import avatar from '../img/header-panel/user-img.png'
+import feed from '../img/header-panel/icon-feed.png'
+import arrow from '../img/white-down-arrow.png'
 import SearchContainer from './SearchContainer'
 
 class HeaderPanel extends React.Component {
