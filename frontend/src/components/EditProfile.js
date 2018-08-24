@@ -1,50 +1,50 @@
-import React, {Fragment} from 'react'
-import {loadProfileById} from "../actions/editProfileAction";
-import {connect} from 'react-redux'
-import Navigation from "./Navigation";
-import DatePicker from "react-datepicker/es/index";
-import 'react-datepicker/dist/react-datepicker.css';
-import moment from "moment";
+import React, { Fragment } from 'react'
+import { loadProfileById } from '../actions/editProfileAction'
+import { connect } from 'react-redux'
+import Navigation from './Navigation'
+import DatePicker from 'react-datepicker/es/index'
+import 'react-datepicker/dist/react-datepicker.css'
+import moment from 'moment'
 
 class EditProfile extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      startDate: moment()
-    };
-    this.handleChange = this.handleChange.bind(this);
+      startDate: moment(this.props.editProfile.birthDate)
+    }
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(date) {
+  handleChange (date) {
     this.setState({
       startDate: date
-    });
+    })
   }
 
-  componentWillMount() {
-    this.props.loadProfileById(49);
+  componentWillMount () {
+    this.props.loadProfileById(49)
   }
 
   updateProfile = () =>
 
       fetch('/api/profiles/update',
           {
-            method: "PUT",
+            method: 'PUT',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              id: 49, firstName: document.getElementById("inputFirstName").value,
-              secondName: document.getElementById("inputSecondName").value,
-              address: document.getElementById("inputAddress").value,
+              id: 49, firstName: document.getElementById('inputFirstName').value,
+              secondName: document.getElementById('inputSecondName').value,
+              address: document.getElementById('inputAddress').value,
               birthDate: this.state.startDate,
-              avatarUrl: document.getElementById("inputAvatarUrl").value,
-              backgroundUrl: document.getElementById("inputBackgroundUrl").value
+              avatarUrl: document.getElementById('inputAvatarUrl').value,
+              backgroundUrl: document.getElementById('inputBackgroundUrl').value
             })
-          });
+          })
 
-  render() {
+  render () {
     /*if (!this.props.editProfile || !this.props.editProfile.birthDate) {
       return "Loading..."
     }*/
@@ -70,12 +70,12 @@ class EditProfile extends React.Component {
                      placeholder="Address"/>
             </p>
             {/*<p className="edit-profile-list">*/}
-              {/*<input type="text" id="inputBirthDate" className="edit-profile_input"*/}
-                     {/*defaultValue={this.props.editProfile.birthDate}*/}
-                     {/*placeholder="BirthDay"/>*/}
+            {/*<input type="text" id="inputBirthDate" className="edit-profile_input"*/}
+            {/*defaultValue={this.props.editProfile.birthDate}*/}
+            {/*placeholder="BirthDay"/>*/}
             {/*</p>*/}
             <DatePicker
-                selected={moment(this.props.editProfile.birthDate)}
+                selected={this.state.startDate}
                 onChange={this.handleChange}
                 peekNextMonth
                 showMonthDropdown
@@ -87,11 +87,29 @@ class EditProfile extends React.Component {
                      defaultValue={this.props.editProfile.avatarUrl}
                      placeholder="Avatar"/>
             </p>
+            {/*<p className="edit-profile-list">
+              <div id="editAvatar" className="editAvatar">
+                <input type="text" className="inputAvatarUrl" placeholder="Insert Avatar Url"/>
+                <img src={this.props.editProfile.avatarUrl} alt="avatar"/>
+                <input type="submit" onClick={this.submitAvatar} defaultValue="Change Avatar"/>
+              </div>
+              <input type="submit" id="buttonAvatarUrl" defaultValue="Edit Avatar"
+                     onClick={this.changeAvatar}/>
+            </p>*/}
             <p className="edit-profile-list">
               <input type="text" id="inputBackgroundUrl" className="edit-profile_input"
                      defaultValue={this.props.editProfile.backgroundUrl}
                      placeholder="Background"/>
             </p>
+            {/*<p className="edit-profile-list">
+              <div id="editBackground">
+                <input type="text" className="inputBackgroundUrl" placeholder="Insert Background Url"/>
+                <img src={this.props.editProfile.backgroundUrl} alt="background"/>
+                <input type="submit" onClick={this.submitBackground} defaultValue="Change Background"/>
+              </div>
+              <input type="submit" id="buttonBackgroundUrl" defaultValue="Edit Background"
+                     onClick={this.changeBackground}/>
+            </p>*/}
             <p className="edit-profile-list">
               <input type="submit" onClick={() => this.updateProfile()}
                      className="edit-profile_button" defaultValue="Edit"/>
@@ -101,14 +119,29 @@ class EditProfile extends React.Component {
     )
   }
 
+  submitBackground () {
+
+  }
+
+  submitAvatar () {
+
+  }
+
+  changeAvatar () {
+
+  }
+
+  changeBackground () {
+
+  }
 }
 
 const mapStateToProps = state => ({
   editProfile: state.editProfile
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadProfileById: id => dispatch(loadProfileById(id))
-});
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
