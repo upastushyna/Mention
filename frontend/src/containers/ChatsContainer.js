@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
-import {getDateFromDb} from '../js/chatdisplaytime'
+import {getDateFromDb} from '../js/timestamp.js'
 
 const ChatsContainer = props =>
   props.chats.map(chat =>

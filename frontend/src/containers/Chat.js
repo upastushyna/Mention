@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import '../css/index.css'
 import send from '../img/chat/send.png'
-import {getDateFromDb} from '../js/timestamp.js'
+import {getDateFromDb} from '../js/chatdisplaytime'
 
 const Chat = props => {
   const addMessage = () => fetch('/api/messages/add',
