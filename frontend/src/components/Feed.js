@@ -5,9 +5,15 @@ import {loadFeed} from '../actions/feedActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 
-const username = 'admin'
-const id = 1
 class Feed extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.props.history.listen((location, action) => {
+      this.props.loadData(this.props.currentUser.username);
+    });
+  }
+
   componentWillMount () {
     if (this.props.feed.length === 0) {
       this.props.loadData(this.props.currentUser.username)

@@ -15,10 +15,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
-public class SmartUserDetailsService implements UserDetailsService {
+/*@Configuration*/
+public class SmartUserDetailsService /*implements UserDetailsService*/ {
 
-  static Logger log = LoggerFactory.getLogger(SmartUserDetailsService.class);
+ /* static Logger log = LoggerFactory.getLogger(SmartUserDetailsService.class);
 
   @Autowired
   private UserRepository userRepository;
@@ -47,6 +47,6 @@ public class SmartUserDetailsService implements UserDetailsService {
       authorities.add(new SimpleGrantedAuthority(role));
     }
     return authorities;
-  }
+  }*/
 
 }

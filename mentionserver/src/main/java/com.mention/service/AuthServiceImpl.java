@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
+/*@Service*/
 public class AuthServiceImpl implements AuthService {
 
-  private UserRepository userRepository;
+  /*private UserRepository userRepository;
   static Logger log = LoggerFactory.getLogger(AuthServiceImpl.class);
 
   @Autowired
@@ -31,5 +31,5 @@ public class AuthServiceImpl implements AuthService {
     } else {
       return false;
     }
-  }
+  }*/
 }

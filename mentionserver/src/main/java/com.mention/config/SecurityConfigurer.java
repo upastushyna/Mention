@@ -8,11 +8,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration
-@EnableWebSecurity
-public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
+/*@Configuration
+@EnableWebSecurity*/
+public class SecurityConfigurer /*extends WebSecurityConfigurerAdapter*/ {
 
-  @Autowired
+  /*@Autowired
   SmartUserDetailsService userDetailsService;
 
   @Autowired
@@ -20,11 +20,11 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    /*
+    *//*
         auth
             .inMemoryAuthentication()
             .withUser("u1").password(specificEncoder.encode("p1")).roles("USER");
-    */
+    *//*
     auth
         .userDetailsService(userDetailsService)
         .passwordEncoder(specificEncoder);
@@ -44,12 +44,12 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         .antMatchers("/xu*", "/root").permitAll()
         .antMatchers("/*").permitAll()
         .antMatchers("/xs*").authenticated()
-        /*
+        *//*
                 .antMatchers("/login/**").anonymous() // or .permitAll()
                 .antMatchers("/reg*").permitAll()
                 .antMatchers("/ul/**").permitAll()
                 .antMatchers("/l/**","/").authenticated()
-        */
+        *//*
         .and()
 
         .formLogin()
@@ -67,6 +67,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
           .permitAll()
           .and()
     ;
-  }
+  }*/
 
 }

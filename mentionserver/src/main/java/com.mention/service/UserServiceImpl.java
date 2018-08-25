@@ -6,8 +6,11 @@ import com.mention.dto.UserDtoIdRq;
 import com.mention.dto.UserDtoRq;
 import com.mention.repository.UserRepository;
 import com.mention.model.User;
+import com.mention.security.UserPrincipal;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,9 +55,15 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public CurrentUserDtoRs getCurrentUser() {
-    User user = userRepository.findByUsername("yarik").get();
-    CurrentUserDtoRs currentUser = modelMapper.map(user, CurrentUserDtoRs.class);
-    return currentUser;
+    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
+    Optional<User> user = userRepository.findById(userPrincipal.getId());
+    if (user.isPresent()) {
+      return modelMapper.map(user.get(), CurrentUserDtoRs.class);
+    }
+    throw new UsernameNotFoundException("User not found!");
   }
 
   @Override

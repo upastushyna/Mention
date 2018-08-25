@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class XLoginController {
 
-  @RequestMapping("/login")
+  /*@RequestMapping("/login")
   String login() {
     return "login_.html";
-  }
+  }*/
 }
