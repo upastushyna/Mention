@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import more from '../img/post-form/more-icon.png'
 import CommentLikeItem from './CommentLikeItem'
+import {getDateFromDb} from '../js/timestamp.js'
 
 const CommentContainer = props =>
   props.comments.map(comment =>
@@ -11,7 +12,7 @@ const CommentContainer = props =>
             <img src={comment.commentator.profile.avatarUrl} alt="" className="profile-info__avatar"/>
             <div className="profile-info__signature">
               <h2 className="profile-info__username">{comment.commentator.username}</h2>
-              <span className="profile-info__alias">{comment.timestamp}</span>
+              <span className="profile-info__alias">{getDateFromDb(comment.timestamp)}</span>
             </div>
           </div>
 

@@ -5,6 +5,7 @@ import forward from '../img/post-form/forward-icon.png'
 import CommentContainer from './CommentContainer'
 import PostLikeItem from './PostLikeItem'
 import AddComment from './AddComment'
+import {getDateFromDb} from '../js/timestamp.js'
 
 const PostItem = props => {
   const rePost = () => fetch('/api/posts/repost',
@@ -15,7 +16,7 @@ const PostItem = props => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({author: {id: props.currentUser.id}, parent: {id: props.post.parent ? props.post.parent.id : props.post.id}})
-    }).then(() => props.loadData(props.username));
+    }).then(() => props.loadData(props.username))
 
   return <Fragment>
     {props.post.parent
@@ -25,7 +26,7 @@ const PostItem = props => {
           <div className="profile-info__signature">
             <h2 className="profile-info__username color-white">{props.post.author.username}</h2>
             <span className="profile-info__alias">
-              {props.post.timestamp.slice(0, 19).replace('T', ' ')}
+              { getDateFromDb(props.post.timestamp)}
             </span>
           </div>
         </div>
@@ -40,12 +41,12 @@ const PostItem = props => {
             <h2 className="profile-info__username">{props.post.parent
               ? props.post.parent.author.username : props.post.author.username}</h2>
             <span className="profile-info__alias">
-              {props.post.parent ? props.post.parent.timestamp.slice(0, 19).replace('T', ' ')
-                : props.post.timestamp.slice(0, 19).replace('T', ' ')}
+              {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
+                  : getDateFromDb(props.post.timestamp)}
             </span>
           </div>
-        </div> 
-        <div className="pos-relative">   
+        </div>
+        <div className="pos-relative">
           <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
           <div className="post__action">Delete post</div>
         </div>
