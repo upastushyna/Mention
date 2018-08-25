@@ -20,6 +20,8 @@ class UserPage extends React.Component {
     super(props);
 
     this.props.history.listen((location, action) => {
+      console.log(this.props.history);
+      this.props.loadUser(this.props.match.params.username);
       this.props.loadData(this.props.match.params.username);
     });
   }

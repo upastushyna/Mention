@@ -1,12 +1,15 @@
 package com.mention.controller;
 
-import com.mention.dto.LoginDetailsRq;
-import com.mention.dto.LoginDetailsRs;
-import com.mention.service.AuthService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mention.payload.JwtAuthenticationResponse;
+import com.mention.payload.LoginRequest;
+import com.mention.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,24 +18,37 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-//@RequestMapping("/login")
+@RequestMapping("/api/login")
 public class LoginController {
 
-  static Logger log = LoggerFactory.getLogger(LoginController.class);
+  private AuthenticationManager authenticationManager;
 
-  private AuthService authService;
+  private JwtTokenProvider tokenProvider;
 
   @Autowired
-  public LoginController(AuthService authService) {
-    this.authService = authService;
+  PasswordEncoder passwordEncoder;
+
+  @Autowired
+  public LoginController(AuthenticationManager authenticationManager,
+                         JwtTokenProvider tokenProvider) {
+    this.authenticationManager = authenticationManager;
+    this.tokenProvider = tokenProvider;
   }
 
   @PostMapping
-  @CrossOrigin
-  public LoginDetailsRs login(@Valid @RequestBody LoginDetailsRq loginDetailsRq) {
-    log.info("__" + loginDetailsRq.toString());
-    return new LoginDetailsRs(authService.login(loginDetailsRq));
+  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+
+    Authentication authentication = authenticationManager.authenticate(
+        new UsernamePasswordAuthenticationToken(
+            loginRequest.getUsernameOrEmail(),
+            loginRequest.getPassword()
+        )
+    );
+
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+
+    String jwt = tokenProvider.generateToken(authentication);
+    return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
   }
-
-
 }

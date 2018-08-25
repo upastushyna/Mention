@@ -33,7 +33,8 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={() => <HomePage
             currentUser={this.props.currentUser}
-            loadCurrentUser={this.props.loadCurrentUser}/>}/>
+            loadCurrentUser={this.props.loadCurrentUser}
+            history={this.props.history}/>}/>
           <Route path='/messages' component={() => <Messages
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>

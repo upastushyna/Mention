@@ -29,7 +29,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class CreateUsers {
 
   @Autowired
-  PasswordEncoder encoder;
+  private PasswordEncoder passwordEncoder;
 
   @Bean
   public CommandLineRunner createUsersInDb(UserRepository userRepository,
@@ -44,11 +44,12 @@ public class CreateUsers {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {
-        userRepository.save(new User("admin", "admin@gmail.com", encoder.encode("ADMIN"), true)); //1
-        userRepository.save(new User("alex", "alex@gmail.com", encoder.encode("ALEX1"), true)); //2
-        userRepository.save(new User("dima", "dima@gmail.com", encoder.encode("DIMA2"), true)); //3
-        userRepository.save(new User("yarik", "yarik@gmail.com", encoder.encode("YARIK"), true)); //4
-        userRepository.save(new User("superman", "havenoidea@gmail.com", encoder.encode("amazing"), true)); //5
+
+        userRepository.save(new User("admin", "admin@gmail.com", passwordEncoder.encode("ADMIN"), true)); //1
+        userRepository.save(new User("alex", "alex@gmail.com", passwordEncoder.encode("ALEX1"), true)); //2
+        userRepository.save(new User("dima", "dima@gmail.com", passwordEncoder.encode("DIMA2"), true)); //3
+        userRepository.save(new User("yarik", "yarik@gmail.com", passwordEncoder.encode("YARIK"), true)); //4
+        userRepository.save(new User("superman", "havenoidea@gmail.com", passwordEncoder.encode("amazing"), true)); //5
 
         postRepository.save(new Post("My amazing post!", userRepository.findByUsername("alex").get())); //6
         postRepository.save(new Post("Something new!", userRepository.findByUsername("dima").get())); //7
@@ -207,6 +208,7 @@ public class CreateUsers {
             commentRepository.findById(13L).get()));
         commentLikeRepository.save(new CommentLike(userRepository.findByUsername("superman").get(),
             commentRepository.findById(13L).get()));
+
       }
     };
   }
