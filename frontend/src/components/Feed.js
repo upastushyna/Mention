@@ -16,7 +16,7 @@ class Feed extends React.Component {
   }
 
   componentWillMount () {
-    if (this.props.feed.length === 0) {
+    if (this.props.feed.length === 0 && this.props.currentUser.username)  {
         this.props.loadData(this.props.currentUser.username)
     }
   }
@@ -46,6 +46,7 @@ class Feed extends React.Component {
   render () {
 
     if (!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser()
       return "Loading..."
     }
 
