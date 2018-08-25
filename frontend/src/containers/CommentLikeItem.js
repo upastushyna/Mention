@@ -24,10 +24,10 @@ const CommentLikeItem = props => {
       body: JSON.stringify({user: {id: props.currentUser.id}, comment: {id: props.commentId}})
     }).then(() => props.loadData(props.username))
 
-  return <div className="comment-container__like-icon d-flex items-center">
+  return <div className="d-flex items-center">
     {props.likes.find(like => like.user.username === props.currentUser.username)
-      ? <img onClick={() => deleteLike()} src={likeFilled} alt="" className="comment-container__like-img"/>
-      : <img onClick={() => addLike()} src={like} alt="" className="comment-container__like-img"/>}
+      ? <img onClick={() => deleteLike()} src={likeFilled} alt="like" className="comment-container__action-img"/>
+      : <img onClick={() => addLike()} src={like} alt="dislike" className="comment-container__action-img"/>}
     <span className="comment-container__like-number">{props.likes.length}</span>
   </div>
 }

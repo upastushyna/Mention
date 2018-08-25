@@ -1,8 +1,8 @@
 .message-sender {
 	height: 10%;
 	padding: 8px 20px;
-	border-top: 1px solid #f0f2f7;
-	border-left: 1px solid #f0f2f7;
+	border-top: 1px solid $border-color;
+	border-left: 1px solid $border-color;
 	overflow: hidden;
 	display: flex;
 	justify-content: space-between;
@@ -24,4 +24,14 @@
 	  margin-right: 15px;
 	  cursor: pointer;
 	}
-  }
+	}
+	
+	@media screen and (max-width: 1200px) {
+		.message-sender {
+			padding: 8px;
+
+			&__actions{
+				margin-right: 0;
+			}
+		}
+		}
