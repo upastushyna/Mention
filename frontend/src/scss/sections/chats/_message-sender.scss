@@ -11,11 +11,7 @@
 	&__input {
 		@include clear-default-input-style();
 		width: 80%;
-		@include placeholder(){
-      color: #737d9b;
-      letter-spacing: 0.3px;
-      font-weight: 300;
-    }
+		@include placeholder-default();	
 	}
   
 	&__actions {

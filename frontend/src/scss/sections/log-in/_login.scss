@@ -1,79 +1,100 @@
 .login {
-  height: 100vh;
-  background: linear-gradient(to right, #f5683d, #4591fb);
-  font-family: Lato, 'sans-serif';
+ height: 100vh;
+ background: linear-gradient(-72deg, #00b0f3 27%, $main-color 50%);
 
-  &__container {
-    position: relative;
-    width: 400px;
-    margin: 0 auto;
-    padding-top: 25px;
-    padding-bottom: 37px;
-    border-radius: 4px;
-    background-color: #ececec;
-    filter: drop-shadow(2px 2px 5px black);
+ &__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  margin: 0 auto;
+  padding: 48px 0 36px;
+  border-radius: 4px;
+  background-color: #fff;
+ }
+
+ &__icon {
+  width: 20%;
+  border-radius: 50%;
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $main-color;
+  border: 3px solid #fff;
+  border-bottom: 3px solid $main-color;
+ }
+
+ &__title {
+  font-size: 30px;
+  line-height: 48px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+ }
+
+ &__forgot-password {
+  color: $red-color;
+  font-size: 18px;
+  margin-top: 16px;
+  text-decoration: none;
+ }
+
+ &__input {
+  @include clear-default-input-style;
+
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 11px 0;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid $border-color;
+  font-size: 18px;
+  text-align: center;
+  transition: all 1s;
+  @include placeholder-default;
+
+  &:focus {
+   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.21);
   }
+ }
 
-  &__icon {
-    position: absolute;
-    top: -75px;
-    left: 35%;
-  }
+ &__btn {
+  @include clear-default-input-style;
 
-  &__img {
-    position: relative;
-    width: 50%;
-    border-radius: 53%;
-  }
+  display: block;
+  padding: 8px 16px;
+  background-color: $green-color;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: $main-font;
+  width: 100%;
+  border-radius: 4px;
+  letter-spacing: 1px;
+ }
+}
 
-  &__title {
-    margin-top: 88px;
-    font-size: 30px;
-    font-weight: 300;
-    text-align: center;
-  }
+@media screen and (max-width: 1200px){
 
-  &__forgot-password {
-    margin-left: 30%;
-    color: #f5683d;
-    font-size: 18px;
-    text-decoration: none;
-  }
+    .login{
+        &__container{
+            width: 95%;
+            padding: 36px 0;
+        }
 
-  &__form {
-    width: 270px;
-    margin: 31px auto;
-  }
+        &__icon{
+            top: -40px;
+        }
 
-  &__input,
-  &__btn {
-    display: block;
-    width: 266px;
-    margin-bottom: 20px;
-    padding: 11px 0;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    outline: none;
-    background-color: rgba(152, 152, 152, .3);
-    font-size: 18px;
-    text-align: center;
-  }
-
-  &__input:focus {
-    border: 1px solid #4591fb;
-  }
-
-  &__btn {
-    padding: 15px 0;
-    border-bottom: 2px solid #108ede;
-    background-color: #4591fb;
-    color: #fff;
-    font-size: 20px;
-    text-transform: uppercase;
-    filter: drop-shadow(2px 2px 5px black);
-
-    &:focus {
-      filter: none;
+        &__title{
+            font-size: 20px;
+            line-height: 30px;
+        }
+        &__forgot-password{
+            font-size: 15px;
+        }
     }
-  } 
 }

@@ -88,7 +88,6 @@ class UserPage extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <div className="container">
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
             <div className="user-navigation__links">
@@ -110,17 +109,19 @@ class UserPage extends React.Component {
           </div>
           </div>
          
-          <div className="create-post white-background">
+          <div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex items-center content-between">
+              <div className="d-flex-center content-between">
                 <textarea className="create-post__input" id="postInput"
                   placeholder="Share your thoughts" ref="postInput"
                   maxLength={280}/>
                 <button type="submit" className="create-post__btn">Add post</button>
+                <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>
               </div>
               <div className="upload-file">
               <img src={upload} alt="upload" className="upload-file__icon"/>
               <p>Добавить вложение</p>
+
               <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div>
@@ -137,7 +138,7 @@ class UserPage extends React.Component {
                 loadCurrentUser={this.props.loadCurrentUser}
                         follow={this.follow} unfollow={this.unfollow}/>}/>
           </Switch>
-        </div>
+       
       </Fragment>
 
     )
