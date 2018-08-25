@@ -25,13 +25,11 @@ const PostLikeItem = props => {
       body: JSON.stringify({user: {id: props.currentUser.id}, post: {id: props.postId}})
     }).then(() => props.loadData(props.username))
 
-  return <div className="post__like-icon d-flex items-center">
+  return <div className="post__like-icon d-flex-center">
     {props.likes.find(like => like.user.username === props.currentUser.username)
-      ? <img onClick={() => deleteLike()} src={likeFilled} alt="" className="post__like-img"/>
-      : <img onClick={() => addLike()} src={like} alt="" className="post__like-img"/>}
-    <span className="post__like-number">
-      <span>{props.likes.length}</span>
-    </span>
+      ? <img onClick={() => deleteLike()} src={likeFilled} alt="like" className="post__action-img"/>
+      : <img onClick={() => addLike()} src={like} alt="dislike" className="post__action-img"/>}
+    <span className="post__action-count">{props.likes.length}</span>
   </div>
 }
 

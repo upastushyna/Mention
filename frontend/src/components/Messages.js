@@ -48,13 +48,12 @@ class Messages extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="chats__header">Go back</div>
-        <main className="container chats__view">
-       
+        <main className="container chats__view">      
           <section className="chats__list">
             <div className="chats__search">
               <input id="chatInput" ref="chatInput"
                 type="text" className="chats__input" placeholder="Search"/>
-              <img onClick={() => this.addChat()} src={search} alt="" className="chats__button"/>
+              <img onClick={() => this.addChat()} src={search} alt="search" className="chats__button"/>
             </div>
               <ChatsContainer loadChat={this.props.loadMessages}
                 chats={this.props.chats} username={this.props.currentUser.username}/>        

@@ -1,6 +1,7 @@
 .profile-info {
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   &__avatar {
     width: 40px;
@@ -70,4 +71,18 @@
     line-height: 45px;
     margin-left: 16px;
   }
+}
+
+@media screen and (max-width: 1200px){
+  .profile-card {
+    &__username {
+      display: none;
+    }
+
+    &__avatar{
+      width: 35px;
+      height: 35px;
+    }
+  }
+
 }

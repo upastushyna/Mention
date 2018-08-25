@@ -3,11 +3,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 48px;
+  margin-top: 24px;
+  height: 50vh;
 
   &__links {
     position: absolute;
-    bottom: 25%;
+    bottom: 15%;
     left: 25%;
   }
 
@@ -43,5 +44,24 @@
     opacity: 0;
     visibility: hidden;
    }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+.user-navigation{
+  margin-top: 0;
+
+  &__links{
+    left: 5%;
+    bottom: 35%;
+  }
+
+  &__icon{
+    width: 25px;
+  }
+}
+
+
 
 }

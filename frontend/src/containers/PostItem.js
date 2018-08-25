@@ -20,22 +20,16 @@ const PostItem = props => {
     }).then(() => props.loadData(props.username))
 
   return <Fragment>
-    {props.post.parent
-      ? <div className="repost-header">
-        <div className="profile-info">
-          <img src={props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
-          <div className="profile-info__signature">
-            <h2 className="profile-info__username color-white">{props.post.author.username}</h2>
-            <span className="profile-info__alias">
-              { getDateFromDb(props.post.timestamp)}
-            </span>
-          </div>
-        </div>
-      </div>
-      : ''}
     <div className="post">
+      {props.post.parent
+        ? <div className="repost-author">
+          <h2 className="repost-author__info">@{props.post.author.username}</h2>
+          reposted in
+            <span className="repost-author__info">{props.post.timestamp.slice(0, 19).replace('T', ' ')} </span>
+        </div>
+      : ''}
       <div className="post__header">
-        <div className="profile-info pointer d-flex items-center">
+        <div className="profile-info d-flex-center">
           <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
             : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
           <div className="profile-info__signature">
@@ -58,15 +52,15 @@ const PostItem = props => {
       {props.post.parent ? props.post.parent.mediaFileUrl
         ? <img className="post__img" alt="like" src={props.post.parent.mediaFileUrl}/> : '' : props.post.mediaFileUrl
         ? <img className="post__img" alt="like-active" src={props.post.mediaFileUrl}/> : ''}
-      <div className="post__footer d-flex content-between">
+      <div className="post__footer d-flex-center content-between">
         <PostLikeItem loadData={props.loadData} postId={props.post.id}
           likes={props.post.likes} username={props.username}
           currentUser={props.currentUser}/>
-        <div className="post__comment-icon d-flex items-center">
-          <img src={comment} alt="comment" className="post__comment-img"/>
-          <span className="post__comment-number">{props.post.comments.length}</span>
-          <img onClick={() => rePost()} src={forward} alt="repost" className="post__forward-img"/>
-          <span className="post__forward-number">{props.post.children.length}</span>
+        <div className="post__comment-icon d-flex-center">
+          <img src={comment} alt="comment" className="post__action-img"/>
+          <span className="post__action-count">{props.post.comments.length}</span>
+          <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>
+          <span className="post__action-count">{props.post.children.length}</span>
         </div>
       </div>
       <CommentContainer loadData={props.loadData} comments={props.post.comments}

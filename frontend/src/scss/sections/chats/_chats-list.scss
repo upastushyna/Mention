@@ -32,11 +32,7 @@
     background-color: $border-color;
     color: $black-text-color;
     font-size: 16px;
-    @include placeholder(){
-      color: #737d9b;
-      letter-spacing: 0.3px;
-      font-weight: 300;
-    }
+    @include placeholder-default();
   }
 
   &__button {
@@ -56,7 +52,6 @@
   display: block;
   padding: 20px;
   border-bottom: 1px solid $border-color;
-  color: #515365;
   text-decoration: none;
 
   &:hover {
@@ -65,6 +60,12 @@
 
   &__text{
     margin: 8px;
+    font-size: 16px;
+    height: 25px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $black-text-color;
   }
 }
 
