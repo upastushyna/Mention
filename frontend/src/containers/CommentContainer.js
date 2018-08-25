@@ -6,8 +6,8 @@ const CommentContainer = props =>
   props.comments.map(comment =>
     <Fragment>
       <div className="comment-container">
-        <div className="comment-container__header d-flex items-center content-between">
-          <div className="profile-info pointer">
+        <div className="comment-container__header d-flex-center content-between">
+          <div className="profile-info">
             <img src={comment.commentator.profile.avatarUrl} alt="" className="profile-info__avatar"/>
             <div className="profile-info__signature">
               <h2 className="profile-info__username">{comment.commentator.username}</h2>
@@ -23,7 +23,7 @@ const CommentContainer = props =>
         <p className="comment-container__body">
           {comment.body}
         </p>
-        <div className="comment-container__footer d-flex content-between">
+        <div className="comment-container__footer d-flex-center content-between">
           <CommentLikeItem likes={comment.commentLikes} username={props.username}
             commentId={comment.id} loadData={props.loadData}
             currentUser={props.currentUser}/>

@@ -15,10 +15,23 @@
     font-weight: 700;
     text-decoration: none;
     color: #fff;
+    font-size: 17px;
 
     &:hover {
       background-color: #fff;
       color: $main-color;
     }
+
+    &:nth-child(3){
+      margin-right: 0;
+    }
   } 
+}
+
+@media screen and (max-width: 1200px){
+  .info-controller{
+    &__link{
+       font-size: 14px;
+    }
+  }
 }

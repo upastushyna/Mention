@@ -6,8 +6,7 @@
   border-bottom: 0.5px solid #fff;
   color: #fff;
   font-size: 18px;
-
-  @include placeholder {
+  @include placeholder () {
    font-size: 15px;
    color: #fff;
    letter-spacing: 0.3px;
