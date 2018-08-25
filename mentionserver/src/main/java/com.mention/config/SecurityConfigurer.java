@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity*/
 public class SecurityConfigurer /*extends WebSecurityConfigurerAdapter*/ {
 
-  /*@Autowired
+      /*@Autowired
   SmartUserDetailsService userDetailsService;
 
   @Autowired

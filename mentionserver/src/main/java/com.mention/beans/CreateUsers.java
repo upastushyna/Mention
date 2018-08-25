@@ -209,10 +209,6 @@ public class CreateUsers {
         commentLikeRepository.save(new CommentLike(userRepository.findByUsername("superman").get(),
             commentRepository.findById(13L).get()));
 
-        String p = userRepository.findByUsername("superman").get().getPassword();
-        boolean x = passwordEncoder.matches("amazing", p);
-        System.out.println("---------:"+x);
-
       }
     };
   }

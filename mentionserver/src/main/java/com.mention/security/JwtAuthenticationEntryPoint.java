@@ -13,11 +13,12 @@ import java.io.IOException;
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
   private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationEntryPoint.class);
+
   @Override
   public void commence(HttpServletRequest httpServletRequest,
                        HttpServletResponse httpServletResponse,
-                       AuthenticationException e) throws IOException {
-    logger.error("Responding with unauthorized error. Message - {}", e.getMessage());
+                       AuthenticationException exception) throws IOException {
+    logger.error("Responding with unauthorized error. Message - {}", exception.getMessage());
     httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED,
         "Sorry, You're not authorized to access this resource.");
   }

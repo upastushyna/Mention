@@ -23,7 +23,11 @@ public class UserPrincipal implements UserDetails {
 
   private List<? extends GrantedAuthority> authorities;
 
-  public UserPrincipal(Long id, String username, String email, String password, List<? extends GrantedAuthority> authorities) {
+  public UserPrincipal(Long id,
+                       String username,
+                       String email,
+                       String password,
+                       List<? extends GrantedAuthority> authorities) {
     this.id = id;
     this.username = username;
     this.email = email;
