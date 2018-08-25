@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import '../css/index.css'
-import send from '../img/chat/send.png'
+import send from '../img/send.png'
 import {getDateFromDb} from '../js/chatdisplaytime'
 
 const Chat = props => {
@@ -27,7 +27,7 @@ const Chat = props => {
 
   return <Fragment>
     <div className="messages-container__header">
-      <div className="d-flex items-center">
+      <div className="d-flex-center">
         <img src={props.chat.user2.username === props.user2
           ? props.chat.user2.profile.avatarUrl
           : props.chat.user1.profile.avatarUrl}

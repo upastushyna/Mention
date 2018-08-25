@@ -15,7 +15,7 @@
     border-radius: 5px;
     @include placeholder(){
       font-size: 15px;
-      color: #737d9b;
+      color: $placeholder-color;
       letter-spacing: 0.5px;
       font-weight: 300;
       }
@@ -35,6 +35,15 @@
 
     &:hover {
       opacity: .9;
+    }
+
+    &_rounded{
+      display: none;
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      padding: 0;
+      margin-left: 8px;
     }
   }
 }
@@ -61,3 +70,24 @@
 
 }
 
+@media screen and (max-width: 1200px) {
+
+  .create-post{
+    width: 95vw;
+    padding-right: 8px;
+
+    &__btn{
+      display: none;
+
+      &_rounded{
+        display: block;
+      }
+    }
+
+    &__input{
+      @include placeholder(){
+        font-size: 10px;
+        }
+    }
+    } 
+}

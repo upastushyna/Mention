@@ -47,3 +47,35 @@
   @content;
  }
 }
+
+@mixin placeholder-default {
+ &::-webkit-input-placeholder {
+  font-family: $main-font;
+  font-size: 14px;
+  color: $placeholder-color;
+  letter-spacing: 0.3px;
+ }
+
+ &:-moz-placeholder {
+  font-family: $main-font;
+  font-size: 14px;
+  color: $placeholder-color;
+  letter-spacing: 0.3px;
+ 
+ }
+
+ &::-moz-placeholder {
+  font-family: $main-font;
+  font-size: 14px;
+  color: $placeholder-color;
+  letter-spacing: 0.3px;
+
+ }
+
+ &:-ms-input-placeholder {
+  font-family: $main-font;
+  font-size: 14px;
+  color: $placeholder-color;
+  letter-spacing: 0.3px;
+ }
+}

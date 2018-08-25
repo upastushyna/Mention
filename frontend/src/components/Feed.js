@@ -47,11 +47,12 @@ class Feed extends React.Component {
         <div className="container">
           <div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex items-center">
+              <div className="d-flex-center">
                 <textarea className="create-post__input" id="postInput"
                   placeholder="Share your thoughts with world" rows="2" ref="postInput"
                   maxLength={280}/>
                 <button type="submit" className="create-post__btn">Add post</button>
+                <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>
               </div>
               <div className="upload-file">
               <img src={upload} alt="upload" className="upload-file__icon"/>
