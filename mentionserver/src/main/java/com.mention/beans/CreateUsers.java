@@ -45,10 +45,10 @@ public class CreateUsers {
       @Override
       public void run(String... args) throws Exception {
 
-        userRepository.save(new User("admin", "admin@gmail.com", passwordEncoder.encode("ADMIN"), true)); //1
-        userRepository.save(new User("alex", "alex@gmail.com", passwordEncoder.encode("ALEX1"), true)); //2
-        userRepository.save(new User("dima", "dima@gmail.com", passwordEncoder.encode("DIMA2"), true)); //3
-        userRepository.save(new User("yarik", "yarik@gmail.com", passwordEncoder.encode("YARIK"), true)); //4
+        userRepository.save(new User("admin", "admin@gmail.com", passwordEncoder.encode("ADMIN44"), true)); //1
+        userRepository.save(new User("alex", "alex@gmail.com", passwordEncoder.encode("ALEX1222"), true)); //2
+        userRepository.save(new User("dima", "dima@gmail.com", passwordEncoder.encode("DIMA2112"), true)); //3
+        userRepository.save(new User("yarik", "yarik@gmail.com", passwordEncoder.encode("YARIK228"), true)); //4
         userRepository.save(new User("superman", "havenoidea@gmail.com", passwordEncoder.encode("amazing"), true)); //5
 
         postRepository.save(new Post("My amazing post!", userRepository.findByUsername("alex").get())); //6
@@ -149,7 +149,7 @@ public class CreateUsers {
 
         profileRepository.save(new Profile(null, null, null,
             null,
-            "https://www.svgrepo.com/show/140760/man-with-short-hair-profile-avatar.svg",
+            "https://c1.staticflickr.com/9/8086/8466271529_dc5c0a958f_z.jpg",
             "https://www.50-best.com/images/twitter_backgrounds/black_and_white_city_twitter_background.jpg",
             userRepository.findByUsername("superman").get()));
         profileRepository.save(new Profile(null, null, null,

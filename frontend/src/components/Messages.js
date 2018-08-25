@@ -33,6 +33,7 @@ class Messages extends React.Component {
     {
       method: 'POST',
       headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -42,6 +43,7 @@ class Messages extends React.Component {
     .then(() => this.refs.chatInput.value = '');
 
   render () {
+
     return (
       <Fragment>
         <Navigation/>
