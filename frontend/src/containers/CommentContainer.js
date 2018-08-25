@@ -8,15 +8,17 @@ const CommentContainer = props =>
     <Fragment>
       <div className="comment-container">
         <div className="comment-container__header d-flex items-center content-between">
-          <div className="profile-small pointer d-flex items-center">
-            <img src={comment.commentator.profile.avatarUrl} alt="" className="profile-small__avatar"/>
-            <div className="profile-small__signature">
-              <h2 className="profile-small__username color-dark-grey">{comment.commentator.username}</h2>
-              <span className="profile-small__alias">{getDateFromDb(comment.timestamp)}</span>
+          <div className="profile-info pointer">
+            <img src={comment.commentator.profile.avatarUrl} alt="" className="profile-info__avatar"/>
+            <div className="profile-info__signature">
+              <h2 className="profile-info__username">{comment.commentator.username}</h2>
+              <span className="profile-info__alias">{getDateFromDb(comment.timestamp)}</span>
             </div>
           </div>
-          <div className="comment-container__more-icon">
-            <img src={more} alt="" className="comment-container__more-img"/>
+
+          <div className="pos-relative">
+            <img src={more} alt="more" className="comment-container__action-img" tabindex="1"/>
+            <div className="post__action">Delete comment</div>
           </div>
         </div>
         <p className="comment-container__body">

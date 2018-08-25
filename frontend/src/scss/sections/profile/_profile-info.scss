@@ -1,10 +1,6 @@
-.profile-small {
-  position: relative;
-  color: #9a9fbf;
-
-  &--position {
-    margin: 11px 60px;
-  }
+.profile-info {
+  display: flex;
+  align-items: center;
 
   &__avatar {
     width: 40px;
@@ -16,16 +12,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 700;
-    color: #0a1331;
-  }
-
-  &__isActive {
-    position: absolute;
-    left: 0;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: #32e4cd;
+    color: $black-text-color;
   }
 
   &__arrow {
@@ -36,8 +23,7 @@
 
   &__alias {
     font-size: 12px;
-    font-weight: 500;
-    color: #9a9fbf;
+    color: #a1a8bd;
   }
 
   &__signature {
