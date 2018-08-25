@@ -22,7 +22,7 @@ class SearchContainer extends React.Component {
   render () {
     return (
       <Fragment>
-        <form action="#" className="d-flex items-center">
+        <form action="#" className="d-flex-center">
           <input onKeyUp={() => this.setState({input: this.refs.searchInput.value})} id="searchInput"
             ref="searchInput" type="text" className="search__input"
             placeholder="Search..."/>

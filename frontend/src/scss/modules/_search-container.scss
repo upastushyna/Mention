@@ -1,10 +1,18 @@
 .users-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: 1px solid #fff;
-}
+ position: absolute;
+ top: 0;
+ right: 0;
+ border: 1px solid #fff;
 
-.users-panel > .follow-container {
+ .follow-container {
   width: 280px;
+ }
+
+ .profile-info__username {
+  height: 30px;
+  width: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ }
 }
