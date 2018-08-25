@@ -18,11 +18,11 @@ class UserInfo extends React.Component {
     return (
       <Fragment>
         <div className="info-controller">
-          <Link className="info-controller__link color-white" to={'/' + this.props.username + '/info/followed'}
+          <Link className="info-controller__link" to={'/' + this.props.username + '/info/followed'}
             onClick={() => this.props.loadFollowedUsers(this.props.username)}>Followed Users</Link>
-          <Link className="info-controller__link color-white" to={'/' + this.props.username + '/info/following'}
+          <Link className="info-controller__link" to={'/' + this.props.username + '/info/following'}
             onClick={() => this.props.loadFollowers(this.props.username)}>Following Users</Link>
-          <Link className="info-controller__link color-white" to={'/' + this.props.username + '/info/liked'}>Likes</Link>
+          <Link className="info-controller__link" to={'/' + this.props.username + '/info/liked'}>Likes</Link>
         </div>
 
         <Switch>

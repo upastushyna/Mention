@@ -4,6 +4,7 @@ import '../css/index.css'
 import {loadFeed} from '../actions/feedActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
+import upload from '../img/fileuploadicon.png'
 
 class Feed extends React.Component {
   constructor(props) {
@@ -44,15 +45,18 @@ class Feed extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
-          <div className="create-post white-background">
+          <div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex items-center content-between">
+              <div className="d-flex items-center">
                 <textarea className="create-post__input" id="postInput"
-                  placeholder="Share your thoughts" ref="postInput"
+                  placeholder="Share your thoughts with world" rows="2" ref="postInput"
                   maxLength={280}/>
-                <button type="submit" className="create-post__button">Add post</button>
+                <button type="submit" className="create-post__btn">Add post</button>
               </div>
-              <input className="upload" id="inputFile" ref="inputFile" type="file"/>
+              <div className="upload-file">
+              <img src={upload} alt="upload" className="upload-file__icon"/>
+              <p>Добавить вложение</p>
+              <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div>
           <PostsContainer username={this.props.currentUser.username}

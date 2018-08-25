@@ -13,6 +13,7 @@ import posts from '../img/posts-icon.png'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import FollowButton from '../containers/FollowButton'
 import UnffollowButton from "../containers/UnffollowButton";
+import upload from '../img/fileuploadicon.png'
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -92,31 +93,37 @@ class UserPage extends React.Component {
         <div className="container">
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
-            <Link className="user-navigation__info" to={'/' + this.props.match.params.username + '/info'}>
-              <img src={info} alt="" className="user-navigation__icon"/>
-              <h4 className="user-navigation__hover">info</h4>
+            <div className="user-navigation__links">
+            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username + '/info'}>
+              <img src={info} alt="info" className="user-navigation__icon"/>
+              <h4 className="user-nav-links__text">info</h4>
             </Link>
-            <Link className="user-navigation__posts" to={'/' + this.props.match.params.username}>
-              <img src={posts} alt="" className="user-navigation__icon"/>
-              <h4 className="user-navigation__hover">profile</h4>
+            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username}>
+              <img src={posts} alt="feed" className="user-navigation__icon"/>
+              <h4 className="user-nav-links__text">profile</h4>
             </Link>
-          </div>
-          <div className="following shadow-button">
+            </div>
+            <div className="following shadow-button">
             {this.props.currentUser.followedUsers.find(follow =>
             follow.followedUser.id === this.props.user.id)?
               <UnffollowButton unfollow={this.unfollow} followedUser={this.props.user.id}/> :
               <FollowButton follow={this.follow} followedUser={this.props.user.id}/>
             }
           </div>
+          </div>
+         
           <div className="create-post white-background">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
               <div className="d-flex items-center content-between">
                 <textarea className="create-post__input" id="postInput"
                   placeholder="Share your thoughts" ref="postInput"
                   maxLength={280}/>
-                <button type="submit" className="create-post__button">Add post</button>
+                <button type="submit" className="create-post__btn">Add post</button>
               </div>
-              <input className="upload" id="inputFile" ref="inputFile" type="file"/>
+              <div className="upload-file">
+              <img src={upload} alt="upload" className="upload-file__icon"/>
+              <p>Добавить вложение</p>
+              <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div>
           {/* {posts} */}
