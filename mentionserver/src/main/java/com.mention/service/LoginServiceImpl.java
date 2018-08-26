@@ -78,13 +78,13 @@ public class LoginServiceImpl implements LoginService {
   @Override
   public ResponseEntity<?> registerUser(UserDtoRq userDtoRq) {
     Optional<User> user = userRepository.findByUsername(userDtoRq.getUsername());
-    if(user.isPresent()) {
+    if (user.isPresent()) {
       return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
           HttpStatus.BAD_REQUEST);
     }
     Optional<User> user1 = userRepository.findByEmail(userDtoRq.getEmail());
 
-    if(user1.isPresent()) {
+    if (user1.isPresent()) {
       return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
           HttpStatus.BAD_REQUEST);
     }
@@ -98,9 +98,9 @@ public class LoginServiceImpl implements LoginService {
     String token = UUID.randomUUID().toString();
     userToken.setToken(token);
     tokenRepository.save(userToken);
-    String message = "Thank you for registering in Mention! To finish your " +
-        "registration, please follow the link: " +
-        "http://localhost:3000/register/" + token;
+    String message = "Thank you for registering in Mention! To finish your "
+        + "registration, please follow the link: "
+        + "http://localhost:3000/register/" + token;
     String to = newUser.getEmail();
     String subject = "Confirm your email";
     Profile profile = new Profile(newUser);

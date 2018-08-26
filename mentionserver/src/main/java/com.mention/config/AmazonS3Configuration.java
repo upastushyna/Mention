@@ -31,10 +31,10 @@ public final class AmazonS3Configuration {
   public static final String BUCKET_NAME = "mention-project";
 
   public AmazonS3 getAmazonS3() {
-      return AmazonS3ClientBuilder.standard()
-          .withCredentials(new AWSStaticCredentialsProvider(
-              new BasicAWSCredentials(accessKey,
-                  secretKey)))
-          .withRegion("eu-central-1") .build() ;
+    return AmazonS3ClientBuilder.standard()
+        .withCredentials(new AWSStaticCredentialsProvider(
+            new BasicAWSCredentials(accessKey,
+                secretKey)))
+        .withRegion("eu-central-1") .build() ;
   }
 }
