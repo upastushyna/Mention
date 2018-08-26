@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import logo from '../img/header-panel/logo.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
-import avatar from '../img/header-panel/user-img.png'
+import feed from '../img/header-panel/icon-feed.png'
+import arrow from '../img/white-down-arrow.png'
 import SearchContainer from './SearchContainer'
 
 class HeaderPanel extends React.Component {
@@ -20,41 +21,45 @@ class HeaderPanel extends React.Component {
 
     return (
       <Fragment>
-        <div className="header d-flex content-between">
-          <div className="header__left d-flex">
-            <div className="logo">
-              <Link to="/" ><img className="logo__img" src={logo} alt=""/></Link>
-            </div>
-            <h2 className="header__title">mention</h2>
+        <div className="main-header">
+        <div className="container main-header-wrapper">
+          <div className="d-flex-center">
+              <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo} alt="logo-img"/>
+              <h2 className="main-header__title">ention</h2>
+              </Link>
+
             <SearchContainer/>
           </div>
-          <div className="header__right d-flex">
-            <div className="header__menu">
-              <ul className="header__list d-flex">
-                <li className="header__item">
-                  <Link to="/messages">
-                    <img src={chat} alt="" className="header__icon"/>
+
+             <ul className="header-menu d-flex-center">
+                <li className="header-menu__item">
+                  <Link to="/messages" className="header-menu__link">
+                    <img src={chat} alt="messages" className="header-menu__icon"/>
+                    <p>Messages</p>
                   </Link>
                 </li>
-                <li className="header__item">
-                  <Link to="/">
-                    <img src={notification} alt="" className="header__icon"/>
+                <li className="header-menu__item">
+                  <Link to="/" className="header-menu__link">
+                    <img src={notification} alt="notify" className="header-menu__icon"/>
+                    <p>Notifications</p>
+                  </Link>
+                </li>
+                <li className="header-menu__item">
+                  <Link to="/" className="header-menu__link header-menu__link">
+                    <img src={feed} alt="feed" className="header-menu__icon header-menu__icon_small"/>
+                    <p>Feed</p>
                   </Link>
                 </li>
               </ul>
-            </div>
-            <div className="profile-small pointer d-flex profile-small--position">
-              <img src={this.props.currentUser.profile.avatarUrl} alt="" className="profile-small__avatar"/>
-              <div className="profile-small__signature">
-                <h2 className="profile-small__username color-white">
+       <div className="d-flex-center">
+          <Link to={"/" + this.props.currentUser.username} className="d-flex-center">
+          <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar"/>
+          </Link>
+            <h2 className="profile-card__username">
                   {this.props.currentUser.username}
-                </h2>
-                <span className="profile-small__alias">DEVELOPER</span>
+            </h2>
+              <img src={arrow} alt="arrow" className="profile-info__arrow"/>
               </div>
-              <div className="profile-small__isActive"/>
-              <span className="profile-small__arrow color-white">&#711;</span>
-            </div>
-
             <ul className="profile__nav">
              <li className="profile__option"><a href="#" className="profile__link">Chats</a></li>
              <li className="profile__option"><a href="#" className="profile__link">Option 1</a></li>
@@ -62,7 +67,6 @@ class HeaderPanel extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="header__space" />
       </Fragment>
     )
   }

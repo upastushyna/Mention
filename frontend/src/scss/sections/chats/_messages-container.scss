@@ -1,24 +1,33 @@
 .messages-container {
-  position: relative;
-  width: 70%;
-
-  &__header {
-    padding: 20px;
-    border: 1px solid #e6ecf5;
-  }
-
-  &__body {
-    height: 400px;
-    padding: 20px;
-    border: 1px solid #e6ecf5;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar{
-      width: 5px;
-      background-color: #f0f2f7;
-    } 
-    &::-webkit-scrollbar-thumb{
-      background-color: #a1a8bd;
-    }
-  }
-}
+	position: relative;
+	width: 70%;
+	background-color: #fff;
+	@include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+  
+	&__header {
+		height: 10%;
+	  padding: 20px;
+		border-bottom: 1px solid $border-color;
+		border-left: 1px solid $border-color;
+	}
+  
+	&__body {
+	  height: 80%;
+	  padding: 20px;
+		overflow-y: scroll;
+		border-left: 1px solid $border-color;
+  
+	  &::-webkit-scrollbar{
+		width: 5px;
+	  } 
+	  &::-webkit-scrollbar-thumb{
+		background-color: #a1a8bd;
+	  }
+	}
+	}
+	
+	@media screen and (max-width: 1200px) {
+  .messages-container {
+		width: 100%;
+	}
+	}

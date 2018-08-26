@@ -33,6 +33,7 @@ class Messages extends React.Component {
     {
       method: 'POST',
       headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -42,29 +43,29 @@ class Messages extends React.Component {
     .then(() => this.refs.chatInput.value = '');
 
   render () {
+
     return (
       <Fragment>
         <Navigation/>
-        <main className="container d-flex">
+        <div className="chats__header">Go back</div>
+        <main className="container chats__view">      
           <section className="chats__list">
             <div className="chats__search">
               <input id="chatInput" ref="chatInput"
                 type="text" className="chats__input" placeholder="Search"/>
-              <img onClick={() => this.addChat()} src={search} alt="" className="chats__button"/>
+              <img onClick={() => this.addChat()} src={search} alt="search" className="chats__button"/>
             </div>
-            <div className="white-background">
               <ChatsContainer loadChat={this.props.loadMessages}
-                chats={this.props.chats} username={this.props.currentUser.username}/>
-            </div>
+                chats={this.props.chats} username={this.props.currentUser.username}/>        
           </section>
-          <div className="messages-container">
+          <section className="messages-container">
             <Switch>
               <Route path='/messages/:username' component={props =>
                 <Chat user1={this.props.currentUser.username} user2={props.match.params.username}
                   loadChat={this.props.loadMessages} chat={this.props.chat}
                   loadData={this.props.loadData} currentUser={this.props.currentUser}/>}/>
             </Switch>
-          </div>
+          </section>
         </main>
       </Fragment>
     )

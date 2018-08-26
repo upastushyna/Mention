@@ -1,42 +1,37 @@
 .post {
   position: relative;
-  width: 523px;
-  margin: 15px auto 0;
-  padding: 25px;
-  border: 1px solid #e6ecf5;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  color: #888da8;
-  font-family: Roboto, 'sans-serif';
+  width: 40%;
+  margin: 15px auto;
+  padding: 24px 0 24px 24px;
+  border: 1px solid $border-color;
 
   &__avatar {
     width: 40px;
     height: 40px;
   }
 
-  &__more-img,
-  &__like-img,
-  &__comment-img,
-  &__forward-img {
-    width: 30px;
-    height: 30px;
-    outline: none;
-    cursor: pointer;
+  &__action-count {
+    margin: 0 10px;
+    color: $meta-color;
   }
 
-  &__forward-img {
-    margin-left: 20px;
-  }
-
-  &__comment-number,
-  &__like-number,
-  &__forward-number {
-    margin-left: 10px;
+  &__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $border-color;
+    padding: 0 24px 16px 0;
   }
 
   &__body {
     margin: 25px 0;
     text-align: justify;
+    color: $black-text-color;
+    font-size: 18px;
+    line-height: 25px;
+    max-width: 100%;
+    word-wrap: break-word;
+    padding-right: 24px;
   }
 
   &__img {
@@ -47,33 +42,61 @@
   }
 
   &__footer {
-    padding: 20px 0 0;
-    border-top: 1px solid #e6ecf5;
+    padding: 20px 24px 20px 0;
+    border-top: 1px solid $border-color;
   }
-}
 
-.sub-menu {
-  display: none;
-  position: absolute;
-  width: 125px;
-  border: 1px solid #e6ecf5;
-  border-radius: 5px;
-  background-color: #fff;
-
-  &__item {
-    padding: 5px 10px;
-    border: 1px solid #e6ecf5;
-    color: black;
+  &__action-img {
+    width: 30px;
+    height: 30px;
+    outline: none;
     cursor: pointer;
+  }
 
+  &__action{
+    display: none;
+    position: absolute;
+    min-width: 128px;
+    white-space: nowrap;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    background-color: #fff;
+    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+    padding: 16px;
+    color: $black-text-color;
+    cursor: pointer;
     &:hover {
-      opacity: .7;
+      background-color: $border-color;
     }
   }
 }
 
-.main-item:focus ~ .sub-menu,
-.main-item:active ~ .sub-menu,
-.sub-menu:hover {
+.post__action-img:focus + .post__action,
+.post__action-img:active + .post__action,
+.comment-container__action-img:focus + .post__action,
+.comment-container__action-img:active + .post__action {
   display: block;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+  .post{
+    width: 100%;
+
+    &__action{
+      right: -5%;
+      font-size: 13px;
+      padding: 10px;
+    }
+
+    &__action-img{
+      width: 20px;
+      height: 20px;
+    }
+
+    &__action-count{
+      font-size: 12px;
+    }
+    } 
 }

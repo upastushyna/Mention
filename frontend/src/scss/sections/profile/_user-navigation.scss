@@ -1,15 +1,15 @@
 .user-navigation {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+  height: 50vh;
 
-  &__info,
-  &__posts {
+  &__links {
     position: absolute;
-    bottom: 14%;
-    left: 23%;
-  }
-
-  &__posts {
-    left: 28%;
+    bottom: 15%;
+    left: 25%;
   }
 
   &__edit{
@@ -20,10 +20,22 @@
     width: 40px;
     padding: 4px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: $main-color;
   }
 
-  &__hover {
+  &__icon:hover + .user-nav-links__text {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.user-nav-links{
+   &__item {
+     margin-right: 16px;
+     position: relative;
+   }
+
+   &__text {
     position: absolute;
     left: -4px;
     padding: 5px 10px;
@@ -35,10 +47,25 @@
     text-transform: uppercase;
     opacity: 0;
     visibility: hidden;
+   }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+.user-navigation{
+  margin-top: 0;
+
+  &__links{
+    left: 5%;
+    bottom: 35%;
   }
 
-  &__icon:hover + &__hover {
-    opacity: 1;
-    visibility: visible;
+  &__icon{
+    width: 25px;
   }
+}
+
+
+
 }

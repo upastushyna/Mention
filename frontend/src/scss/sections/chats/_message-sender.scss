@@ -1,21 +1,33 @@
 .message-sender {
-  padding: 8px 20px;
-  border: 1px solid #e6ecf5;
-  overflow: hidden;
+	height: 10%;
+	padding: 8px 20px;
+	border-top: 1px solid $border-color;
+	border-left: 1px solid $border-color;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  
+	&__input {
+		@include clear-default-input-style();
+		width: 80%;
+		@include placeholder-default();	
+	}
+  
+	&__actions {
+	  width: 35px;
+	  height: 35px;
+	  margin-right: 15px;
+	  cursor: pointer;
+	}
+	}
+	
+	@media screen and (max-width: 1200px) {
+		.message-sender {
+			padding: 8px;
 
-  &__input {
-    width: 80%;
-    border: 0;
-    outline: none;
-    resize: none;
-  }
-
-  &__button,
-  &__emoji,
-  &__attach {
-    width: 25px;
-    height: 25px;
-    margin-right: 15px;
-    cursor: pointer;
-  }
-}
+			&__actions{
+				margin-right: 0;
+			}
+		}
+		}

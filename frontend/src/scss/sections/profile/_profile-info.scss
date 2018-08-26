@@ -1,0 +1,88 @@
+.profile-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  &__username {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    color: $black-text-color;
+  }
+
+  &__arrow {
+   width: 15px;
+   height: 15px;
+   margin-left: 8px;
+  }
+
+  &__alias {
+    font-size: 12px;
+    color: #a1a8bd;
+  }
+
+  &__signature {
+    margin: 7px;
+  }
+}
+
+.profile{
+
+  &__nav {
+    display: none;
+    list-style: none;
+    position: absolute;
+    top: 67px;
+    right: 60px;
+    background-color: #fff;
+    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+  }
+
+  &__option{
+     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+     padding: 25px;
+  }
+
+  &__link{
+    color: #203152;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+}
+
+
+.profile-card{
+  &__avatar{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+
+  &__username{
+    color: #fff;
+    font-size: 25px;
+    line-height: 45px;
+    margin-left: 16px;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .profile-card {
+    &__username {
+      display: none;
+    }
+
+    &__avatar{
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+}

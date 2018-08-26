@@ -1,9 +1,18 @@
 .chats {
+
+  &__view{
+    display: flex;
+    height: 80vh;
+    margin: 50px auto 0;
+  }
+
   &__list {
-   width: 50%;
+   width: 30%;
+   height: 80vh;
+   overflow-y: auto;
    margin: 0 auto; 
    background-color: #fff;
-   @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+   border: 1px solid $border-color;
   }
 
   &__search {
@@ -11,27 +20,69 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    border: 1px solid #e6ecf5;
+    border-bottom: 1px solid $border-color;
   }
 
   &__input {
     @include clear-default-input-style();
     width: 85%;
-    padding: 10px 20px;   
+    padding: 10px 20px;
+    margin-right: 8px;
     border-radius: 4px;   
-    background-color: #f0f2f7;
-    color: #0a1331;
+    background-color: $border-color;
+    color: $black-text-color;
     font-size: 16px;
-    @include placeholder(){
-      color: #737d9b;
-      letter-spacing: 0.3px;
-      font-weight: 300;
-    }
+    @include placeholder-default();
   }
 
   &__button {
     width: 20px;
     height: 20px;
     cursor: pointer;
+  }
+
+  &__header{
+    display: none;
+    widows: 100%;
+    padding: 16px;
+  }
+}
+
+.chat-container {
+  display: block;
+  padding: 20px;
+  border-bottom: 1px solid $border-color;
+  text-decoration: none;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &__text{
+    margin: 8px;
+    font-size: 16px;
+    height: 25px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $black-text-color;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+
+  .chats{
+    &__header {
+      display: flex;
+    }
+
+    &__view{
+      margin: 16px;
+      max-width: 100%;
+    }
+
+    &__list{
+      width: 100%;
+    }
   }
 }

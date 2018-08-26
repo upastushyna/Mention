@@ -5,6 +5,7 @@ export const loadCurrentUser = () => dispatch => {
     {
       method: 'GET',
       headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }

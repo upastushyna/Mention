@@ -18,7 +18,9 @@ export default class Registration extends React.Component {
 
   render () {
     return (
-      <section className="registration d-flex items-center">
+
+      
+      <section className="registration d-flex-center">
         <div className="registration__container">
           <div className="registration__icon">
             <img className="registration__img" src={logo} alt=""/>

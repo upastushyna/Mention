@@ -1,5 +1,4 @@
-import React, {Fragment} from 'react'
-import avatar from '../img/header-panel/user-img.png'
+import React, { Fragment } from 'react'
 
 const AddComment = props => {
   const addComment = () => fetch('/api/comments/add',
@@ -7,7 +6,8 @@ const AddComment = props => {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + localStorage.getItem("accessToken")
       },
       body: JSON.stringify({body: document.getElementById('commentInput' + props.postId)
         .value,
@@ -17,15 +17,17 @@ const AddComment = props => {
     .then(() => document.getElementById('commentInput' + props.postId).value = '')
 
   return <Fragment>
-    <div className="add-comment white-background">
-      <div className="add-comment__form d-flex items-center">
-        <img src={props.currentUser.profile.avatarUrl} alt="" className="add-comment__avatar"/>
-        <textarea className="add-comment__input"
-          id={'commentInput' + props.postId} placeholder="Share your thoughts"
+   
+      <div className="add-comment">
+        <img src={props.currentUser.profile.avatarUrl} alt="avatar" className="add-comment__avatar"/>
+        <textarea className="create-post__input"
+          id={'commentInput' + props.postId} placeholder="Add comment"
           maxLength={280}/>
+          <button onClick={() => addComment()} className="create-post__btn">Add</button>
+          <button onClick={() => addComment()} className="create-post__btn create-post__btn_rounded">+</button>
       </div>
-      <button onClick={() => addComment()} className="add-comment__button color-white">Post Comment</button>
-    </div>
+    
+    
   </Fragment>
 }
 

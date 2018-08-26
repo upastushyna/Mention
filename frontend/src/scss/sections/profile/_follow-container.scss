@@ -1,8 +1,29 @@
 .follow-container {
-  width: 523px;
-  margin: 0 auto;
-  padding: 5px 5px 1px;
-  border: 1px solid #e6ecf5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  margin: 16px auto;
+  padding: 12px;
+  border: 1px solid $border-color;
   border-radius: 5px;
   background-color: #fff;
+
+  .profile-info__avatar{
+    margin-right: 16px;
+  }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+  .follow-container{
+    width: 95vw;
+
+    .follow-button{
+      font-size: 13px;
+      min-width: 85px;
+    }
+  }
+
 }

@@ -1,20 +1,37 @@
 .info-controller {
-  width: 380px;
-  margin: 25px auto;
+ width: 80%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 25px auto;
 
   &__link {
-    margin-right: 10px;
+    margin-right: 16px;
     padding: 10px 20px;
-    border: 1px solid #4591fb;
+    border: 1px solid $main-color;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    background-color: #4591fb;
+    background-color: $main-color;
     font-weight: 700;
     text-decoration: none;
+    color: #fff;
+    font-size: 17px;
 
     &:hover {
       background-color: #fff;
-      color: #4591fb;
+      color: $main-color;
+    }
+
+    &:nth-child(3){
+      margin-right: 0;
     }
   } 
+}
+
+@media screen and (max-width: 1200px){
+  .info-controller{
+    &__link{
+       font-size: 14px;
+    }
+  }
 }

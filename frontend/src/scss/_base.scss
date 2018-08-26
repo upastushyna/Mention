@@ -1,20 +1,15 @@
 body {
- background-color: #f0f6f6;
- font-family: 'Ubuntu', sans-serif;
+ font-family: $main-font;
 }
 
 .container {
  position: relative;
- max-width: 1268px;
+ max-width: 85%;
  margin: 0 auto;
- padding-left: 65px;
 }
 
-.d-flex {
+.d-flex-center {
  display: flex;
-}
-
-.items-center {
  align-items: center;
 }
 
@@ -22,8 +17,9 @@ body {
  justify-content: space-between;
 }
 
-.pointer {
- cursor: pointer;
+.flex-column {
+ display: flex;
+ flex-direction: column;
 }
 
 .left-margin {
@@ -35,18 +31,16 @@ body {
  filter: none;
 }
 
-.color-white {
- color: #fff;
-}
-
-.color-dark-grey {
- color: #515365;
-}
-
-.white-background {
- background-color: #fff;
-}
-
 .shadow-button {
  filter: drop-shadow(2px 2px 5px black);
+}
+
+.pos-relative {
+ position: relative;
+}
+
+@media screen and (max-width: 1200px) {
+ .container {
+  max-width: 90%;
+ }
 }

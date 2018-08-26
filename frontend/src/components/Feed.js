@@ -4,13 +4,20 @@ import '../css/index.css'
 import {loadFeed} from '../actions/feedActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
+import upload from '../img/fileuploadicon.png'
 
-const username = 'admin'
-const id = 1
 class Feed extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.props.history.listen((location, action) => {
+      this.props.loadData(this.props.currentUser.username);
+    });
+  }
+
   componentWillMount () {
-    if (this.props.feed.length === 0) {
-      this.props.loadData(this.props.currentUser.username)
+    if (this.props.feed.length === 0 && this.props.currentUser.username)  {
+        this.props.loadData(this.props.currentUser.username)
     }
   }
 
@@ -27,6 +34,9 @@ class Feed extends React.Component {
     fetch('/api/posts/add',
       {
         method: 'POST',
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem("accessToken")
+        },
         body: data
       }).then(() => this.props.loadData(this.props.currentUser.username))
       .then(() => this.refs.postInput.value = '')
@@ -34,21 +44,33 @@ class Feed extends React.Component {
   };
 
   render () {
+
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser()
+      return "Loading..."
+    }
+
     return (
       <Fragment>
         <Navigation/>
         <div className="container">
-          <div className="create-post white-background">
+          {!this.props.currentUser.followedUsers.find(follow =>
+            follow.followedUser.id === this.props.currentUser.id)?
+          <div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex items-center content-between">
+              <div className="d-flex-center">
                 <textarea className="create-post__input" id="postInput"
-                  placeholder="Share your thoughts" ref="postInput"
+                  placeholder="Share your thoughts with world" rows="2" ref="postInput"
                   maxLength={280}/>
-                <button type="submit" className="create-post__button">Add post</button>
+                <button type="submit" className="create-post__btn">Add post</button>
+                <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>
               </div>
-              <input className="upload" id="inputFile" ref="inputFile" type="file"/>
+              <div className="upload-file">
+              <img src={upload} alt="upload" className="upload-file__icon"/>
+              <p>Добавить вложение</p>
+              <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
-          </div>
+          </div> : ""}
           <PostsContainer username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}

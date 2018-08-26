@@ -5,9 +5,10 @@ export const loadPosts = username => dispatch => {
     {
       method: 'GET',
       headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(res => res.json())
-    .then(data => dispatch({type: USER_PAGE_LOADED, payload: data}))
+    }).then(res => res.headers.get('content-type') === null ? null : res.json())
+    .then(data => dispatch({type: USER_PAGE_LOADED, payload: data || []}))
 }

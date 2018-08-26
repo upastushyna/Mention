@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import user from '../img/header-panel/user-img.png'
 
 const HeaderProfile = props => {
   if (!props.user || !props.user.username) {
@@ -8,11 +7,10 @@ const HeaderProfile = props => {
 
   return <Fragment>
     <div className="header-profile">
-      <img src={props.user.profile.backgroundUrl} className="header-profile__background"/>
+      <img src={props.user.profile.backgroundUrl} alt="background" className="header-profile__background"/>
       <div className="header-profile__user">
-        <img src={props.user.profile.avatarUrl} alt="" className="header-profile__img"/>
-        <h3 className="header-profile__name">{props.user.username}</h3>
-        <h4 className="header-profile__location">Kyiv, Ukraine</h4>
+        <img src={props.user.profile.avatarUrl} alt="avatar" className="header-profile__img"/>
+        <h3 className="profile-info__username">{props.user.username}</h3>
       </div>
     </div>
   </Fragment>

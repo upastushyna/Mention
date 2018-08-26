@@ -19,26 +19,37 @@ import Websocket from './components/Websocket'
 
 class App extends Component {
   componentWillMount () {
-    if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser()
-    }
+      if (!this.props.currentUser || !this.props.currentUser.username) {
+        if (this.isLoggedIn()) {
+          this.props.loadCurrentUser()
+        }else {
+          this.props.history.push("/login")
+        }
+      }
   }
 
-  render () {
-    if (!this.props.currentUser || !this.props.currentUser.username) {
-      return 'Loading...'
+
+  isLoggedIn = () => {
+    if (localStorage.getItem("accessToken")) {
+      return true;
     }
+    return false;
+  };
+
+  render () {
     
     return (
       <Fragment>
         <Switch>
           <Route exact path='/' component={() => <HomePage
             currentUser={this.props.currentUser}
-            loadCurrentUser={this.props.loadCurrentUser}/>}/>
+            loadCurrentUser={this.props.loadCurrentUser}
+            history={this.props.history}/>}/>
           <Route path='/messages' component={() => <Messages
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
-          <Route path="/login" component={Login}/>
+          <Route path="/login" component={() => <Login
+            history={this.props.history}/>}/>
           <Route path="/registration" component={Registration}/>
           <Route path='/editprofile' component={EditProfile}/>
           <Route path='/profile' component={() => <Profile

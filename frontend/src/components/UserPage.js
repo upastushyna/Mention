@@ -14,12 +14,15 @@ import editing from '../img/editProfile.png'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import FollowButton from '../containers/FollowButton'
 import UnffollowButton from "../containers/UnffollowButton";
+import upload from '../img/fileuploadicon.png'
 
 class UserPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.props.history.listen((location, action) => {
+      console.log(this.props.history);
+      this.props.loadUser(this.props.match.params.username);
       this.props.loadData(this.props.match.params.username);
     });
   }
@@ -41,6 +44,7 @@ class UserPage extends React.Component {
     {
       method: 'POST',
       headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -53,6 +57,7 @@ class UserPage extends React.Component {
     {
       method: 'DELETE',
       headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -75,6 +80,9 @@ class UserPage extends React.Component {
     fetch('/api/posts/add',
       {
         method: 'POST',
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem("accessToken")
+        },
         body: data
       }).then(() => this.props.loadData(this.props.match.params.username))
       .then(() => this.refs.postInput.value = '')
@@ -82,47 +90,54 @@ class UserPage extends React.Component {
   };
 
   render () {
-    /* const posts = this.props.userPosts.map(post =>
-      <PostItem username={this.props.match.params.username}
-                loadData={this.props.loadData} post={post}/>); */
+
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      return "Loading..."
+    }
+
     return (
       <Fragment>
         <Navigation/>
-        <div className="container">
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
-            <Link className="user-navigation__info" to={'/' + this.props.match.params.username + '/info'}>
-              <img src={info} alt="" className="user-navigation__icon"/>
-              <h4 className="user-navigation__hover">info</h4>
+            <div className="user-navigation__links">
+            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username + '/info'}>
+              <img src={info} alt="info" className="user-navigation__icon"/>
+              <h4 className="user-nav-links__text">info</h4>
             </Link>
-            <Link className="user-navigation__posts" to={'/' + this.props.match.params.username}>
-              <img src={posts} alt="" className="user-navigation__icon"/>
-              <h4 className="user-navigation__hover">profile</h4>
-            </Link>
+            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username}>
+              <img src={posts} alt="feed" className="user-navigation__icon"/>
+              <h4 className="user-nav-links__text">profile</h4>
             <Link className="user-navigation__edit" to={'/editprofile'}>
               <img src={editing} alt="" className="user-navigation__icon"/>
               <h4 className="user-navigation__hover">Edit Profile</h4>
             </Link>
-          </div>
-          <div className="following shadow-button">
+            </div>
+            <div className="following shadow-button">
             {this.props.currentUser.followedUsers.find(follow =>
             follow.followedUser.id === this.props.user.id)?
               <UnffollowButton unfollow={this.unfollow} followedUser={this.props.user.id}/> :
               <FollowButton follow={this.follow} followedUser={this.props.user.id}/>
             }
           </div>
-          <div className="create-post white-background">
+          </div>
+
+          <div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex items-center content-between">
+              <div className="d-flex-center content-between">
                 <textarea className="create-post__input" id="postInput"
                   placeholder="Share your thoughts" ref="postInput"
                   maxLength={280}/>
-                <button type="submit" className="create-post__button">Add post</button>
+                <button type="submit" className="create-post__btn">Add post</button>
+                <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>
               </div>
-              <input className="upload" id="inputFile" ref="inputFile" type="file"/>
+              <div className="upload-file">
+              <img src={upload} alt="upload" className="upload-file__icon"/>
+              <p>Добавить вложение</p>
+
+              <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div>
-          {/* {posts} */}
           <Switch>
             <Route exact path={this.props.match.path} component={() =>
               <PostsContainer username={this.props.match.params.username}
@@ -135,7 +150,7 @@ class UserPage extends React.Component {
                 loadCurrentUser={this.props.loadCurrentUser}
                         follow={this.follow} unfollow={this.unfollow}/>}/>
           </Switch>
-        </div>
+
       </Fragment>
 
     )
