@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react'
-import { loadProfileById } from '../actions/editProfileAction'
-import { connect } from 'react-redux'
+import React, {Fragment} from 'react'
+import {loadProfileById} from '../actions/editProfileAction'
+import {connect} from 'react-redux'
 import Navigation from './Navigation'
 import DatePicker from 'react-datepicker/es/index'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 
 class EditProfile extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       startDate: moment(this.props.editProfile.birthDate)
@@ -15,15 +15,28 @@ class EditProfile extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange (date) {
+  handleChange(date) {
     this.setState({
       startDate: date
     })
   }
 
-  componentWillMount () {
-    this.props.loadProfileById(49)
+  componentWillMount() {
+    if (!this.props.editProfile || !this.props.editProfile.username) {
+      if (this.isLoggedIn()) {
+        this.props.loadProfileById()
+      } else {
+        this.props.history.push("/login")
+      }
+    }
   }
+
+  isLoggedIn = () => {
+    if (localStorage.getItem("accessToken")) {
+      return true;
+    }
+    return false;
+  };
 
   updateProfile = () =>
 
@@ -44,12 +57,7 @@ class EditProfile extends React.Component {
             })
           })
 
-  render () {
-    /*if (!this.props.editProfile || !this.props.editProfile.birthDate) {
-      return "Loading..."
-    }*/
-    /*this.setState({startDate:moment(this.props.editProfile.birthDate)});
-*/
+  render() {
     return (
         <Fragment>
           <Navigation/>
@@ -83,32 +91,28 @@ class EditProfile extends React.Component {
                 dropdownMode="select"
             />
             {/*<p className="edit-profile-list">*/}
-              {/*<input type="text" id="inputAvatarUrl" className="edit-profile_input"*/}
-                     {/*defaultValue={this.props.editProfile.avatarUrl}*/}
-                     {/*placeholder="Avatar"/>*/}
+            {/*<input type="text" id="inputAvatarUrl" className="edit-profile_input"*/}
+            {/*defaultValue={this.props.editProfile.avatarUrl}*/}
+            {/*placeholder="Avatar"/>*/}
             {/*</p>*/}
             <p className="edit-profile-list">
-              <div id="editAvatar" className="editAvatar">
-                <input type="text" className="inputAvatarUrl" placeholder="Insert Avatar Url"/>
-                <img src={this.props.editProfile.avatarUrl} alt="avatar"/>
-                <input type="submit" onClick={this.submitAvatar} defaultValue="Change Avatar"/>
-              </div>
               <input type="submit" id="buttonAvatarUrl" defaultValue="Edit Avatar"
                      onClick={this.changeAvatar}/>
+              <input type="text" className="inputAvatarUrl" placeholder="Insert Avatar Url"/>
+              <img src={this.props.editProfile.avatarUrl} alt="avatar"/>
+              <input type="submit" onClick={this.submitAvatar} defaultValue="Change Avatar"/>
             </p>
             {/*<p className="edit-profile-list">*/}
-              {/*<input type="text" id="inputBackgroundUrl" className="edit-profile_input"*/}
-                     {/*defaultValue={this.props.editProfile.backgroundUrl}*/}
-                     {/*placeholder="Background"/>*/}
+            {/*<input type="text" id="inputBackgroundUrl" className="edit-profile_input"*/}
+            {/*defaultValue={this.props.editProfile.backgroundUrl}*/}
+            {/*placeholder="Background"/>*/}
             {/*</p>*/}
             <p className="edit-profile-list">
-              <div id="editBackground">
-                <input type="text" className="inputBackgroundUrl" placeholder="Insert Background Url"/>
-                <img src={this.props.editProfile.backgroundUrl} alt="background"/>
-                <input type="submit" onClick={this.submitBackground} defaultValue="Change Background"/>
-              </div>
               <input type="submit" id="buttonBackgroundUrl" defaultValue="Edit Background"
                      onClick={this.changeBackground}/>
+              <input type="text" className="inputBackgroundUrl" placeholder="Insert Background Url"/>
+              <img src={this.props.editProfile.backgroundUrl} alt="background"/>
+              <input type="submit" onClick={this.submitBackground} defaultValue="Change Background"/>
             </p>
             <p className="edit-profile-list">
               <input type="submit" onClick={() => this.updateProfile()}
@@ -117,21 +121,26 @@ class EditProfile extends React.Component {
           </div>
         </Fragment>
     )
+    /*if (!this.props.editProfile || !this.props.editProfile.birthDate) {
+      return "Loading..."
+    }*/
+    /*this.setState({startDate:moment(this.props.editProfile.birthDate)});
+*/
   }
 
-  submitBackground () {
-
-  }
-
-  submitAvatar () {
-
-  }
-
-  changeAvatar () {
+  submitBackground() {
 
   }
 
-  changeBackground () {
+  submitAvatar() {
+
+  }
+
+  changeAvatar() {
+
+  }
+
+  changeBackground() {
 
   }
 }
@@ -141,7 +150,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadProfileById: id => dispatch(loadProfileById(id))
+  loadProfileById: () => dispatch(loadProfileById())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
