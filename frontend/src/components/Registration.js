@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../css/index.css'
-import logo from '../img/register.png'
+import logo from '../img/posts-icon.png'
 
 export default class Registration extends React.Component {
   addUser = () => fetch('/api/user',
@@ -18,19 +18,19 @@ export default class Registration extends React.Component {
 
   render () {
     return (
-      <section className="registration d-flex items-center">
-        <div className="registration__container">
-          <div className="registration__icon">
-            <img className="registration__img" src={logo} alt=""/>
+
+      
+      <section className="login d-flex-center">
+        <div className="login__container">     
+            <img className="login__icon" src={logo} alt="profile"/>      
+          <h1 className="login__title">Join the community</h1>
+          <div className="login__form">
+            <input id="username" type="text" className="login__input" placeholder="Username"/>
+            <input id="email" type="text" className="login__input" placeholder="Email"/>
+            <input id="password" type="password" className="login__input" placeholder="Password"/>
+            <button className="login__btn" onClick={() => this.addUser()}>Register</button>
           </div>
-          <h1 className="registration__title">Register</h1>
-          <div className="registration__form">
-            <input id="username" type="text" className="registration__input" placeholder="Username"/>
-            <input id="email" type="text" className="registration__input" placeholder="Email"/>
-            <input id="password" type="password" className="registration__input" placeholder="Password"/>
-            <button className="registration__btn" onClick={() => this.addUser()}>Register</button>
-          </div>
-          <Link to="/" className="registration__member-login">Member Login</Link>
+          <Link to="/" className="login__forgot-password">Member Login</Link>
         </div>
       </section>
     )

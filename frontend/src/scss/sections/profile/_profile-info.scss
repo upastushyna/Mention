@@ -1,73 +1,115 @@
 .profile-info {
-  display: flex;
-  align-items: center;
+ display: flex;
+ align-items: center;
+ cursor: pointer;
+
+ &__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+ }
+
+ &__username {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  color: $black-text-color;
+ }
+
+ &__arrow {
+  width: 17px;
+  height: 17px;
+  margin-left: 8px;
+  cursor: pointer;
+
+  &:focus {
+   outline: none;
+  }
+
+  &:active ~ .profile__nav,
+  &:focus ~ .profile__nav {
+   display: block;
+  }
+ }
+
+ &__alias {
+  font-size: 12px;
+  color: #a1a8bd;
+ }
+
+ &__signature {
+  margin: 7px;
+ }
+}
+
+.profile {
+ &__nav {
+  display: none;
+  list-style: none;
+  position: absolute;
+  top: 67px;
+  right: 0;
+  background-color: #fff;
+  z-index: 4;
+
+  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+
+  &:after {
+   content: "";
+   width: 0;
+   height: 0;
+   position: absolute;
+   top: -13px;
+   left: 50%;
+   transform: translateX(-50%);
+   border-style: solid;
+   border-width: 0 13px 13px 13px;
+   border-color: transparent transparent #fff transparent;
+  }
+ }
+
+ &__option {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 25px;
+
+  &:active,
+  &:hover {
+   background-color: $border-color;
+  }
+ }
+
+ &__link {
+  color: $black-text-color;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+ }
+}
+
+.profile-card {
+ &__avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+ }
+
+ &__username {
+  color: #fff;
+  font-size: 25px;
+  line-height: 45px;
+  margin-left: 16px;
+ }
+}
+
+@media screen and (max-width: 1200px) {
+ .profile-card {
+  &__username {
+   display: none;
+  }
 
   &__avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+   width: 35px;
+   height: 35px;
   }
-
-  &__username {
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 700;
-    color: $black-text-color;
-  }
-
-  &__arrow {
-   width: 15px;
-   height: 15px;
-   margin-left: 8px;
-  }
-
-  &__alias {
-    font-size: 12px;
-    color: #a1a8bd;
-  }
-
-  &__signature {
-    margin: 7px;
-  }
-}
-
-.profile{
-
-  &__nav {
-    display: none;
-    list-style: none;
-    position: absolute;
-    top: 67px;
-    right: 60px;
-    background-color: #fff;
-    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
-  }
-
-  &__option{
-     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-     padding: 25px;
-  }
-
-  &__link{
-    color: #203152;
-    font-size: 18px;
-    font-weight: 500;
-    text-decoration: none;
-  }
-}
-
-
-.profile-card{
-  &__avatar{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-  }
-
-  &__username{
-    color: #fff;
-    font-size: 25px;
-    line-height: 45px;
-    margin-left: 16px;
-  }
+ }
 }

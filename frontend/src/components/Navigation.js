@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import HeaderPanel from '../containers/HeaderPanel'
-import LeftPanel from '../containers/LeftPanel'
 import withRouter from 'react-router-dom/es/withRouter'
 import {connect} from 'react-redux'
 import {loadCurrentUser} from '../actions/currentUserActions'
@@ -20,7 +19,6 @@ class Navigation extends React.Component {
     return (
       <Fragment>
         <HeaderPanel currentUser={this.props.currentUser}/>
-        <LeftPanel currentUser={this.props.currentUser}/>
       </Fragment>
     )
   }

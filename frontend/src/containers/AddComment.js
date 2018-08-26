@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import avatar from '../img/header-panel/user-img.png'
 
 const AddComment = props => {
   const addComment = () => fetch('/api/comments/add',
@@ -25,6 +24,7 @@ const AddComment = props => {
           id={'commentInput' + props.postId} placeholder="Add comment"
           maxLength={280}/>
           <button onClick={() => addComment()} className="create-post__btn">Add</button>
+          <button onClick={() => addComment()} className="create-post__btn create-post__btn_rounded">+</button>
       </div>
     
     

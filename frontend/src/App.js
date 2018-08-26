@@ -20,7 +20,6 @@ class App extends Component {
   componentWillMount () {
       if (!this.props.currentUser || !this.props.currentUser.username) {
         if (this.isLoggedIn()) {
-          console.log("Loading!")
           this.props.loadCurrentUser()
         }else {
           this.props.history.push("/login")
