@@ -11,8 +11,7 @@
  .profile-info__username {
   height: 30px;
   width: 50px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+  @include ellipsis-text;
  }
 }

@@ -12,13 +12,14 @@
   padding: 48px 0 36px;
   border-radius: 4px;
   background-color: #fff;
+  text-align: center;
  }
 
  &__icon {
   width: 20%;
   border-radius: 50%;
   position: absolute;
-  top: -80px;
+  top: -10%;
   left: 50%;
   transform: translateX(-50%);
   background-color: $main-color;
@@ -54,6 +55,7 @@
   font-size: 18px;
   text-align: center;
   transition: all 1s;
+
   @include placeholder-default;
 
   &:focus {
@@ -77,24 +79,32 @@
  }
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
+ .login {
+  &__container {
+   width: 95%;
+   padding: 40px 0;
+  }
 
-    .login{
-        &__container{
-            width: 95%;
-            padding: 36px 0;
-        }
+  &__title {
+   font-size: 20px;
+   line-height: 30px;
+  }
 
+  &__forgot-password {
+   font-size: 15px;
+  }
+ }
+}
+
+@media screen and (min-width: 460px) and (max-width: 1200px){
+    .login {
+     &__container{
+         width: 70%;
+     }
+    
         &__icon{
-            top: -40px;
-        }
-
-        &__title{
-            font-size: 20px;
-            line-height: 30px;
-        }
-        &__forgot-password{
-            font-size: 15px;
+            width: 10%; 
         }
     }
 }
