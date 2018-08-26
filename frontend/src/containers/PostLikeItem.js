@@ -25,7 +25,7 @@ const PostLikeItem = props => {
       body: JSON.stringify({user: {id: props.currentUser.id}, post: {id: props.postId}})
     }).then(() => props.loadData(props.username))
 
-  return <div className="post__like-icon d-flex-center">
+  return <div className="d-flex-center">
     {props.likes.find(like => like.user.username === props.currentUser.username)
       ? <img onClick={() => deleteLike()} src={likeFilled} alt="like" className="post__action-img"/>
       : <img onClick={() => addLike()} src={like} alt="dislike" className="post__action-img"/>}

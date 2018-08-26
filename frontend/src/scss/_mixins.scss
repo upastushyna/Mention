@@ -61,7 +61,6 @@
   font-size: 14px;
   color: $placeholder-color;
   letter-spacing: 0.3px;
- 
  }
 
  &::-moz-placeholder {
@@ -69,7 +68,6 @@
   font-size: 14px;
   color: $placeholder-color;
   letter-spacing: 0.3px;
-
  }
 
  &:-ms-input-placeholder {
@@ -78,4 +76,10 @@
   color: $placeholder-color;
   letter-spacing: 0.3px;
  }
+}
+
+@mixin ellipsis-text {
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
 }
