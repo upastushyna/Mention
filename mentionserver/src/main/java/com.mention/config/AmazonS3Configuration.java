@@ -2,13 +2,9 @@ package com.mention.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +26,7 @@ public final class AmazonS3Configuration {
               new BasicAWSCredentials(
                   key,
                   secret)))
-          .withRegion("eu-central-1") .build() ;
+          .withRegion(Regions.EU_CENTRAL_1) .build() ;
     }
     return s3Builder;
   }
