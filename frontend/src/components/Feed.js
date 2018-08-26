@@ -17,7 +17,7 @@ class Feed extends React.Component {
 
   componentWillMount () {
     if (this.props.feed.length === 0) {
-      this.props.loadData(this.props.currentUser.username)
+        this.props.loadData(this.props.currentUser.username)
     }
   }
 
@@ -34,6 +34,9 @@ class Feed extends React.Component {
     fetch('/api/posts/add',
       {
         method: 'POST',
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem("accessToken")
+        },
         body: data
       }).then(() => this.props.loadData(this.props.currentUser.username))
       .then(() => this.refs.postInput.value = '')
@@ -41,10 +44,17 @@ class Feed extends React.Component {
   };
 
   render () {
+
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      return "Loading..."
+    }
+
     return (
       <Fragment>
         <Navigation/>
         <div className="container">
+          {!this.props.currentUser.followedUsers.find(follow =>
+            follow.followedUser.id === this.props.currentUser.id)?
           <div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
               <div className="d-flex-center">
@@ -59,7 +69,7 @@ class Feed extends React.Component {
               <p>Добавить вложение</p>
               <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
-          </div>
+          </div> : ""}
           <PostsContainer username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}

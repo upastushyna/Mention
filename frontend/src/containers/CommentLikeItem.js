@@ -9,7 +9,8 @@ const CommentLikeItem = props => {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + localStorage.getItem("accessToken")
       },
       body: JSON.stringify({user: {id: props.currentUser.id}, comment: {id: props.commentId}})
     }).then(() => props.loadData(props.username))

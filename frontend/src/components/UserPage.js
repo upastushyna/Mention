@@ -43,6 +43,7 @@ class UserPage extends React.Component {
     {
       method: 'POST',
       headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -55,6 +56,7 @@ class UserPage extends React.Component {
     {
       method: 'DELETE',
       headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -77,6 +79,9 @@ class UserPage extends React.Component {
     fetch('/api/posts/add',
       {
         method: 'POST',
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem("accessToken")
+        },
         body: data
       }).then(() => this.props.loadData(this.props.match.params.username))
       .then(() => this.refs.postInput.value = '')
@@ -84,9 +89,11 @@ class UserPage extends React.Component {
   };
 
   render () {
-    /* const posts = this.props.userPosts.map(post =>
-      <PostItem username={this.props.match.params.username}
-                loadData={this.props.loadData} post={post}/>); */
+
+    if (!this.props.currentUser || !this.props.currentUser.username) {
+      return "Loading..."
+    }
+
     return (
       <Fragment>
         <Navigation/>
@@ -127,7 +134,6 @@ class UserPage extends React.Component {
               <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div>
-          {/* {posts} */}
           <Switch>
             <Route exact path={this.props.match.path} component={() =>
               <PostsContainer username={this.props.match.params.username}
