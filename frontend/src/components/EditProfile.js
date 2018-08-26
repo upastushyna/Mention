@@ -82,12 +82,12 @@ class EditProfile extends React.Component {
                 showYearDropdown
                 dropdownMode="select"
             />
+            {/*<p className="edit-profile-list">*/}
+              {/*<input type="text" id="inputAvatarUrl" className="edit-profile_input"*/}
+                     {/*defaultValue={this.props.editProfile.avatarUrl}*/}
+                     {/*placeholder="Avatar"/>*/}
+            {/*</p>*/}
             <p className="edit-profile-list">
-              <input type="text" id="inputAvatarUrl" className="edit-profile_input"
-                     defaultValue={this.props.editProfile.avatarUrl}
-                     placeholder="Avatar"/>
-            </p>
-            {/*<p className="edit-profile-list">
               <div id="editAvatar" className="editAvatar">
                 <input type="text" className="inputAvatarUrl" placeholder="Insert Avatar Url"/>
                 <img src={this.props.editProfile.avatarUrl} alt="avatar"/>
@@ -95,13 +95,13 @@ class EditProfile extends React.Component {
               </div>
               <input type="submit" id="buttonAvatarUrl" defaultValue="Edit Avatar"
                      onClick={this.changeAvatar}/>
-            </p>*/}
-            <p className="edit-profile-list">
-              <input type="text" id="inputBackgroundUrl" className="edit-profile_input"
-                     defaultValue={this.props.editProfile.backgroundUrl}
-                     placeholder="Background"/>
             </p>
-            {/*<p className="edit-profile-list">
+            {/*<p className="edit-profile-list">*/}
+              {/*<input type="text" id="inputBackgroundUrl" className="edit-profile_input"*/}
+                     {/*defaultValue={this.props.editProfile.backgroundUrl}*/}
+                     {/*placeholder="Background"/>*/}
+            {/*</p>*/}
+            <p className="edit-profile-list">
               <div id="editBackground">
                 <input type="text" className="inputBackgroundUrl" placeholder="Insert Background Url"/>
                 <img src={this.props.editProfile.backgroundUrl} alt="background"/>
@@ -109,7 +109,7 @@ class EditProfile extends React.Component {
               </div>
               <input type="submit" id="buttonBackgroundUrl" defaultValue="Edit Background"
                      onClick={this.changeBackground}/>
-            </p>*/}
+            </p>
             <p className="edit-profile-list">
               <input type="submit" onClick={() => this.updateProfile()}
                      className="edit-profile_button" defaultValue="Edit"/>
