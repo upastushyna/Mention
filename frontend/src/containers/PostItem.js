@@ -52,11 +52,11 @@ const PostItem = props => {
       {props.post.parent ? props.post.parent.mediaFileUrl
         ? <img className="post__img" alt="like" src={props.post.parent.mediaFileUrl}/> : '' : props.post.mediaFileUrl
         ? <img className="post__img" alt="like-active" src={props.post.mediaFileUrl}/> : ''}
-      <div className="post__footer d-flex-center content-between">
+      <div className="post__footer">
         <PostLikeItem loadData={props.loadData} postId={props.post.id}
           likes={props.post.likes} username={props.username}
           currentUser={props.currentUser}/>
-        <div className="post__comment-icon d-flex-center">
+        <div className="d-flex-center">
           <img src={comment} alt="comment" className="post__action-img"/>
           <span className="post__action-count">{props.post.comments.length}</span>
           <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>

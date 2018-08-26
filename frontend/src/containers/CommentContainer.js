@@ -7,7 +7,7 @@ const CommentContainer = props =>
   props.comments.map(comment =>
     <Fragment>
       <div className="comment-container">
-        <div className="comment-container__header d-flex-center content-between">
+        <div className="d-flex-center content-between">
           <div className="profile-info">
             <img src={comment.commentator.profile.avatarUrl} alt="" className="profile-info__avatar"/>
             <div className="profile-info__signature">

@@ -1,29 +1,26 @@
 .follow-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 30%;
-  margin: 16px auto;
-  padding: 12px;
-  border: 1px solid $border-color;
-  border-radius: 5px;
-  background-color: #fff;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ width: 30%;
+ margin: 16px auto;
+ padding: 12px;
+ border: 1px solid $border-color;
+ border-radius: 5px;
+ background-color: #fff;
 
-  .profile-info__avatar{
-    margin-right: 16px;
-  }
-
+ .profile-info__avatar {
+  margin-right: 16px;
+ }
 }
 
 @media screen and (max-width: 1200px) {
+ .follow-container {
+  width: 95vw;
 
-  .follow-container{
-    width: 95vw;
-
-    .follow-button{
-      font-size: 13px;
-      min-width: 85px;
-    }
+  .follow-button {
+   font-size: 13px;
+   min-width: 85px;
   }
-
+ }
 }

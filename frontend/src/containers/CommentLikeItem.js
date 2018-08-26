@@ -29,7 +29,7 @@ const CommentLikeItem = props => {
     {props.likes.find(like => like.user.username === props.currentUser.username)
       ? <img onClick={() => deleteLike()} src={likeFilled} alt="like" className="comment-container__action-img"/>
       : <img onClick={() => addLike()} src={like} alt="dislike" className="comment-container__action-img"/>}
-    <span className="comment-container__like-number">{props.likes.length}</span>
+    <span className="post__action-count">{props.likes.length}</span>
   </div>
 }
 
