@@ -57,10 +57,20 @@ class Feed extends React.Component {
           {!this.props.currentUser.followedUsers.find(follow =>
             follow.followedUser.id === this.props.currentUser.id)?
           <div className="create-post">
+<<<<<<< HEAD
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
               <div className="d-flex-center">
                 <textarea className="create-post__input" id="postInput"
                   placeholder="Share your thoughts with world" rows="2" ref="postInput"
+=======
+            <form encType="multipart/form-data"
+                  onSubmit={event => this.addPost(event)}
+                  /*onKeyPress={(e) => {(e.key === 'Enter' ? event => this.addPost(event): null)}}*/>
+              <div className="d-flex items-center">
+                <textarea className="create-post__input" id="postInput"
+                          onKeyPress={(e) => {(e.key === 'Enter' ? event => this.addPost(event): null)}}
+                  placeholder="Share your thoughts" ref="postInput"
+>>>>>>> d8e00c96d10c7e2ac95d94980b782fd7b1d5b12c
                   maxLength={280}/>
                 <button type="submit" className="create-post__btn">Add post</button>
                 <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>

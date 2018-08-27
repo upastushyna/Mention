@@ -66,10 +66,16 @@ const Chat = props => {
       </div>
     </div>
     <div className="message-sender">
+
       <textarea id="messageInput" className="message-sender__input"
                 onKeyPress={(e) => {(e.key === 'Enter' ? addMessage() : null)}}
+<<<<<<< HEAD
         placeholder="Say hi to your friend :)" maxLength={1000}/>
       <img onClick={() => addMessage()} src={send} alt="icon-send-msg" className="message-sender__actions"/>
+=======
+        placeholder="Say hi to your friend :)" maxLength={1000}/>   
+        <img onClick={() => addMessage()} src={send} alt="icon-send-msg" className="message-sender__actions"/>
+>>>>>>> d8e00c96d10c7e2ac95d94980b782fd7b1d5b12c
     </div>
   </Fragment>
 }
