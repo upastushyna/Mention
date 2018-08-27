@@ -24,6 +24,7 @@ class SearchContainer extends React.Component {
       <Fragment>
         <form action="#" className="d-flex-center">
           <input onKeyUp={() => this.setState({input: this.refs.searchInput.value})} id="searchInput"
+                /* onKeyPress={(e) => {(e.key === 'Enter' ? () => this.setState({input: this.refs.searchInput.value}): null)}}*/
             ref="searchInput" type="text" className="search__input"
             placeholder="Search..."/>
           <Link to={'/search/' + this.state.input} className="search__btn" onClick={() => this.onClick()}>
