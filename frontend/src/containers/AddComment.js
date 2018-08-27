@@ -22,7 +22,8 @@ const AddComment = props => {
         <img src={props.currentUser.profile.avatarUrl} alt="avatar" className="add-comment__avatar"/>
         <textarea className="create-post__input"
           id={'commentInput' + props.postId} placeholder="Add comment"
-          maxLength={280}/>
+                  onKeyPress={(e) => {(e.key === 'Enter' ? addComment() : null)}}
+          maxLength={280} />
           <button onClick={() => addComment()} className="create-post__btn">Add</button>
           <button onClick={() => addComment()} className="create-post__btn create-post__btn_rounded">+</button>
       </div>
