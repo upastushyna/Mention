@@ -1,87 +1,83 @@
 .chats {
+ &__view {
+  display: flex;
+  height: 80vh;
+  margin: 50px auto 0;
+ }
 
-  &__view{
-    display: flex;
-    height: 80vh;
-    margin: 50px auto 0;
-  }
+ &__list {
+  width: 30%;
+  height: 80vh;
+  overflow-y: auto;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid $border-color;
+ }
 
-  &__list {
-   width: 30%;
-   height: 80vh;
-   overflow-y: auto;
-   margin: 0 auto; 
-   background-color: #fff;
-   border: 1px solid $border-color;
-  }
+ &__search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid $border-color;
+ }
 
-  &__search {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    border-bottom: 1px solid $border-color;
-  }
+ &__input {
+  @include clear-default-input-style;
+  width: 85%;
+  padding: 10px 20px;
+  margin-right: 8px;
+  border-radius: 4px;
+  background-color: $border-color;
+  color: $black-text-color;
+  font-size: 16px;
+  @include placeholder-default;
+ }
 
-  &__input {
-    @include clear-default-input-style();
-    width: 85%;
-    padding: 10px 20px;
-    margin-right: 8px;
-    border-radius: 4px;   
-    background-color: $border-color;
-    color: $black-text-color;
-    font-size: 16px;
-    @include placeholder(){
-      color: #737d9b;
-      letter-spacing: 0.3px;
-      font-weight: 300;
-    }
-  }
+ &__button {
+  width: 20px;
+  height: 20px;
+ }
 
-  &__button {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
-
-  &__header{
-    display: none;
-    widows: 100%;
-    padding: 16px;
-  }
+ &__header {
+  display: none;
+  widows: 100%;
+  padding: 16px;
+ }
 }
 
 .chat-container {
-  display: block;
-  padding: 20px;
-  border-bottom: 1px solid $border-color;
-  color: #515365;
-  text-decoration: none;
+ display: block;
+ padding: 20px;
+ border-bottom: 1px solid $border-color;
+ text-decoration: none;
 
-  &:hover {
-    opacity: .7;
-  }
+ &:hover {
+  opacity: .7;
+ }
 
-  &__text{
-    margin: 8px;
-  }
+ &__text {
+  margin: 8px;
+  font-size: 16px;
+  height: 25px;
+  @include ellipsis-text;
+  color: $black-text-color;
+ }
 }
 
 @media screen and (max-width: 1200px) {
-
-  .chats{
-    &__header {
-      display: flex;
-    }
-
-    &__view{
-      margin: 16px;
-      max-width: 100%;
-    }
-
-    &__list{
-      width: 100%;
-    }
+ .chats {
+  &__header {
+   display: flex;
   }
+
+  &__view {
+   margin: 16px;
+   max-width: 100%;
+  }
+
+  &__list {
+   width: 100%;
+  }
+ }
 }

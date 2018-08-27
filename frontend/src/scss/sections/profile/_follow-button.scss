@@ -1,16 +1,30 @@
 .follow-button {
-  &__text {
-    padding: 10px 20px;
-    border: 1px solid #198C19;
-    border-radius: 5px;
-    background-color: #198C19;
+    @include clear-default-input-style();
+    padding: 8px;
+    min-width: 120px;
+    font-size: 17px;    
+    border-radius: 5px;  
     color: #fff;
     font-weight: 700;
-    cursor: pointer;
+
+    &_green{
+      background-color: $green-color;
+    }
+
+    &_red{
+      background-color: $red-color;
+    }
   }
 
-  &__text:active,
-  &__text:focus {
-    filter: none;
+.following {
+  position: relative;
+  top: 10%;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .following{
+    top: 0;
   }
+
 }

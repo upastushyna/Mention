@@ -1,0 +1,17 @@
+.users-panel {
+ position: absolute;
+ top: 0;
+ right: 0;
+ border: 1px solid #fff;
+
+ .follow-container {
+  width: 280px;
+ }
+
+ .profile-info__username {
+  height: 30px;
+  width: 50px;
+
+  @include ellipsis-text;
+ }
+}

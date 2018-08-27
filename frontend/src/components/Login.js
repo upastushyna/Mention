@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../css/index.css'
-import logo from '../img/login.png'
+import logo from '../img/posts-icon.png'
 
 export default class Login extends React.Component {
 
@@ -24,11 +24,11 @@ export default class Login extends React.Component {
 
   render () {
     return (
-      <section className="login d-flex items-center">
+      <section className="login d-flex-center">
         <div className="login__container">
-          <div className="login__icon">
-            <img className="login__img" src={logo} alt=""/>
-          </div>
+
+            <img className="login__icon" src={logo} alt="login"/>
+
           <h1 className="login__title">Login</h1>
           <form className="login__form" onSubmit={event => this.login(event)}>
             <input ref="username" type="text" className="login__input" placeholder="Username or Email"/>

@@ -1,5 +1,4 @@
 .comment-container {
-  position: relative;
   padding: 24px;
   border-top: 1px solid $border-color;
  
@@ -9,6 +8,8 @@
     color: $black-text-color;
     font-size: 14px;
     line-height: 21px;
+    height: 22px;
+    word-wrap: break-word;
   }
 
   &__footer {
@@ -24,10 +25,6 @@
     &:focus{
       outline: none;
     }
-  }
-
-  &__like-number {
-    margin-left: 10px;
   }
 
   &__header .profile-info__avatar {
@@ -46,3 +43,9 @@
   }
 }
 
+@media screen and (max-width: 1200px) {
+
+  .comment-container {
+    padding: 16px;
+  }
+}
