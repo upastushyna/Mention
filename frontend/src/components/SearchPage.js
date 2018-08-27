@@ -19,6 +19,32 @@ class SearchPage extends React.Component {
     }
   }
 
+  follow = followedUser => fetch('/api/follow/add',
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        follower: {id: this.props.currentUser.id},
+        followedUser: {id: followedUser}})
+    }).then(() => this.props.loadCurrentUser());
+
+  unfollow = followedUser => fetch('/api/follow/delete',
+    {
+      method: 'DELETE',
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        follower: {id: this.props.currentUser.id},
+        followedUser: {id: followedUser}})
+    }).then(() => this.props.loadCurrentUser());
+
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return 'Loading...'
@@ -38,7 +64,10 @@ class SearchPage extends React.Component {
               : <UsersContainer username={this.props.match.params.input}
                 loadUsers={this.props.loadUsers}
                 users={this.props.foundUsers}
-                currentUser={this.props.currentUser}/>}
+                currentUser={this.props.currentUser}
+                                follow={this.follow}
+                                unfollow={this.unfollow}
+                />}
           </div>
         </div>
       </Fragment>
@@ -51,12 +80,12 @@ const mapStateToProps = state => ({
   foundUsers: state.foundUsers,
   currentUser: state.currentUser
 
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
   loadUsers: input => dispatch(loadSearchUsers(input)),
-  loadCurrentUser: () => (loadCurrentUser)
-})
+  loadCurrentUser: () => dispatch(loadCurrentUser())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)
