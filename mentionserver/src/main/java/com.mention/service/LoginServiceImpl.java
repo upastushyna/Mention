@@ -23,7 +23,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import sun.tools.jstat.Token;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -91,7 +90,6 @@ public class LoginServiceImpl implements LoginService {
           HttpStatus.BAD_REQUEST);
     }
     Optional<User> user1 = userRepository.findByEmail(userDtoRq.getEmail());
-
     if (user1.isPresent()) {
       return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
           HttpStatus.BAD_REQUEST);
@@ -106,13 +104,15 @@ public class LoginServiceImpl implements LoginService {
     String token = UUID.randomUUID().toString();
     userToken.setToken(token);
     tokenRepository.save(userToken);
+    Profile profile = new Profile(newUser);
+    profile.setAvatarUrl("https://www.jetphotos.com/assets/img/user.png");
+    profile.setBackgroundUrl("https://www.publicdomainpictures.net/pictures/130000/velka/blue-background-1440627643Oc1.jpg");
+    profileRepository.save(profile);
     String message = "Thank you for registering in Mention! To finish your "
         + "registration, please follow the link: "
         + "http://localhost:3000/registration/" + token;
     String to = newUser.getEmail();
     String subject = "Confirm your email";
-    Profile profile = new Profile(newUser);
-    profileRepository.save(profile);
     emailService.sendSimpleMessage(to, subject, message);
 
     return ResponseEntity.ok(new ApiResponse(true, "User registered successfully"));
@@ -129,7 +129,6 @@ public class LoginServiceImpl implements LoginService {
       return ResponseEntity.ok(new ApiResponse(true,
           "User email confirmed successfully"));
     }
-    System.out.println("______________________________ALABAMA:" + token);
     return new  ResponseEntity(new ApiResponse(false, "Token not found"),
         HttpStatus.BAD_REQUEST);
   }

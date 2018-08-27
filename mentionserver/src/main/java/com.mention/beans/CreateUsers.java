@@ -110,7 +110,7 @@ public class CreateUsers {
         chatRepository.save(new Chat(
             userRepository.findByUsername("dima").get(), userRepository.findByUsername("alex").get()));    //34
         chatRepository.save(new Chat(
-            userRepository.findByUsername("alex").get(), userRepository.findByUsername("admin").get()));   //35
+            userRepository.findByUsername("alex").get(), userRepository.findByUsername("superman").get()));   //35
 
         messageRepository.save(new Message(
             "Hello!", userRepository.findByUsername("superman").get(),
@@ -190,7 +190,7 @@ public class CreateUsers {
             "Where are you?", userRepository.findByUsername("yarik").get(),
             userRepository.findByUsername("superman").get(), chatRepository.findById(31L).get()));
         messageRepository.save(new Message(
-            "Ты шо пёс?", userRepository.findByUsername("superman").get(),
+            "Как дела?", userRepository.findByUsername("superman").get(),
             userRepository.findByUsername("yarik").get(), chatRepository.findById(31L).get()));
 
         commentLikeRepository.save(new CommentLike(userRepository.findByUsername("yarik").get(),
