@@ -34,14 +34,18 @@ public class UserPostsServiceImpl implements UserPostsService {
 
   private PostRepository postRepository;
 
+  private AmazonS3Configuration as3;
 
   private ModelMapper modelMapper;
 
   @Autowired
-  public UserPostsServiceImpl(UserRepository userRepository, PostRepository postRepository) {
+  public UserPostsServiceImpl(UserRepository userRepository,
+                              PostRepository postRepository,
+                              AmazonS3Configuration as3) {
     this.userRepository = userRepository;
     this.postRepository = postRepository;
     this.modelMapper = new ModelMapper();
+    this.as3 = as3;
   }
 
   @Override
@@ -104,7 +108,7 @@ public class UserPostsServiceImpl implements UserPostsService {
   @Override
   @Transactional
   public void addPost(String body, Long userId, MultipartFile file) throws IOException {
-    AmazonS3 s3 = AmazonS3Configuration.getAmazonS3();
+    AmazonS3 s3 = as3.getAmazonS3();
     User user = new User(userId);
     Post post = new Post(body, user);
     if (file != null) {

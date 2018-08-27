@@ -8,6 +8,10 @@ body {
  margin: 0 auto;
 }
 
+.d-none {
+ display: none !important;
+}
+
 .d-flex-center {
  display: flex;
  align-items: center;

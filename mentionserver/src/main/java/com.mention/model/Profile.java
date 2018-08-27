@@ -49,6 +49,10 @@ public class Profile {
 
   protected Profile() { }
 
+  public Profile(User user) {
+    this.user = user;
+  }
+
   public Profile(String firstName, String secondName, String address,
                  Date birthDate, String avatarUrl, String backgroundUrl, User user) {
     this.firstName = firstName;
