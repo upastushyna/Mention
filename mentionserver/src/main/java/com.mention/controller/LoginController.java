@@ -1,15 +1,12 @@
 package com.mention.controller;
 
-import com.mention.payload.JwtAuthenticationResponse;
+import com.mention.dto.UserDtoRq;
+import com.mention.exceptions.UserNotConfirmedException;
 import com.mention.payload.LoginRequest;
-import com.mention.security.JwtTokenProvider;
+import com.mention.service.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,37 +15,29 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api")
 public class LoginController {
 
-  private AuthenticationManager authenticationManager;
-
-  private JwtTokenProvider tokenProvider;
+  private LoginServiceImpl loginService;
 
   @Autowired
-  PasswordEncoder passwordEncoder;
-
-  @Autowired
-  public LoginController(AuthenticationManager authenticationManager,
-                         JwtTokenProvider tokenProvider) {
-    this.authenticationManager = authenticationManager;
-    this.tokenProvider = tokenProvider;
+  public LoginController(LoginServiceImpl loginService) {
+    this.loginService = loginService;
   }
 
-  @PostMapping
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+  @PostMapping("/login")
+  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest)
+      throws UserNotConfirmedException {
+    return loginService.authenticateUser(loginRequest);
+  }
 
+  @PostMapping("/register/{token}")
+  public ResponseEntity<?> confirmRegistration(@PathVariable String token) {
+    return loginService.confirmRegistration(token);
+  }
 
-    Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(
-            loginRequest.getUsernameOrEmail(),
-            loginRequest.getPassword()
-        )
-    );
-
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-
-    String jwt = tokenProvider.generateToken(authentication);
-    return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+  @PostMapping("/register")
+  public ResponseEntity<?> registerUser(@Valid @RequestBody UserDtoRq userDtoRq) {
+    return loginService.registerUser(userDtoRq);
   }
 }
