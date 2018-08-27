@@ -209,8 +209,6 @@ public class CreateUsers {
             commentRepository.findById(13L).get()));
         commentLikeRepository.save(new CommentLike(userRepository.findByUsername("superman").get(),
             commentRepository.findById(13L).get()));
-
-
       }
     };
   }
