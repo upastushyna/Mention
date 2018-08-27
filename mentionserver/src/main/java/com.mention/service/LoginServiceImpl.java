@@ -2,6 +2,7 @@ package com.mention.service;
 
 import com.mention.config.EmailService;
 import com.mention.dto.UserDtoRq;
+import com.mention.exceptions.UserNotConfirmedException;
 import com.mention.model.Profile;
 import com.mention.model.User;
 import com.mention.model.UserToken;
@@ -22,7 +23,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 import java.util.UUID;
 
@@ -62,7 +62,13 @@ public class LoginServiceImpl implements LoginService {
   }
 
   @Override
-  public ResponseEntity<?> authenticateUser(LoginRequest loginRequest) {
+  public ResponseEntity<?> authenticateUser(LoginRequest loginRequest)
+      throws UserNotConfirmedException {
+    Optional<User> currentUser = userRepository.findByUsernameOrEmail(loginRequest.getUsernameOrEmail(),
+        loginRequest.getUsernameOrEmail());
+    if (currentUser.isPresent() && !currentUser.get().isActive()) {
+      throw new UserNotConfirmedException("Email confirmation required");
+    }
 
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
@@ -100,7 +106,7 @@ public class LoginServiceImpl implements LoginService {
     tokenRepository.save(userToken);
     String message = "Thank you for registering in Mention! To finish your "
         + "registration, please follow the link: "
-        + "http://localhost:3000/register/" + token;
+        + "http://localhost:3000/registration/" + token;
     String to = newUser.getEmail();
     String subject = "Confirm your email";
     Profile profile = new Profile(newUser);
@@ -108,5 +114,21 @@ public class LoginServiceImpl implements LoginService {
     emailService.sendSimpleMessage(to, subject, message);
 
     return ResponseEntity.ok(new ApiResponse(true, "User registered successfully"));
+  }
+
+  @Override
+  public ResponseEntity<?> confirmRegistration(String token) {
+    Optional<UserToken> userToken = tokenRepository.findByToken(token);
+    if (userToken.isPresent()) {
+      User user = userRepository.findById(userToken.get().getUser().getId()).get();
+      user.setActive(true);
+      userRepository.save(user);
+      tokenRepository.delete(userToken.get());
+      return ResponseEntity.ok(new ApiResponse(true,
+          "User email confirmed successfully"));
+    }
+    System.out.println("______________________________ALABAMA:" + token);
+    return new  ResponseEntity(new ApiResponse(false, "Token not found"),
+        HttpStatus.BAD_REQUEST);
   }
 }
