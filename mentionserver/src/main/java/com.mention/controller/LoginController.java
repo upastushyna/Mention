@@ -6,6 +6,8 @@ import com.mention.payload.LoginRequest;
 import com.mention.service.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,11 @@ public class LoginController {
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest)
       throws UserNotConfirmedException {
     return loginService.authenticateUser(loginRequest);
+  }
+
+  @PostMapping("/register/{token}")
+  public ResponseEntity<?> confirmRegistration(@PathVariable String token) {
+    return loginService.confirmRegistration(token);
   }
 
   @PostMapping("/register")

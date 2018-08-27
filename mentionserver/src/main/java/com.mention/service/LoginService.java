@@ -9,5 +9,7 @@ public interface LoginService {
 
   public ResponseEntity<?> authenticateUser(LoginRequest loginRequest) throws UserNotConfirmedException;
 
-  ResponseEntity<?> registerUser( UserDtoRq userDtoRq);
+  ResponseEntity<?> registerUser(UserDtoRq userDtoRq);
+
+  ResponseEntity<?> confirmRegistration(String token);
 }

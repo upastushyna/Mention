@@ -16,6 +16,4 @@ public class UserDtoRq {
   @Length(min = 6, max = 24)
   private String password;
 
-  private boolean isActive;
-
 }

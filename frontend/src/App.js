@@ -7,7 +7,6 @@ import Messages from './components/Messages'
 import Favorites from './components/Favorites'
 import HomePage from './components/HomePage'
 import NotFound from './components/NotFound'
-import Login from './components/Login'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
 import SearchPage from './components/SearchPage'
@@ -22,7 +21,7 @@ class App extends Component {
         if (this.isLoggedIn()) {
           this.props.loadCurrentUser()
         }else {
-          this.props.history.push("/login")
+          this.props.history.push("/registration")
         }
       }
   }
@@ -47,9 +46,8 @@ class App extends Component {
           <Route path='/messages' component={() => <Messages
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
-          <Route path="/login" component={() => <Login
+          <Route path="/registration" component={() => <Registration
             history={this.props.history}/>}/>
-          <Route path="/registration" component={Registration}/>
           <Route path='/profile' component={() => <Profile
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
