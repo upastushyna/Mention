@@ -54,7 +54,7 @@ class Feed extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
-          {!this.props.currentUser.followedUsers.find(follow =>
+          {this.props.currentUser.followedUsers.find(follow =>
             follow.followedUser.id === this.props.currentUser.id)?
           <div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
