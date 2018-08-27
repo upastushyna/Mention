@@ -51,7 +51,8 @@ class App extends Component {
           <Route path="/login" component={() => <Login
             history={this.props.history}/>}/>
           <Route path="/registration" component={Registration}/>
-          <Route path='/editprofile' component={EditProfile}/>
+          <Route path='/editprofile' component={() => <EditProfile
+              currentUser={this.props.currentUser}/>}/>
           <Route path='/profile' component={() => <Profile
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>

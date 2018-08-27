@@ -22,21 +22,8 @@ class EditProfile extends React.Component {
   }
 
   componentWillMount() {
-    if (!this.props.editProfile || !this.props.editProfile.username) {
-      if (this.isLoggedIn()) {
-        this.props.loadProfileById()
-      } else {
-        this.props.history.push("/login")
-      }
-    }
+    this.props.loadProfileById(this.props.currentUser.id);
   }
-
-  isLoggedIn = () => {
-    if (localStorage.getItem("accessToken")) {
-      return true;
-    }
-    return false;
-  };
 
   updateProfile = () =>
 
@@ -44,6 +31,7 @@ class EditProfile extends React.Component {
           {
             method: 'PUT',
             headers: {
+              'Authorization': "Bearer " + localStorage.getItem("accessToken"),
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
