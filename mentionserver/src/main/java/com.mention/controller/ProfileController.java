@@ -43,6 +43,6 @@ public class ProfileController {
 
   @DeleteMapping("/{id}")
   public void deleteProfile(@PathVariable Long id) {
-    profileService.deletePrifile(id);
+    profileService.deleteProfile(id);
   }
 }

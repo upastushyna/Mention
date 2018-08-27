@@ -36,7 +36,7 @@ class EditProfile extends React.Component {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              id: 49, firstName: document.getElementById('inputFirstName').value,
+              firstName: document.getElementById('inputFirstName').value,
               secondName: document.getElementById('inputSecondName').value,
               address: document.getElementById('inputAddress').value,
               birthDate: this.state.startDate,

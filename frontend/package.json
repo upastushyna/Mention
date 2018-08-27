@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "latest",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1",
     "npm-watch": "^0.3.0",
@@ -22,8 +23,7 @@
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-order": "^0.7.0",
-    "webstomp-client": "^1.2.4",
-    "moment": "latest"
+    "webstomp-client": "^1.2.4"
   },
   "watch": {
     "stylelint-dev": {

@@ -113,7 +113,6 @@ class UserPage extends React.Component {
               </Link>
                 <Link className="user-navigation__edit" to={'/editprofile'}>
                   <img src={editing} alt="" className="user-navigation__icon"/>
-                  <h4 className="user-navigation__hover">Edit Profile</h4>
                 </Link>
             </div>
             <div className="following shadow-button">
