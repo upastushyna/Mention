@@ -2,6 +2,7 @@ package com.mention.service;
 
 import com.mention.config.EmailService;
 import com.mention.dto.UserDtoRq;
+import com.mention.exceptions.UserNotConfirmedException;
 import com.mention.model.Profile;
 import com.mention.model.User;
 import com.mention.model.UserToken;
@@ -62,7 +63,13 @@ public class LoginServiceImpl implements LoginService {
   }
 
   @Override
-  public ResponseEntity<?> authenticateUser(LoginRequest loginRequest) {
+  public ResponseEntity<?> authenticateUser(LoginRequest loginRequest)
+      throws UserNotConfirmedException {
+    Optional<User> currentUser = userRepository.findByUsernameOrEmail(loginRequest.getUsernameOrEmail(),
+        loginRequest.getUsernameOrEmail());
+    if (currentUser.isPresent() && !currentUser.get().isActive()) {
+      throw new UserNotConfirmedException("Email confirmation required");
+    }
 
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(

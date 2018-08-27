@@ -17,8 +17,9 @@ export default class Login extends React.Component {
         body: JSON.stringify({usernameOrEmail: this.refs.username.value,
           password : this.refs.password.value})
       }).then(res => res.json())
-      .then(res => localStorage.setItem("accessToken", res.accessToken))
-      .then(() => setTimeout(() => this.props.history.push("/"), 500))
+      .then(res => res.status === 500? null : localStorage.setItem('accessToken', res.accessToken))
+      .then(() => localStorage.getItem("accessToken")?
+        setTimeout(() => this.props.history.push("/"), 1000) : null)
   };
 
   render () {

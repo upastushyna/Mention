@@ -1,6 +1,7 @@
 package com.mention.controller;
 
 import com.mention.dto.UserDtoRq;
+import com.mention.exceptions.UserNotConfirmedException;
 import com.mention.payload.LoginRequest;
 import com.mention.service.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class LoginController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest)
+      throws UserNotConfirmedException {
     return loginService.authenticateUser(loginRequest);
   }
 
