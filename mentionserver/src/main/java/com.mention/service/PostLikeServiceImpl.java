@@ -15,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostLikeServiceImpl implements PostLikeService {
 
   private PostLikeRepository postLikeRepository;
-  private UserRepository userRepository;
-  private PostRepository postRepository;
 
   @Autowired
   public PostLikeServiceImpl(PostLikeRepository postLikeRepository) {
