@@ -18,6 +18,4 @@ public interface UserService {
   List<ShortUserDetailsRs> getUsersByUsername(String username);
 
   CurrentUserDtoRs getCurrentUser();
-
-  ShortUserDetailsRs getUser(Long id);
 }

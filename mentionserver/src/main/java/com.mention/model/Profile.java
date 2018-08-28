@@ -43,7 +43,6 @@ public class Profile {
 
   @OneToOne
   @JoinColumn(name = "user_id", updatable = false, unique = true, nullable = false)
-//  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"}, allowSetters = true)
   @JsonBackReference
   private User user;
 

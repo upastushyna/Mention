@@ -43,7 +43,6 @@ public class ProfileController {
     userProfileService.updateProfile(profile);
   }
 
-
   @DeleteMapping("/{id}")
   public void deleteProfile(@PathVariable Long id) {
     userProfileService.deleteProfile(id);

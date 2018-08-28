@@ -35,7 +35,6 @@ public class User {
   private List<Chat> chats;
 
   @OneToOne(mappedBy = "user")
-//  @JsonIgnoreProperties(value = {"user"})
   @JsonManagedReference
   private Profile profile;
 
