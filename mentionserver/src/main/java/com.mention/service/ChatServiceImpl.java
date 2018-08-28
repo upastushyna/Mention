@@ -36,10 +36,10 @@ public class ChatServiceImpl implements ChatService {
         .findByUser1UsernameOrUser2Username(username, username);
     if (chats.isPresent()) {
       List<Chat> currentChats = chats.get();
-      List<ChatRs> chatRS = currentChats.stream().map(chat ->
+      List<ChatRs> chatRs = currentChats.stream().map(chat ->
           modelMapper.map(chat, ChatRs.class))
           .collect(Collectors.toList());
-      return chatRS;
+      return chatRs;
     }
     return null;
   }

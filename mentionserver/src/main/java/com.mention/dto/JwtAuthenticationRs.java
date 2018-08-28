@@ -6,7 +6,7 @@ import lombok.Data;
 public class JwtAuthenticationRs {
 
   private String accessToken;
-  private final String TOKEN_TYPE = "Bearer";
+  private final String tokenType = "Bearer";
 
   public JwtAuthenticationRs(String accessToken) {
     this.accessToken = accessToken;

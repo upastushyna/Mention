@@ -57,11 +57,11 @@ public class PostServiceImpl implements PostService {
           user.getFollowedUsers()) {
         posts.addAll(followed.getFollowedUser().getPosts());
       }
-      List<PostRs> postRS = posts.stream().map(post -> modelMapper.map(
+      List<PostRs> postRs = posts.stream().map(post -> modelMapper.map(
           post, PostRs.class))
           .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
           .collect(Collectors.toList());
-      return postRS;
+      return postRs;
     }
     return null;
   }
@@ -70,11 +70,11 @@ public class PostServiceImpl implements PostService {
   public List<PostRs> getPostsByUsername(String username) {
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
-      List<PostRs> postRS = currentUser.get().getPosts().stream().map(
+      List<PostRs> postRs = currentUser.get().getPosts().stream().map(
           post -> modelMapper.map(post, PostRs.class))
           .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
           .collect(Collectors.toList());
-      return postRS;
+      return postRs;
     }
     return null;
   }
