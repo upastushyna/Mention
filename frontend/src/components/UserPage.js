@@ -10,7 +10,6 @@ import PostsContainer from '../containers/PostsContainer'
 import UserInfo from './UserInfo'
 import info from '../img/info-icon.png'
 import posts from '../img/posts-icon.png'
-import editing from '../img/editProfile.png'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import FollowButton from '../containers/FollowButton'
 import UnffollowButton from "../containers/UnffollowButton";
@@ -111,9 +110,6 @@ class UserPage extends React.Component {
                 <img src={posts} alt="feed" className="user-navigation__icon"/>
                 <h4 className="user-nav-links__text">profile</h4>
               </Link>
-                <Link className="user-navigation__edit" to={'/editprofile'}>
-                  <img src={editing} alt="" className="user-navigation__icon"/>
-                </Link>
             </div>
             <div className="following shadow-button">
               {this.props.currentUser.followedUsers.find(follow =>
@@ -155,20 +151,20 @@ class UserPage extends React.Component {
 
         </Fragment>
 
-  )
+    )
   }
-  }
+}
 
-  const mapStateToProps = state => ({
-    userPosts: state.userPosts,
-    user: state.user,
-    currentUser: state.currentUser
+const mapStateToProps = state => ({
+  userPosts: state.userPosts,
+  user: state.user,
+  currentUser: state.currentUser
 
-  })
+})
 
-  const mapDispatchToProps = dispatch => ({
-    loadData: username => dispatch(loadPosts(username)),
-    loadUser: username => dispatch(loadUser(username)),
-    loadCurrentUser: () => dispatch(loadCurrentUser())
-  })
-  export default connect(mapStateToProps, mapDispatchToProps)(UserPage)
+const mapDispatchToProps = dispatch => ({
+  loadData: username => dispatch(loadPosts(username)),
+  loadUser: username => dispatch(loadUser(username)),
+  loadCurrentUser: () => dispatch(loadCurrentUser())
+})
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage)

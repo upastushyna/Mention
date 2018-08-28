@@ -33,7 +33,6 @@ class EditProfile extends React.Component {
   }
 
 
-
   updateProfile = () =>
 
       fetch('/api/profiles/update',
