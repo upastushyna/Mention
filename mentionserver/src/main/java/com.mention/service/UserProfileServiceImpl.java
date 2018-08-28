@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,6 +60,13 @@ public class UserProfileServiceImpl implements UserProfileService {
     ModelMapper modelMapper = new ModelMapper();
     Profile deleteProfile = modelMapper.map(id, Profile.class);
     profileRepository.delete(deleteProfile);
+  }
+
+  @Override
+  public ProfileDtoRs getProfileById(Long id) {
+    ModelMapper modelMapper = new ModelMapper();
+    Profile profile = profileRepository.findByUserId(id);
+    return modelMapper.map(profile, ProfileDtoRs.class);
   }
 
 }

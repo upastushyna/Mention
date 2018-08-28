@@ -18,11 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserProfileController {
 
   private UserProfileServiceImpl userProfileService;
-  private UserService userService;
 
-  public UserProfileController(UserProfileServiceImpl userProfileService, UserService userService) {
+  public UserProfileController(UserProfileServiceImpl userProfileService) {
     this.userProfileService = userProfileService;
-    this.userService = userService;
   }
 
   @PostMapping("/add")
@@ -31,18 +29,13 @@ public class UserProfileController {
   }
 
   @GetMapping("/{id}")
-  public ShortUserDetailsRs getUser(@PathVariable Long id) {
-    return userService.getUser(id);
+  public ProfileDtoRs getUser(@PathVariable Long id) {
+    return userProfileService.getProfileById(id);
   }
 
   @PutMapping("/update")
   public void updateProfile(@RequestBody ProfileDtoRq profile) {
     userProfileService.updateProfile(profile);
-  }
-
-  @GetMapping("/{username}")
-  public ProfileDtoRs getProfileByUsername(@PathVariable String username) {
-    return userProfileService.getProfileByUserName(username);
   }
 
 }

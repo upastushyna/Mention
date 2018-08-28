@@ -22,7 +22,8 @@ class EditProfile extends React.Component {
   }
 
   componentWillMount() {
-    this.props.loadProfileById(this.props.currentUser.id);
+    if (this.props.currentUser)
+      this.props.loadProfileById(this.props.currentUser.id);
   }
 
   updateProfile = () =>
@@ -138,7 +139,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadProfileById: () => dispatch(loadProfileById())
+  loadProfileById: (id) => dispatch(loadProfileById(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)

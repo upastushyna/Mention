@@ -1,8 +1,10 @@
 package com.mention.controller;
 
 import com.mention.dto.ProfileDtoRq;
+import com.mention.dto.ProfileDtoRs;
 import com.mention.dto.ShortUserDetailsRs;
 import com.mention.model.Profile;
+import com.mention.service.UserProfileServiceImpl;
 import com.mention.service.UserService;
 import com.mention.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/profile")
 public class ProfileController {
 
-  private UserProfileService userProfileService;
-  private UserService userService;
+  private UserProfileServiceImpl userProfileService;
 
   @Autowired
-  public ProfileController(UserProfileService userProfileService, UserService userService) {
+  public ProfileController(UserProfileServiceImpl userProfileService) {
     this.userProfileService = userProfileService;
-    this.userService = userService;
   }
 
   @PostMapping
@@ -34,8 +34,8 @@ public class ProfileController {
   }
 
   @GetMapping("/{id}")
-  public ShortUserDetailsRs getUser(@PathVariable Long id) {
-    return userService.getUser(id);
+  public ProfileDtoRs getUser(@PathVariable Long id) {
+    return userProfileService.getProfileById(id);
   }
 
   @PutMapping

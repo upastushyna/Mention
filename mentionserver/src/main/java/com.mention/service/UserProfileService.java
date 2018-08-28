@@ -13,4 +13,6 @@ public interface UserProfileService {
   ProfileDtoRs getProfileByUserName(String username);
 
   void deleteProfile(Long id);
+
+  ProfileDtoRs getProfileById(Long id);
 }
