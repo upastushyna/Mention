@@ -1,10 +1,8 @@
 package com.mention.controller;
 
-import com.mention.dto.FollowDtoRq;
+import com.mention.dto.FollowRq;
 import com.mention.dto.ShortUserDetailsRs;
-import com.mention.dto.UserDtoIdRq;
-import com.mention.model.Follow;
-import com.mention.service.UserFollowServiceImpl;
+import com.mention.service.FollowServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +18,10 @@ import java.util.List;
 @RequestMapping("/api/follow")
 public class FollowController {
 
-  private UserFollowServiceImpl followService;
+  private FollowServiceImpl followService;
 
   @Autowired
-  public FollowController(UserFollowServiceImpl followService) {
+  public FollowController(FollowServiceImpl followService) {
     this.followService = followService;
   }
 
@@ -38,13 +36,13 @@ public class FollowController {
   }
 
   @PostMapping("/add")
-  public void addFollow(@RequestBody FollowDtoRq follow) {
+  public void addFollow(@RequestBody FollowRq follow) {
     followService.addFollow(follow);
 
   }
 
   @DeleteMapping("/delete")
-  public void deleteFollow(@RequestBody FollowDtoRq follow) {
+  public void deleteFollow(@RequestBody FollowRq follow) {
     followService.deleteFollow(follow);
   }
 }

@@ -1,49 +1,28 @@
 package com.mention.controller;
 
-import com.mention.model.Message;
-import com.mention.service002.MessageService;
+import com.mention.dto.MessageRq;
+import com.mention.service.MessageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/message")
+@RequestMapping("/api/messages")
 public class MessageController {
 
-  private MessageService messageService;
+  private MessageServiceImpl userMessagesService;
 
   @Autowired
-  public MessageController(MessageService messageService) {
-    this.messageService = messageService;
+  public MessageController(MessageServiceImpl userMessagesService) {
+    this.userMessagesService = userMessagesService;
   }
 
-  @GetMapping("/{id}")
-  public Optional<Message> getMessage(@PathVariable Long id) {
-    return messageService.getMessage(id);
+  @PostMapping("/add")
+  public void addMessage(@Valid @RequestBody MessageRq message) {
+    userMessagesService.addMessage(message);
   }
-
-  @PostMapping
-  public void addMessage(@RequestBody Message message) {
-    messageService.addMessage(message);
-  }
-
-  @PutMapping
-  public void updateMessage(@RequestBody Message message) {
-    messageService.updateMessage(message);
-  }
-
-  @DeleteMapping("/{id}")
-  public void deleteMessage(@PathVariable Long id) {
-    messageService.deleteMessage(id);
-  }
-
 }

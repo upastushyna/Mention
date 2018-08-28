@@ -1,9 +1,9 @@
 package com.mention.controller;
 
-import com.mention.dto.CurrentUserDtoRs;
+import com.mention.dto.CurrentUserRs;
 import com.mention.dto.ShortUserDetailsRs;
-import com.mention.dto.UserDtoIdRq;
-import com.mention.dto.UserDtoRq;
+import com.mention.dto.UserIdRq;
+import com.mention.dto.UserRq;
 import com.mention.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,17 +39,17 @@ public class UserController {
   }
 
   @GetMapping("/current")
-  public CurrentUserDtoRs getCurrentUser() {
+  public CurrentUserRs getCurrentUser() {
     return userService.getCurrentUser();
   }
 
   @PostMapping("/add")
-  public void createUser(@Valid @RequestBody UserDtoRq userDtoNewUser) {
+  public void createUser(@Valid @RequestBody UserRq userDtoNewUser) {
     userService.createNewUser(userDtoNewUser);
   }
 
   @DeleteMapping("/delete")
-  public void deleteUser(@RequestBody UserDtoIdRq userDtoIdRq) {
-    userService.deleteUser(userDtoIdRq);
+  public void deleteUser(@RequestBody UserIdRq userIdRq) {
+    userService.deleteUser(userIdRq);
   }
 }
