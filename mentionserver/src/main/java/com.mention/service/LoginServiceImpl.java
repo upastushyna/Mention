@@ -1,14 +1,14 @@
 package com.mention.service;
 
 import com.mention.config.EmailService;
-import com.mention.dto.UserDtoRq;
+import com.mention.dto.UserRq;
 import com.mention.exceptions.UserNotConfirmedException;
 import com.mention.model.Profile;
 import com.mention.model.User;
 import com.mention.model.UserToken;
-import com.mention.payload.ApiResponse;
-import com.mention.payload.JwtAuthenticationResponse;
-import com.mention.payload.LoginRequest;
+import com.mention.dto.ApiRs;
+import com.mention.dto.JwtAuthenticationRs;
+import com.mention.dto.LoginRq;
 import com.mention.repository.ProfileRepository;
 import com.mention.repository.UserRepository;
 import com.mention.repository.UserTokenRepository;
@@ -63,39 +63,39 @@ public class LoginServiceImpl implements LoginService {
   }
 
   @Override
-  public ResponseEntity<?> authenticateUser(LoginRequest loginRequest)
+  public ResponseEntity<?> authenticateUser(LoginRq loginRq)
       throws UserNotConfirmedException {
-    Optional<User> currentUser = userRepository.findByUsernameOrEmail(loginRequest.getUsernameOrEmail(),
-        loginRequest.getUsernameOrEmail());
+    Optional<User> currentUser = userRepository.findByUsernameOrEmail(loginRq.getUsernameOrEmail(),
+        loginRq.getUsernameOrEmail());
     if (currentUser.isPresent() && !currentUser.get().isActive()) {
       throw new UserNotConfirmedException("Email confirmation required");
     }
 
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
-            loginRequest.getUsernameOrEmail(),
-            loginRequest.getPassword()
+            loginRq.getUsernameOrEmail(),
+            loginRq.getPassword()
         )
     );
     SecurityContextHolder.getContext().setAuthentication(authentication);
     String jwt = tokenProvider.generateToken(authentication);
-    return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+    return ResponseEntity.ok(new JwtAuthenticationRs(jwt));
   }
 
   @Override
-  public ResponseEntity<?> registerUser(UserDtoRq userDtoRq) {
-    Optional<User> user = userRepository.findByUsername(userDtoRq.getUsername());
+  public ResponseEntity<?> registerUser(UserRq userRq) {
+    Optional<User> user = userRepository.findByUsername(userRq.getUsername());
     if (user.isPresent()) {
-      return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
+      return new ResponseEntity(new ApiRs(false, "Username is already taken!"),
           HttpStatus.BAD_REQUEST);
     }
-    Optional<User> user1 = userRepository.findByEmail(userDtoRq.getEmail());
+    Optional<User> user1 = userRepository.findByEmail(userRq.getEmail());
     if (user1.isPresent()) {
-      return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
+      return new ResponseEntity(new ApiRs(false, "Email Address already in use!"),
           HttpStatus.BAD_REQUEST);
     }
 
-    User newUser = modelMapper.map(userDtoRq, User.class);
+    User newUser = modelMapper.map(userRq, User.class);
     newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
     newUser.setActive(false);
     userRepository.save(newUser);
@@ -115,7 +115,7 @@ public class LoginServiceImpl implements LoginService {
     String subject = "Confirm your email";
     emailService.sendSimpleMessage(to, subject, message);
 
-    return ResponseEntity.ok(new ApiResponse(true, "User registered successfully"));
+    return ResponseEntity.ok(new ApiRs(true, "User registered successfully"));
   }
 
   @Override
@@ -126,10 +126,10 @@ public class LoginServiceImpl implements LoginService {
       user.setActive(true);
       userRepository.save(user);
       tokenRepository.delete(userToken.get());
-      return ResponseEntity.ok(new ApiResponse(true,
+      return ResponseEntity.ok(new ApiRs(true,
           "User email confirmed successfully"));
     }
-    return new  ResponseEntity(new ApiResponse(false, "Token not found"),
+    return new  ResponseEntity(new ApiRs(false, "Token not found"),
         HttpStatus.BAD_REQUEST);
   }
 }

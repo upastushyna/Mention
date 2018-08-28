@@ -1,9 +1,9 @@
 package com.mention.service;
 
-import com.mention.dto.CurrentUserDtoRs;
+import com.mention.dto.CurrentUserRs;
 import com.mention.dto.ShortUserDetailsRs;
-import com.mention.dto.UserDtoIdRq;
-import com.mention.dto.UserDtoRq;
+import com.mention.dto.UserIdRq;
+import com.mention.dto.UserRq;
 import com.mention.repository.UserRepository;
 import com.mention.model.User;
 import com.mention.security.UserPrincipal;
@@ -54,28 +54,28 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public CurrentUserDtoRs getCurrentUser() {
+  public CurrentUserRs getCurrentUser() {
     UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
         .getContext()
         .getAuthentication()
         .getPrincipal();
     Optional<User> user = userRepository.findById(userPrincipal.getId());
     if (user.isPresent()) {
-      return modelMapper.map(user.get(), CurrentUserDtoRs.class);
+      return modelMapper.map(user.get(), CurrentUserRs.class);
     }
     throw new UsernameNotFoundException("User not found!");
   }
 
   @Override
   @Transactional
-  public void createNewUser(UserDtoRq userDtoNewUser) {
+  public void createNewUser(UserRq userDtoNewUser) {
     User insertUser = modelMapper.map(userDtoNewUser, User.class);
     userRepository.save(insertUser);
   }
 
   @Override
   @Transactional
-  public void deleteUser(UserDtoIdRq user) {
+  public void deleteUser(UserIdRq user) {
     Optional<User> currentUser = userRepository.findById(user.getId());
     if (currentUser.isPresent()) {
       currentUser.get().setActive(false);

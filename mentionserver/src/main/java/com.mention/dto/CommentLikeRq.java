@@ -3,9 +3,10 @@ package com.mention.dto;
 import lombok.Data;
 
 @Data
-public class PostLikeRq {
+public class CommentLikeRq {
 
   private UserIdRq user;
-  private PostIdRq post;
+
+  private CommentIdRq comment;
 
 }

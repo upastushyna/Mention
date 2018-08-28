@@ -1,16 +1,5 @@
 package com.mention.service;
 
-import com.mention.controller.LoginController;
-import com.mention.dto.LoginDetailsRq;
-import com.mention.model.User;
-import com.mention.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
 /*@Service*/
 public class AuthServiceImpl implements AuthService {
 

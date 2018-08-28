@@ -1,12 +1,11 @@
 package com.mention.controller;
 
-import com.mention.dto.UserDtoRq;
+import com.mention.dto.UserRq;
 import com.mention.exceptions.UserNotConfirmedException;
-import com.mention.payload.LoginRequest;
+import com.mention.dto.LoginRq;
 import com.mention.service.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +26,9 @@ public class LoginController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest)
+  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRq loginRq)
       throws UserNotConfirmedException {
-    return loginService.authenticateUser(loginRequest);
+    return loginService.authenticateUser(loginRq);
   }
 
   @PostMapping("/register/{token}")
@@ -38,7 +37,7 @@ public class LoginController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody UserDtoRq userDtoRq) {
-    return loginService.registerUser(userDtoRq);
+  public ResponseEntity<?> registerUser(@Valid @RequestBody UserRq userRq) {
+    return loginService.registerUser(userRq);
   }
 }
