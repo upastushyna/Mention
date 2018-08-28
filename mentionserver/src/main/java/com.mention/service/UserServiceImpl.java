@@ -58,6 +58,15 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public ShortUserDetailsRs getUser(Long id) {
+    Optional<User> user = userRepository.findById(id);
+    if (user.isPresent()) {
+      return modelMapper.map(user.get(), ShortUserDetailsRs.class);
+    }
+    return null;
+  }
+
+  @Override
   @Transactional
   public void createNewUser(UserDtoRq userDtoNewUser) {
     User insertUser = modelMapper.map(userDtoNewUser, User.class);

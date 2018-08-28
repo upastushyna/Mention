@@ -1,7 +1,10 @@
 package com.mention.controller;
 
+import com.mention.dto.ProfileDtoRq;
+import com.mention.dto.ShortUserDetailsRs;
 import com.mention.model.Profile;
-import com.mention.service002.ProfileService;
+import com.mention.service.UserService;
+import com.mention.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,37 +15,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/profile")
 public class ProfileController {
 
-  private ProfileService profileService;
+  private UserProfileService userProfileService;
+  private UserService userService;
 
   @Autowired
-  public ProfileController(ProfileService profileService) {
-    this.profileService = profileService;
+  public ProfileController(UserProfileService userProfileService, UserService userService) {
+    this.userProfileService = userProfileService;
+    this.userService = userService;
   }
 
   @PostMapping
-  public void addProfile(@RequestBody Profile profile) {
-    profileService.addProfile(profile);
+  public void addProfile(@RequestBody ProfileDtoRq profile) {
+    userProfileService.addProfile(profile);
   }
 
   @GetMapping("/{id}")
-  public Optional<Profile> getProfile(@PathVariable Long id) {
-    return profileService.getProfile(id);
+  public ShortUserDetailsRs getUser(@PathVariable Long id) {
+    return userService.getUser(id);
   }
 
   @PutMapping
-  public void updateUser(@RequestBody Profile profile) {
-    profileService.updateProfile(profile);
+  public void updateUser(@RequestBody ProfileDtoRq profile) {
+    userProfileService.updateProfile(profile);
   }
 
 
   @DeleteMapping("/{id}")
   public void deleteProfile(@PathVariable Long id) {
-    profileService.deleteProfile(id);
+    userProfileService.deleteProfile(id);
   }
 }

@@ -56,6 +56,13 @@ public class UserProfileServiceImpl implements UserProfileService {
     return null;
   }
 
+  @Override
+  public void deleteProfile(Long id) {
+    ModelMapper modelMapper = new ModelMapper();
+    Profile deleteProfile = modelMapper.map(id, Profile.class);
+    profileRepository.delete(deleteProfile);
+  }
+
 }
 
 
