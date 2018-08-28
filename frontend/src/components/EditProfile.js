@@ -10,7 +10,7 @@ class EditProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      startDate: moment(this.props.editProfile.birthDate)
+      startDate: undefined
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -22,9 +22,17 @@ class EditProfile extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.currentUser)
+    if (this.props.currentUser.id) {
       this.props.loadProfileById(this.props.currentUser.id);
+    }
   }
+
+  componentDidUpdate() {
+    if (this.props.editProfile.birthDate && this.state.startDate === undefined)
+      this.setState({startDate: moment(this.props.editProfile.birthDate)});
+  }
+
+
 
   updateProfile = () =>
 
@@ -49,6 +57,10 @@ class EditProfile extends React.Component {
           })
 
   render() {
+    if (!this.props.editProfile) {
+      return "LOADIN...."
+    }
+
     return (
         <Fragment>
           <Navigation/>
@@ -85,26 +97,14 @@ class EditProfile extends React.Component {
               <input type="text" id="inputAvatarUrl" className="edit-profile_input"
                      defaultValue={this.props.editProfile.avatarUrl}
                      placeholder="Avatar"/>
+              <input type="submit" onClick={this.submitAvatar} defaultValue="Change Avatar"/>
             </p>
-            {/*<p className="edit-profile-list">*/}
-            {/*<input type="submit" id="buttonAvatarUrl" defaultValue="Edit Avatar"*/}
-            {/*onClick={this.changeAvatar}/>*/}
-            {/*<input id="inputAvatarUrl" type="text" className="inputAvatarUrl" placeholder="Insert Avatar Url"/>*/}
-            {/*<img src={this.props.editProfile.avatarUrl} alt="avatar"/>*/}
-            {/*<input type="submit" onClick={this.submitAvatar} defaultValue="Change Avatar"/>*/}
-            {/*</p>*/}
             <p className="edit-profile-list">
               <input type="text" id="inputBackgroundUrl" className="edit-profile_input"
                      defaultValue={this.props.editProfile.backgroundUrl}
                      placeholder="Background"/>
+              <input type="submit" onClick={this.submitBackground} defaultValue="Change Background"/>
             </p>
-            {/*<p className="edit-profile-list">*/}
-            {/*<input type="submit" id="buttonBackgroundUrl" defaultValue="Edit Background"*/}
-            {/*onClick={this.changeBackground}/>*/}
-            {/*<input id="inputBackgroundUrl" type="text" className="inputBackgroundUrl" placeholder="Insert Background Url"/>*/}
-            {/*<img src={this.props.editProfile.backgroundUrl} alt="background"/>*/}
-            {/*<input type="submit" onClick={this.submitBackground} defaultValue="Change Background"/>*/}
-            {/*</p>*/}
             <p className="edit-profile-list">
               <input type="submit" onClick={() => this.updateProfile()}
                      className="edit-profile_button" defaultValue="Edit"/>
@@ -117,22 +117,6 @@ class EditProfile extends React.Component {
     }*/
     /*this.setState({startDate:moment(this.props.editProfile.birthDate)});
 */
-  }
-
-  submitBackground() {
-
-  }
-
-  submitAvatar() {
-
-  }
-
-  changeAvatar() {
-
-  }
-
-  changeBackground() {
-
   }
 }
 
