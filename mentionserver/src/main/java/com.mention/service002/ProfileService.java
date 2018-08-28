@@ -12,6 +12,6 @@ public interface ProfileService {
 
   void updateProfile(Profile profile);
 
-  void deletePrifile(Long id);
+  void deleteProfile(Long id);
 
 }
