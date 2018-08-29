@@ -9,6 +9,7 @@ import HomePage from './components/HomePage'
 import NotFound from './components/NotFound'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
+import EditProfile from "./components/EditProfile";
 import SearchPage from './components/SearchPage'
 import {connect} from 'react-redux'
 import {loadCurrentUser} from './actions/currentUserActions'
@@ -48,6 +49,9 @@ class App extends Component {
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path="/registration" component={() => <Registration
             history={this.props.history}/>}/>
+          <Route path="/registration" component={Registration}/>
+          <Route path='/editprofile' component={() => <EditProfile
+              currentUser={this.props.currentUser}/>}/>
           <Route path='/profile' component={() => <Profile
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>

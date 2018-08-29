@@ -14,11 +14,15 @@ import java.util.Optional;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+  private UserRepository userRepository;
+
   @Autowired
-  UserRepository userRepository;
+  public CustomUserDetailsService(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
 
   @Override
-  @Transactional
+  /*@Transactional*/
   public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
     Optional<User> user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail);
     if (user.isPresent()) {
@@ -27,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     throw new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail);
   }
 
-  @Transactional
+  /*@Transactional*/
   public UserDetails loadUserById(Long id) {
     Optional<User> user = userRepository.findById(id);
     if (user.isPresent()) {
@@ -35,5 +39,4 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
     throw new UsernameNotFoundException("User not found with id : " + id);
   }
-
 }

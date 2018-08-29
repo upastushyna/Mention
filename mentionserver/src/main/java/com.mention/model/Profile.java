@@ -1,5 +1,6 @@
 package com.mention.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -42,7 +43,7 @@ public class Profile {
 
   @OneToOne
   @JoinColumn(name = "user_id", updatable = false, unique = true, nullable = false)
-  @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"}, allowSetters = true)
+  @JsonBackReference
   private User user;
 
   protected Profile() { }

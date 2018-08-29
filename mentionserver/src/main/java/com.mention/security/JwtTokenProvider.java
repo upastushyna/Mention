@@ -26,13 +26,13 @@ public class JwtTokenProvider {
   private String jwtSecret;
 
   @Value("${jwtExpirationInMs}")
-  private int jwtExpirationInMs;
+  private Long jwtExpirationInMs;
 
   public String generateToken(Authentication authentication) {
     UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
     Date expiryDate = new Date(new Date().getTime() + jwtExpirationInMs);
     return Jwts.builder()
-        .setSubject(Long.toString(userPrincipal.getId()))
+        .setSubject(userPrincipal.getId().toString())
         .setIssuedAt(new Date())
         .setExpiration(expiryDate)
         .signWith(SignatureAlgorithm.HS512, jwtSecret)

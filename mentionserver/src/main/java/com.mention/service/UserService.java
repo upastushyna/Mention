@@ -1,21 +1,21 @@
 package com.mention.service;
 
-import com.mention.dto.CurrentUserDtoRs;
+import com.mention.dto.CurrentUserRs;
 import com.mention.dto.ShortUserDetailsRs;
-import com.mention.dto.UserDtoIdRq;
-import com.mention.dto.UserDtoRq;
+import com.mention.dto.UserIdRq;
+import com.mention.dto.UserRq;
 
 import java.util.List;
 
 public interface UserService {
 
-  void createNewUser(UserDtoRq userDtoNewUser);
+  void createNewUser(UserRq userDtoNewUser);
 
-  void deleteUser(UserDtoIdRq user);
+  void deleteUser(UserIdRq user);
 
   ShortUserDetailsRs getUser(String username);
 
   List<ShortUserDetailsRs> getUsersByUsername(String username);
 
-  CurrentUserDtoRs getCurrentUser();
+  CurrentUserRs getCurrentUser();
 }

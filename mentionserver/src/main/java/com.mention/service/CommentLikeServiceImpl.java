@@ -1,9 +1,8 @@
 package com.mention.service;
 
-import com.mention.dto.CommentLikeDtoRq;
+import com.mention.dto.CommentLikeRq;
 import com.mention.model.CommentLike;
 import com.mention.repository.CommentLikeRepository;
-import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +20,15 @@ public class CommentLikeServiceImpl implements CommentLikeService {
 
   @Override
   @Transactional
-  public void addCommentLike(CommentLikeDtoRq commentLikeDto) {
+  public void addCommentLike(CommentLikeRq commentLikeDto) {
     ModelMapper modelMapper = new ModelMapper();
     CommentLike insertCommentLike = modelMapper.map(commentLikeDto, CommentLike.class);
     commentLikeRepository.save(insertCommentLike);
-
   }
 
   @Override
   @Transactional
-  public void deleteCommentLike(CommentLikeDtoRq commentLikeDto) {
+  public void deleteCommentLike(CommentLikeRq commentLikeDto) {
     commentLikeRepository.deleteByUserIdAndCommentId(
         commentLikeDto.getUser().getId(),
         commentLikeDto.getComment().getId());
