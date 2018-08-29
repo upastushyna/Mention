@@ -1,12 +1,12 @@
 package com.mention.service;
 
 
-import com.mention.dto.CommentLikeDtoRq;
+import com.mention.dto.CommentLikeRq;
 
 public interface CommentLikeService {
 
-  void addCommentLike(CommentLikeDtoRq commentLikeDto);
+  void addCommentLike(CommentLikeRq commentLikeDto);
 
-  void deleteCommentLike(CommentLikeDtoRq commentLikeDto);
+  void deleteCommentLike(CommentLikeRq commentLikeDto);
 
 }

@@ -1,7 +1,9 @@
 package com.mention.controller;
 
-import com.mention.model.Post;
-import com.mention.service002.PostService;
+import com.mention.dto.PostIdRq;
+import com.mention.dto.PostRq;
+import com.mention.dto.PostRs;
+import com.mention.service.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,39 +12,67 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/post")
+@RequestMapping("/api/posts")
 public class PostController {
 
-  private PostService postService;
+  private PostServiceImpl userPostsService;
 
   @Autowired
-  public PostController(PostService postService) {
-    this.postService = postService;
+  public PostController(PostServiceImpl userPostsService) {
+    this.userPostsService = userPostsService;
   }
 
-  @PostMapping
-  public void addPost(@RequestBody Post post) {
-    postService.addPost(post);
+  @GetMapping("/followed/{username}")
+  public List<PostRs> getFollowedPosts(@PathVariable String username) {
+    return userPostsService.getFollowedPosts(username);
   }
 
-  @GetMapping(value = "/{id}")
-  public Optional<Post> getPost(@PathVariable Long id) {
-    return postService.getPost(id);
+  @GetMapping("/{username}")
+  public List<PostRs> getPostsByUsername(@PathVariable String username) {
+    return userPostsService.getPostsByUsername(username);
   }
 
-  @PutMapping
-  public void updatePost(@RequestBody Post post) {
-    postService.updatePost(post);
+  @GetMapping("/liked/{username}")
+  public List<PostRs> getLikedPosts(@PathVariable String username) {
+    return userPostsService.getLikedPosts(username);
   }
 
-  @DeleteMapping(value = "/{id}")
-  public void deletePost(@PathVariable Long id) {
-    postService.deletePost(id);
+  @GetMapping("/search/{body}")
+  public List<PostRs> getPostsByBody(@PathVariable String body) {
+    return userPostsService.getPostsByBody(body.replace("%20", " "));
+  }
+
+  @PostMapping("/add")
+  public void addPost(@RequestParam("body") String body,
+                      @RequestParam("id") Long id,
+                      @RequestParam(value = "image", required = false) MultipartFile file)
+      throws IOException {
+    if (body.length() > 0 && body.length() <= 280) {
+      userPostsService.addPost(body, id, file);
+    }
+  }
+
+  @PostMapping("/repost")
+  public void rePost(@RequestBody PostRq post) {
+    userPostsService.rePost(post);
+  }
+
+  @PutMapping("/update")
+  public void updatePost(@Valid @RequestBody PostRq post) {
+    userPostsService.updatePost(post);
+  }
+
+  @DeleteMapping("/delete")
+  public void deletePost(@RequestBody PostIdRq post) {
+    userPostsService.deletePost(post);
   }
 }

@@ -44,7 +44,7 @@ public class CreateUsers {
                                            CommentLikeRepository commentLikeRepository) {
     return new CommandLineRunner() {
       @Override
-      public void run(String... args) throws Exception {
+      public void run(String... args) {
 
         userRepository.save(new User("admin", "admin@gmail.com", passwordEncoder.encode("ADMIN44"), true)); //1
         userRepository.save(new User("alex", "alex@gmail.com", passwordEncoder.encode("ALEX1222"), true)); //2

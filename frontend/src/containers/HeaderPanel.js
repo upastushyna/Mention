@@ -61,11 +61,9 @@ class HeaderPanel extends React.Component {
                 </h2>
                 <img src={arrow} alt="arrow" className="profile-info__arrow" tabIndex="1"/>
                 <ul className="profile__nav">
-                  <li className="profile__option"><a href="#" className="profile__link">Chats</a></li>
-                  <Link to={"/editprofile"}>
-                    <li className="profile__option"><p className="profile__link">Edit
-                      Profile</p></li>
-                  </Link>
+                    <li className="profile__option"><a href="#" className="profile__link">Logout</a></li>
+                    <li className="profile__option"><a href="#" className="profile__link">Edit
+                      Profile</a></li>
                   <li className="profile__option"><a href="#" className="profile__link">Option 2</a></li>
                 </ul>
               </div>
