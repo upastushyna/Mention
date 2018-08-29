@@ -41,6 +41,12 @@ class Feed extends React.Component {
       }).then(() => this.props.loadData(this.props.currentUser.username))
       .then(() => this.refs.postInput.value = '')
       .then(() => this.refs.inputFile.value = null)
+      .then(this.refs.addFile.innerText = 'Add file')
+  };
+
+  changeName = () => {
+    let name = this.refs.inputFile.files[0].name;
+    this.refs.addFile.innerText = name;
   };
 
   render () {
@@ -67,8 +73,8 @@ class Feed extends React.Component {
               </div>
               <div className="upload-file">
               <img src={upload} alt="upload" className="upload-file__icon"/>
-              <p>Добавить вложение</p>
-              <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
+                <p ref="addFile">Add file</p>
+              <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div> : ""}
           <PostsContainer username={this.props.currentUser.username}

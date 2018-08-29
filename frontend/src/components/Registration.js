@@ -18,9 +18,9 @@ export default class Registration extends React.Component {
         body: JSON.stringify({usernameOrEmail: this.refs.loginUsername.value,
           password : this.refs.loginPassword.value})
       }).then(res => res.json())
-      .then(res => res.status === 500? null : localStorage.setItem('accessToken', res.accessToken))
+      .then(res => res.accessToken? localStorage.setItem('accessToken', res.accessToken) : null)
       .then(() => localStorage.getItem("accessToken")?
-        setTimeout(() => this.props.history.push("/"), 1000) : null)
+        setTimeout(() => this.props.history.push("/"), 1000) : console.log(localStorage.getItem("accessToken")))
   };
 
   register = () => {
@@ -39,24 +39,20 @@ export default class Registration extends React.Component {
   };
 
   showRegister = () => {
-    let register = document.getElementById("registerForm");
-    register.classList.remove("d-none");
-    let login = document.getElementById("loginForm");
-    login.classList.add("d-none");
+    this.refs.registerForm.classList.remove("d-none");
+    this.refs.loginForm.classList.add("d-none");
   };
 
   showLogin = () => {
-    let register = document.getElementById("registerForm");
-    register.classList.add("d-none");
-    let login = document.getElementById("loginForm");
-    login.classList.remove("d-none");
+    this.refs.registerForm.classList.add("d-none");
+    this.refs.loginForm.classList.remove("d-none");
   };
 
   render () {
     return (
 
       <Fragment>
-        <section id="registerForm" className="login d-flex-center">
+        <section ref="registerForm" className="login d-flex-center d-none">
           <div className="login__container">
               <img className="login__icon" src={logo} alt="profile"/>
             <h1 className="login__title">Join the community</h1>
@@ -69,7 +65,7 @@ export default class Registration extends React.Component {
             <p onClick={() => this.showLogin()} className="login__forgot-password">Member Login</p>
           </div>
         </section>
-        <section id="loginForm" className="login d-flex-center d-none">
+        <section ref="loginForm" className="login d-flex-center">
           <div className="login__container">
 
             <img className="login__icon" src={logo} alt="login"/>
