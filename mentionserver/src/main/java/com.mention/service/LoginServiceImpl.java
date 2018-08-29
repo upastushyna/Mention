@@ -5,7 +5,6 @@ import com.mention.dto.ApiRs;
 import com.mention.dto.JwtAuthenticationRs;
 import com.mention.dto.LoginRq;
 import com.mention.dto.UserRq;
-import com.mention.exceptions.UserNotConfirmedException;
 import com.mention.model.Profile;
 import com.mention.model.User;
 import com.mention.model.UserToken;
@@ -62,12 +61,12 @@ public class LoginServiceImpl implements LoginService {
   }
 
   @Override
-  public ResponseEntity<?> authenticateUser(LoginRq loginRequest)
-      throws UserNotConfirmedException {
+  public ResponseEntity<?> authenticateUser(LoginRq loginRequest) {
     Optional<User> currentUser = userRepository.findByUsernameOrEmail(loginRequest.getUsernameOrEmail(),
         loginRequest.getUsernameOrEmail());
     if (currentUser.isPresent() && !currentUser.get().isActive()) {
-      throw new UserNotConfirmedException("Email confirmation required");
+      return new ResponseEntity(new ApiRs(false, "Email confirmation required"),
+          HttpStatus.BAD_REQUEST);
     }
 
     Authentication authentication = authenticationManager.authenticate(

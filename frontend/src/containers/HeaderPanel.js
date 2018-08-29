@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import React, {Fragment} from 'react'
+import {Link} from 'react-router-dom'
 import logo from '../img/header-panel/logo.png'
 import chat from '../img/header-panel/chat-icon.png'
 import notification from '../img/header-panel/notification-icon.png'
@@ -20,54 +20,56 @@ class HeaderPanel extends React.Component {
     }
 
     return (
-      <Fragment>
-        <div className="main-header">
-          <div className="container main-header-wrapper">
-            <div className="d-flex-center">
-              <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo} alt="logo-img" />
-                <h2 className="main-header__title">ention</h2>
-              </Link>
+        <Fragment>
+          <div className="main-header">
+            <div className="container main-header-wrapper">
+              <div className="d-flex-center">
+                <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo}
+                                                                alt="logo-img"/>
+                  <h2 className="main-header__title">ention</h2>
+                </Link>
 
-              <SearchContainer />
-            </div>
+                <SearchContainer/>
+              </div>
 
-            <ul className="header-menu d-flex-center">
-              <li className="header-menu__item">
-                <Link to="/messages" className="header-menu__link">
-                  <img src={chat} alt="messages" className="header-menu__icon" />
-                  <p>Messages</p>
-                </Link>
-              </li>
-              <li className="header-menu__item">
-                <Link to="/" className="header-menu__link">
-                  <img src={notification} alt="notify" className="header-menu__icon" />
-                  <p>Notifications</p>
-                </Link>
-              </li>
-              <li className="header-menu__item">
-                <Link to="/" className="header-menu__link header-menu__link">
-                  <img src={feed} alt="feed" className="header-menu__icon header-menu__icon_small" />
-                  <p>Feed</p>
-                </Link>
-              </li>
-            </ul>
-            <div className="d-flex-center">
-              <Link to={"/" + this.props.currentUser.username} className="d-flex-center">
-                <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar" />
-              </Link>
-              <h2 className="profile-card__username">
-                {this.props.currentUser.username}
-              </h2>
-              <img src={arrow} alt="arrow" className="profile-info__arrow" tabIndex="1"/>
-              <ul className="profile__nav">
-                <li className="profile__option"><a href="#" className="profile__link">Chats</a></li>
-                <li className="profile__option"><a href="#" className="profile__link">Option 1</a></li>
-                <li className="profile__option"><a href="#" className="profile__link">Option 2</a></li>
+              <ul className="header-menu d-flex-center">
+                <li className="header-menu__item">
+                  <Link to="/messages" className="header-menu__link">
+                    <img src={chat} alt="messages" className="header-menu__icon"/>
+                    <p>Messages</p>
+                  </Link>
+                </li>
+                <li className="header-menu__item">
+                  <Link to="/" className="header-menu__link">
+                    <img src={notification} alt="notify" className="header-menu__icon"/>
+                    <p>Notifications</p>
+                  </Link>
+                </li>
+                <li className="header-menu__item">
+                  <Link to="/" className="header-menu__link header-menu__link">
+                    <img src={feed} alt="feed" className="header-menu__icon header-menu__icon_small"/>
+                    <p>Feed</p>
+                  </Link>
+                </li>
               </ul>
+              <div className="d-flex-center">
+                <Link to={"/" + this.props.currentUser.username} className="d-flex-center">
+                  <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar"/>
+                </Link>
+                <h2 className="profile-card__username">
+                  {this.props.currentUser.username}
+                </h2>
+                <img src={arrow} alt="arrow" className="profile-info__arrow" tabIndex="1"/>
+                <ul className="profile__nav">
+                    <li className="profile__option"><a href="#" className="profile__link">Logout</a></li>
+                    <li className="profile__option"><a href="#" className="profile__link">Edit
+                      Profile</a></li>
+                  <li className="profile__option"><a href="#" className="profile__link">Option 2</a></li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </Fragment>
+        </Fragment>
     )
   }
 }

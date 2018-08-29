@@ -24,7 +24,6 @@ public class CommentLikeServiceImpl implements CommentLikeService {
     ModelMapper modelMapper = new ModelMapper();
     CommentLike insertCommentLike = modelMapper.map(commentLikeDto, CommentLike.class);
     commentLikeRepository.save(insertCommentLike);
-
   }
 
   @Override

@@ -3,6 +3,7 @@ package com.mention.controller;
 import com.mention.dto.ProfileRq;
 import com.mention.dto.ProfileRs;
 import com.mention.service.ProfileServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ public class ProfileController {
 
   private ProfileServiceImpl userProfileService;
 
+  @Autowired
   public ProfileController(ProfileServiceImpl userProfileService) {
     this.userProfileService = userProfileService;
   }
@@ -26,14 +28,13 @@ public class ProfileController {
     userProfileService.addProfile(profile);
   }
 
+  @GetMapping("/{id}")
+  public ProfileRs getProfileById(@PathVariable Long id) {
+    return userProfileService.getProfileById(id);
+  }
+
   @PutMapping("/update")
   public void updateProfile(@RequestBody ProfileRq profile) {
     userProfileService.updateProfile(profile);
   }
-
-  @GetMapping("/{username}")
-  public ProfileRs getProfileByUsername(@PathVariable String username) {
-    return userProfileService.getProfileByUserName(username);
-  }
-
 }

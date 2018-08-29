@@ -13,17 +13,18 @@ const CommentLikeItem = props => {
         'Authorization': "Bearer " + localStorage.getItem("accessToken")
       },
       body: JSON.stringify({user: {id: props.currentUser.id}, comment: {id: props.commentId}})
-    }).then(() => props.loadData(props.username))
+    }).then(() => props.loadData(props.username));
 
   const deleteLike = () => fetch('/api/commentlikes/delete',
     {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + localStorage.getItem("accessToken")
       },
       body: JSON.stringify({user: {id: props.currentUser.id}, comment: {id: props.commentId}})
-    }).then(() => props.loadData(props.username))
+    }).then(() => props.loadData(props.username));
 
   return <div className="d-flex-center">
     {props.likes.find(like => like.user.username === props.currentUser.username)

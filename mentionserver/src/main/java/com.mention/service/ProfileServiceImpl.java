@@ -18,12 +18,10 @@ public class ProfileServiceImpl implements ProfileService {
 
   private ProfileRepository profileRepository;
 
-  private UserRepository userRepository;
 
   @Autowired
-  public ProfileServiceImpl(ProfileRepository profileRepository, UserRepository userRepository) {
+  public ProfileServiceImpl(ProfileRepository profileRepository) {
     this.profileRepository = profileRepository;
-    this.userRepository = userRepository;
   }
 
   @Override
@@ -43,16 +41,11 @@ public class ProfileServiceImpl implements ProfileService {
   }
 
   @Override
-  public ProfileRs getProfileByUserName(String username) {
+  public ProfileRs getProfileById(Long id) {
     ModelMapper modelMapper = new ModelMapper();
-    Optional<User> currentUser = userRepository.findByUsername(username);
-    if (currentUser.isPresent()) {
-      Profile currentProfile = currentUser.get().getProfile();
-      return modelMapper.map(currentProfile, ProfileRs.class);
-    }
-    return null;
+    Profile profile = profileRepository.findByUserId(id);
+    return modelMapper.map(profile, ProfileRs.class);
   }
-
 }
 
 

@@ -1,6 +1,7 @@
 package com.mention.dto;
 
 import lombok.Data;
+
 import java.util.Date;
 
 @Data

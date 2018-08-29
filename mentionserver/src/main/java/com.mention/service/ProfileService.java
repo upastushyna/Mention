@@ -5,11 +5,10 @@ import com.mention.dto.ProfileRs;
 
 public interface ProfileService {
 
-
   void addProfile(ProfileRq profile);
 
   void updateProfile(ProfileRq profile);
 
-  ProfileRs getProfileByUserName(String username);
+  ProfileRs getProfileById(Long id);
 
 }

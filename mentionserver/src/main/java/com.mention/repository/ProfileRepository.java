@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
+  Profile findByUserId(Long id);
+
 }

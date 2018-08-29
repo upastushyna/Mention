@@ -1,13 +1,11 @@
 package com.mention.security;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mention.model.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Data
@@ -37,14 +35,6 @@ public class UserPrincipal implements UserDetails {
 
   public static UserPrincipal create(User user) {
 
-    UserPrincipal userPrincipal = new UserPrincipal(
-        user.getId(),
-        user.getUsername(),
-        user.getEmail(),
-        user.getPassword(),
-        user.getRoles().stream().map(s -> (GrantedAuthority) () -> s).collect(Collectors.toList())
-    );
-
     return new UserPrincipal(
         user.getId(),
         user.getUsername(),
@@ -52,7 +42,6 @@ public class UserPrincipal implements UserDetails {
         user.getPassword(),
         user.getRoles().stream().map(s -> (GrantedAuthority) () -> s).collect(Collectors.toList())
     );
-
   }
 
   @Override
