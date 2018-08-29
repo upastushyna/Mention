@@ -52,6 +52,7 @@
  &::-webkit-input-placeholder {
   font-family: $main-font;
   font-size: 14px;
+  line-height: 28px;
   color: $placeholder-color;
   letter-spacing: 0.3px;
  }
@@ -61,6 +62,7 @@
   font-size: 14px;
   color: $placeholder-color;
   letter-spacing: 0.3px;
+  line-height: 28px;
  }
 
  &::-moz-placeholder {
@@ -68,6 +70,7 @@
   font-size: 14px;
   color: $placeholder-color;
   letter-spacing: 0.3px;
+  line-height: 28px;
  }
 
  &:-ms-input-placeholder {
@@ -75,6 +78,7 @@
   font-size: 14px;
   color: $placeholder-color;
   letter-spacing: 0.3px;
+  line-height: 28px;
  }
 }
 

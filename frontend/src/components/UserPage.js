@@ -126,8 +126,8 @@ class UserPage extends React.Component {
                 <textarea className="create-post__input" id="postInput"
                           placeholder="Share your thoughts" ref="postInput"
                           maxLength={280}/>
-                <button type="submit" className="create-post__btn">Add post</button>
-                <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>
+                <button type="submit" className="create-post__btn btn-action">Add post</button>
+                <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
               </div>
               <div className="upload-file">
                 <img src={upload} alt="upload" className="upload-file__icon"/>
