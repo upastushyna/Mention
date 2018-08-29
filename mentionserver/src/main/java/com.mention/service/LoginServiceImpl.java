@@ -97,15 +97,18 @@ public class LoginServiceImpl implements LoginService {
     newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
     newUser.setActive(false);
     userRepository.save(newUser);
+
     UserToken userToken = new UserToken();
     userToken.setUser(newUser);
     String token = UUID.randomUUID().toString();
     userToken.setToken(token);
     tokenRepository.save(userToken);
+
     Profile profile = new Profile(newUser);
     profile.setAvatarUrl("https://www.jetphotos.com/assets/img/user.png");
     profile.setBackgroundUrl("https://www.publicdomainpictures.net/pictures/130000/velka/blue-background-1440627643Oc1.jpg");
     profileRepository.save(profile);
+
     String message = "Thank you for registering in Mention! To finish your "
         + "registration, please follow the link: "
         + "http://localhost:3000/registration/" + token;
