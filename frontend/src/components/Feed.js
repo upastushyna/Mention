@@ -68,8 +68,8 @@ class Feed extends React.Component {
                 <textarea className="create-post__input" id="postInput"
                   placeholder="Share your thoughts with world" rows="2" ref="postInput"
                   maxLength={280}/>
-                <button type="submit" className="create-post__btn">Add post</button>
-                <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>
+                <button type="submit" className="create-post__btn btn-action">Add post</button>
+                <button type="submit" className="create-post__btn_rounded btn-action btn-action_rounded">+</button>
               </div>
               <div className="upload-file">
               <img src={upload} alt="upload" className="upload-file__icon"/>

@@ -23,8 +23,8 @@ const AddComment = props => {
           id={'commentInput' + props.postId} placeholder="Add comment"
                   onKeyPress={(e) => {(e.key === 'Enter' ? addComment() : null)}}
           maxLength={280} />
-          <button onClick={() => addComment()} className="create-post__btn">Add</button>
-          <button onClick={() => addComment()} className="create-post__btn create-post__btn_rounded">+</button>
+          <button onClick={() => addComment()} className="create-post__btn btn-action">Add</button>
+          <button onClick={() => addComment()} className="btn-action create-post__btn_rounded btn-action_rounded">+</button>
       </div>
   </Fragment>
 }
