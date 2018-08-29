@@ -80,4 +80,9 @@ public class UserPostsController {
   public void deletePost(@RequestBody PostDtoIdRq post) {
     userPostsService.deletePost(post);
   }
+
+/*  @DeleteMapping("/delete/{postId}")
+  public void deletePost(@PathVariable Long postId) {
+    userPostsService.deletePost(postId);
+  }*/
 }

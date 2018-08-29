@@ -148,4 +148,10 @@ public class UserPostsServiceImpl implements UserPostsService {
         deletedPost.getId()
     );
   }
+
+  /*@Override
+  @Transactional
+  public void deletePost(Long postId) {
+    postRepository.deleteById(postId);
+  }*/
 }
