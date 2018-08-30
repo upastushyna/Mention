@@ -74,7 +74,7 @@ export default class Registration extends React.Component {
             <form onSubmit={event => this.login(event)}>
               <input ref="loginUsername" type="text" className="input_custom" placeholder="Username or Email" minLength="3"/>
               <input ref="loginPassword" type="password" className="input_custom" placeholder="Password" minLength="6" maxLength="24"/>
-              <input type="submit" className="btn-action login__btn" value="login"/>
+              <input type="submit" className="btn-action login__btn" value="Login"/>
             </form>
             <button onClick={() => this.showRegister()} className="login__sign-btn">Sign up</button>
             <Link to="/" className="login__forgot-password">Forgot Password?</Link>

@@ -1,9 +1,10 @@
 import React from 'react'
 import PostItem from './PostItem'
+import EmptyState from '../containers/EmptyState'
 
 const PostsContainer = props => {
   if (props.userPosts.length === 0) {
-    return <p>Nothing to show yet! Follow other users and share your thoughts to see what's happening</p>
+    return <EmptyState title="Nothing to show yet!" message={"Follow other users and share your thoughts to see what's happening"}/>       
   }
   return props.userPosts.map(post =>
     <PostItem username={props.username}

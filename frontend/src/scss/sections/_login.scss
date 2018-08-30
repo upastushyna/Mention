@@ -19,7 +19,7 @@
   width: 20%;
   border-radius: 50%;
   position: absolute;
-  top: -10%;
+  top: -56px;
   left: 50%;
   transform: translateX(-50%);
   background-color: $main-color;
@@ -74,8 +74,14 @@
  }
 
  &__sign-btn{
+     @include clear-default-input-style;
      background-color: #fff;
-     border: 2px solid $main-color;
+     border: none;
+     padding: 7px 15px;
+     color: $main-color;
+     margin-top: 20px;
+     font-weight: 700;
+     font-size: 20px;
  }
 }
 
