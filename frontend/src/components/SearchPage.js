@@ -6,6 +6,7 @@ import {loadSearchUsers} from '../actions/searchUsersActions'
 import PostsContainer from '../containers/PostsContainer'
 import UsersContainer from '../containers/UsersContainer'
 import {loadCurrentUser} from '../actions/currentUserActions'
+import {deletePost} from '../actions/postsActions'
 
 class SearchPage extends React.Component {
   componentWillMount () {
@@ -23,7 +24,7 @@ class SearchPage extends React.Component {
     {
       method: 'POST',
       headers: {
-        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -36,7 +37,7 @@ class SearchPage extends React.Component {
     {
       method: 'DELETE',
       headers: {
-        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -65,9 +66,9 @@ class SearchPage extends React.Component {
                 loadUsers={this.props.loadUsers}
                 users={this.props.foundUsers}
                 currentUser={this.props.currentUser}
-                                follow={this.follow}
-                                unfollow={this.unfollow}
-                />}
+                follow={this.follow}
+                unfollow={this.unfollow}
+              />}
           </div>
         </div>
       </Fragment>
@@ -78,14 +79,16 @@ class SearchPage extends React.Component {
 const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
   foundUsers: state.foundUsers,
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  deletePost: state.deletePost
 
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
   loadUsers: input => dispatch(loadSearchUsers(input)),
-  loadCurrentUser: () => dispatch(loadCurrentUser())
-});
+  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  deletePost: id => dispatch(deletePost(id))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)

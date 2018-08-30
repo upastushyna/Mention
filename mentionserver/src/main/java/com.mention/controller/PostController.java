@@ -71,8 +71,8 @@ public class PostController {
     userPostsService.updatePost(post);
   }
 
-  @DeleteMapping("/delete")
-  public void deletePost(@RequestBody PostIdRq post) {
-    userPostsService.deletePost(post);
+  @DeleteMapping("/delete/{id}")
+  public void deletePost(@PathVariable Long id) {
+    userPostsService.deletePost(id);
   }
 }

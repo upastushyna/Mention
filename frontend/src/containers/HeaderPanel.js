@@ -8,90 +8,90 @@ import arrow from '../img/white-down-arrow.png'
 import SearchContainer from './SearchContainer'
 
 class HeaderPanel extends React.Component {
-  componentWillMount() {
+  componentWillMount () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       this.props.loadCurrentUser()
     }
   }
 
-  /*componentDidMount () {
+  /* componentDidMount () {
     window.addEventListener('mousedown', event => this.hideOptions(event));
-  }*/
+  } */
 
   logout = () => {
-    localStorage.removeItem("accessToken");
-    this.props.history.push("/registration");
+    localStorage.removeItem('accessToken')
+    this.props.history.push('/registration')
   };
 
   showOptions = () => {
-    if (!this.refs.nav.classList.contains("d-none")) {
-      this.hideOptions();
-    }else {
-      this.refs.nav.classList.remove("d-none");
+    if (!this.refs.nav.classList.contains('d-none')) {
+      this.hideOptions()
+    } else {
+      this.refs.nav.classList.remove('d-none')
     }
   };
 
   hideOptions = () => {
-    if(this.refs.nav) {
-      this.refs.nav.classList.add("d-none");
+    if (this.refs.nav) {
+      this.refs.nav.classList.add('d-none')
     }
   };
 
-  render() {
+  render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return 'Loading...'
     }
 
     return (
-        <Fragment>
-          <div className="main-header">
-            <div className="container main-header-wrapper">
-              <div className="d-flex-center">
-                <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo}
-                                                                alt="logo-img"/>
-                  <h2 className="main-header__title">ention</h2>
+      <Fragment>
+        <div className="main-header">
+          <div className="container main-header-wrapper">
+            <div className="d-flex-center">
+              <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo}
+                alt="logo-img"/>
+              <h2 className="main-header__title">ention</h2>
+              </Link>
+
+              <SearchContainer/>
+            </div>
+
+            <ul className="header-menu d-flex-center">
+              <li className="header-menu__item">
+                <Link to="/messages" className="header-menu__link">
+                  <img src={chat} alt="messages" className="header-menu__icon"/>
+                  <p>Messages</p>
                 </Link>
-
-                <SearchContainer/>
-              </div>
-
-              <ul className="header-menu d-flex-center">
-                <li className="header-menu__item">
-                  <Link to="/messages" className="header-menu__link">
-                    <img src={chat} alt="messages" className="header-menu__icon"/>
-                    <p>Messages</p>
-                  </Link>
-                </li>
-                <li className="header-menu__item">
-                  <Link to="/" className="header-menu__link">
-                    <img src={notification} alt="notify" className="header-menu__icon"/>
-                    <p>Notifications</p>
-                  </Link>
-                </li>
-                <li className="header-menu__item">
-                  <Link to="/" className="header-menu__link header-menu__link">
-                    <img src={feed} alt="feed" className="header-menu__icon header-menu__icon_small"/>
-                    <p>Feed</p>
-                  </Link>
-                </li>
+              </li>
+              <li className="header-menu__item">
+                <Link to="/" className="header-menu__link">
+                  <img src={notification} alt="notify" className="header-menu__icon"/>
+                  <p>Notifications</p>
+                </Link>
+              </li>
+              <li className="header-menu__item">
+                <Link to="/" className="header-menu__link header-menu__link">
+                  <img src={feed} alt="feed" className="header-menu__icon header-menu__icon_small"/>
+                  <p>Feed</p>
+                </Link>
+              </li>
+            </ul>
+            <div className="d-flex-center">
+              <Link to={'/' + this.props.currentUser.username} className="d-flex-center">
+                <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar"/>
+              </Link>
+              <h2 className="profile-card__username">
+                {this.props.currentUser.username}
+              </h2>
+              <img src={arrow} alt="arrow" onClick={() => this.showOptions()} className="profile-info__arrow" tabIndex="1"/>
+              <ul ref="nav" className="profile__nav d-none">
+                <li onClick={() => this.logout()} ref="listItem" className="profile__option"><p className="profile__link">Logout</p></li>
+                <Link to="/editprofile"><li ref="listItem" className="profile__option"><p className="profile__link">Edit
+                    Profile</p></li></Link>
               </ul>
-              <div className="d-flex-center">
-                <Link to={"/" + this.props.currentUser.username} className="d-flex-center">
-                  <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar"/>
-                </Link>
-                <h2 className="profile-card__username">
-                  {this.props.currentUser.username}
-                </h2>
-                <img src={arrow} alt="arrow" onClick={() => this.showOptions()} className="profile-info__arrow" tabIndex="1"/>
-                <ul ref="nav" className="profile__nav d-none">
-                    <li onClick={() => this.logout()} ref="listItem" className="profile__option"><p className="profile__link">Logout</p></li>
-                    <Link to="/editprofile"><li ref="listItem" className="profile__option"><p className="profile__link">Edit
-                      Profile</p></li></Link>
-                </ul>
-              </div>
             </div>
           </div>
-        </Fragment>
+        </div>
+      </Fragment>
     )
   }
 }

@@ -139,18 +139,11 @@ public class PostServiceImpl implements PostService {
     postRepository.save(updatedPost);
   }
 
-  @Override
-  @Transactional
-  public void deletePost(PostIdRq postDtoIdRq) {
-    Post deletedPost = modelMapper.map(postDtoIdRq, Post.class);
-    postRepository.deleteById(
-        deletedPost.getId()
-    );
-  }
 
-  /*@Override
+
+  @Override
   @Transactional
   public void deletePost(Long postId) {
     postRepository.deleteById(postId);
-  }*/
+  }
 }

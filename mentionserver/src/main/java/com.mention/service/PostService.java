@@ -22,7 +22,7 @@ public interface PostService {
 
   void updatePost(PostRq post);
 
-  void deletePost(PostIdRq post);
+  void deletePost(Long id);
 
   void rePost(PostRq post);
 
