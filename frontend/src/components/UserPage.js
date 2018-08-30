@@ -88,6 +88,12 @@ class UserPage extends React.Component {
         }).then(() => this.props.loadData(this.props.match.params.username))
         .then(() => this.refs.postInput.value = '')
         .then(() => this.refs.inputFile.value = null)
+        .then(this.refs.addFile.innerText = 'Add file')
+  };
+
+  changeName = () => {
+    let name = this.refs.inputFile.files[0].name;
+    this.refs.addFile.innerText = name;
   };
 
   render() {
@@ -126,14 +132,13 @@ class UserPage extends React.Component {
                 <textarea className="create-post__input" id="postInput"
                           placeholder="Share your thoughts" ref="postInput"
                           maxLength={280}/>
-                <button type="submit" className="create-post__btn">Add post</button>
-                <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>
+                <button type="submit" className="create-post__btn btn-action">Add post</button>
+                <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
               </div>
               <div className="upload-file">
                 <img src={upload} alt="upload" className="upload-file__icon"/>
-                <p>Добавить вложение</p>
-
-                <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
+                <p ref="addFile">Add file</p>
+                <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div>
           <Switch>

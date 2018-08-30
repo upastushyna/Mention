@@ -14,6 +14,29 @@ class HeaderPanel extends React.Component {
     }
   }
 
+  /*componentDidMount () {
+    window.addEventListener('mousedown', event => this.hideOptions(event));
+  }*/
+
+  logout = () => {
+    localStorage.removeItem("accessToken");
+    this.props.history.push("/registration");
+  };
+
+  showOptions = () => {
+    if (!this.refs.nav.classList.contains("d-none")) {
+      this.hideOptions();
+    }else {
+      this.refs.nav.classList.remove("d-none");
+    }
+  };
+
+  hideOptions = () => {
+    if(this.refs.nav) {
+      this.refs.nav.classList.add("d-none");
+    }
+  };
+
   render() {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return 'Loading...'
@@ -59,12 +82,11 @@ class HeaderPanel extends React.Component {
                 <h2 className="profile-card__username">
                   {this.props.currentUser.username}
                 </h2>
-                <img src={arrow} alt="arrow" className="profile-info__arrow" tabIndex="1"/>
-                <ul className="profile__nav">
-                    <li className="profile__option"><a href="#" className="profile__link">Logout</a></li>
-                    <li className="profile__option"><a href="#" className="profile__link">Edit
-                      Profile</a></li>
-                  <li className="profile__option"><a href="#" className="profile__link">Option 2</a></li>
+                <img src={arrow} alt="arrow" onClick={() => this.showOptions()} className="profile-info__arrow" tabIndex="1"/>
+                <ul ref="nav" className="profile__nav d-none">
+                    <li onClick={() => this.logout()} ref="listItem" className="profile__option"><p className="profile__link">Logout</p></li>
+                    <Link to="/editprofile"><li ref="listItem" className="profile__option"><p className="profile__link">Edit
+                      Profile</p></li></Link>
                 </ul>
               </div>
             </div>

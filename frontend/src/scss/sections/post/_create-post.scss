@@ -22,27 +22,11 @@
   }
 
   &__btn {
-    @include clear-default-input-style();
     width: 20%;
     margin-left: 16px;
-    padding: 14px;
-    font-size: 14px;
-    border-radius: 5px;
-    background-color: $main-color;
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
-
-    &:hover {
-      opacity: .9;
-    }
-
+   
     &_rounded{
       display: none;
-      border-radius: 50%;
-      height: 30px;
-      width: 30px;
-      padding: 0;
       margin-left: 8px;
     }
   }

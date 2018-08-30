@@ -21,6 +21,21 @@ class Feed extends React.Component {
     }
   }
 
+  handleOnScroll = () => {
+    if(window.pageYOffset > 260 && this.refs.scroller) {
+      this.refs.scroller.classList.remove("d-none");
+    }
+  };
+
+  scrollToTop = () => {
+    this.refs.pageTop.scrollIntoView({ block: 'end',  behavior: 'smooth' });
+    this.refs.scroller.classList.add("d-none");
+  };
+
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleOnScroll);
+  }
+
   addPost = event => {
     event.preventDefault()
     const data = new FormData()
@@ -41,6 +56,12 @@ class Feed extends React.Component {
       }).then(() => this.props.loadData(this.props.currentUser.username))
       .then(() => this.refs.postInput.value = '')
       .then(() => this.refs.inputFile.value = null)
+      .then(this.refs.addFile.innerText = 'Add file')
+  };
+
+  changeName = () => {
+    let name = this.refs.inputFile.files[0].name;
+    this.refs.addFile.innerText = name;
   };
 
   render () {
@@ -51,25 +72,27 @@ class Feed extends React.Component {
 
     return (
       <Fragment>
-        <Navigation/>
-        <div className="container">
+        <div ref="pageTop" style={{ float: 'left', clear: 'both' }}></div>
+        <Navigation history={this.props.history}/>
+        <div ref="container" className="container">
           {this.props.currentUser.followedUsers.find(follow =>
-            follow.followedUser.id === this.props.currentUser.id)
-            ? <div className="create-post">
-              <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-                <div className="d-flex-center">
-                  <textarea className="create-post__input" id="postInput"
-                    placeholder="Share your thoughts with world" rows="2" ref="postInput"
-                    maxLength={280}/>
-                  <button type="submit" className="create-post__btn">Add post</button>
-                  <button type="submit" className="create-post__btn create-post__btn_rounded">+</button>
-                </div>
-                <div className="upload-file">
-                  <img src={upload} alt="upload" className="upload-file__icon"/>
-                  <p>Добавить вложение</p>
-                  <input className="upload" id="inputFile" ref="inputFile" type="file"/></div>
-              </form>
-            </div> : ''}
+            follow.followedUser.id === this.props.currentUser.id)?
+          <div className="create-post">
+            <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
+              <div className="d-flex-center">
+                <textarea className="create-post__input" id="postInput"
+                  placeholder="Share your thoughts with world" rows="2" ref="postInput"
+                  maxLength={280}/>
+                <button type="submit" className="create-post__btn btn-action">Add post</button>
+                <button type="submit" className="create-post__btn_rounded btn-action btn-action_rounded">+</button>
+              </div>
+              <div className="upload-file">
+              <img src={upload} alt="upload" className="upload-file__icon"/>
+                <p ref="addFile">Add file</p>
+              <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
+            </form>
+          </div> : ""}
+          <button onClick={() => this.scrollToTop()} ref="scroller" className="scroll d-none">Scroll to top</button>
           <PostsContainer username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}

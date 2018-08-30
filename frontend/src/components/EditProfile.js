@@ -5,6 +5,7 @@ import Navigation from './Navigation'
 import DatePicker from 'react-datepicker/es/index'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
+import upload from '../img/fileuploadicon.png'
 
 class EditProfile extends React.Component {
   constructor(props) {
@@ -64,26 +65,32 @@ class EditProfile extends React.Component {
         <Fragment>
           <Navigation/>
           <div className="container">
-            <p className="edit-profile-list">
-              <input type="text" id="inputFirstName" className="edit-profile_input"
+        <section className="edit-profile flex-column">
+        <h2 className="edit-profile__title">Tell us more about yourself</h2>
+        <div className="edit-profile__item">
+        <p className="edit-profile__title_secondary">Change firstname</p>
+              <input type="text" id="inputFirstName" className="input_custom edit-profile__input"
                      defaultValue={this.props.editProfile.firstName}
-                     placeholder="First Name"/>
-            </p>
-            <p className="edit-profile-list">
-              <input type="text" id="inputSecondName" className="edit-profile_input"
+                     placeholder="First Name"/></div>
+            <div className="edit-profile__item">
+            <p className="edit-profile__title_secondary">Change secondname</p>
+              <input type="text" id="inputSecondName" className="input_custom edit-profile__input"
                      defaultValue={this.props.editProfile.secondName}
                      placeholder="Second Name"/>
-            </p>
-            <p className="edit-profile-list">
-              <input type="text" id="inputAddress" className="edit-profile_input"
+            </div>
+            <div className="edit-profile__item">
+            <p className="edit-profile__title_secondary">Change address</p>
+              <input type="text" id="inputAddress" className="input_custom edit-profile__input"
                      defaultValue={this.props.editProfile.address}
                      placeholder="Address"/>
-            </p>
+            </div>
             {/*<p className="edit-profile-list">*/}
             {/*<input type="text" id="inputBirthDate" className="edit-profile_input"*/}
             {/*defaultValue={this.props.editProfile.birthDate}*/}
             {/*placeholder="BirthDay"/>*/}
             {/*</p>*/}
+            <div className="edit-profile__item">
+            <p className="edit-profile__title_secondary">Change birthday</p> 
             <DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleChange}
@@ -91,23 +98,35 @@ class EditProfile extends React.Component {
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
+                className="input_custom edit-profile__input"
+                placeholderText="Select birthday"
             />
-            <p className="edit-profile-list">
+            </div>
+            <div className="edit-profile__item">
+            <p className="edit-profile__title_secondary">Change avatar</p> 
+                <div className="upload-file">
+                <img src={upload} alt="upload" className="upload-file__icon"/>
+                <p>Добавить вложение</p>
               <input type="text" id="inputAvatarUrl" className="edit-profile_input"
                      defaultValue={this.props.editProfile.avatarUrl}
                      placeholder="Avatar"/>
-              <input type="submit" onClick={this.submitAvatar} defaultValue="Change Avatar"/>
-            </p>
-            <p className="edit-profile-list">
+              <input type="submit" onClick={this.submitAvatar} defaultValue="Change Avatar"/></div>
+            </div>
+            <div className="edit-profile__item">
+            <p className="edit-profile__title_secondary">Change profile background</p> 
+            <div className="upload-file">
+                <img src={upload} alt="upload" className="upload-file__icon"/>
+                <p>Добавить вложение</p>
               <input type="text" id="inputBackgroundUrl" className="edit-profile_input"
                      defaultValue={this.props.editProfile.backgroundUrl}
                      placeholder="Background"/>
-              <input type="submit" onClick={this.submitBackground} defaultValue="Change Background"/>
-            </p>
-            <p className="edit-profile-list">
+              <input type="submit" onClick={this.submitBackground} defaultValue="Change Background"/></div>
+            </div>
+            <div className="edit-profile__item">
               <input type="submit" onClick={() => this.updateProfile()}
-                     className="edit-profile_button" defaultValue="Edit"/>
-            </p>
+                     className="edit-profile__btn btn-action" defaultValue="Edit"/>
+            </div>
+            </section>
           </div>
         </Fragment>
     )
