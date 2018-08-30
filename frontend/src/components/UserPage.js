@@ -144,7 +144,8 @@ class UserPage extends React.Component {
             <PostsContainer username={this.props.match.params.username}
               userPosts={this.props.userPosts}
               loadData={this.props.loadData}
-              currentUser={this.props.currentUser}/>}/>
+              currentUser={this.props.currentUser}
+              deletePost={this.props.deletePost}/>}/>
           <Route path='/:username/info' component={() =>
             <UserInfo username={this.props.match.params.username}
               currentUser={this.props.currentUser}

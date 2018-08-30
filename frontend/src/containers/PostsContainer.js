@@ -6,6 +6,7 @@ const PostsContainer = props =>
     <PostItem username={props.username}
       loadData={props.loadData}
       post={post}
-      currentUser={props.currentUser} deletePost={props.deletePost}/>)
+      currentUser={props.currentUser}
+      deletePost={props.deletePost}/>)
 
 export default PostsContainer

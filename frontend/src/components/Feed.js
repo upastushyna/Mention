@@ -97,8 +97,8 @@ class Feed extends React.Component {
           <PostsContainer username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}
-            deletePost={this.props.deletePost}
-            currentUser={this.props.currentUser}/>
+            currentUser={this.props.currentUser}
+            deletePost={this.props.deletePost}/>
         </div>
       </Fragment>
     )

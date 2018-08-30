@@ -59,7 +59,8 @@ class SearchPage extends React.Component {
             : <PostsContainer username={this.props.match.params.input}
               userPosts={this.props.foundPosts}
               loadData={this.props.loadPosts}
-              currentUser={this.props.currentUser}/>}
+              currentUser={this.props.currentUser}
+              deletePost={this.props.deletePost()}/>}
           <div className="users-panel">
             {this.props.foundUsers.length === 0 ? ''
               : <UsersContainer username={this.props.match.params.input}
