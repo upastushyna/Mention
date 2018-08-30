@@ -2,14 +2,19 @@ import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import {getDateFromDb} from '../js/timestamp.js'
 
-const ChatsContainer = props =>
-  props.chats.map(chat =>
+const ChatsContainer = props => {
+  if (props.chats.length === 0) {
+    return <p>No chats found. Add users to chat with to start conversation!</p>
+  }
+  return props.chats.map(chat =>
     <Fragment>
       <Link className="chat-container" to={chat.user1.username === props.username
-        ? '/messages/' + chat.user2.username : '/messages/' + chat.user1.username} onClick={() => props.loadChat(chat.user1.username, chat.user2.username)}>
+        ? '/messages/' + chat.user2.username : '/messages/' + chat.user1.username}
+            onClick={() => props.loadChat(chat.user1.username, chat.user2.username)}>
         <div className="d-flex-center">
           <img src={chat.user1.username === props.username
-            ? chat.user2.profile.avatarUrl : chat.user1.profile.avatarUrl} alt="icon-search" className="profile-info__avatar"/>
+            ? chat.user2.profile.avatarUrl : chat.user1.profile.avatarUrl} alt="icon-search"
+               className="profile-info__avatar"/>
           <div className="profile-info__signature">
             <h2 className="profile-info__username color-dark-grey">{chat.user1.username === props.username
               ? chat.user2.username : chat.user1.username}</h2>
@@ -25,5 +30,6 @@ const ChatsContainer = props =>
       </Link>
     </Fragment>
   )
+};
 
 export default ChatsContainer
