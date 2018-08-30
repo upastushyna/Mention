@@ -85,8 +85,8 @@ class HeaderPanel extends React.Component {
                 <img src={arrow} alt="arrow" onClick={() => this.showOptions()} className="profile-info__arrow" tabIndex="1"/>
                 <ul ref="nav" className="profile__nav d-none">
                     <li onClick={() => this.logout()} ref="listItem" className="profile__option"><p className="profile__link">Logout</p></li>
-                    <Link to="/editprofile"><li ref="listItem" className="profile__option"><p className="profile__link">Edit
-                      Profile</p></li></Link>
+                   <li ref="listItem" className="profile__option"> <Link to="/editprofile" className="profile__link">Edit
+                    Profile</Link></li>
                 </ul>
               </div>
             </div>
