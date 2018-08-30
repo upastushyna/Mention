@@ -29,6 +29,12 @@ class Messages extends React.Component {
     this.scrollToBottom()
   }
 
+  openChat = () => {
+    document.getElementsByClassName('messages-container')[0].style.display = "block";
+    document.getElementsByClassName('chats__list')[0].style.display = "none";
+    document.getElementsByClassName('messages-container')[0].style.width = "100%";
+  };
+
   addChat = () => fetch('/api/chats/add',
     {
       method: 'POST',
@@ -47,8 +53,8 @@ class Messages extends React.Component {
     return (
       <Fragment>
         <Navigation/>
-        <div className="chats__header">Go back</div>
-        <main className="container chats__view">      
+        <div className="chats__header" onClick={() => this.openChat()}>Go back</div>
+        <main className="container chats__view">
           <section className="chats__list">
             <div className="chats__search">
               <input id="chatInput" ref="chatInput"
@@ -56,8 +62,9 @@ class Messages extends React.Component {
               <img onClick={() => this.addChat()} src={search} alt="search" className="chats__button"/>
             </div>
               <ChatsContainer loadChat={this.props.loadMessages}
-                chats={this.props.chats} username={this.props.currentUser.username}/>        
+                chats={this.props.chats} username={this.props.currentUser.username}/>
           </section>
+
           <section className="messages-container">
             <Switch>
               <Route path='/messages/:username' component={props =>
