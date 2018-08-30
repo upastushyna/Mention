@@ -11,5 +11,5 @@ const PostsContainer = props => {
       post={post}
       currentUser={props.currentUser}
       deletePost={props.deletePost}/>)
-
+}
 export default PostsContainer
