@@ -18,7 +18,7 @@ class Navigation extends React.Component {
 
     return (
       <Fragment>
-        <HeaderPanel currentUser={this.props.currentUser}/>
+        <HeaderPanel history={this.props.history} currentUser={this.props.currentUser}/>
       </Fragment>
     )
   }
