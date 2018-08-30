@@ -1,0 +1,22 @@
+.input {
+ &_custom {
+  @include clear-default-input-style;
+
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 11px 0;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid $border-color;
+  font-size: 18px;
+  text-align: center;
+  transition: all 1s;
+
+  @include placeholder-default;
+
+  &:focus {
+   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.21);
+  }
+ }
+}

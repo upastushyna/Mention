@@ -27,17 +27,17 @@
     }
   }
 
-  &__header .profile-info__avatar {
+  .profile-info__avatar {
     max-width: 28px;
     max-height: 28px;
   }
 
-  &__header .profile-info__username {
+  .profile-info__username {
     font-size: 14px;
     line-height: 1;
   }
 
-  &__header .profile-info__alias {
+  .profile-info__alias {
     font-size: 9px;
     line-height: 1;
   }

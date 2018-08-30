@@ -43,6 +43,24 @@ body {
  position: relative;
 }
 
+textarea:focus {
+ &::-webkit-input-placeholder {
+  color: transparent;
+ }
+
+ &:-moz-placeholder {
+  color: transparent;
+ }
+
+ &::-moz-placeholder {
+  color: transparent;
+ }
+
+ &:-ms-input-placeholder {
+  color: transparent;
+ }
+}
+
 @media screen and (max-width: 1200px) {
  .container {
   max-width: 90%;
