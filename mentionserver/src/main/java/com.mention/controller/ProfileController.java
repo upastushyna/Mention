@@ -4,6 +4,7 @@ import com.mention.dto.ProfileRq;
 import com.mention.dto.ProfileRs;
 import com.mention.service.ProfileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,12 +30,12 @@ public class ProfileController {
   }
 
   @GetMapping("/{id}")
-  public ProfileRs getProfileById(@PathVariable Long id) {
+  public ResponseEntity<?> getProfileById(@PathVariable Long id) {
     return userProfileService.getProfileById(id);
   }
 
   @PutMapping("/update")
-  public void updateProfile(@RequestBody ProfileRq profile) {
-    userProfileService.updateProfile(profile);
+  public ResponseEntity<?> updateProfile(@RequestBody ProfileRq profile) {
+    return userProfileService.updateProfile(profile);
   }
 }

@@ -3,6 +3,7 @@ package com.mention.service;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.mention.config.AmazonS3Configuration;
+import com.mention.dto.ApiRs;
 import com.mention.dto.PostIdRq;
 import com.mention.dto.PostRq;
 import com.mention.dto.PostRs;
@@ -11,8 +12,12 @@ import com.mention.model.Post;
 import com.mention.model.User;
 import com.mention.repository.PostRepository;
 import com.mention.repository.UserRepository;
+import com.mention.security.UserPrincipal;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -106,7 +111,15 @@ public class PostServiceImpl implements PostService {
 
   @Override
   @Transactional
-  public void addPost(String body, Long userId, MultipartFile file) throws IOException {
+  public ResponseEntity<?> addPost(String body, Long userId, MultipartFile file) throws IOException {
+    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
+    if (!userId.equals(userPrincipal.getId())) {
+      return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
+    }
+
     AmazonS3 s3 = as3.getAmazonS3();
     User user = new User(userId);
     Post post = new Post(body, user);
@@ -123,28 +136,38 @@ public class PostServiceImpl implements PostService {
       post.setAmazonKey(key);
     }
     postRepository.save(post);
+    return ResponseEntity.ok(new ApiRs(true, "Post added successfully"));
   }
 
   @Override
   @Transactional
-  public void rePost(PostRq post) {
+  public ResponseEntity<?> rePost(PostRq post) {
+    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
+    if (!post.getAuthor().getId().equals(userPrincipal.getId())) {
+      return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
+    }
+
     Post insertPost = modelMapper.map(post, Post.class);
     postRepository.save(insertPost);
+    return ResponseEntity.ok(new ApiRs(true, "Reposted successfully"));
   }
 
   @Override
   @Transactional
-  public void updatePost(PostRq post) {
-    Post updatedPost = modelMapper.map(post, Post.class);
-    postRepository.save(updatedPost);
-  }
+  public ResponseEntity<?> deletePost(PostIdRq postDtoIdRq) {
+    Post post = postRepository.findById(postDtoIdRq.getId()).get();
+    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
+    if (!post.getAuthor().getId().equals(userPrincipal.getId())) {
+      return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
+    }
 
-  @Override
-  @Transactional
-  public void deletePost(PostIdRq postDtoIdRq) {
-    Post deletedPost = modelMapper.map(postDtoIdRq, Post.class);
-    postRepository.deleteById(
-        deletedPost.getId()
-    );
+    postRepository.deleteById(postDtoIdRq.getId());
+    return ResponseEntity.ok(new ApiRs(true, "Post removed successfully"));
   }
 }

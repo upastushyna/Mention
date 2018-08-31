@@ -2,11 +2,12 @@ package com.mention.service;
 
 
 import com.mention.dto.CommentLikeRq;
+import org.springframework.http.ResponseEntity;
 
 public interface CommentLikeService {
 
-  void addCommentLike(CommentLikeRq commentLikeDto);
+  ResponseEntity<?> addCommentLike(CommentLikeRq commentLikeDto);
 
-  void deleteCommentLike(CommentLikeRq commentLikeDto);
+  ResponseEntity<?> deleteCommentLike(CommentLikeRq commentLikeDto);
 
 }

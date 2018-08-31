@@ -2,13 +2,14 @@ package com.mention.service;
 
 import com.mention.dto.ProfileRq;
 import com.mention.dto.ProfileRs;
+import org.springframework.http.ResponseEntity;
 
 public interface ProfileService {
 
   void addProfile(ProfileRq profile);
 
-  void updateProfile(ProfileRq profile);
+  ResponseEntity<?> updateProfile(ProfileRq profile);
 
-  ProfileRs getProfileById(Long id);
+  ResponseEntity<?> getProfileById(Long id);
 
 }

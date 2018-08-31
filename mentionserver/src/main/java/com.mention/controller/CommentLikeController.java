@@ -3,6 +3,7 @@ package com.mention.controller;
 import com.mention.dto.CommentLikeRq;
 import com.mention.service.CommentLikeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,12 +23,12 @@ public class CommentLikeController {
   }
 
   @PostMapping("/add")
-  public void addCommentLike(@Valid @RequestBody CommentLikeRq commentLikeDto) {
-    commentLikeService.addCommentLike(commentLikeDto);
+  public ResponseEntity<?> addCommentLike(@Valid @RequestBody CommentLikeRq commentLikeDto) {
+    return commentLikeService.addCommentLike(commentLikeDto);
   }
 
   @DeleteMapping("/delete")
-  public void deleteCommentLike(@RequestBody CommentLikeRq commentLikeDto) {
-    commentLikeService.deleteCommentLike(commentLikeDto);
+  public ResponseEntity<?> deleteCommentLike(@RequestBody CommentLikeRq commentLikeDto) {
+    return commentLikeService.deleteCommentLike(commentLikeDto);
   }
 }
