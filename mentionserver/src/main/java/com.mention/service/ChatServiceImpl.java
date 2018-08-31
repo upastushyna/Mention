@@ -63,8 +63,8 @@ public class ChatServiceImpl implements ChatService {
         .getContext()
         .getAuthentication()
         .getPrincipal();
-    if (!username1.equals(userPrincipal.getUsername()) &&
-        !username2.equals(userPrincipal.getUsername())) {
+    if (!username1.equals(userPrincipal.getUsername()) 
+        && !username2.equals(userPrincipal.getUsername())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
@@ -85,8 +85,8 @@ public class ChatServiceImpl implements ChatService {
         .getContext()
         .getAuthentication()
         .getPrincipal();
-    if (!chat.getUser1().getUsername().equals(userPrincipal.getUsername()) &&
-        !chat.getUser2().getUsername().equals(userPrincipal.getUsername())) {
+    if (!chat.getUser1().getUsername().equals(userPrincipal.getUsername()) 
+        && !chat.getUser2().getUsername().equals(userPrincipal.getUsername())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
