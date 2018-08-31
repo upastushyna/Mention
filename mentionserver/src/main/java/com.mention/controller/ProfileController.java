@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/profiles")
@@ -37,5 +41,17 @@ public class ProfileController {
   @PutMapping("/update")
   public ResponseEntity<?> updateProfile(@RequestBody ProfileRq profile) {
     return userProfileService.updateProfile(profile);
+  }
+
+  @PutMapping("/avatar")
+  public ResponseEntity<?> updateAvatar(@RequestParam(value = "image") MultipartFile file)
+      throws IOException {
+    return userProfileService.updateAvatar(file);
+  }
+
+  @PutMapping("/background")
+  public ResponseEntity<?> updateBackground(@RequestParam(value = "image") MultipartFile file)
+      throws IOException {
+    return userProfileService.updateBackground(file);
   }
 }

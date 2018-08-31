@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -44,7 +45,7 @@ public class Chat {
   @JsonIgnoreProperties(value = {"profile", "posts", "comments", "chats", "favorites"})
   private User user2;
 
-  @OneToMany(mappedBy = "chat")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "chat")
   @JsonIgnoreProperties(value = {"chat"})
   private List<Message> messages;
 
