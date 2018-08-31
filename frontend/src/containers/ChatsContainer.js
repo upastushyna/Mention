@@ -7,7 +7,7 @@ const ChatsContainer = props => {
     return <p>No chats found. Add users to chat with to start conversation!</p>
   }
   return props.chats.map(chat =>
-    <Fragment>
+    <Fragment key={chat.id}>
       <Link className="chat-container" to={chat.user1.username === props.username
         ? '/messages/' + chat.user2.username : '/messages/' + chat.user1.username}
             onClick={() => props.loadChat(chat.user1.username, chat.user2.username)}>

@@ -27,7 +27,7 @@ export default class Websocket extends React.Component {
   render () {
 
     return (
-      <div>
+      <div key={Websocket.id}>
         <div id="cont" className='container'>
 
         </div>
