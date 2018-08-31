@@ -56,7 +56,7 @@
   }
 
   &__action{
-    display: none;
+   /* display: none;*/
     position: absolute;
     min-width: 128px;
     white-space: nowrap;
@@ -73,12 +73,12 @@
   }
 }
 
-.post__action-img:focus + .post__action,
+/*.post__action-img:focus + .post__action,
 .post__action-img:active + .post__action,
 .comment-container__action-img:focus + .post__action,
 .comment-container__action-img:active + .post__action {
   display: block;
-}
+}*/
 
 
 @media screen and (max-width: 1200px) {

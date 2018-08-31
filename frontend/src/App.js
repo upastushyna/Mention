@@ -9,7 +9,7 @@ import HomePage from './components/HomePage'
 import NotFound from './components/NotFound'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
-import EditProfile from "./components/EditProfile";
+import EditProfile from './components/EditProfile'
 import SearchPage from './components/SearchPage'
 import {connect} from 'react-redux'
 import {loadCurrentUser} from './actions/currentUserActions'
@@ -21,22 +21,20 @@ class App extends Component {
       if (!this.props.currentUser || !this.props.currentUser.username) {
         if (this.isLoggedIn()) {
           this.props.loadCurrentUser()
-        }else {
-          this.props.history.push("/registration")
+        } else {
+          this.props.history.push('/registration')
         }
       }
   }
 
-
   isLoggedIn = () => {
-    if (localStorage.getItem("accessToken")) {
-      return true;
+    if (localStorage.getItem('accessToken')) {
+      return true
     }
-    return false;
+    return false
   };
 
   render () {
-    
     return (
       <Fragment>
         <Switch>

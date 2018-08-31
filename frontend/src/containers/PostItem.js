@@ -42,8 +42,8 @@ const PostItem = props => {
           </div>
         </div>
         <div className="pos-relative">
-          <img onClick={() => props.deletePost(props.post.id)} src={more} alt="actions" className="post__action-img" tabindex="1"/>
-          <div className="post__action">Delete post</div>
+          <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
+          <div className="post__action" onClick={() => props.deletePost(props.post.id)} >Delete post</div>
         </div>
       </div>
       <p className="post__body">
