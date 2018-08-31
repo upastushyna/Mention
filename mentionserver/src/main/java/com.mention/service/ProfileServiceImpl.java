@@ -33,7 +33,6 @@ public class ProfileServiceImpl implements ProfileService {
 
   private AmazonS3Configuration as3;
 
-
   @Autowired
   public ProfileServiceImpl(ProfileRepository profileRepository,
                             AmazonS3Configuration as3) {
@@ -76,6 +75,10 @@ public class ProfileServiceImpl implements ProfileService {
     Profile profile = profileRepository.findByUserId(userPrincipal.getId());
 
     AmazonS3 s3 = as3.getAmazonS3();
+    if (profile.getAvatarKey() != null) {
+      String oldKey = profile.getAvatarKey();
+      s3.deleteObject(bucket, oldKey);
+    }
     String key = "avatars/" + file.getOriginalFilename();
     InputStream myFile = file.getInputStream();
     s3.putObject(
@@ -102,6 +105,10 @@ public class ProfileServiceImpl implements ProfileService {
     Profile profile = profileRepository.findByUserId(userPrincipal.getId());
 
     AmazonS3 s3 = as3.getAmazonS3();
+    if (profile.getBackgroundKey() != null) {
+      String oldKey = profile.getBackgroundKey();
+      s3.deleteObject(bucket, oldKey);
+    }
     String key = "backgrounds/" + file.getOriginalFilename();
     InputStream myFile = file.getInputStream();
     s3.putObject(

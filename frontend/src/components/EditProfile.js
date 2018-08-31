@@ -73,6 +73,7 @@ class EditProfile extends React.Component {
           },
           body: data
         }).then(this.refs.addAvatar.innerText = "Add file")
+        .then(this.props.loadCurrentUser())
     }
   };
 
@@ -91,6 +92,7 @@ class EditProfile extends React.Component {
           },
           body: data
         }).then(this.refs.addBackground.innerText = "Add file")
+        .then(this.props.loadCurrentUser())
     }
   };
 
