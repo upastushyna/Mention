@@ -19,7 +19,11 @@ public class ProfileRs {
 
   private String avatarUrl;
 
+  private String avatarKey;
+
   private String backgroundUrl;
+
+  private String backgroundKey;
 
   private UserIdRq user;
 }

@@ -62,7 +62,7 @@ public class PostController {
     if (body.length() > 0 && body.length() <= 280) {
       return userPostsService.addPost(body, id, file);
     }
-    return new ResponseEntity(new ApiRs(false, "Post size not supported"), HttpStatus.PRECONDITION_FAILED);
+    return new ResponseEntity(new ApiRs(false, "Failed to upload file"), HttpStatus.BAD_REQUEST);
   }
 
   @PostMapping("/repost")
