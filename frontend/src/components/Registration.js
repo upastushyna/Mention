@@ -90,11 +90,11 @@ export default class Registration extends React.Component {
             <h1 className="login__title">Join the community</h1>
             <form onSubmit={event => this.register(event)}>
               <div className="login__form">
-                <input ref="registerUsername" type="text" className="input_custom" placeholder="Username"/>
+                <input ref="registerUsername" type="text" className="input_custom" placeholder="Username" minLength="3" maxLength="20"/>
                 <p ref="usernameRegister" className="d-none"></p>
                 <input ref="registerEmail" type="text" className="input_custom" placeholder="Email"/>
                 <p ref="emailRegister" className="d-none"></p>
-                <input ref="registerPassword" type="password" className="input_custom" placeholder="Password"/>
+                <input ref="registerPassword" type="password" className="input_custom" placeholder="Password" minLength="6" maxLength="24"/>
                 <p ref="passwordRegister" className="d-none"></p>
                 <input ref="confirmPassword" type="password" className="input_custom"
                        placeholder="Confirm Password"/>
@@ -113,13 +113,13 @@ export default class Registration extends React.Component {
 
             <h1 className="login__title">Login</h1>
             <form onSubmit={event => this.login(event)}>
-              <input ref="loginUsername" type="text" className="input_custom" placeholder="Username or Email"/>
+              <input ref="loginUsername" type="text" className="input_custom" placeholder="Username or Email" minLength="3"/>
               <p ref="loginError" className="d-none"></p>
-              <input ref="loginPassword" type="password" className="input_custom" placeholder="Password"/>
+              <input ref="loginPassword" type="password" className="input_custom" placeholder="Password" minLength="6" maxLength="24"/>
               <p ref="passwordError" className="d-none"></p>
               <input type="submit" className="btn-action login__btn" value="login"/>
             </form>
-            <button onClick={() => this.showRegister()} className="btn-action">Sign up</button>
+            <button onClick={() => this.showRegister()} className="login__sign-btn">Sign up</button>
             <Link to="/" className="login__forgot-password">Forgot Password?</Link>
           </div>
         </section>

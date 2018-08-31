@@ -93,7 +93,7 @@ class Feed extends React.Component {
               <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div> : ""}
-          <button onClick={() => this.scrollToTop()} ref="scroller" className="scroll d-none">Scroll to top</button>
+          <button onClick={() => this.scrollToTop()} ref="scroller" className="scroll-btn d-none">&#11014;</button>
           <PostsContainer username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}
