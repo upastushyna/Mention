@@ -165,11 +165,11 @@ const mapStateToProps = state => ({
   user: state.user,
   currentUser: state.currentUser
 
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadPosts(username)),
   loadUser: username => dispatch(loadUser(username)),
   loadCurrentUser: () => dispatch(loadCurrentUser())
-})
+});
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)

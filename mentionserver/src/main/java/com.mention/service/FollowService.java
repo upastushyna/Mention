@@ -2,6 +2,7 @@ package com.mention.service;
 
 import com.mention.dto.FollowRq;
 import com.mention.dto.ShortUserDetailsRs;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface FollowService {
 
   List<ShortUserDetailsRs> getFollowingUsers(String username);
 
-  void addFollow(FollowRq follow);
+  ResponseEntity<?> addFollow(FollowRq follow);
 
-  void deleteFollow(FollowRq follow);
+  ResponseEntity<?> deleteFollow(FollowRq follow);
 }

@@ -1,5 +1,6 @@
 package com.mention.service;
 
+import com.mention.dto.ApiRs;
 import com.mention.dto.CurrentUserRs;
 import com.mention.dto.ShortUserDetailsRs;
 import com.mention.dto.UserIdRq;
@@ -9,6 +10,8 @@ import com.mention.model.User;
 import com.mention.security.UserPrincipal;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -75,11 +78,20 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public void deleteUser(UserIdRq user) {
+  public ResponseEntity<?> deleteUser(UserIdRq user) {
+    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
+    if (!user.getId().equals(userPrincipal.getId())) {
+      return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
+    }
     Optional<User> currentUser = userRepository.findById(user.getId());
     if (currentUser.isPresent()) {
       currentUser.get().setActive(false);
       userRepository.save(currentUser.get());
+      return ResponseEntity.ok(new ApiRs(true, "Success"));
     }
+    return new ResponseEntity(new ApiRs(false, "Bad request"), HttpStatus.BAD_REQUEST);
   }
 }

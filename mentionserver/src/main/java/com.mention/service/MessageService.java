@@ -1,8 +1,9 @@
 package com.mention.service;
 
 import com.mention.dto.MessageRq;
+import org.springframework.http.ResponseEntity;
 
 public interface MessageService {
 
-  void addMessage(MessageRq message);
+  ResponseEntity<?> addMessage(MessageRq message);
 }
