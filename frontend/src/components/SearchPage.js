@@ -58,7 +58,7 @@ class SearchPage extends React.Component {
         <Navigation/>
         <div className="container">
           {this.props.foundPosts.length === 0 ?          
-         <EmptyState image={searchIcon} title="Ups! Nothing has been found :(" message={"Please, try another search query"}/>       
+         <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={"Please, try another search query"}/>
             : <PostsContainer username={this.props.match.params.input}
               userPosts={this.props.foundPosts}
               loadData={this.props.loadPosts}

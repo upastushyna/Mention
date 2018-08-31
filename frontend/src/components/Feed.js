@@ -21,21 +21,6 @@ class Feed extends React.Component {
     }
   }
 
-  handleOnScroll = () => {
-    if(window.pageYOffset > 260 && this.refs.scroller) {
-      this.refs.scroller.classList.remove("d-none");
-    }
-  };
-
-  scrollToTop = () => {
-    this.refs.pageTop.scrollIntoView({ block: 'end',  behavior: 'smooth' });
-    this.refs.scroller.classList.add("d-none");
-  };
-
-  componentDidMount () {
-    window.addEventListener('scroll', this.handleOnScroll);
-  }
-
   addPost = event => {
     event.preventDefault();
     const data = new FormData();
@@ -73,7 +58,6 @@ class Feed extends React.Component {
 
     return (
       <Fragment>
-        <div ref="pageTop" style={{ float: 'left', clear: 'both' }}></div>
         <Navigation history={this.props.history}/>
         <div ref="container" className="container">
           {this.props.currentUser.followedUsers.find(follow =>
@@ -93,7 +77,6 @@ class Feed extends React.Component {
               <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
           </div> : ""}
-          <button onClick={() => this.scrollToTop()} ref="scroller" className="scroll-btn d-none">&#11014;</button>
           <PostsContainer username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}
