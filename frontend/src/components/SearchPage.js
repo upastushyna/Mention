@@ -55,7 +55,7 @@ class SearchPage extends React.Component {
     }
 
     return (
-      <Fragment>
+      <Fragment key={SearchPage.id}>
         <Navigation/>
         <div className="container">
           {this.props.foundPosts.length === 0 ?

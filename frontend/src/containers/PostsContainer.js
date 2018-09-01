@@ -11,6 +11,7 @@ const PostsContainer = props => {
       loadData={props.loadData}
       post={post}
       currentUser={props.currentUser}
-      deletePost={props.deletePost}/>)
-}
+      deletePost={props.deletePost}
+      key={post.id}/>)
+};
 export default PostsContainer

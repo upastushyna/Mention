@@ -16,7 +16,7 @@ class UserInfo extends React.Component {
 
   render () {
     return (
-      <Fragment>
+      <Fragment key={UserInfo.id}>
         <div className="info-controller">
           <Link className="info-controller__link" to={'/' + this.props.username + '/info/followed'}
             onClick={() => this.props.loadFollowedUsers(this.props.username)}>Followed Users</Link>

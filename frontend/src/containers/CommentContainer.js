@@ -5,7 +5,7 @@ import {getDateFromDb} from '../js/timestamp.js'
 
 const CommentContainer = props =>
   props.comments.map(comment =>
-    <Fragment>
+    <Fragment key={comment.id}>
       <div className="comment-container">
         <div className="d-flex-center content-between">
           <div className="profile-info">
@@ -17,7 +17,7 @@ const CommentContainer = props =>
           </div>
 
           <div className="pos-relative">
-            <img src={more} alt="more" className="comment-container__action-img" tabindex="1"/>
+            <img src={more} alt="more" className="comment-container__action-img" tabIndex="1"/>
             <div className="post__action">Delete comment</div>
           </div>
         </div>
