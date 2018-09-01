@@ -15,11 +15,12 @@ import {connect} from 'react-redux'
 import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
 import Websocket from './components/Websocket'
+import {isLoggedIn} from './js/isLoggedIn'
 
 class App extends Component {
   componentWillMount () {
       if (!this.props.currentUser || !this.props.currentUser.username) {
-        if (this.isLoggedIn()) {
+        if (isLoggedIn()) {
           this.props.loadCurrentUser()
         }else {
           this.props.history.push("/registration")
@@ -43,14 +44,6 @@ class App extends Component {
   componentDidMount () {
     window.addEventListener('scroll', this.handleOnScroll);
   }
-
-
-  isLoggedIn = () => {
-    if (localStorage.getItem("accessToken")) {
-      return true;
-    }
-    return false;
-  };
 
   render () {
     
