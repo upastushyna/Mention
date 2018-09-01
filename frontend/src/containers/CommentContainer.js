@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 const CommentContainer = props =>
   props.comments.map(comment =>
-    <Fragment>
+    <Fragment key={comment.id}>
       <div className="comment-container">
         <div className="d-flex-center content-between">
           <Link to={"/" + comment.commentator.username} className="post__link">
@@ -20,7 +20,7 @@ const CommentContainer = props =>
           </Link>
 
           <div className="pos-relative">
-            <img src={more} alt="more" className="comment-container__action-img" tabindex="1"/>
+            <img src={more} alt="more" className="comment-container__action-img" tabIndex="1"/>
             <div className="post__action">Delete comment</div>
           </div>
         </div>

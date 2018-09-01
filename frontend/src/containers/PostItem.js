@@ -45,7 +45,7 @@ const PostItem = props => {
           </div>
         </Link>
         <div className="pos-relative">
-          <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
+          <img src={more} alt="actions" className="post__action-img" tabIndex="1"/>
           <div className="post__action">Delete post</div>
         </div>
       </div>

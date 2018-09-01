@@ -115,7 +115,7 @@ class UserPage extends React.Component {
     }
 
     return (
-        <Fragment>
+        <Fragment key={UserPage.id}>
           <Navigation/>
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>

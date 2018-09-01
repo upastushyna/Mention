@@ -31,7 +31,7 @@ const Chat = props => {
     return 'loading...'
   }
 
-  return <Fragment>
+  return <Fragment key={Chat.id}>
     <div className="messages-container__header d-flex-center content-between">
       <div className="d-flex-center">
         <img src={props.chat.user2.username === props.user2
@@ -50,8 +50,7 @@ const Chat = props => {
         {props.chat.messages.length === 0?
           <p>Start the conversation!</p>:""}
         {props.chat.messages.map(message =>
-          message.sender.username === props.user2
-            ? <div className="message message_sent">
+          message.sender.username === props.user2 ? <div className="message message_sent">
               <img src={props.chat.user2.username === props.user2
                 ? props.chat.user2.profile.avatarUrl
                 : props.chat.user1.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
