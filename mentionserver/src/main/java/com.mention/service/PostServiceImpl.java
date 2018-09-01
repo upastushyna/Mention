@@ -44,8 +44,8 @@ public class PostServiceImpl implements PostService {
 
   @Autowired
   public PostServiceImpl(UserRepository userRepository,
-                              PostRepository postRepository,
-                              AmazonS3Configuration as3) {
+                         PostRepository postRepository,
+                         AmazonS3Configuration as3) {
     this.userRepository = userRepository;
     this.postRepository = postRepository;
     this.modelMapper = new ModelMapper();
@@ -131,7 +131,7 @@ public class PostServiceImpl implements PostService {
           key,
           myFile,
           new ObjectMetadata());
-      String url = s3.getUrl(bucket,key).toString();
+      String url = s3.getUrl(bucket, key).toString();
       post.setMediaFileUrl(url);
       post.setAmazonKey(key);
     }
@@ -169,6 +169,8 @@ public class PostServiceImpl implements PostService {
 
     postRepository.deleteById(postDtoIdRq.getId());
     return ResponseEntity.ok(new ApiRs(true, "Deleted successfully"));
+  }
+
   public void deletePost(Long postId) {
     postRepository.deleteById(postId);
   }
