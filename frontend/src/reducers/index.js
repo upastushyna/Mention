@@ -12,6 +12,7 @@ import searchUsersReducer from './searchUsersReducer'
 import searchPostsReducer from './searchPostsReducer'
 import currentUserReducer from './currentUserReducer'
 import postsReducer from './postsReducer'
+import commentsReducer from './commentsReducer'
 
 export default combineReducers({
   feed: feedReducer,
@@ -26,5 +27,6 @@ export default combineReducers({
   foundUsers: searchUsersReducer,
   foundPosts: searchPostsReducer,
   currentUser: currentUserReducer,
-  deletePost: postsReducer
+  deletePost: postsReducer,
+  deleteComment: commentsReducer
 })
