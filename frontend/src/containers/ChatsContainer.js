@@ -8,8 +8,6 @@ const openChat = () => {
   document.getElementsByClassName('chats__list')[0].style.display = "none";
 };
 
-const ChatsContainer = props =>
-  props.chats.map(chat =>
 const ChatsContainer = props => {
   if (props.chats.length === 0) {
     return <p>No chats found. Add users to chat with to start conversation!</p>
