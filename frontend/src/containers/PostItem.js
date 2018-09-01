@@ -6,7 +6,7 @@ import CommentContainer from './CommentContainer'
 import PostLikeItem from './PostLikeItem'
 import AddComment from './AddComment'
 import {getDateFromDb} from '../js/timestamp.js'
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom'
 
 const PostItem = props => {
   const rePost = () => fetch('/api/posts/repost',
@@ -30,7 +30,7 @@ const PostItem = props => {
         </div>
         : ''}
       <div className="post__header">
-        <Link to={"/" + props.post.author.username} className="post__link">
+        <Link to={'/' + props.post.author.username} className="post__link">
           <div className="profile-info d-flex-center">
             <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
               : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
@@ -39,7 +39,7 @@ const PostItem = props => {
                 ? props.post.parent.author.username : props.post.author.username}</h2>
               <span className="profile-info__alias">
                 {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
-                    : getDateFromDb(props.post.timestamp)}
+                  : getDateFromDb(props.post.timestamp)}
               </span>
             </div>
           </div>
@@ -66,8 +66,13 @@ const PostItem = props => {
           <span className="post__action-count">{props.post.children.length}</span>
         </div>
       </div>
-      <CommentContainer loadData={props.loadData} comments={props.post.comments}
-        postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
+      <CommentContainer
+        loadData={props.loadData}
+        comments={props.post.comments}
+        postId={props.post.id}
+        username={props.username} currentUser={props.currentUser}
+        deleteComment={props.deleteComment}
+      />
       <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
         currentUser={props.currentUser}/>
     </div>

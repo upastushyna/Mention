@@ -17,8 +17,8 @@ import upload from '../img/fileuploadicon.png'
 import {deletePost} from '../actions/postsActions'
 
 class UserPage extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   }
 
   componentWillMount () {
@@ -33,18 +33,18 @@ class UserPage extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    this.callUpdate();
+  componentDidUpdate () {
+    this.callUpdate()
   }
 
-  componentDidMount() {
-    this.callUpdate();
+  componentDidMount () {
+    this.callUpdate()
   }
 
   callUpdate = () => {
-    if(this.props.user.username !== this.props.match.params.username) {
-      this.props.loadUser(this.props.match.params.username);
-      this.props.loadData(this.props.match.params.username);
+    if (this.props.user.username !== this.props.match.params.username) {
+      this.props.loadUser(this.props.match.params.username)
+      this.props.loadData(this.props.match.params.username)
     }
   };
 
@@ -101,9 +101,9 @@ class UserPage extends React.Component {
 
   changeName = () => {
     if (this.refs.inputFile.files[0]) {
-      this.refs.addFile.innerText = this.refs.inputFile.files[0].name;
+      this.refs.addFile.innerText = this.refs.inputFile.files[0].name
     } else {
-      this.refs.addFile.innerText = "Add file";
+      this.refs.addFile.innerText = 'Add file'
     }
   };
 
@@ -113,28 +113,28 @@ class UserPage extends React.Component {
     }
 
     return (
-        <Fragment key={UserPage.id}>
-          <Navigation/>
-          <div className="user-navigation">
-            <HeaderProfile user={this.props.user}/>
-            <div className="user-navigation__links">
-              <Link className="user-nav-links__item" to={'/' + this.props.match.params.username + '/info'}>
-                <img src={info} alt="info" className="user-navigation__icon"/>
-                <h4 className="user-nav-links__text">info</h4>
-              </Link>
-              <Link className="user-nav-links__item" to={'/' + this.props.match.params.username}>
-                <img src={posts} alt="feed" className="user-navigation__icon"/>
-                <h4 className="user-nav-links__text">profile</h4>
-              </Link>
-            </div>
-            <div className="following shadow-button">
-              {this.props.currentUser.followedUsers.find(follow =>
-                  follow.followedUser.id === this.props.user.id) ?
-                  <UnffollowButton unfollow={this.unfollow} followedUser={this.props.user.id}/> :
-                  <FollowButton follow={this.follow} followedUser={this.props.user.id}/>
-              }
-            </div>
+      <Fragment key={UserPage.id}>
+        <Navigation/>
+        <div className="user-navigation">
+          <HeaderProfile user={this.props.user}/>
+          <div className="user-navigation__links">
+            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username + '/info'}>
+              <img src={info} alt="info" className="user-navigation__icon"/>
+              <h4 className="user-nav-links__text">info</h4>
+            </Link>
+            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username}>
+              <img src={posts} alt="feed" className="user-navigation__icon"/>
+              <h4 className="user-nav-links__text">profile</h4>
+            </Link>
           </div>
+          <div className="following shadow-button">
+            {this.props.currentUser.followedUsers.find(follow =>
+              follow.followedUser.id === this.props.user.id)
+              ? <UnffollowButton unfollow={this.unfollow} followedUser={this.props.user.id}/>
+              : <FollowButton follow={this.follow} followedUser={this.props.user.id}/>
+            }
+          </div>
+        </div>
         <div className="create-post">
           <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
             <div className="d-flex-center content-between">
