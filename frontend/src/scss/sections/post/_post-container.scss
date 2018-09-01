@@ -73,6 +73,42 @@
   }
 }
 
+.likers {
+  &__nav {
+    list-style: none;
+    position: absolute;
+    top: 242px;
+    left: 39px;
+    background-color: azure;
+    z-index: 4;
+
+    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+      border-width: 0 13px 13px 13px;
+      border-color: transparent transparent azure transparent;
+    }
+  }
+  &__option {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    cursor: pointer;
+
+    &:active,
+    &:hover {
+      background-color: $border-color;
+    }
+  }
+}
+
 .post__action-img:focus + .post__action,
 .post__action-img:active + .post__action,
 .comment-container__action-img:focus + .post__action,
