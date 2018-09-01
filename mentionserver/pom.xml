@@ -119,6 +119,11 @@
             <artifactId>spring-boot-starter-mail</artifactId>
             <version>2.0.1.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
+        </dependency>
     </dependencies>
     <!-- add for coveralls fix-->
     <build>
