@@ -56,8 +56,8 @@ public class PostController {
 
   @PostMapping("/add")
   public ResponseEntity<?> addPost(@RequestParam("body") String body,
-                                @RequestParam("id") Long id,
-                                @RequestParam(value = "image", required = false) MultipartFile file)
+                                   @RequestParam("id") Long id,
+                                   @RequestParam(value = "image", required = false) MultipartFile file)
       throws IOException {
     if (body.length() > 0 && body.length() <= 280) {
       return userPostsService.addPost(body, id, file);
@@ -69,6 +69,11 @@ public class PostController {
   public ResponseEntity<?> rePost(@RequestBody PostRq post) {
     return userPostsService.rePost(post);
   }
+
+  /* @DeleteMapping("/delete/{id}")
+   public void deletePost(@PathVariable Long id) {
+     userPostsService.deletePost(id);
+   }*/
 
   @DeleteMapping("/delete")
   public ResponseEntity<?> deletePost(@RequestBody PostIdRq post) {

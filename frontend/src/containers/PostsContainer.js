@@ -8,10 +8,10 @@ const PostsContainer = props => {
   }
   return props.userPosts.map(post =>
     <PostItem username={props.username}
-              loadData={props.loadData}
-              post={post}
-              currentUser={props.currentUser}
-    key={post.id}/>)
+      loadData={props.loadData}
+      post={post}
+      currentUser={props.currentUser}
+      deletePost={props.deletePost}
+      key={post.id}/>)
 };
-
 export default PostsContainer

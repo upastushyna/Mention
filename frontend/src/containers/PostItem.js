@@ -14,7 +14,7 @@ const PostItem = props => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': "Bearer " + localStorage.getItem("accessToken")
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
       },
       body: JSON.stringify({author: {id: props.currentUser.id}, parent: {id: props.post.parent ? props.post.parent.id : props.post.id}})
     }).then(() => props.loadData(props.username))
@@ -25,9 +25,9 @@ const PostItem = props => {
         ? <div className="repost-author">
           <h2 className="repost-author__info">@{props.post.author.username}</h2>
           reposted in
-            <span className="repost-author__info">{props.post.timestamp.slice(0, 19).replace('T', ' ')} </span>
+          <span className="repost-author__info">{getDateFromDb(props.post.timestamp)} </span>
         </div>
-      : ''}
+        : ''}
       <div className="post__header">
         <div className="profile-info d-flex-center">
           <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
@@ -37,13 +37,13 @@ const PostItem = props => {
               ? props.post.parent.author.username : props.post.author.username}</h2>
             <span className="profile-info__alias">
               {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
-                  : getDateFromDb(props.post.timestamp)}
+                : getDateFromDb(props.post.timestamp)}
             </span>
           </div>
         </div>
         <div className="pos-relative">
-          <img src={more} alt="actions" className="post__action-img" tabIndex="1"/>
-          <div className="post__action">Delete post</div>
+          <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
+          <div className="post__action" onClick={() => props.deletePost(props.post.id)} >Delete post</div>
         </div>
       </div>
       <p className="post__body">
@@ -64,9 +64,9 @@ const PostItem = props => {
         </div>
       </div>
       <CommentContainer loadData={props.loadData} comments={props.post.comments}
-      postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
-    <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
-      currentUser={props.currentUser}/>
+        postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
+      <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
+        currentUser={props.currentUser}/>
     </div>
 
   </Fragment>
