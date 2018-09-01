@@ -1,8 +1,9 @@
 package com.mention.service;
 
 import com.mention.dto.CommentRq;
+import org.springframework.http.ResponseEntity;
 
 public interface CommentService {
 
-  void addComment(CommentRq comment);
+  ResponseEntity<?> addComment(CommentRq comment);
 }

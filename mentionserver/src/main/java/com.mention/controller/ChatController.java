@@ -4,6 +4,7 @@ import com.mention.dto.ChatRq;
 import com.mention.dto.ChatRs;
 import com.mention.service.ChatServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,18 +26,17 @@ public class ChatController {
   }
 
   @GetMapping("/{username}")
-  public List<ChatRs> getChatsByUsername(@PathVariable String username) {
+  public ResponseEntity<?> getChatsByUsername(@PathVariable String username) {
     return userChatsService.getChatsByUsername(username);
   }
 
   @GetMapping("/c/user1={username1}&user2={username2}")
-  public ChatRs getChatByUsernames(@PathVariable String username1, @PathVariable String username2) {
+  public ResponseEntity<?> getChatByUsernames(@PathVariable String username1, @PathVariable String username2) {
     return userChatsService.getChatByUsernames(username1, username2);
   }
 
   @PostMapping("/add")
-  public void addChat(@RequestBody ChatRq chat) {
-    System.out.println(chat);
-    userChatsService.addChat(chat);
+  public ResponseEntity<?> addChat(@RequestBody ChatRq chat) {
+    return userChatsService.addChat(chat);
   }
 }

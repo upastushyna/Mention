@@ -1,13 +1,18 @@
 package com.mention.service;
 
+import com.mention.dto.ApiRs;
 import com.mention.dto.FollowRq;
 import com.mention.dto.ShortUserDetailsRs;
 import com.mention.model.Follow;
 import com.mention.model.User;
 import com.mention.repository.FollowRepository;
 import com.mention.repository.UserRepository;
+import com.mention.security.UserPrincipal;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,17 +62,35 @@ public class FollowServiceImpl implements FollowService {
 
   @Override
   @Transactional
-  public void addFollow(FollowRq follow) {
+  public ResponseEntity<?> addFollow(FollowRq follow) {
+    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
+    if (!follow.getFollower().getId().equals(userPrincipal.getId())) {
+      return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
+    }
+
     Follow insertFollow = modelMapper.map(follow, Follow.class);
     followRepository.save(insertFollow);
+    return ResponseEntity.ok(new ApiRs(true, "Followed successfully"));
   }
 
   @Override
   @Transactional
-  public void deleteFollow(FollowRq follow) {
+  public ResponseEntity<?> deleteFollow(FollowRq follow) {
+    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
+    if (!follow.getFollower().getId().equals(userPrincipal.getId())) {
+      return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
+    }
+
     Follow deleteFollow = modelMapper.map(follow, Follow.class);
     followRepository.deleteByFollowerAndFollowedUser(
         deleteFollow.getFollower(),
         deleteFollow.getFollowedUser());
+    return ResponseEntity.ok(new ApiRs(true, "Unfollowed successfully"));
   }
 }
