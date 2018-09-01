@@ -8,6 +8,12 @@ import AddComment from './AddComment'
 import {getDateFromDb} from '../js/timestamp.js'
 import {Link} from 'react-router-dom'
 
+const openComments = (idPost) => {
+  let el = document.getElementById(idPost)
+  let cont = el.querySelector('.comments-list')
+  cont.classList.toggle('d-none')
+}
+
 const PostItem = props => {
   const rePost = () => fetch('/api/posts/repost',
     {
@@ -21,7 +27,7 @@ const PostItem = props => {
     }).then(() => props.loadData(props.username))
 
   return <Fragment>
-    <div className="post">
+    <div className="post" id={props.post.id}>
       {props.post.parent
         ? <div className="repost-author">
           <h2 className="repost-author__info">@{props.post.author.username}</h2>
@@ -40,12 +46,13 @@ const PostItem = props => {
               <span className="profile-info__alias">
                 {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
                   : getDateFromDb(props.post.timestamp)}
+                  : getDateFromDb(props.post.timestamp)}
               </span>
             </div>
           </div>
         </Link>
         <div className="pos-relative">
-          <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
+          <img src={more} alt="actions" className="post__action-img" tabIndex="1"/>
           <div className="post__action" onClick={() => props.deletePost(props.post.id)} >Delete post</div>
         </div>
       </div>
@@ -60,11 +67,19 @@ const PostItem = props => {
           likes={props.post.likes} username={props.username}
           currentUser={props.currentUser}/>
         <div className="d-flex-center">
-          <img src={comment} alt="comment" className="post__action-img"/>
+          <img src={comment} alt="comment" className="post__action-img" onClick={() => openComments(props.post.id)}/>
           <span className="post__action-count">{props.post.comments.length}</span>
           <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>
           <span className="post__action-count">{props.post.children.length}</span>
         </div>
+      </div>
+      <div className="comments-list d-none">
+        <CommentContainer
+          loadData={props.loadData}
+          comments={props.post.comments}
+          postId={props.post.id}
+          username={props.username}
+          currentUser={props.currentUser}/>
       </div>
       <CommentContainer
         loadData={props.loadData}
