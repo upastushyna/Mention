@@ -19,5 +19,6 @@ log/
 package-lock.json
 frontend/package-lock.json
 mentionserver/src/main/resources/config.properties
+mentionserver/src/main/resources/application.properties
 
 
