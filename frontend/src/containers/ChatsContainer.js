@@ -2,6 +2,14 @@ import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import {getDateFromDb} from '../js/timestamp.js'
 
+const openChat = () => {
+  document.getElementsByClassName('messages-container')[0].style.display = "block";
+  document.getElementsByClassName('messages-container')[0].style.width = "100%";
+  document.getElementsByClassName('chats__list')[0].style.display = "none";
+};
+
+const ChatsContainer = props =>
+  props.chats.map(chat =>
 const ChatsContainer = props => {
   if (props.chats.length === 0) {
     return <p>No chats found. Add users to chat with to start conversation!</p>
@@ -26,7 +34,6 @@ const ChatsContainer = props => {
         </div>
         <p className="chat-container__text">{chat.messages.length !== 0
           ? chat.messages[chat.messages.length - 1].content : ''}</p>
-
       </Link>
     </Fragment>
   )

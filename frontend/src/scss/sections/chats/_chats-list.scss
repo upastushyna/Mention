@@ -1,15 +1,16 @@
 .chats {
  &__view {
   display: flex;
-  height: 80vh;
+  height: 75vh;
   margin: 50px auto 0;
  }
 
  &__list {
-  width: 30%;
+  width: 35%;
+  overflow-y: auto;
   margin: 0 auto;
   background-color: #fff;
-  border: 1px solid $border-color;
+  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
  }
 
  &__container{
@@ -22,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  border-bottom: 1px solid $border-color;
+  border: 1px solid $border-color;
  }
 
  &__input {
@@ -44,15 +45,16 @@
 
  &__header {
   display: none;
-  widows: 100%;
   padding: 16px;
  }
 }
 
 .chat-container {
  display: block;
- padding: 20px;
+ padding: 0 15px;
  border-bottom: 1px solid $border-color;
+ border-left: 1px solid $border-color;
+ border-right: 1px solid $border-color;
  text-decoration: none;
 
  &:hover {
@@ -70,17 +72,25 @@
 
 @media screen and (max-width: 1200px) {
  .chats {
-  &__header {
-   display: flex;
-  }
-
   &__view {
    margin: 16px;
    max-width: 100%;
   }
 
   &__list {
-   width: 100%;
+   width: 40%;
+  }
+ }
+}
+
+@media screen and (max-width: 768px) {
+ .chats {
+  &__header {
+   display: flex;
+  }
+
+  &__list {
+   width: 75%;
   }
  }
 }

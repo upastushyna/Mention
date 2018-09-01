@@ -1,32 +1,38 @@
 .messages-container {
 	position: relative;
-	width: 70%;
+	width: 65%;
 	background-color: #fff;
 	@include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
-  
+
 	&__header {
-	  padding: 20px;
+		padding: 0 15px;
 		border-bottom: 1px solid $border-color;
 		border-left: 1px solid $border-color;
 	}
-  
+
 	&__body {
-	  height: 80%;
-	  padding: 20px;
+		height: 82%;
+		padding: 20px;
 		overflow-y: scroll;
 		border-left: 1px solid $border-color;
-  
-	  &::-webkit-scrollbar{
-		width: 5px;
-	  } 
-	  &::-webkit-scrollbar-thumb{
-		background-color: #a1a8bd;
-	  }
+
+		&::-webkit-scrollbar{
+			width: 5px;
+		}
+		&::-webkit-scrollbar-thumb{
+			background-color: #a1a8bd;
+		}
 	}
+}
+
+@media screen and (max-width: 1200px) {
+	.messages-container {
+		width: 60%;
 	}
-	
-	@media screen and (max-width: 1200px) {
-  .messages-container {
-		width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+	.messages-container {
+		display: none;
 	}
-	}
+}

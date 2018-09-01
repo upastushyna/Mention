@@ -6,6 +6,7 @@ import CommentContainer from './CommentContainer'
 import PostLikeItem from './PostLikeItem'
 import AddComment from './AddComment'
 import {getDateFromDb} from '../js/timestamp.js'
+import {Link} from "react-router-dom";
 
 const PostItem = props => {
   const rePost = () => fetch('/api/posts/repost',
@@ -29,18 +30,20 @@ const PostItem = props => {
         </div>
         : ''}
       <div className="post__header">
-        <div className="profile-info d-flex-center">
-          <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
-            : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
-          <div className="profile-info__signature">
-            <h2 className="profile-info__username">{props.post.parent
-              ? props.post.parent.author.username : props.post.author.username}</h2>
-            <span className="profile-info__alias">
-              {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
-                : getDateFromDb(props.post.timestamp)}
-            </span>
+        <Link to={"/" + props.post.author.username} className="post__link">
+          <div className="profile-info d-flex-center">
+            <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
+              : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
+            <div className="profile-info__signature">
+              <h2 className="profile-info__username">{props.post.parent
+                ? props.post.parent.author.username : props.post.author.username}</h2>
+              <span className="profile-info__alias">
+                {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
+                    : getDateFromDb(props.post.timestamp)}
+              </span>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className="pos-relative">
           <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
           <div className="post__action" onClick={() => props.deletePost(props.post.id)} >Delete post</div>
