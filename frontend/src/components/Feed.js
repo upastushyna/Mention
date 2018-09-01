@@ -47,9 +47,9 @@ class Feed extends React.Component {
 
   changeName = () => {
     if (this.refs.inputFile.files[0]) {
-      this.refs.addFile.innerText = this.refs.inputFile.files[0].name;
+      this.refs.addFile.innerText = this.refs.inputFile.files[0].name
     } else {
-      this.refs.addFile.innerText = "Add file";
+      this.refs.addFile.innerText = 'Add file'
     }
   };
 
@@ -64,22 +64,22 @@ class Feed extends React.Component {
         <Navigation history={this.props.history}/>
         <div ref="container" className="container">
           {this.props.currentUser.followedUsers.find(follow =>
-            follow.followedUser.id === this.props.currentUser.id)?
-          <div className="create-post">
-            <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex-center">
-                <textarea className="create-post__input" id="postInput"
-                  placeholder="Share your thoughts with world" rows="2" ref="postInput"
-                  maxLength={280}/>
-                <button type="submit" className="create-post__btn btn-action">Add post</button>
-                <button type="submit" className="create-post__btn_rounded btn-action btn-action_rounded">+</button>
-              </div>
-              <div className="upload-file">
-              <img src={upload} alt="upload" className="upload-file__icon"/>
-                <p ref="addFile">Add file</p>
-              <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
-            </form>
-          </div> : ""}
+            follow.followedUser.id === this.props.currentUser.id)
+            ? <div className="create-post">
+              <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
+                <div className="d-flex-center">
+                  <textarea className="create-post__input" id="postInput"
+                    placeholder="Share your thoughts with world" rows="2" ref="postInput"
+                    maxLength={280}/>
+                  <button type="submit" className="create-post__btn btn-action">Add post</button>
+                  <button type="submit" className="create-post__btn_rounded btn-action btn-action_rounded">+</button>
+                </div>
+                <div className="upload-file">
+                  <img src={upload} alt="upload" className="upload-file__icon"/>
+                  <p ref="addFile">Add file</p>
+                  <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
+              </form>
+            </div> : ''}
           <PostsContainer username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}

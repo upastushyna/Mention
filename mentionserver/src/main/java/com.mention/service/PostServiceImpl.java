@@ -167,6 +167,13 @@ public class PostServiceImpl implements PostService {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
+    Post currentPost = postRepository.findById(postDtoIdRq.getId()).get();
+    AmazonS3 s3 = as3.getAmazonS3();
+    if (currentPost.getAmazonKey() != null) {
+      String oldKey = currentPost.getAmazonKey();
+      s3.deleteObject(bucket, oldKey);
+    }
+
     postRepository.deleteById(postDtoIdRq.getId());
     return ResponseEntity.ok(new ApiRs(true, "Deleted successfully"));
   }
