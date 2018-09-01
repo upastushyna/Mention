@@ -7,7 +7,8 @@ export default class HomePage extends React.Component {
     return (
       <Feed currentUser={this.props.currentUser}
         loadCurrentUser={this.props.loadCurrentUser}
-            history={this.props.history}/>
+            history={this.props.history}
+      key={HomePage.id}/>
     )
   }
 }

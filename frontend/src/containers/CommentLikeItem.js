@@ -1,7 +1,6 @@
 import React from 'react'
 import like from '../img/post-form/like-icon.png'
 import likeFilled from '../img/post-form/like-icon-filled.png'
-import {ID, USERNAME} from '../constants/hardcode'
 
 const CommentLikeItem = props => {
   const addLike = () => fetch('/api/commentlikes/add',

@@ -8,6 +8,7 @@ import UsersContainer from '../containers/UsersContainer'
 import EmptyState from '../containers/EmptyState'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import searchIcon from '../img/search-icon.svg'
+import {deletePost} from '../actions/postsActions'
 
 
 class SearchPage extends React.Component {
@@ -26,7 +27,7 @@ class SearchPage extends React.Component {
     {
       method: 'POST',
       headers: {
-        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -39,7 +40,7 @@ class SearchPage extends React.Component {
     {
       method: 'DELETE',
       headers: {
-        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -54,24 +55,25 @@ class SearchPage extends React.Component {
     }
 
     return (
-      <Fragment>
+      <Fragment key={SearchPage.id}>
         <Navigation/>
         <div className="container">
-          {this.props.foundPosts.length === 0 ?          
+          {this.props.foundPosts.length === 0 ?
          <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={"Please, try another search query"}/>
             : <PostsContainer username={this.props.match.params.input}
               userPosts={this.props.foundPosts}
               loadData={this.props.loadPosts}
-              currentUser={this.props.currentUser}/>}
+              currentUser={this.props.currentUser}
+              deletePost={this.props.deletePost()}/>}
           <div className="users-panel">
             {this.props.foundUsers.length === 0 ? ''
               : <UsersContainer username={this.props.match.params.input}
                 loadUsers={this.props.loadUsers}
                 users={this.props.foundUsers}
                 currentUser={this.props.currentUser}
-                                follow={this.follow}
-                                unfollow={this.unfollow}
-                />}
+                follow={this.follow}
+                unfollow={this.unfollow}
+              />}
           </div>
         </div>
       </Fragment>
@@ -82,14 +84,16 @@ class SearchPage extends React.Component {
 const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
   foundUsers: state.foundUsers,
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  deletePost: state.deletePost
 
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
   loadUsers: input => dispatch(loadSearchUsers(input)),
-  loadCurrentUser: () => dispatch(loadCurrentUser())
-});
+  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  deletePost: id => dispatch(deletePost(id))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)

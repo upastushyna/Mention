@@ -12,23 +12,17 @@ import info from '../img/info-icon.png'
 import posts from '../img/posts-icon.png'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import FollowButton from '../containers/FollowButton'
-import UnffollowButton from "../containers/UnffollowButton";
+import UnffollowButton from '../containers/UnffollowButton'
 import upload from '../img/fileuploadicon.png'
+import {deletePost} from '../actions/postsActions'
 
 class UserPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.props.history.listen((location, action) => {
-      console.log(this.props.history);
-      this.props.loadUser(this.props.match.params.username);
-      this.props.loadData(this.props.match.params.username);
-    });
   }
 
-  componentWillMount() {
+  componentWillMount () {
     if (this.props.userPosts.length === 0) {
-
       this.props.loadData(this.props.match.params.username)
     }
     if (!this.props.user || !this.props.user.username) {
@@ -39,56 +33,70 @@ class UserPage extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.callUpdate();
+  }
+
+  componentDidMount() {
+    this.callUpdate();
+  }
+
+  callUpdate = () => {
+    if(this.props.user.username !== this.props.match.params.username) {
+      this.props.loadUser(this.props.match.params.username);
+      this.props.loadData(this.props.match.params.username);
+    }
+  };
+
   follow = followedUser => fetch('/api/follow/add',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': "Bearer " + localStorage.getItem("accessToken"),
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          follower: {id: this.props.currentUser.id},
-          followedUser: {id: followedUser}
-        })
-      }).then(() => this.props.loadCurrentUser());
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        follower: {id: this.props.currentUser.id},
+        followedUser: {id: followedUser}
+      })
+    }).then(() => this.props.loadCurrentUser());
 
   unfollow = followedUser => fetch('/api/follow/delete',
-      {
-        method: 'DELETE',
-        headers: {
-          'Authorization': "Bearer " + localStorage.getItem("accessToken"),
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          follower: {id: this.props.currentUser.id},
-          followedUser: {id: followedUser}
-        })
-      }).then(() => this.props.loadCurrentUser());
+    {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        follower: {id: this.props.currentUser.id},
+        followedUser: {id: followedUser}
+      })
+    }).then(() => this.props.loadCurrentUser());
 
   addPost = event => {
-    event.preventDefault();
-    const data = new FormData();
-    data.append("body", this.refs.postInput.value);
-    data.append("id", this.props.currentUser.id)
+    event.preventDefault()
+    const data = new FormData()
+    data.append('body', this.refs.postInput.value)
+    data.append('id', this.props.currentUser.id)
     if (this.refs.inputFile) {
-      const image = this.refs.inputFile.files[0];
-      data.append("image", image)
-
+      const image = this.refs.inputFile.files[0]
+      data.append('image', image)
     }
 
     fetch('/api/posts/add',
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': "Bearer " + localStorage.getItem("accessToken")
-          },
-          body: data
-        }).then(() => this.props.loadData(this.props.match.params.username))
-        .then(() => this.refs.postInput.value = '')
-        .then(() => this.refs.inputFile.value = null)
-        .then(this.refs.addFile.innerText = 'Add file')
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        body: data
+      }).then(() => this.props.loadData(this.props.match.params.username))
+      .then(() => this.refs.postInput.value = '')
+      .then(() => this.refs.inputFile.value = null)
+      .then(this.refs.addFile.innerText = 'Add file')
   };
 
   changeName = () => {
@@ -99,14 +107,13 @@ class UserPage extends React.Component {
     }
   };
 
-  render() {
-
+  render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return "Loading..."
+      return 'Loading...'
     }
 
     return (
-        <Fragment>
+        <Fragment key={UserPage.id}>
           <Navigation/>
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
@@ -128,36 +135,36 @@ class UserPage extends React.Component {
               }
             </div>
           </div>
+        <div className="create-post">
+          <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
+            <div className="d-flex-center content-between">
+              <textarea className="create-post__input" id="postInput"
+                placeholder="Share your thoughts" ref="postInput"
+                maxLength={280}/>
+              <button type="submit" className="create-post__btn btn-action">Add post</button>
+              <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
+            </div>
+            <div className="upload-file">
+              <img src={upload} alt="upload" className="upload-file__icon"/>
+              <p ref="addFile">Add file</p>
+              <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
+          </form>
+        </div>
+        <Switch>
+          <Route exact path={this.props.match.path} component={() =>
+            <PostsContainer username={this.props.match.params.username}
+              userPosts={this.props.userPosts}
+              loadData={this.props.loadData}
+              currentUser={this.props.currentUser}
+              deletePost={this.props.deletePost}/>}/>
+          <Route path='/:username/info' component={() =>
+            <UserInfo username={this.props.match.params.username}
+              currentUser={this.props.currentUser}
+              loadCurrentUser={this.props.loadCurrentUser}
+              follow={this.follow} unfollow={this.unfollow}/>}/>
+        </Switch>
 
-          <div className="create-post">
-            <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex-center content-between">
-                <textarea className="create-post__input" id="postInput"
-                          placeholder="Share your thoughts" ref="postInput"
-                          maxLength={280}/>
-                <button type="submit" className="create-post__btn btn-action">Add post</button>
-                <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
-              </div>
-              <div className="upload-file">
-                <img src={upload} alt="upload" className="upload-file__icon"/>
-                <p ref="addFile">Add file</p>
-                <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
-            </form>
-          </div>
-          <Switch>
-            <Route exact path={this.props.match.path} component={() =>
-                <PostsContainer username={this.props.match.params.username}
-                                userPosts={this.props.userPosts}
-                                loadData={this.props.loadData}
-                                currentUser={this.props.currentUser}/>}/>
-            <Route path='/:username/info' component={() =>
-                <UserInfo username={this.props.match.params.username}
-                          currentUser={this.props.currentUser}
-                          loadCurrentUser={this.props.loadCurrentUser}
-                          follow={this.follow} unfollow={this.unfollow}/>}/>
-          </Switch>
-
-        </Fragment>
+      </Fragment>
 
     )
   }
@@ -166,13 +173,15 @@ class UserPage extends React.Component {
 const mapStateToProps = state => ({
   userPosts: state.userPosts,
   user: state.user,
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  deletePost: state.deletePost
 
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadPosts(username)),
   loadUser: username => dispatch(loadUser(username)),
-  loadCurrentUser: () => dispatch(loadCurrentUser())
-});
+  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  deletePost: id => dispatch(deletePost(id))
+})
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)

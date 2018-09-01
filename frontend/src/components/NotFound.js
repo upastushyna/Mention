@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 export default class NotFound extends React.Component {
     render () {
         return (
-            <Fragment>
+            <Fragment key={NotFound.id}>
                 <section className="notFound">
                     <div className="notFound__errorText">
                         <h1 className="notFound__errorHeader">404</h1>

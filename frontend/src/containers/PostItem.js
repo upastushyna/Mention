@@ -6,6 +6,13 @@ import CommentContainer from './CommentContainer'
 import PostLikeItem from './PostLikeItem'
 import AddComment from './AddComment'
 import {getDateFromDb} from '../js/timestamp.js'
+import {Link} from "react-router-dom";
+
+const openComments = (idPost) => {
+  let el = document.getElementById(idPost);
+  let cont = el.querySelector(".comments-list");
+  cont.classList.toggle('d-none');
+};
 
 const PostItem = props => {
   const rePost = () => fetch('/api/posts/repost',
@@ -14,36 +21,38 @@ const PostItem = props => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': "Bearer " + localStorage.getItem("accessToken")
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
       },
       body: JSON.stringify({author: {id: props.currentUser.id}, parent: {id: props.post.parent ? props.post.parent.id : props.post.id}})
-    }).then(() => props.loadData(props.username))
+    }).then(() => props.loadData(props.username));
 
   return <Fragment>
-    <div className="post">
+    <div className="post" id={props.post.id}>
       {props.post.parent
         ? <div className="repost-author">
           <h2 className="repost-author__info">@{props.post.author.username}</h2>
           reposted in
-            <span className="repost-author__info">{props.post.timestamp.slice(0, 19).replace('T', ' ')} </span>
+          <span className="repost-author__info">{getDateFromDb(props.post.timestamp)} </span>
         </div>
-      : ''}
+        : ''}
       <div className="post__header">
-        <div className="profile-info d-flex-center">
-          <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
-            : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
-          <div className="profile-info__signature">
-            <h2 className="profile-info__username">{props.post.parent
-              ? props.post.parent.author.username : props.post.author.username}</h2>
-            <span className="profile-info__alias">
-              {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
-                  : getDateFromDb(props.post.timestamp)}
-            </span>
+        <Link to={"/" + props.post.author.username} className="post__link">
+          <div className="profile-info d-flex-center">
+            <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
+              : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
+            <div className="profile-info__signature">
+              <h2 className="profile-info__username">{props.post.parent
+                ? props.post.parent.author.username : props.post.author.username}</h2>
+              <span className="profile-info__alias">
+                {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
+                    : getDateFromDb(props.post.timestamp)}
+              </span>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className="pos-relative">
-          <img src={more} alt="actions" className="post__action-img" tabindex="1"/>
-          <div className="post__action">Delete post</div>
+          <img src={more} alt="actions" className="post__action-img" tabIndex="1"/>
+          <div className="post__action" onClick={() => props.deletePost(props.post.id)} >Delete post</div>
         </div>
       </div>
       <p className="post__body">
@@ -57,16 +66,18 @@ const PostItem = props => {
           likes={props.post.likes} username={props.username}
           currentUser={props.currentUser}/>
         <div className="d-flex-center">
-          <img src={comment} alt="comment" className="post__action-img"/>
+          <img src={comment} alt="comment" className="post__action-img" onClick={() => openComments(props.post.id)}/>
           <span className="post__action-count">{props.post.comments.length}</span>
           <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>
           <span className="post__action-count">{props.post.children.length}</span>
         </div>
       </div>
-      <CommentContainer loadData={props.loadData} comments={props.post.comments}
-      postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
-    <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
-      currentUser={props.currentUser}/>
+      <div className="comments-list d-none">
+        <CommentContainer loadData={props.loadData} comments={props.post.comments}
+                          postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
+      </div>
+      <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
+        currentUser={props.currentUser}/>
     </div>
 
   </Fragment>

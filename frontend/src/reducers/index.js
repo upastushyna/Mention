@@ -1,16 +1,17 @@
 import {combineReducers} from 'redux'
 import feedReducer from './feedReducer'
-import userPageReducer from "./userPageReducer";
-import chatsReducer from "./chatsReducer";
-import singleChatReducer from "./singleChatReducer";
-import editProfileReducer from "./editProfileReducer";
-import followedReducer from "./followedReducer";
-import followingReducer from "./followingReducer";
-import likedReducer from "./likedReducer";
-import userPicturesReducer from "./userPicturesReducer";
-import searchUsersReducer from "./searchUsersReducer";
-import searchPostsReducer from "./searchPostsReducer";
-import currentUserReducer from "./currentUserReducer";
+import userPageReducer from './userPageReducer'
+import chatsReducer from './chatsReducer'
+import singleChatReducer from './singleChatReducer'
+import editProfileReducer from './editProfileReducer'
+import followedReducer from './followedReducer'
+import followingReducer from './followingReducer'
+import likedReducer from './likedReducer'
+import userPicturesReducer from './userPicturesReducer'
+import searchUsersReducer from './searchUsersReducer'
+import searchPostsReducer from './searchPostsReducer'
+import currentUserReducer from './currentUserReducer'
+import postsReducer from './postsReducer'
 
 export default combineReducers({
   feed: feedReducer,
@@ -24,5 +25,6 @@ export default combineReducers({
   user: userPicturesReducer,
   foundUsers: searchUsersReducer,
   foundPosts: searchPostsReducer,
-  currentUser: currentUserReducer
+  currentUser: currentUserReducer,
+  deletePost: postsReducer
 })

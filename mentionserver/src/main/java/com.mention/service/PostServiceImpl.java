@@ -44,8 +44,8 @@ public class PostServiceImpl implements PostService {
 
   @Autowired
   public PostServiceImpl(UserRepository userRepository,
-                              PostRepository postRepository,
-                              AmazonS3Configuration as3) {
+                         PostRepository postRepository,
+                         AmazonS3Configuration as3) {
     this.userRepository = userRepository;
     this.postRepository = postRepository;
     this.modelMapper = new ModelMapper();
@@ -131,7 +131,7 @@ public class PostServiceImpl implements PostService {
           key,
           myFile,
           new ObjectMetadata());
-      String url = s3.getUrl(bucket,key).toString();
+      String url = s3.getUrl(bucket, key).toString();
       post.setMediaFileUrl(url);
       post.setAmazonKey(key);
     }
@@ -167,7 +167,18 @@ public class PostServiceImpl implements PostService {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
+    Post currentPost = postRepository.findById(postDtoIdRq.getId()).get();
+    AmazonS3 s3 = as3.getAmazonS3();
+    if (currentPost.getAmazonKey() != null) {
+      String oldKey = currentPost.getAmazonKey();
+      s3.deleteObject(bucket, oldKey);
+    }
+
     postRepository.deleteById(postDtoIdRq.getId());
     return ResponseEntity.ok(new ApiRs(true, "Deleted successfully"));
   }
+
+ /* public void deletePost(Long postId) {
+    postRepository.deleteById(postId);
+  }*/
 }
