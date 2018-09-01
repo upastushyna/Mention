@@ -118,7 +118,7 @@ class EditProfile extends React.Component {
     }
 
     return (
-      <Fragment>
+      <Fragment key={EditProfile.id}>
         <Navigation/>
         <div className="container">
           <form className="edit-profile flex-column" onSubmit={event => this.updateProfile(event)}>
