@@ -1,11 +1,11 @@
-import { FEED_LOADED } from '../constants/action-types'
+import {FEED_LOADED} from '../constants/action-types'
 
 export const loadFeed = username => dispatch => {
   fetch('/api/posts/followed/' + username,
     {
       method: 'GET',
       headers: {
-        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }

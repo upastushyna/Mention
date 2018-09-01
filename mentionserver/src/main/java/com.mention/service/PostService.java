@@ -25,4 +25,8 @@ public interface PostService {
 
   ResponseEntity<?> rePost(PostRq post);
 
+ /* void deletePost(Long id);*/
+
+
+
 }
