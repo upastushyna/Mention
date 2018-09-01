@@ -15,6 +15,7 @@ import FollowButton from '../containers/FollowButton'
 import UnffollowButton from '../containers/UnffollowButton'
 import upload from '../img/fileuploadicon.png'
 import {deletePost} from '../actions/postsActions'
+import {isLoggedIn} from '../js/isLoggedIn'
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -42,7 +43,8 @@ class UserPage extends React.Component {
   }
 
   callUpdate = () => {
-    if(this.props.user.username !== this.props.match.params.username) {
+    if((this.props.user.username !== this.props.match.params.username)
+    && isLoggedIn()) {
       this.props.loadUser(this.props.match.params.username);
       this.props.loadData(this.props.match.params.username);
     }
