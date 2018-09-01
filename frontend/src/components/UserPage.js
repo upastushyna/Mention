@@ -135,15 +135,6 @@ class UserPage extends React.Component {
               }
             </div>
           </div>
-          <div className="following shadow-button">
-            {this.props.currentUser.followedUsers.find(follow =>
-              follow.followedUser.id === this.props.user.id)
-              ? <UnffollowButton unfollow={this.unfollow} followedUser={this.props.user.id}/>
-              : <FollowButton follow={this.follow} followedUser={this.props.user.id}/>
-            }
-          </div>
-        </div>
-
         <div className="create-post">
           <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
             <div className="d-flex-center content-between">
