@@ -18,12 +18,6 @@ import upload from '../img/fileuploadicon.png'
 class UserPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.props.history.listen((location, action) => {
-      console.log(this.props.history);
-      this.props.loadUser(this.props.match.params.username);
-      this.props.loadData(this.props.match.params.username);
-    });
   }
 
   componentWillMount() {
@@ -38,6 +32,21 @@ class UserPage extends React.Component {
       this.props.loadCurrentUser()
     }
   }
+
+  componentDidUpdate() {
+    this.callUpdate();
+  }
+
+  componentDidMount() {
+    this.callUpdate();
+  }
+
+  callUpdate = () => {
+    if(this.props.user.username !== this.props.match.params.username) {
+      this.props.loadUser(this.props.match.params.username);
+      this.props.loadData(this.props.match.params.username);
+    }
+  };
 
   follow = followedUser => fetch('/api/follow/add',
       {

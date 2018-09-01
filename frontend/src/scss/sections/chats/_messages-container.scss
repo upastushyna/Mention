@@ -5,13 +5,13 @@
 	@include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
 
 	&__header {
-		padding: 20px;
+		padding: 0 15px;
 		border-bottom: 1px solid $border-color;
 		border-left: 1px solid $border-color;
 	}
 
 	&__body {
-		height: 80%;
+		height: 82%;
 		padding: 20px;
 		overflow-y: scroll;
 		border-left: 1px solid $border-color;

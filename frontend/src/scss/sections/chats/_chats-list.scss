@@ -1,17 +1,16 @@
 .chats {
  &__view {
   display: flex;
-  height: 80vh;
+  height: 75vh;
   margin: 50px auto 0;
  }
 
  &__list {
   width: 35%;
-  height: 80vh;
   overflow-y: auto;
   margin: 0 auto;
   background-color: #fff;
-  border: 1px solid $border-color;
+  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
  }
 
  &__search {
@@ -19,7 +18,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  border-bottom: 1px solid $border-color;
+  border: 1px solid $border-color;
  }
 
  &__input {
@@ -47,8 +46,10 @@
 
 .chat-container {
  display: block;
- padding: 20px;
+ padding: 0 15px;
  border-bottom: 1px solid $border-color;
+ border-left: 1px solid $border-color;
+ border-right: 1px solid $border-color;
  text-decoration: none;
 
  &:hover {
