@@ -3,6 +3,7 @@ package com.mention.controller;
 import com.mention.dto.PostLikeRq;
 import com.mention.service.PostLikeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,12 +21,12 @@ public class PostLikeController {
   }
 
   @PostMapping("/add")
-  public void addPostLike(@RequestBody PostLikeRq postLike) {
-    postLikeService.addPostLike(postLike);
+  public ResponseEntity<?> addPostLike(@RequestBody PostLikeRq postLike) {
+    return postLikeService.addPostLike(postLike);
   }
 
   @DeleteMapping("/delete")
-  public void deletePostLike(@RequestBody PostLikeRq postLike) {
-    postLikeService.deletePostLike(postLike);
+  public ResponseEntity<?> deletePostLike(@RequestBody PostLikeRq postLike) {
+    return postLikeService.deletePostLike(postLike);
   }
 }

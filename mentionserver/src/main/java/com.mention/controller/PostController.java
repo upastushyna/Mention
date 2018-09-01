@@ -1,10 +1,13 @@
 package com.mention.controller;
 
+import com.mention.dto.ApiRs;
 import com.mention.dto.PostIdRq;
 import com.mention.dto.PostRq;
 import com.mention.dto.PostRs;
 import com.mention.service.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,27 +55,23 @@ public class PostController {
   }
 
   @PostMapping("/add")
-  public void addPost(@RequestParam("body") String body,
-                      @RequestParam("id") Long id,
-                      @RequestParam(value = "image", required = false) MultipartFile file)
+  public ResponseEntity<?> addPost(@RequestParam("body") String body,
+                                @RequestParam("id") Long id,
+                                @RequestParam(value = "image", required = false) MultipartFile file)
       throws IOException {
     if (body.length() > 0 && body.length() <= 280) {
-      userPostsService.addPost(body, id, file);
+      return userPostsService.addPost(body, id, file);
     }
+    return new ResponseEntity(new ApiRs(false, "Failed to upload file"), HttpStatus.BAD_REQUEST);
   }
 
   @PostMapping("/repost")
-  public void rePost(@RequestBody PostRq post) {
-    userPostsService.rePost(post);
-  }
-
-  @PutMapping("/update")
-  public void updatePost(@Valid @RequestBody PostRq post) {
-    userPostsService.updatePost(post);
+  public ResponseEntity<?> rePost(@RequestBody PostRq post) {
+    return userPostsService.rePost(post);
   }
 
   @DeleteMapping("/delete")
-  public void deletePost(@RequestBody PostIdRq post) {
-    userPostsService.deletePost(post);
+  public ResponseEntity<?> deletePost(@RequestBody PostIdRq post) {
+    return userPostsService.deletePost(post);
   }
 }

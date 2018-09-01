@@ -68,6 +68,10 @@ public class LoginServiceImpl implements LoginService {
       return new ResponseEntity(new ApiRs(false, "Email confirmation required"),
           HttpStatus.BAD_REQUEST);
     }
+    if (!currentUser.isPresent()) {
+      return new ResponseEntity(new ApiRs(false, "Username or Email not found"),
+          HttpStatus.BAD_REQUEST);
+    }
 
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
@@ -82,13 +86,13 @@ public class LoginServiceImpl implements LoginService {
 
   @Override
   public ResponseEntity<?> registerUser(UserRq userDtoRq) {
-    Optional<User> user = userRepository.findByUsername(userDtoRq.getUsername());
-    if (user.isPresent()) {
+    Optional<User> usernameCheck = userRepository.findByUsername(userDtoRq.getUsername());
+    if (usernameCheck.isPresent()) {
       return new ResponseEntity(new ApiRs(false, "Username is already taken!"),
           HttpStatus.BAD_REQUEST);
     }
-    Optional<User> user1 = userRepository.findByEmail(userDtoRq.getEmail());
-    if (user1.isPresent()) {
+    Optional<User> userEmailCheck = userRepository.findByEmail(userDtoRq.getEmail());
+    if (userEmailCheck.isPresent()) {
       return new ResponseEntity(new ApiRs(false, "Email Address already in use!"),
           HttpStatus.BAD_REQUEST);
     }
@@ -116,7 +120,8 @@ public class LoginServiceImpl implements LoginService {
     String subject = "Confirm your email";
     emailService.sendSimpleMessage(to, subject, message);
 
-    return ResponseEntity.ok(new ApiRs(true, "User registered successfully"));
+    return ResponseEntity.ok(new ApiRs(true,
+        "User registered successfully! Check your inbox for confirmation!"));
   }
 
   @Override

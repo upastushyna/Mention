@@ -61,8 +61,10 @@ class Messages extends React.Component {
                 type="text" className="chats__input" placeholder="Search"/>
               <img onClick={() => this.addChat()} src={search} alt="search" className="chats__button"/>
             </div>
+            <div className="chats__container">
               <ChatsContainer loadChat={this.props.loadMessages}
                 chats={this.props.chats} username={this.props.currentUser.username}/>
+            </div>      
           </section>
 
           <section className="messages-container">

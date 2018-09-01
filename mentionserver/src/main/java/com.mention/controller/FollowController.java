@@ -4,6 +4,7 @@ import com.mention.dto.FollowRq;
 import com.mention.dto.ShortUserDetailsRs;
 import com.mention.service.FollowServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,14 +37,13 @@ public class FollowController {
   }
 
   @PostMapping("/add")
-  public void addFollow(@RequestBody FollowRq follow) {
-    followService.addFollow(follow);
-
+  public ResponseEntity<?> addFollow(@RequestBody FollowRq follow) {
+    return followService.addFollow(follow);
   }
 
   @DeleteMapping("/delete")
-  public void deleteFollow(@RequestBody FollowRq follow) {
-    followService.deleteFollow(follow);
+  public ResponseEntity<?> deleteFollow(@RequestBody FollowRq follow) {
+    return followService.deleteFollow(follow);
   }
 }
 

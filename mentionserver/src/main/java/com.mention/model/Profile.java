@@ -41,6 +41,12 @@ public class Profile {
   @Column(name = "profile_background_url")
   private String backgroundUrl;
 
+  @Column(name = "profile_avatar_key")
+  private String avatarKey;
+
+  @Column(name = "profile_background_key")
+  private String backgroundKey;
+
   @OneToOne
   @JoinColumn(name = "user_id", updatable = false, unique = true, nullable = false)
   @JsonBackReference

@@ -26,11 +26,6 @@
   &:focus {
    outline: none;
   }
-
-  &:active ~ .profile__nav,
-  &:focus ~ .profile__nav {
-   display: block;
-  }
  }
 
  &__alias {
@@ -45,7 +40,6 @@
 
 .profile {
  &__nav {
-  display: none;
   list-style: none;
   position: absolute;
   top: 67px;
@@ -72,6 +66,7 @@
  &__option {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 25px;
+  cursor: pointer;
 
   &:active,
   &:hover {

@@ -5,7 +5,10 @@ import {loadSearchPosts} from '../actions/searchPostsActions'
 import {loadSearchUsers} from '../actions/searchUsersActions'
 import PostsContainer from '../containers/PostsContainer'
 import UsersContainer from '../containers/UsersContainer'
+import EmptyState from '../containers/EmptyState'
 import {loadCurrentUser} from '../actions/currentUserActions'
+import searchIcon from '../img/search-icon.svg'
+
 
 class SearchPage extends React.Component {
   componentWillMount () {
@@ -54,7 +57,8 @@ class SearchPage extends React.Component {
       <Fragment>
         <Navigation/>
         <div className="container">
-          {this.props.foundPosts.length === 0 ? 'Sorry, no posts found matching your search'
+          {this.props.foundPosts.length === 0 ?          
+         <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={"Please, try another search query"}/>
             : <PostsContainer username={this.props.match.params.input}
               userPosts={this.props.foundPosts}
               loadData={this.props.loadPosts}

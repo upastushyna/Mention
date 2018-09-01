@@ -3,6 +3,7 @@ package com.mention.service;
 import com.mention.dto.PostIdRq;
 import com.mention.dto.PostRq;
 import com.mention.dto.PostRs;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,12 +19,10 @@ public interface PostService {
 
   List<PostRs> getPostsByBody(String body);
 
-  void addPost(String body, Long userId, MultipartFile file) throws IOException;
+  ResponseEntity<?> addPost(String body, Long userId, MultipartFile file) throws IOException;
 
-  void updatePost(PostRq post);
+  ResponseEntity<?> deletePost(PostIdRq post);
 
-  void deletePost(PostIdRq post);
-
-  void rePost(PostRq post);
+  ResponseEntity<?> rePost(PostRq post);
 
 }

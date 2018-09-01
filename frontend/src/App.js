@@ -27,6 +27,23 @@ class App extends Component {
       }
   }
 
+  handleOnScroll = () => {
+    if(window.pageYOffset > 260 && this.refs.scroller) {
+      this.refs.scroller.classList.remove("d-none");
+    }
+    if(window.pageYOffset < 260 && !this.refs.scroller.classList.contains("d-none")) {
+      this.refs.scroller.classList.add('d-none');
+    }
+  };
+
+  scrollToTop = () => {
+    this.refs.pageTop.scrollIntoView({ block: 'end',  behavior: 'smooth' });
+  };
+
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleOnScroll);
+  }
+
 
   isLoggedIn = () => {
     if (localStorage.getItem("accessToken")) {
@@ -39,6 +56,7 @@ class App extends Component {
     
     return (
       <Fragment>
+        <div ref="pageTop" style={{ float: 'left', clear: 'both' }}></div>
         <Switch>
           <Route exact path='/' component={() => <HomePage
             currentUser={this.props.currentUser}
@@ -51,7 +69,8 @@ class App extends Component {
             history={this.props.history}/>}/>
           <Route path="/registration" component={Registration}/>
           <Route path='/editprofile' component={() => <EditProfile
-              currentUser={this.props.currentUser}/>}/>
+              currentUser={this.props.currentUser}
+              loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path='/profile' component={() => <Profile
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
@@ -62,6 +81,7 @@ class App extends Component {
           <Route path="*" component={NotFound}/>
 
         </Switch>
+        <button onClick={() => this.scrollToTop()} ref="scroller" className="scroll-btn d-none">&#11014;</button>
       </Fragment>
     )
   }

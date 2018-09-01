@@ -3,6 +3,7 @@ package com.mention.controller;
 import com.mention.dto.MessageRq;
 import com.mention.service.MessageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class MessageController {
   }
 
   @PostMapping("/add")
-  public void addMessage(@Valid @RequestBody MessageRq message) {
-    userMessagesService.addMessage(message);
+  public ResponseEntity<?> addMessage(@Valid @RequestBody MessageRq message) {
+    return userMessagesService.addMessage(message);
   }
 }

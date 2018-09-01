@@ -3,6 +3,7 @@ package com.mention.controller;
 import com.mention.dto.CommentRq;
 import com.mention.service.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class CommentController {
   }
 
   @PostMapping("/add")
-  public void addComment(@Valid @RequestBody CommentRq comment) {
-    userCommentsService.addComment(comment);
+  public ResponseEntity<?> addComment(@Valid @RequestBody CommentRq comment) {
+    return userCommentsService.addComment(comment);
   }
 }

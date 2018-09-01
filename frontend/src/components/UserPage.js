@@ -101,8 +101,11 @@ class UserPage extends React.Component {
   };
 
   changeName = () => {
-    let name = this.refs.inputFile.files[0].name;
-    this.refs.addFile.innerText = name;
+    if (this.refs.inputFile.files[0]) {
+      this.refs.addFile.innerText = this.refs.inputFile.files[0].name;
+    } else {
+      this.refs.addFile.innerText = "Add file";
+    }
   };
 
   render() {
@@ -174,11 +177,11 @@ const mapStateToProps = state => ({
   user: state.user,
   currentUser: state.currentUser
 
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadPosts(username)),
   loadUser: username => dispatch(loadUser(username)),
   loadCurrentUser: () => dispatch(loadCurrentUser())
-})
+});
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)

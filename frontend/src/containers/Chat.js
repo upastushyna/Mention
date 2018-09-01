@@ -47,6 +47,8 @@ const Chat = props => {
     </div>
     <div className="messages-container__body">
       <div className="flex-column">
+        {props.chat.messages.length === 0?
+          <p>Start the conversation!</p>:""}
         {props.chat.messages.map(message =>
           message.sender.username === props.user2
             ? <div className="message message_sent">
