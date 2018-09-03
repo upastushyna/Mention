@@ -73,8 +73,13 @@ const PostItem = props => {
         </div>
       </div>
       <div className="comments-list d-none">
-        <CommentContainer loadData={props.loadData} comments={props.post.comments}
-          postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
+        <CommentContainer
+          loadData={props.loadData}
+          comments={props.post.comments}
+          postId={props.post.id}
+          username={props.username}
+          currentUser={props.currentUser}
+          deleteComment={props.deleteComment}/>
       </div>
       <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
         currentUser={props.currentUser}/>
