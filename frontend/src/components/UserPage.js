@@ -15,13 +15,11 @@ import FollowButton from '../containers/FollowButton'
 import UnffollowButton from '../containers/UnffollowButton'
 import upload from '../img/fileuploadicon.png'
 import {deletePost} from '../actions/postsActions'
-import {deleteComment} from '../actions/commentsActions'
 import {isLoggedIn} from '../js/isLoggedIn'
 
-
 class UserPage extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
   }
 
   componentWillMount () {
@@ -36,18 +34,17 @@ class UserPage extends React.Component {
     }
   }
 
-  componentDidUpdate () {
-    this.callUpdate()
+  componentDidUpdate() {
+    this.callUpdate();
   }
 
-  componentDidMount () {
-    this.callUpdate()
+  componentDidMount() {
+    this.callUpdate();
   }
 
   callUpdate = () => {
-
     if((this.props.user.username !== this.props.match.params.username)
-    && isLoggedIn()) {
+        && isLoggedIn()) {
       this.props.loadUser(this.props.match.params.username);
       this.props.loadData(this.props.match.params.username);
       if(this.refs.scrollTop) {
@@ -57,32 +54,32 @@ class UserPage extends React.Component {
   };
 
   follow = followedUser => fetch('/api/follow/add',
-    {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        follower: {id: this.props.currentUser.id},
-        followedUser: {id: followedUser}
-      })
-    }).then(() => this.props.loadCurrentUser());
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          follower: {id: this.props.currentUser.id},
+          followedUser: {id: followedUser}
+        })
+      }).then(() => this.props.loadCurrentUser());
 
   unfollow = followedUser => fetch('/api/follow/delete',
-    {
-      method: 'DELETE',
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        follower: {id: this.props.currentUser.id},
-        followedUser: {id: followedUser}
-      })
-    }).then(() => this.props.loadCurrentUser());
+      {
+        method: 'DELETE',
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          follower: {id: this.props.currentUser.id},
+          followedUser: {id: followedUser}
+        })
+      }).then(() => this.props.loadCurrentUser());
 
   addPost = event => {
     event.preventDefault()
@@ -95,23 +92,23 @@ class UserPage extends React.Component {
     }
 
     fetch('/api/posts/add',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-        },
-        body: data
-      }).then(() => this.props.loadData(this.props.match.params.username))
-      .then(() => this.refs.postInput.value = '')
-      .then(() => this.refs.inputFile.value = null)
-      .then(this.refs.addFile.innerText = 'Add file')
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+          },
+          body: data
+        }).then(() => this.props.loadData(this.props.match.params.username))
+        .then(() => this.refs.postInput.value = '')
+        .then(() => this.refs.inputFile.value = null)
+        .then(this.refs.addFile.innerText = 'Add file')
   };
 
   changeName = () => {
     if (this.refs.inputFile.files[0]) {
-      this.refs.addFile.innerText = this.refs.inputFile.files[0].name
+      this.refs.addFile.innerText = this.refs.inputFile.files[0].name;
     } else {
-      this.refs.addFile.innerText = 'Add file'
+      this.refs.addFile.innerText = "Add file";
     }
   };
 
@@ -144,44 +141,36 @@ class UserPage extends React.Component {
               }
             </div>
           </div>
-          <div className="following shadow-button">
-            {this.props.currentUser.followedUsers.find(follow =>
-              follow.followedUser.id === this.props.user.id)
-              ? <UnffollowButton unfollow={this.unfollow} followedUser={this.props.user.id}/>
-              : <FollowButton follow={this.follow} followedUser={this.props.user.id}/>
-            }
-          </div>
-        </div>
-        <div className="create-post">
-          <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-            <div className="d-flex-center content-between">
+          <div className="create-post">
+            <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
+              <div className="d-flex-center content-between">
               <textarea className="create-post__input" id="postInput"
-                placeholder="Share your thoughts" ref="postInput"
-                maxLength={280}/>
-              <button type="submit" className="create-post__btn btn-action">Add post</button>
-              <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
-            </div>
-            <div className="upload-file">
-              <img src={upload} alt="upload" className="upload-file__icon"/>
-              <p ref="addFile">Add file</p>
-              <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
-          </form>
-        </div>
-        <Switch>
-          <Route exact path={this.props.match.path} component={() =>
-            <PostsContainer username={this.props.match.params.username}
-              userPosts={this.props.userPosts}
-              loadData={this.props.loadData}
-              currentUser={this.props.currentUser}
-              deletePost={this.props.deletePost}/>}/>
-          <Route path='/:username/info' component={() =>
-            <UserInfo username={this.props.match.params.username}
-              currentUser={this.props.currentUser}
-              loadCurrentUser={this.props.loadCurrentUser}
-              follow={this.follow} unfollow={this.unfollow}/>}/>
-        </Switch>
+                        placeholder="Share your thoughts" ref="postInput"
+                        maxLength={280}/>
+                <button type="submit" className="create-post__btn btn-action">Add post</button>
+                <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
+              </div>
+              <div className="upload-file">
+                <img src={upload} alt="upload" className="upload-file__icon"/>
+                <p ref="addFile">Add file</p>
+                <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
+            </form>
+          </div>
+          <Switch>
+            <Route exact path={this.props.match.path} component={() =>
+                <PostsContainer username={this.props.match.params.username}
+                                userPosts={this.props.userPosts}
+                                loadData={this.props.loadData}
+                                currentUser={this.props.currentUser}
+                                deletePost={this.props.deletePost}/>}/>
+            <Route path='/:username/info' component={() =>
+                <UserInfo username={this.props.match.params.username}
+                          currentUser={this.props.currentUser}
+                          loadCurrentUser={this.props.loadCurrentUser}
+                          follow={this.follow} unfollow={this.unfollow}/>}/>
+          </Switch>
 
-      </Fragment>
+        </Fragment>
 
     )
   }
@@ -191,8 +180,7 @@ const mapStateToProps = state => ({
   userPosts: state.userPosts,
   user: state.user,
   currentUser: state.currentUser,
-  deletePost: state.deletePost,
-  deleteComment: state.deleteComment
+  deletePost: state.deletePost
 
 })
 
@@ -200,8 +188,6 @@ const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadPosts(username)),
   loadUser: username => dispatch(loadUser(username)),
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  deletePost: id => dispatch(deletePost(id)),
-  deleteComment: id => dispatch(deleteComment(id))
-
+  deletePost: id => dispatch(deletePost(id))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)
