@@ -15,6 +15,7 @@ import FollowButton from '../containers/FollowButton'
 import UnffollowButton from '../containers/UnffollowButton'
 import upload from '../img/fileuploadicon.png'
 import {deletePost} from '../actions/postsActions'
+import {deleteComment} from '../actions/commentsActions'
 
 class UserPage extends React.Component {
   constructor (props) {
@@ -174,7 +175,8 @@ const mapStateToProps = state => ({
   userPosts: state.userPosts,
   user: state.user,
   currentUser: state.currentUser,
-  deletePost: state.deletePost
+  deletePost: state.deletePost,
+  deleteComment: state.deleteComment
 
 })
 
@@ -182,6 +184,8 @@ const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadPosts(username)),
   loadUser: username => dispatch(loadUser(username)),
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  deletePost: id => dispatch(deletePost(id))
+  deletePost: id => dispatch(deletePost(id)),
+  deleteComment: id => dispatch(deleteComment(id))
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)

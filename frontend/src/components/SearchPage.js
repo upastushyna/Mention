@@ -9,7 +9,7 @@ import EmptyState from '../containers/EmptyState'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import searchIcon from '../img/search-icon.svg'
 import {deletePost} from '../actions/postsActions'
-
+import {deleteComment} from '../actions/commentsActions'
 
 class SearchPage extends React.Component {
   componentWillMount () {
@@ -58,13 +58,14 @@ class SearchPage extends React.Component {
       <Fragment key={SearchPage.id}>
         <Navigation/>
         <div className="container">
-          {this.props.foundPosts.length === 0 ?
-         <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={"Please, try another search query"}/>
+          {this.props.foundPosts.length === 0
+            ? <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={'Please, try another search query'}/>
             : <PostsContainer username={this.props.match.params.input}
               userPosts={this.props.foundPosts}
               loadData={this.props.loadPosts}
               currentUser={this.props.currentUser}
-              deletePost={this.props.deletePost()}/>}
+              deletePost={this.props.deletePost()}
+              deleteComment={this.props.deleteComment}/>}
           <div className="users-panel">
             {this.props.foundUsers.length === 0 ? ''
               : <UsersContainer username={this.props.match.params.input}
@@ -85,7 +86,8 @@ const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
   foundUsers: state.foundUsers,
   currentUser: state.currentUser,
-  deletePost: state.deletePost
+  deletePost: state.deletePost,
+  deleteComment: state.deleteComment
 
 })
 
@@ -93,7 +95,8 @@ const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
   loadUsers: input => dispatch(loadSearchUsers(input)),
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  deletePost: id => dispatch(deletePost(id))
+  deletePost: id => dispatch(deletePost(id)),
+  deleteComment: id => dispatch(deleteComment(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)
