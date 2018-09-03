@@ -70,6 +70,7 @@
     padding: 16px;
     color: $black-text-color;
     cursor: pointer;
+    display: block;
     &:hover {
       background-color: $border-color;
     }

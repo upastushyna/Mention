@@ -31,7 +31,7 @@ const PostItem = props => {
       {props.post.parent
         ? <div className="repost-author">
           <h2 className="repost-author__info">@{props.post.author.username}</h2>
-          reposted in
+            reposted in
           <span className="repost-author__info">{getDateFromDb(props.post.timestamp)} </span>
         </div>
         : ''}
@@ -45,7 +45,6 @@ const PostItem = props => {
                 ? props.post.parent.author.username : props.post.author.username}</h2>
               <span className="profile-info__alias">
                 {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
-                  : getDateFromDb(props.post.timestamp)}
                   : getDateFromDb(props.post.timestamp)}
               </span>
             </div>
@@ -74,20 +73,9 @@ const PostItem = props => {
         </div>
       </div>
       <div className="comments-list d-none">
-        <CommentContainer
-          loadData={props.loadData}
-          comments={props.post.comments}
-          postId={props.post.id}
-          username={props.username}
-          currentUser={props.currentUser}/>
+        <CommentContainer loadData={props.loadData} comments={props.post.comments}
+          postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
       </div>
-      <CommentContainer
-        loadData={props.loadData}
-        comments={props.post.comments}
-        postId={props.post.id}
-        username={props.username} currentUser={props.currentUser}
-        deleteComment={props.deleteComment}
-      />
       <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
         currentUser={props.currentUser}/>
     </div>
