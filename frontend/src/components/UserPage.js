@@ -16,6 +16,8 @@ import UnffollowButton from '../containers/UnffollowButton'
 import upload from '../img/fileuploadicon.png'
 import {deletePost} from '../actions/postsActions'
 import {deleteComment} from '../actions/commentsActions'
+import {isLoggedIn} from '../js/isLoggedIn'
+
 
 class UserPage extends React.Component {
   constructor (props) {
@@ -43,9 +45,14 @@ class UserPage extends React.Component {
   }
 
   callUpdate = () => {
-    if (this.props.user.username !== this.props.match.params.username) {
-      this.props.loadUser(this.props.match.params.username)
-      this.props.loadData(this.props.match.params.username)
+
+    if((this.props.user.username !== this.props.match.params.username)
+    && isLoggedIn()) {
+      this.props.loadUser(this.props.match.params.username);
+      this.props.loadData(this.props.match.params.username);
+      if(this.refs.scrollTop) {
+        this.refs.scrollTop.scrollIntoView();
+      }
     }
   };
 
@@ -114,19 +121,28 @@ class UserPage extends React.Component {
     }
 
     return (
-      <Fragment key={UserPage.id}>
-        <Navigation/>
-        <div className="user-navigation">
-          <HeaderProfile user={this.props.user}/>
-          <div className="user-navigation__links">
-            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username + '/info'}>
-              <img src={info} alt="info" className="user-navigation__icon"/>
-              <h4 className="user-nav-links__text">info</h4>
-            </Link>
-            <Link className="user-nav-links__item" to={'/' + this.props.match.params.username}>
-              <img src={posts} alt="feed" className="user-navigation__icon"/>
-              <h4 className="user-nav-links__text">profile</h4>
-            </Link>
+        <Fragment key={UserPage.id}>
+          <div ref='scrollTop'></div>
+          <Navigation/>
+          <div className="user-navigation">
+            <HeaderProfile user={this.props.user}/>
+            <div className="user-navigation__links">
+              <Link className="user-nav-links__item" to={'/' + this.props.match.params.username + '/info'}>
+                <img src={info} alt="info" className="user-navigation__icon"/>
+                <h4 className="user-nav-links__text">info</h4>
+              </Link>
+              <Link className="user-nav-links__item" to={'/' + this.props.match.params.username}>
+                <img src={posts} alt="feed" className="user-navigation__icon"/>
+                <h4 className="user-nav-links__text">profile</h4>
+              </Link>
+            </div>
+            <div className="following shadow-button">
+              {this.props.currentUser.followedUsers.find(follow =>
+                  follow.followedUser.id === this.props.user.id) ?
+                  <UnffollowButton unfollow={this.unfollow} followedUser={this.props.user.id}/> :
+                  <FollowButton follow={this.follow} followedUser={this.props.user.id}/>
+              }
+            </div>
           </div>
           <div className="following shadow-button">
             {this.props.currentUser.followedUsers.find(follow =>

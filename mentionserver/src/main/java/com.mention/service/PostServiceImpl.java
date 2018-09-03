@@ -7,6 +7,7 @@ import com.mention.dto.ApiRs;
 import com.mention.dto.PostIdRq;
 import com.mention.dto.PostRq;
 import com.mention.dto.PostRs;
+import com.mention.model.Comment;
 import com.mention.model.Follow;
 import com.mention.model.Post;
 import com.mention.model.User;
@@ -25,8 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,6 +78,8 @@ public class PostServiceImpl implements PostService {
   public List<PostRs> getPostsByUsername(String username) {
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
+      currentUser.get().getPosts().stream().forEach(post -> post.getComments()
+          .sort(Comparator.comparing(Comment::getTimestamp)));
       List<PostRs> postRs = currentUser.get().getPosts().stream().map(
           post -> modelMapper.map(post, PostRs.class))
           .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
@@ -124,7 +129,7 @@ public class PostServiceImpl implements PostService {
     User user = new User(userId);
     Post post = new Post(body, user);
     if (file != null) {
-      String key = "pictures/" + file.getOriginalFilename();
+      String key = "pictures/" + UUID.randomUUID();
       InputStream myFile = file.getInputStream();
       s3.putObject(
           bucket,
