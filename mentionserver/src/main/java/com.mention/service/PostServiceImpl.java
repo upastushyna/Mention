@@ -79,7 +79,7 @@ public class PostServiceImpl implements PostService {
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
       currentUser.get().getPosts().stream().forEach(post -> post.getComments()
-      .sort(Comparator.comparing(Comment::getTimestamp)));
+          .sort(Comparator.comparing(Comment::getTimestamp)));
       List<PostRs> postRs = currentUser.get().getPosts().stream().map(
           post -> modelMapper.map(post, PostRs.class))
           .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
