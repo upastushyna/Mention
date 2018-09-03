@@ -49,8 +49,15 @@ public class ChatServiceImpl implements ChatService {
         .findByUser1UsernameOrUser2Username(username, username);
     if (chats.isPresent()) {
       List<Chat> currentChats = chats.get();
+      for (Chat chat:
+           currentChats) {
+        if (chat.getMessages().size() > 0) {
+          chat.setModifyTimestamp(chat.getMessages().get(chat.getMessages().size() - 1).getTimestamp());
+        }
+      }
       List<ChatRs> chatRs = currentChats.stream().map(chat ->
           modelMapper.map(chat, ChatRs.class))
+          .sorted((c1, c2) -> c2.getModifyTimestamp().compareTo(c1.getModifyTimestamp()))
           .collect(Collectors.toList());
       return ResponseEntity.ok(chatRs);
     }

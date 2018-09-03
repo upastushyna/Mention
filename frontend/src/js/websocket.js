@@ -7,7 +7,7 @@ export const connect = () => {
       processResponse(resp.body);
     });
   });
-}
+};
 
 function processResponse(body) {
   object = JSON.parse(body);

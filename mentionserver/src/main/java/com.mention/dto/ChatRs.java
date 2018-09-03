@@ -1,6 +1,8 @@
 package com.mention.dto;
 
 import lombok.Data;
+
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -13,4 +15,6 @@ public class ChatRs {
   private ShortUserDetailsRs user2;
 
   private List<MessageRs> messages;
+
+  private Date modifyTimestamp;
 }

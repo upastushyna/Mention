@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -79,7 +80,7 @@ public class ProfileServiceImpl implements ProfileService {
       String oldKey = profile.getAvatarKey();
       s3.deleteObject(bucket, oldKey);
     }
-    String key = "avatars/" + file.getOriginalFilename();
+    String key = "avatars/" + UUID.randomUUID();
     InputStream myFile = file.getInputStream();
     s3.putObject(
         bucket,
@@ -109,7 +110,7 @@ public class ProfileServiceImpl implements ProfileService {
       String oldKey = profile.getBackgroundKey();
       s3.deleteObject(bucket, oldKey);
     }
-    String key = "backgrounds/" + file.getOriginalFilename();
+    String key = "backgrounds/" + UUID.randomUUID();
     InputStream myFile = file.getInputStream();
     s3.putObject(
         bucket,
