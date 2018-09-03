@@ -47,6 +47,9 @@ class UserPage extends React.Component {
     && isLoggedIn()) {
       this.props.loadUser(this.props.match.params.username);
       this.props.loadData(this.props.match.params.username);
+      if(this.refs.scrollTop) {
+        this.refs.scrollTop.scrollIntoView();
+      }
     }
   };
 
@@ -116,6 +119,7 @@ class UserPage extends React.Component {
 
     return (
         <Fragment key={UserPage.id}>
+          <div ref='scrollTop'></div>
           <Navigation/>
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
