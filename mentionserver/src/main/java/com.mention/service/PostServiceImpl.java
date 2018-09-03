@@ -183,7 +183,5 @@ public class PostServiceImpl implements PostService {
     return ResponseEntity.ok(new ApiRs(true, "Deleted successfully"));
   }
 
- /* public void deletePost(Long postId) {
-    postRepository.deleteById(postId);
-  }*/
+
 }

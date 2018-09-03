@@ -6,13 +6,13 @@ import CommentContainer from './CommentContainer'
 import PostLikeItem from './PostLikeItem'
 import AddComment from './AddComment'
 import {getDateFromDb} from '../js/timestamp.js'
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom'
 
 const openComments = (idPost) => {
-  let el = document.getElementById(idPost);
-  let cont = el.querySelector(".comments-list");
-  cont.classList.toggle('d-none');
-};
+  let el = document.getElementById(idPost)
+  let cont = el.querySelector('.comments-list')
+  cont.classList.toggle('d-none')
+}
 
 const PostItem = props => {
   const rePost = () => fetch('/api/posts/repost',
@@ -24,19 +24,19 @@ const PostItem = props => {
         'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
       },
       body: JSON.stringify({author: {id: props.currentUser.id}, parent: {id: props.post.parent ? props.post.parent.id : props.post.id}})
-    }).then(() => props.loadData(props.username));
+    }).then(() => props.loadData(props.username))
 
   return <Fragment>
     <div className="post" id={props.post.id}>
       {props.post.parent
         ? <div className="repost-author">
           <h2 className="repost-author__info">@{props.post.author.username}</h2>
-          reposted in
+            reposted in
           <span className="repost-author__info">{getDateFromDb(props.post.timestamp)} </span>
         </div>
         : ''}
       <div className="post__header">
-        <Link to={"/" + props.post.author.username} className="post__link">
+        <Link to={'/' + props.post.author.username} className="post__link">
           <div className="profile-info d-flex-center">
             <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
               : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
@@ -45,7 +45,7 @@ const PostItem = props => {
                 ? props.post.parent.author.username : props.post.author.username}</h2>
               <span className="profile-info__alias">
                 {props.post.parent ? getDateFromDb(props.post.parent.timestamp)
-                    : getDateFromDb(props.post.timestamp)}
+                  : getDateFromDb(props.post.timestamp)}
               </span>
             </div>
           </div>
@@ -73,8 +73,13 @@ const PostItem = props => {
         </div>
       </div>
       <div className="comments-list d-none">
-        <CommentContainer loadData={props.loadData} comments={props.post.comments}
-                          postId={props.post.id} username={props.username} currentUser={props.currentUser}/>
+        <CommentContainer
+          loadData={props.loadData}
+          comments={props.post.comments}
+          postId={props.post.id}
+          username={props.username}
+          currentUser={props.currentUser}
+          deleteComment={props.deleteComment}/>
       </div>
       <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
         currentUser={props.currentUser}/>

@@ -3,6 +3,7 @@ import Navigation from './Navigation'
 import '../css/index.css'
 import {loadFeed} from '../actions/feedActions'
 import {deletePost} from '../actions/postsActions'
+import {deleteComment} from '../actions/commentsActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
@@ -80,11 +81,14 @@ class Feed extends React.Component {
                   <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
               </form>
             </div> : ''}
-          <PostsContainer username={this.props.currentUser.username}
+          <PostsContainer
+            username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}
             currentUser={this.props.currentUser}
-            deletePost={this.props.deletePost}/>
+            deletePost={this.props.deletePost}
+            deleteComment={this.props.deleteComment}
+          />
         </div>
       </Fragment>
     )
@@ -93,12 +97,14 @@ class Feed extends React.Component {
 
 const mapStateToProps = state => ({
   feed: state.feed,
-  deletePost: state.deletePost
+  deletePost: state.deletePost,
+  deleteComment: state.deleteComment
 })
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username)),
-  deletePost: id => dispatch(deletePost(id))
+  deletePost: id => dispatch(deletePost(id)),
+  deleteComment: id => dispatch(deleteComment(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)
