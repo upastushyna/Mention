@@ -29,7 +29,11 @@ class App extends Component {
           this.props.history.push("/registration")
         }
       }
-    webSocketConnection2(this.props.loadMessages, this.props.currentUser.username);
+  }
+
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleOnScroll);
+    webSocketConnection2(this.props.loadMessages);
   }
 
   handleOnScroll = () => {
@@ -44,10 +48,6 @@ class App extends Component {
   scrollToTop = () => {
     this.refs.pageTop.scrollIntoView({ block: 'end',  behavior: 'smooth' });
   };
-
-  componentDidMount () {
-    window.addEventListener('scroll', this.handleOnScroll);
-  }
 
   render () {
     
