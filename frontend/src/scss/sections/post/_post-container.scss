@@ -60,7 +60,6 @@
   }
 
   &__action{
-   /* display: none;*/
     position: absolute;
     min-width: 128px;
     white-space: nowrap;
@@ -71,6 +70,7 @@
     padding: 16px;
     color: $black-text-color;
     cursor: pointer;
+    display: block;
     &:hover {
       background-color: $border-color;
     }
@@ -83,7 +83,6 @@
 .comment-container__action-img:active + .post__action {
   display: block;
 }*/
-
 
 @media screen and (max-width: 1200px) {
 

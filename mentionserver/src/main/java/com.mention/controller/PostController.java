@@ -70,10 +70,6 @@ public class PostController {
     return userPostsService.rePost(post);
   }
 
-  /* @DeleteMapping("/delete/{id}")
-   public void deletePost(@PathVariable Long id) {
-     userPostsService.deletePost(id);
-   }*/
 
   @DeleteMapping("/delete")
   public ResponseEntity<?> deletePost(@RequestBody PostIdRq post) {
