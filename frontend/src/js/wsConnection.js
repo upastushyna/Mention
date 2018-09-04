@@ -7,11 +7,6 @@ export const webSocketConnection2 = (callback) =>  {
   stompClient.connect({}, function (frame) {
     stompClient.subscribe('/front/endpoint1', function (resp) {
       const object = JSON.parse(resp.body);
-      console.log(">>>>>>>>>>>>>>>>>>>>>");
-      console.log(object.sender);
-      console.log(object.receiver);
-      console.log('<<<<<<<<<<<<<<<<<<<<<');
-
       callback(object.receiver, object.sender);
     });
   });

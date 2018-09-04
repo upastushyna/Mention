@@ -29,6 +29,7 @@ class App extends Component {
           this.props.history.push("/registration")
         }
       }
+    webSocketConnection2(this.props.loadMessages, this.props.currentUser.username);
   }
 
   componentDidMount () {
