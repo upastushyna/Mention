@@ -22,7 +22,7 @@ const CommentContainer = props =>
 
           <div className="pos-relative">
             <img src={more} alt="more" className="comment-container__action-img" tabIndex="1"/>
-            <div className="post__action" onClick={() => props.deleteComment(comment.id)}>Delete comment</div>
+            <div className="post__action d-none" onClick={() => props.deleteComment(comment.id)}>Delete comment</div>
           </div>
         </div>
         <p className="comment-container__body">

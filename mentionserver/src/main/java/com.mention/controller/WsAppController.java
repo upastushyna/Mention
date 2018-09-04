@@ -1,18 +1,16 @@
 package com.mention.controller;
 
 import com.mention.dto.WsRqDto;
-import com.mention.dto.WsRsDto;
+import com.mention.dto.WsMessageRs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
-@CrossOrigin
 @Controller
 public class WsAppController {
   private final String wsPath = "/front/endpoint1";
@@ -31,19 +29,20 @@ public class WsAppController {
   @MessageMapping("/hello")
   // actually "/back/hello", see WebSocketConfig.java and front.js
   @SendTo(wsPath) // response path
-  public WsRsDto get_and_respond(WsRqDto dto) {
+  public WsMessageRs get_and_respond(WsRqDto dto) {
     System.out.println("OBJECT RECEIVED:" + dto);
-    return new WsRsDto(String.format("Hello, %s", HtmlUtils.htmlEscape(dto.getName())));
+    //return new WsMessageRs(String.format("Hello, %s", HtmlUtils.htmlEscape(dto.getName())));
+    return new WsMessageRs();
   }
 
   // write directly to front
   @GetMapping("/ws/a")
   @ResponseBody
   public String from_back_to_front_via_WebSocket() throws InterruptedException {
-    WsRsDto dto;
+    WsMessageRs dto;
     for (int i = 0; i < 10; i++) {
       System.out.print("Generating new RsDTO...");
-      dto = new WsRsDto("This message sent from backend Java code");
+      dto = new WsMessageRs();//"This message sent from backend Java code");
       System.out.println("Done");
       System.out.print("Sending DTO to frontend...");
       template.convertAndSend(wsPath, dto);
@@ -52,7 +51,7 @@ public class WsAppController {
       Thread.sleep(1000);
       System.out.println("Done");
     }
-    template.convertAndSend(wsPath, new WsRsDto("Done"));
+    template.convertAndSend(wsPath, new WsMessageRs());
     return "10 items sent";
   }
 

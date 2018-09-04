@@ -9,12 +9,25 @@ import {getDateFromDb} from '../js/timestamp.js'
 import {Link} from 'react-router-dom'
 
 const openComments = (idPost) => {
-  let el = document.getElementById(idPost)
-  let cont = el.querySelector('.comments-list')
+  let el = document.getElementById(idPost);
+  let cont = el.querySelector('.comments-list');
   cont.classList.toggle('d-none')
-}
+};
+
+const showOptions = () => {
+  if (document.getElementById('delete').classList.contains('d-none')) {
+    document.getElementById('delete').classList.remove('d-none')
+  }
+};
+
+const hide = event => {
+    if (event.target.id !== 'delete' && document.getElementById('delete')) {
+      document.getElementById('delete').classList.add('d-none')
+    }
+};
 
 const PostItem = props => {
+  window.addEventListener('mousedown', event => hide(event));
   const rePost = () => fetch('/api/posts/repost',
     {
       method: 'POST',
@@ -50,10 +63,13 @@ const PostItem = props => {
             </div>
           </div>
         </Link>
+        {props.post.author.id === props.currentUser.id?
         <div className="pos-relative">
-          <img src={more} alt="actions" className="post__action-img" tabIndex="1"/>
-          <div className="post__action" onClick={() => props.deletePost(props.post.id)} >Delete post</div>
-        </div>
+          <img id="options" src={more} onClick={() => showOptions()} alt="actions"
+               className="post__action-img" tabIndex="1"/>
+          <div id="delete" className="post__action d-none"
+               onClick={() => props.deletePost(props.post.id, props.loadData, props.username)} >Delete post</div>
+        </div> : ""}
       </div>
       <p className="post__body">
         {props.post.parent ? props.post.parent.body : props.post.body}
@@ -69,7 +85,7 @@ const PostItem = props => {
           <img src={comment} alt="comment" className="post__action-img" onClick={() => openComments(props.post.id)}/>
           <span className="post__action-count">{props.post.comments.length}</span>
           <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>
-          <span className="post__action-count">{props.post.children.length}</span>
+          <div className="post__action-count">{props.post.children.length}</div>
         </div>
       </div>
       <div className="comments-list d-none">

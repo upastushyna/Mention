@@ -16,6 +16,9 @@ import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
 import Websocket from './components/Websocket'
 import {isLoggedIn} from './js/isLoggedIn'
+import {loadChats} from "./actions/chatsActions";
+import {loadChat} from "./actions/singleChatActions";
+import {webSocketConnection2} from "./js/wsConnection";
 
 class App extends Component {
   componentWillMount () {
@@ -26,6 +29,7 @@ class App extends Component {
           this.props.history.push("/registration")
         }
       }
+    webSocketConnection2(this.props.loadMessages, this.props.currentUser.username);
   }
 
   handleOnScroll = () => {
@@ -82,10 +86,12 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-  loadCurrentUser: () => dispatch(loadCurrentUser())
-})
+  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  loadData: username => dispatch(loadChats(username)),
+  loadMessages: (username1, username2) => dispatch(loadChat(username1, username2))
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

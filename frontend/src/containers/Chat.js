@@ -20,7 +20,9 @@ const Chat = props => {
       body: JSON.stringify({content: document.getElementById('messageInput').value,
         sender: {id: props.currentUser.id},
         receiver: {id: props.chat.user2.username === props.user2
-          ? props.chat.user2.id : props.chat.user1.id},
+          ? props.chat.user2.id : props.chat.user1.id, username:
+            props.chat.user2.username === props.user2
+              ? props.chat.user2.username : props.chat.user1.username},
         chat: {id: props.chat.id}})
     }).then(() => props.loadChat(props.user1, props.user2))
     .then(() => props.loadData(props.user1))
