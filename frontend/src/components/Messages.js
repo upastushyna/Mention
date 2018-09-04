@@ -85,11 +85,11 @@ const mapStateToProps = state => ({
   chats: state.chats,
   chat: state.chat
 
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadChats(username)),
   loadMessages: (username1, username2) => dispatch(loadChat(username1, username2))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages)

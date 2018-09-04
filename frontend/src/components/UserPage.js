@@ -141,7 +141,7 @@ class UserPage extends React.Component {
               }
             </div>
           </div>
-          <div className="create-post">
+          {this.props.match.params.username === this.props.currentUser.username?<div className="create-post">
             <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
               <div className="d-flex-center content-between">
               <textarea className="create-post__input" id="postInput"
@@ -155,7 +155,7 @@ class UserPage extends React.Component {
                 <p ref="addFile">Add file</p>
                 <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
             </form>
-          </div>
+          </div> : ""}
           <Switch>
             <Route exact path={this.props.match.path} component={() =>
                 <PostsContainer username={this.props.match.params.username}

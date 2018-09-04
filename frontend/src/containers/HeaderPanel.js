@@ -14,12 +14,18 @@ class HeaderPanel extends React.Component {
     }
   }
 
-  /* componentDidMount () {
-    window.addEventListener('mousedown', event => this.hideOptions(event));
-  } */
+   componentDidMount () {
+    window.addEventListener('mousedown', event => this.hide(event));
+  }
+
+  hide = event => {
+    if (event.target.id !== 'listItem') {
+      this.hideOptions();
+    }
+  };
 
   logout = () => {
-    localStorage.removeItem('accessToken')
+    localStorage.removeItem('accessToken');
     this.props.history.push('/registration')
   };
 
@@ -83,9 +89,9 @@ class HeaderPanel extends React.Component {
                 {this.props.currentUser.username}
               </h2>
               <img src={arrow} alt="arrow" onClick={() => this.showOptions()} className="profile-info__arrow" tabIndex="1"/>
-              <ul ref="nav" className="profile__nav d-none">
-                <li onClick={() => this.logout()} ref="listItem" className="profile__option"><p className="profile__link">Logout</p></li>
-                <li ref="listItem" className="profile__option"> <Link to="/editprofile" className="profile__link">Edit
+              <ul ref="nav" id="nav" className="profile__nav d-none">
+                <li id="listItem" onClick={() => this.logout()} ref="listItem" className="profile__option"><p className="profile__link">Logout</p></li>
+                <li ref="listItem" id="listItem" className="profile__option"> <Link id="listItem" to="/editprofile" className="profile__link">Edit
                     Profile</Link></li>
               </ul>
             </div>

@@ -2,6 +2,7 @@ package com.mention.service;
 
 import com.mention.dto.ApiRs;
 import com.mention.dto.MessageRq;
+import com.mention.dto.WsMessageRs;
 import com.mention.model.Message;
 import com.mention.repository.MessageRepository;
 import com.mention.security.UserPrincipal;
@@ -9,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +20,14 @@ public class MessageServiceImpl implements MessageService {
 
   private MessageRepository messageRepository;
 
+  private SimpMessagingTemplate template;
+
+  private final String wsPath = "/front/endpoint1";
+
   @Autowired
-  public MessageServiceImpl(MessageRepository messageRepository) {
+  public MessageServiceImpl(MessageRepository messageRepository, SimpMessagingTemplate template) {
     this.messageRepository = messageRepository;
+    this.template = template;
   }
 
   @Override
@@ -37,6 +44,7 @@ public class MessageServiceImpl implements MessageService {
     ModelMapper modelMapper = new ModelMapper();
     Message insertMessage = modelMapper.map(message, Message.class);
     messageRepository.save(insertMessage);
+    template.convertAndSend(wsPath, new WsMessageRs(message.getReceiver()));
     return ResponseEntity.ok(new ApiRs(true, "Message sent successfully"));
   }
 }

@@ -21,7 +21,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
   @Override
   public void registerStompEndpoints(StompEndpointRegistry registry) {
     // back registration to obtain messages from front
-    registry.addEndpoint("/ws_0001").setAllowedOrigins("*").withSockJS();
+    registry
+        .addEndpoint("/ws_0001")
+        .setAllowedOrigins("*")
+        .withSockJS();
   }
 
 }
