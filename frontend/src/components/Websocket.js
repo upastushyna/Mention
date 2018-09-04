@@ -9,21 +9,23 @@ export default class Websocket extends React.Component {
   }
 
   initializeWebSocketConnection = () => {
-    let ws = new SockJS('/ws_0001');
+    let ws = new SockJS('http://localhost:8080/ws_0001?accessToken=' + 'Bearer '  + localStorage.getItem("accessToken"));
     let stompClient = Stomp.over(ws);
     console.log(localStorage.getItem("accessToken"));
-    stompClient.connect({Authorization: "Bearer " + localStorage.getItem("accessToken")}, function (frame) {
+    stompClient.connect({}, function (frame) {
       stompClient.subscribe('/front/endpoint1', function (resp) {
-        this.processResponse(resp.body);
+        const object = JSON.parse(resp.body);
+        const html = "<tr><td>" + object.content + "</td><td>" + object.id + "</td></tr>";
+        document.getElementById("cont").innerHTML += html;
       });
     });
   };
 
   processResponse = body => {
-    const object = JSON.parse(body);
-    const html = "<tr><td>" + object.content + "</td><td>" + object.id + "</td></tr>";
-    document.getElementById("cont").innerHTML.append(html);
-  }
+      const object = JSON.parse(body);
+      const html = "<tr><td>" + object.content + "</td><td>" + object.id + "</td></tr>";
+      document.getElementById("cont").innerHTML += html;
+  };
 
   /*connect = () => {
     const socket = new SockJS('http://localhost:8080/ws_0001');
