@@ -26,10 +26,10 @@ class Feed extends React.Component {
   addPost = event => {
     event.preventDefault()
     const data = new FormData()
-    data.append('body', this.refs.postInput.value)
-    data.append('id', this.props.currentUser.id)
+    data.append('body', this.refs.postInput.value);
+    data.append('id', this.props.currentUser.id);
     if (this.refs.inputFile) {
-      const image = this.refs.inputFile.files[0]
+      const image = this.refs.inputFile.files[0];
       data.append('image', image)
     }
 
@@ -95,15 +95,13 @@ class Feed extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  feed: state.feed,
-  deletePost: state.deletePost,
-  deleteComment: state.deleteComment
-})
+  feed: state.feed
+});
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username)),
   deletePost: id => dispatch(deletePost(id)),
   deleteComment: id => dispatch(deleteComment(id))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)
