@@ -32,6 +32,11 @@ class App extends Component {
     webSocketConnection2(this.props.loadMessages, this.props.currentUser.username);
   }
 
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleOnScroll);
+    webSocketConnection2(this.props.loadMessages);
+  }
+
   handleOnScroll = () => {
     if(window.pageYOffset > 260 && this.refs.scroller) {
       this.refs.scroller.classList.remove("d-none");
@@ -44,10 +49,6 @@ class App extends Component {
   scrollToTop = () => {
     this.refs.pageTop.scrollIntoView({ block: 'end',  behavior: 'smooth' });
   };
-
-  componentDidMount () {
-    window.addEventListener('scroll', this.handleOnScroll);
-  }
 
   render () {
     

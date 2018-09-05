@@ -44,7 +44,7 @@ public class MessageServiceImpl implements MessageService {
     ModelMapper modelMapper = new ModelMapper();
     Message insertMessage = modelMapper.map(message, Message.class);
     messageRepository.save(insertMessage);
-    template.convertAndSend(wsPath, new WsMessageRs(message.getReceiver()));
+    template.convertAndSend(wsPath, new WsMessageRs(message.getReceiver().getUsername(), userPrincipal.getUsername()));
     return ResponseEntity.ok(new ApiRs(true, "Message sent successfully"));
   }
 }

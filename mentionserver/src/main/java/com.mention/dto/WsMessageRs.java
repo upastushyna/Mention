@@ -9,5 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WsMessageRs {
 
-  private ShortUserDetailsRs receiver;
+  private String receiver;
+
+  private String sender;
 }
