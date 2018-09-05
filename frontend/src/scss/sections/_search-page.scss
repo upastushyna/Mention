@@ -5,12 +5,11 @@
  border: 1px solid #fff;
 
  .follow-container {
-  width: 280px;
+  width: 350px;
  }
 
  .profile-info__username {
-  height: 30px;
-  width: 50px;
+  width: 125px;
 
   @include ellipsis-text;
  }

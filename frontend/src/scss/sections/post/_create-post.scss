@@ -6,6 +6,7 @@
   border: 1px solid #e6ecf5;
   border-radius: 5px;
   color: #888da8;
+  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
 
   &__input {
     @include clear-default-input-style();
