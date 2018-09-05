@@ -4,6 +4,7 @@ import com.mention.dto.ApiRs;
 import com.mention.dto.ChatRq;
 import com.mention.dto.ChatRs;
 import com.mention.model.Chat;
+import com.mention.model.Message;
 import com.mention.repository.ChatRepository;
 import com.mention.repository.UserRepository;
 import com.mention.security.UserPrincipal;
@@ -14,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -52,6 +55,8 @@ public class ChatServiceImpl implements ChatService {
           chat.setModifyTimestamp(chat.getMessages().get(chat.getMessages().size() - 1).getTimestamp());
         }
       }
+      currentChats.forEach(chat -> chat.getMessages()
+          .sort(Comparator.comparing(Message::getTimestamp)));
       List<ChatRs> chatRs = currentChats.stream().map(chat ->
           modelMapper.map(chat, ChatRs.class))
           .sorted((c1, c2) -> c2.getModifyTimestamp().compareTo(c1.getModifyTimestamp()))
@@ -76,6 +81,7 @@ public class ChatServiceImpl implements ChatService {
         chatRepository.findByUser1UsernameAndUser2UsernameOrUser2UsernameAndUser1Username(
             username1, username2, username1, username2);
     if (chat.isPresent()) {
+      chat.get().getMessages().sort(Comparator.comparing(Message::getTimestamp));
       ChatRs currentChat = modelMapper.map(chat.get(), ChatRs.class);
       return ResponseEntity.ok(currentChat);
     }
