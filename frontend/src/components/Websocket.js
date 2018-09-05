@@ -3,6 +3,7 @@ import React from 'react'
 export default class Websocket extends React.Component {
 
   /*componentWillMount() {
+
     webSocketConnection2(alert);
   }
 

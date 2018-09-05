@@ -18,7 +18,7 @@ import Websocket from './components/Websocket'
 import {isLoggedIn} from './js/isLoggedIn'
 import {loadChats} from "./actions/chatsActions";
 import {loadChat} from "./actions/singleChatActions";
-import {webSocketChat} from "./js/wsConnection";
+
 
 class App extends Component {
   componentWillMount () {
