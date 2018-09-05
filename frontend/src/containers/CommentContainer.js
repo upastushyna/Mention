@@ -29,7 +29,7 @@ const CommentContainer = props => {
     <Fragment key={comment.id}>
       <div className="comment-container">
         <div className="d-flex-center content-between">
-          <Link to={'/' + comment.commentator.username} className="post__link">
+          <Link to={'/user/' + comment.commentator.username} className="post__link">
             <div className="profile-info">
               <img src={comment.commentator.profile.avatarUrl} alt="" className="profile-info__avatar"/>
               <div className="profile-info__signature">

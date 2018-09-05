@@ -39,11 +39,11 @@ class SearchContainer extends React.Component {
 const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
   foundUsers: state.foundUsers
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
   loadUsers: input => dispatch(loadSearchUsers(input))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)

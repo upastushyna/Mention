@@ -55,7 +55,7 @@ const PostItem = props => {
         </div>
         : ''}
       <div className="post__header">
-        <Link to={'/' + props.post.author.username} className="post__link">
+        <Link to={'/user/' + props.post.author.username} className="post__link">
           <div className="profile-info d-flex-center">
             <img src={props.post.parent ? props.post.parent.author.profile.avatarUrl
               : props.post.author.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>

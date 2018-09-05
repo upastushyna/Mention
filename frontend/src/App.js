@@ -14,7 +14,6 @@ import SearchPage from './components/SearchPage'
 import {connect} from 'react-redux'
 import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
-import Websocket from './components/Websocket'
 import {isLoggedIn} from './js/isLoggedIn'
 import {loadChats} from "./actions/chatsActions";
 import {loadChat} from "./actions/singleChatActions";
@@ -71,9 +70,8 @@ class App extends Component {
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path='/favorites' component={Favorites}/>
-          <Route exact path='/websocket' component={Websocket}/>
           <Route path='/search/:input' component={SearchPage}/>
-          <Route path='/:username' component={UserPage}/>
+          <Route path='/user/:username' component={UserPage}/>
           <Route path="*" component={NotFound}/>
 
         </Switch>
