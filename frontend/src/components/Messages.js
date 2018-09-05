@@ -7,6 +7,7 @@ import {loadChats} from '../actions/chatsActions'
 import {connect} from 'react-redux'
 import Chat from '../containers/Chat'
 import search from '../img/search-icon.svg'
+import {webSocketChat} from "../js/wsConnection";
 
 class Messages extends React.Component {
   scrollToBottom = () => {
@@ -17,11 +18,12 @@ class Messages extends React.Component {
 
   componentWillMount () {
     if (this.props.chats.length === 0) {
-      this.props.loadData(this.props.currentUser.username)
+      this.props.loadData()
     }
   }
 
   componentDidMount () {
+    webSocketChat(this.props.loadMessages, this.props.loadData);
     this.scrollToBottom()
   }
 
@@ -45,7 +47,7 @@ class Messages extends React.Component {
       },
       body: JSON.stringify({user1: {username: this.props.currentUser.username},
         user2: {username: this.refs.chatInput.value}})
-    }).then(() => this.props.loadData(this.props.currentUser.username))
+    }).then(() => this.props.loadData())
     .then(() => this.refs.chatInput.value = '');
 
   render () {

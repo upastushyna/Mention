@@ -22,7 +22,7 @@ public class MessageServiceImpl implements MessageService {
 
   private SimpMessagingTemplate template;
 
-  private final String wsPath = "/front/endpoint1";
+  private final String wsPath = "/queue/chat";
 
   @Autowired
   public MessageServiceImpl(MessageRepository messageRepository, SimpMessagingTemplate template) {
@@ -44,7 +44,9 @@ public class MessageServiceImpl implements MessageService {
     ModelMapper modelMapper = new ModelMapper();
     Message insertMessage = modelMapper.map(message, Message.class);
     messageRepository.save(insertMessage);
-    template.convertAndSend(wsPath, new WsMessageRs(message.getReceiver().getUsername(), userPrincipal.getUsername()));
+    template.convertAndSendToUser(message.getReceiver().getUsername(), wsPath,
+        new WsMessageRs(message.getReceiver().getUsername(),
+            userPrincipal.getUsername()));
     return ResponseEntity.ok(new ApiRs(true, "Message sent successfully"));
   }
 }

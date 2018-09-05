@@ -25,9 +25,9 @@ public class ChatController {
     this.userChatsService = userChatsService;
   }
 
-  @GetMapping("/{username}")
-  public ResponseEntity<?> getChatsByUsername(@PathVariable String username) {
-    return userChatsService.getChatsByUsername(username);
+  @GetMapping
+  public ResponseEntity<?> getChatsByUsername() {
+    return userChatsService.getChatsForCurrentUser();
   }
 
   @GetMapping("/c/user1={username1}&user2={username2}")
