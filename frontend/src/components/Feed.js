@@ -100,8 +100,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username)),
-  deletePost: id => dispatch(deletePost(id)),
-  deleteComment: id => dispatch(deleteComment(id))
+  deletePost: data => dispatch(deletePost(data)),
+  deleteComment: data => dispatch(deleteComment(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)

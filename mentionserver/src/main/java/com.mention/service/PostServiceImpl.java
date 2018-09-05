@@ -65,6 +65,8 @@ public class PostServiceImpl implements PostService {
           user.getFollowedUsers()) {
         posts.addAll(followed.getFollowedUser().getPosts());
       }
+      posts.forEach(post -> post.getComments()
+          .sort(Comparator.comparing(Comment::getTimestamp)));
       List<PostRs> postRs = posts.stream().map(post -> modelMapper.map(
           post, PostRs.class))
           .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
@@ -78,7 +80,7 @@ public class PostServiceImpl implements PostService {
   public List<PostRs> getPostsByUsername(String username) {
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
-      currentUser.get().getPosts().stream().forEach(post -> post.getComments()
+      currentUser.get().getPosts().forEach(post -> post.getComments()
           .sort(Comparator.comparing(Comment::getTimestamp)));
       List<PostRs> postRs = currentUser.get().getPosts().stream().map(
           post -> modelMapper.map(post, PostRs.class))
@@ -106,8 +108,11 @@ public class PostServiceImpl implements PostService {
   public List<PostRs> getPostsByBody(String body) {
     List<Post> posts = postRepository.findByBodyContainingIgnoreCase(body);
     if (!posts.isEmpty()) {
+      posts.forEach(post -> post.getComments()
+          .sort(Comparator.comparing(Comment::getTimestamp)));
       List<PostRs> currentPosts = posts.stream()
           .map(post -> modelMapper.map(post, PostRs.class))
+          .sorted((p1, p2) -> p2.getLikes().size() - p1.getLikes().size())
           .collect(Collectors.toList());
       return currentPosts;
     }

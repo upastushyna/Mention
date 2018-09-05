@@ -92,8 +92,8 @@ const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
   loadUsers: input => dispatch(loadSearchUsers(input)),
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  deletePost: id => dispatch(deletePost(id)),
-  deleteComment: id => dispatch(deleteComment(id))
+  deletePost: data => dispatch(deletePost(data)),
+  deleteComment: data => dispatch(deleteComment(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)

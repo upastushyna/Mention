@@ -16,6 +16,7 @@ import UnffollowButton from '../containers/UnffollowButton'
 import upload from '../img/fileuploadicon.png'
 import {deletePost} from '../actions/postsActions'
 import {isLoggedIn} from '../js/isLoggedIn'
+import {deleteComment} from "../actions/commentsActions";
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -162,7 +163,8 @@ class UserPage extends React.Component {
                                 userPosts={this.props.userPosts}
                                 loadData={this.props.loadData}
                                 currentUser={this.props.currentUser}
-                                deletePost={this.props.deletePost}/>}/>
+                                deletePost={this.props.deletePost}
+                                deleteComment={this.props.deleteComment}/>}/>
             <Route path='/:username/info' component={() =>
                 <UserInfo username={this.props.match.params.username}
                           currentUser={this.props.currentUser}
@@ -186,6 +188,7 @@ const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadPosts(username)),
   loadUser: username => dispatch(loadUser(username)),
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  deletePost: id => dispatch(deletePost(id))
+  deletePost: data => dispatch(deletePost(data)),
+  deleteComment: data => dispatch(deleteComment(data))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)
