@@ -14,15 +14,21 @@ const openComments = (idPost) => {
   cont.classList.toggle('d-none')
 };
 
-const showOptions = () => {
-  if (document.getElementById('delete').classList.contains('d-none')) {
-    document.getElementById('delete').classList.remove('d-none')
+const showOptions = id => {
+  if (document.getElementById('delete' + id).classList.contains('d-none')) {
+    document.getElementById('delete' + id).classList.remove('d-none')
   }
 };
 
 const hide = event => {
-    if (event.target.id !== 'delete' && document.getElementById('delete')) {
-      document.getElementById('delete').classList.add('d-none')
+    if (!event.target.classList.contains('post__action')) {
+      let hideButton = document.getElementsByClassName('post__action');
+
+      Array.prototype.forEach.call(hideButton, item => {
+        if(!item.classList.contains('d-nome')) {
+          item.classList.add('d-none')
+        }
+      })
     }
 };
 
@@ -37,7 +43,7 @@ const PostItem = props => {
         'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
       },
       body: JSON.stringify({author: {id: props.currentUser.id}, parent: {id: props.post.parent ? props.post.parent.id : props.post.id}})
-    }).then(() => props.loadData(props.username))
+    }).then(() => props.loadData(props.username));
 
   return <Fragment>
     <div className="post" id={props.post.id}>
@@ -65,10 +71,13 @@ const PostItem = props => {
         </Link>
         {props.post.author.id === props.currentUser.id?
         <div className="pos-relative">
-          <img id="options" src={more} onClick={() => showOptions()} alt="actions"
+          <img id={"options" + props.post.id} src={more}
+               onClick={() => showOptions(props.post.id)} alt="actions"
                className="post__action-img" tabIndex="1"/>
-          <div id="delete" className="post__action d-none"
-               onClick={() => props.deletePost(props.post.id, props.loadData, props.username)} >Delete post</div>
+          <div id={"delete" + props.post.id} className="post__action d-none"
+               onClick={() => props.deletePost({id:props.post.id,
+                 loadPosts:props.loadData,
+                 username:props.username})}>Delete post</div>
         </div> : ""}
       </div>
       <p className="post__body">

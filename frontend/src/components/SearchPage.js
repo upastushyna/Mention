@@ -14,8 +14,8 @@ import {deleteComment} from '../actions/commentsActions'
 class SearchPage extends React.Component {
   componentWillMount () {
     if (this.props.foundPosts.length === 0 && this.props.foundUsers.length === 0) {
-      console.log(this.props)
-      this.props.loadPosts(this.props.match.params.input)
+      console.log(this.props);
+      this.props.loadPosts(this.props.match.params.input);
       this.props.loadUsers(this.props.match.params.input)
     }
     if (!this.props.currentUser || !this.props.currentUser.username) {
@@ -85,11 +85,8 @@ class SearchPage extends React.Component {
 const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
   foundUsers: state.foundUsers,
-  currentUser: state.currentUser,
-  deletePost: state.deletePost,
-  deleteComment: state.deleteComment
-
-})
+  currentUser: state.currentUser
+});
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
@@ -97,6 +94,6 @@ const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser()),
   deletePost: id => dispatch(deletePost(id)),
   deleteComment: id => dispatch(deleteComment(id))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)
