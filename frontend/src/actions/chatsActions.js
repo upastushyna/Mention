@@ -1,7 +1,7 @@
 import { CHATS_LOADED } from '../constants/action-types'
 
-export const loadChats = username => dispatch => {
-  fetch('/api/chats/' + username,
+export const loadChats = () => dispatch => {
+  fetch('/api/chats',
     {
       method: 'GET',
       headers: {
@@ -11,4 +11,4 @@ export const loadChats = username => dispatch => {
       }
     }).then(res => res.headers.get('content-type') === null ? null : res.json())
     .then(data => dispatch({type: CHATS_LOADED, payload: data || []}))
-}
+};

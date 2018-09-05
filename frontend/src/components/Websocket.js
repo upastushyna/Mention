@@ -1,9 +1,9 @@
 import React from 'react'
-import {webSocketConnection2} from '../js/wsConnection'
 
 export default class Websocket extends React.Component {
 
-  componentWillMount() {
+  /*componentWillMount() {
+
     webSocketConnection2(alert);
   }
 
@@ -17,5 +17,5 @@ export default class Websocket extends React.Component {
 
       </div>
     )
-  }
+  }*/
 }

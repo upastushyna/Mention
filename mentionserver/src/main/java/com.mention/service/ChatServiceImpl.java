@@ -36,17 +36,14 @@ public class ChatServiceImpl implements ChatService {
   }
 
   @Override
-  public ResponseEntity<?> getChatsByUsername(String username) {
+  public ResponseEntity<?> getChatsForCurrentUser() {
     UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
         .getContext()
         .getAuthentication()
         .getPrincipal();
-    if (!username.equals(userPrincipal.getUsername())) {
-      return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
-    }
 
     Optional<List<Chat>> chats = chatRepository
-        .findByUser1UsernameOrUser2Username(username, username);
+        .findByUser1UsernameOrUser2Username(userPrincipal.getUsername(), userPrincipal.getUsername());
     if (chats.isPresent()) {
       List<Chat> currentChats = chats.get();
       for (Chat chat:

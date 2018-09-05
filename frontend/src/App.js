@@ -18,7 +18,7 @@ import Websocket from './components/Websocket'
 import {isLoggedIn} from './js/isLoggedIn'
 import {loadChats} from "./actions/chatsActions";
 import {loadChat} from "./actions/singleChatActions";
-import {webSocketConnection2} from "./js/wsConnection";
+
 
 class App extends Component {
   componentWillMount () {
@@ -29,12 +29,10 @@ class App extends Component {
           this.props.history.push("/registration")
         }
       }
-    webSocketConnection2(this.props.loadMessages, this.props.currentUser.username);
   }
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleOnScroll);
-    webSocketConnection2(this.props.loadMessages);
   }
 
   handleOnScroll = () => {

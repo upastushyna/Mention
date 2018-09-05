@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import '../css/index.css'
 import send from '../img/send.png'
 import {getDateFromDb} from '../js/chatdisplaytime'
+import {webSocketChat} from "../js/wsConnection";
 
 const goBack = () => {
   document.getElementsByClassName('messages-container')[0].style.display = "none";
@@ -24,12 +25,12 @@ const Chat = props => {
             props.chat.user2.username === props.user2
               ? props.chat.user2.username : props.chat.user1.username},
         chat: {id: props.chat.id}})
-    }).then(() => props.loadChat(props.user1, props.user2))
-    .then(() => props.loadData(props.user1))
-    .then(() => document.getElementById('messageInput').value = '')
+    }).then(() => props.loadData())
+    .then(() => props.loadChat(props.chat.user1.username, props.chat.user2.username))
+    .then(() => document.getElementById('messageInput').value = '');
 
   if (!props.chat || !props.chat.messages) {
-    props.loadChat(props.user1, props.user2)
+    props.loadChat(props.user1, props.user2);
     return 'loading...'
   }
 
