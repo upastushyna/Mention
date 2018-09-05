@@ -10,6 +10,6 @@ export const deletePost = (data) => dispatch => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({id: data.id})
-    }).then(() => dispatch({ type: USER_POST_DELETED, payload: data[0] }))
+    }).then(() => dispatch({ type: USER_POST_DELETED, payload: data.id }))
     .then(() => data.loadPosts(data.username))
 };
