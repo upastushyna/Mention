@@ -82,7 +82,7 @@ class HeaderPanel extends React.Component {
               </li>
             </ul>
             <div className="d-flex-center">
-              <Link to={'/' + this.props.currentUser.username} className="d-flex-center">
+              <Link to={'/user/' + this.props.currentUser.username} className="d-flex-center">
                 <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar"/>
               </Link>
               <h2 className="profile-card__username">

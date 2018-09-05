@@ -125,11 +125,11 @@ class UserPage extends React.Component {
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
             <div className="user-navigation__links">
-              <Link className="user-nav-links__item" to={'/' + this.props.match.params.username + '/info'}>
+              <Link className="user-nav-links__item" to={'/user/' + this.props.match.params.username + '/info'}>
                 <img src={info} alt="info" className="user-navigation__icon"/>
                 <h4 className="user-nav-links__text">info</h4>
               </Link>
-              <Link className="user-nav-links__item" to={'/' + this.props.match.params.username}>
+              <Link className="user-nav-links__item" to={'/user/' + this.props.match.params.username}>
                 <img src={posts} alt="feed" className="user-navigation__icon"/>
                 <h4 className="user-nav-links__text">profile</h4>
               </Link>
@@ -165,7 +165,7 @@ class UserPage extends React.Component {
                                 currentUser={this.props.currentUser}
                                 deletePost={this.props.deletePost}
                                 deleteComment={this.props.deleteComment}/>}/>
-            <Route path='/:username/info' component={() =>
+            <Route path='/user/:username/info' component={() =>
                 <UserInfo username={this.props.match.params.username}
                           currentUser={this.props.currentUser}
                           loadCurrentUser={this.props.loadCurrentUser}

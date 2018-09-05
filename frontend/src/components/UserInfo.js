@@ -18,15 +18,15 @@ class UserInfo extends React.Component {
     return (
       <Fragment key={UserInfo.id}>
         <div className="info-controller">
-          <Link className="info-controller__link" to={'/' + this.props.username + '/info/followed'}
+          <Link className="info-controller__link" to={'/user/' + this.props.username + '/info/followed'}
             onClick={() => this.props.loadFollowedUsers(this.props.username)}>Followed Users</Link>
-          <Link className="info-controller__link" to={'/' + this.props.username + '/info/following'}
+          <Link className="info-controller__link" to={'/user/' + this.props.username + '/info/following'}
             onClick={() => this.props.loadFollowers(this.props.username)}>Following Users</Link>
-          <Link className="info-controller__link" to={'/' + this.props.username + '/info/liked'}>Likes</Link>
+          <Link className="info-controller__link" to={'/user/' + this.props.username + '/info/liked'}>Likes</Link>
         </div>
 
         <Switch>
-          <Route exact path='/:username/info/followed' component={() =>
+          <Route exact path='/user/:username/info/followed' component={() =>
             <UsersContainer username={this.props.username}
               loadUsers={this.props.loadFollowedUsers}
               users={this.props.followed}
@@ -34,7 +34,7 @@ class UserInfo extends React.Component {
               loadCurrentUser={this.props.loadCurrentUser}
               follow={this.props.follow}
               unfollow={this.props.unfollow}/>}/>
-          <Route exact path='/:username/info/following' component={() =>
+          <Route exact path='/user/:username/info/following' component={() =>
             <UsersContainer username={this.props.username}
               loadUsers={this.props.loadFollowers}
               users={this.props.following}
@@ -42,7 +42,7 @@ class UserInfo extends React.Component {
               loadCurrentUser={this.props.loadCurrentUser}
               follow={this.props.follow}
               unfollow={this.props.unfollow}/>}/>
-          <Route exact path='/:username/info/liked' component={() =>
+          <Route exact path='/user/:username/info/liked' component={() =>
             <PostsContainer username={this.props.username}
               userPosts={this.props.likedPosts}
               loadData={this.props.loadData}

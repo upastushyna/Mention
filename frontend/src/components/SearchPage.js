@@ -14,7 +14,6 @@ import {deleteComment} from '../actions/commentsActions'
 class SearchPage extends React.Component {
   componentWillMount () {
     if (this.props.foundPosts.length === 0 && this.props.foundUsers.length === 0) {
-      console.log(this.props);
       this.props.loadPosts(this.props.match.params.input);
       this.props.loadUsers(this.props.match.params.input)
     }
