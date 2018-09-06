@@ -1,4 +1,5 @@
 .message-sender {
+ height: 10%;
  padding: 8px 20px;
  border-top: 1px solid $border-color;
  border-left: 1px solid $border-color;
@@ -6,6 +7,7 @@
  display: flex;
  justify-content: space-between;
  align-items: center;
+ background-color: #fff;
 
  &__input {
   @include clear-default-input-style;
@@ -23,7 +25,11 @@
 
 @media screen and (max-width: 1200px) {
  .message-sender {
-  padding: 8px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
 
   &__actions {
    margin-right: 0;

@@ -2,7 +2,7 @@
   position: relative;
   width: 40%;
   margin: 15px auto;
-  padding: 24px;
+  padding: 16px;
   border: 1px solid $border-color;
   @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
 
@@ -17,6 +17,7 @@
 
   &__action-count {
     margin: 0 10px;
+    font-size: 11px;
     color: $meta-color;
   }
 
@@ -25,14 +26,14 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $border-color;
-    padding: 0 24px 16px 0;
+    padding: 0 24px 8px 0;
   }
 
   &__body {
     margin: 25px 0;
     text-align: justify;
     color: $black-text-color;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 25px;
     max-width: 100%;
     word-wrap: break-word;
@@ -41,9 +42,7 @@
 
   &__img {
     display: block;
-    max-width: 515px;
-    max-height: 515px;
-    margin: 15px auto;
+    width: 100%;
   }
 
   &__footer {
@@ -55,8 +54,8 @@
   }
 
   &__action-img {
-    width: 30px;
-    height: 30px;
+    width: 16px;
+    height: 16px;
     outline: none;
     cursor: pointer;
   }
@@ -79,12 +78,6 @@
   }
 }
 
-/*.post__action-img:focus + .post__action,
-.post__action-img:active + .post__action,
-.comment-container__action-img:focus + .post__action,
-.comment-container__action-img:active + .post__action {
-  display: block;
-}*/
 
 @media screen and (max-width: 1200px) {
 

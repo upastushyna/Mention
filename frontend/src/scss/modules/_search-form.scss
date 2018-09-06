@@ -1,14 +1,14 @@
 .search {
  &__input {
   @include clear-default-input-style;
-  padding: 8px 0;
+  padding: 6px 0;
   background-color: transparent;
   border-bottom: 0.5px solid #fff;
   color: #fff;
-  font-size: 18px;
+  font-size: 15px;
 
   @include placeholder () {
-   font-size: 15px;
+   font-size: 13px;
    color: #fff;
    letter-spacing: 0.3px;
    font-weight: 300;
@@ -17,8 +17,8 @@
 
  &__btn {
   text-decoration: none;
-  margin-left: 16px;
-  width: 20px;
+  margin-left: 8px;
+  width: 16px;
 
   img {
    width: 100%;

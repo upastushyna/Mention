@@ -44,7 +44,7 @@
  }
 
  &__header {
-  display: none;
+
   padding: 16px;
  }
 }
@@ -73,24 +73,14 @@
 @media screen and (max-width: 1200px) {
  .chats {
   &__view {
-   margin: 16px;
+   margin: 8px;
    max-width: 100%;
+
   }
 
   &__list {
-   width: 40%;
-  }
- }
-}
-
-@media screen and (max-width: 768px) {
- .chats {
-  &__header {
-   display: flex;
-  }
-
-  &__list {
-   width: 75%;
+   width: 100%;
+   box-shadow: none;
   }
  }
 }
