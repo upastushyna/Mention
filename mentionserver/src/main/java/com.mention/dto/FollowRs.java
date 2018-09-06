@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class FollowRs {
 
-  private ShortUserDetailsRs followedUser;
+  private UserIdRq followedUser;
 
 }

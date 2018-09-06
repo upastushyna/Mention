@@ -61,7 +61,6 @@ class Feed extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser();
       return 'Loading...'
     }
 
@@ -108,8 +107,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username)),
-  deletePost: id => dispatch(deletePost(id)),
-  deleteComment: id => dispatch(deleteComment(id))
+  deletePost: data => dispatch(deletePost(id)),
+  deleteComment: data => dispatch(deleteComment(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)
