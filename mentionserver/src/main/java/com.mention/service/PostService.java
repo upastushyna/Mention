@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface PostService {
 
-  List<PostRs> getFollowedPosts(String username);
+  List<PostRs> getFollowedPosts(String username, int page, int size);
 
   List<PostRs> getPostsByUsername(String username);
 

@@ -13,6 +13,9 @@ import searchPostsReducer from './searchPostsReducer'
 import currentUserReducer from './currentUserReducer'
 import postsReducer from './postsReducer'
 import commentsReducer from './commentsReducer'
+import notEmptyReducer from "./notEmpty";
+import loaderReducer from "./loaderReducer";
+import singleFeedReducer from "./singleFeedReducer";
 
 export default combineReducers({
   feed: feedReducer,
@@ -28,5 +31,8 @@ export default combineReducers({
   foundPosts: searchPostsReducer,
   currentUser: currentUserReducer,
   deletePost: postsReducer,
-  deleteComment: commentsReducer
+  deleteComment: commentsReducer,
+  notEmpty: notEmptyReducer,
+  loaderReducer: loaderReducer,
+  singlePost: singleFeedReducer
 })

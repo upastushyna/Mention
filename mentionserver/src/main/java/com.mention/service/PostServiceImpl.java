@@ -17,6 +17,8 @@ import com.mention.repository.UserRepository;
 import com.mention.security.UserPrincipal;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -27,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -63,24 +64,37 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public List<PostRs> getFollowedPosts(String username) {
-    Optional<User> currentUser = userRepository.findByUsername(username);
-    if (currentUser.isPresent()) {
-      User user = currentUser.get();
-      List<Post> posts = new ArrayList<>();
-      for (Follow followed :
-          user.getFollowedUsers()) {
-        posts.addAll(followed.getFollowedUser().getPosts());
-      }
-      posts.forEach(post -> post.getComments()
-          .sort(Comparator.comparing(Comment::getTimestamp)));
-      List<PostRs> postRs = posts.stream().map(post -> modelMapper.map(
-          post, PostRs.class))
-          .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
-          .collect(Collectors.toList());
-      return postRs;
-    }
-    return null;
+  public List<PostRs> getFollowedPosts(String username, int page, int size) {
+    //Optional<User> currentUser = userRepository.findByUsername(username);
+
+//    if (!currentUser.isPresent()) {
+//      return null;
+//    }
+//
+//    User user = currentUser.get();
+//    List<Post> posts = new ArrayList<>();
+//    for (Follow followed : user.getFollowedUsers()) {
+//      posts.addAll(followed.getFollowedUser().getPosts());
+//    }
+//    posts.forEach(post -> post.getComments()
+//        .sort(Comparator.comparing(Comment::getTimestamp)));
+//    List<PostRs> postRs = posts.stream().map(post -> modelMapper.map(
+//        post, PostRs.class))
+//        .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
+//        .collect(Collectors.toList());
+//    return postRs;
+    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
+    User user = userRepository.getOne(userPrincipal.getId());
+    List<User> followedusers = user.getFollowedUsers().stream()
+        .map(Follow::getFollowedUser)
+        .collect(Collectors.toList());
+    Page<Post> posts = postRepository.findAllByAuthorInOrderByTimestampDesc(followedusers, PageRequest.of(page, size));
+    return posts.getContent().stream()
+        .map(post -> modelMapper.map(post, PostRs.class))
+        .collect(Collectors.toList());
   }
 
   @Override

@@ -1,11 +1,11 @@
-import {FEED_LOADED, USER_POST_DELETED} from '../constants/action-types'
+import {FEED_LOADED} from '../constants/action-types'
 
-const initialState = []
+const initialState = [];
 
 function feedReducer (state = initialState, action) {
   switch (action.type) {
-    case FEED_LOADED:
-      return [...action.payload]
+    case FEED_LOADED :
+      return [...state, ...action.payload];
     default:
       return state
   }

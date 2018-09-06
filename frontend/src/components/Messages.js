@@ -90,7 +90,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadData: username => dispatch(loadChats(username)),
+  loadData: () => dispatch(loadChats()),
   loadMessages: (username1, username2) => dispatch(loadChat(username1, username2))
 });
 

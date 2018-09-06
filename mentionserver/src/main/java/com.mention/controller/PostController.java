@@ -34,9 +34,11 @@ public class PostController {
     this.userPostsService = userPostsService;
   }
 
-  @GetMapping("/followed/{username}")
-  public List<PostRs> getFollowedPosts(@PathVariable String username) {
-    return userPostsService.getFollowedPosts(username);
+  @GetMapping("/followed/{username}/{page}/{size}")
+  public List<PostRs> getFollowedPosts(@PathVariable String username,
+                                       @PathVariable int page,
+                                       @PathVariable int size) {
+    return userPostsService.getFollowedPosts(username, page, size);
   }
 
   @GetMapping("/{username}")
