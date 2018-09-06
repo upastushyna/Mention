@@ -109,9 +109,10 @@ const PostItem = props => {
           username={props.username}
           currentUser={props.currentUser}
           deleteComment={props.deleteComment}/>
-      </div>
-      <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
+               <AddComment username={props.username} loadData={props.loadData} postId={props.post.id}
         currentUser={props.currentUser}/>
+      </div>
+ 
     </div>
 
   </Fragment>
