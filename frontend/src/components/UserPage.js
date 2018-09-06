@@ -120,7 +120,7 @@ class UserPage extends React.Component {
 
     return (
         <Fragment key={UserPage.id}>
-          <div ref='scrollTop'></div>
+          <div ref='scrollTop' />
           <Navigation/>
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
@@ -154,7 +154,8 @@ class UserPage extends React.Component {
               <div className="upload-file">
                 <img src={upload} alt="upload" className="upload-file__icon"/>
                 <p ref="addFile">Add file</p>
-                <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
+                <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/>
+              </div>
             </form>
           </div> : ""}
           <Switch>
@@ -164,7 +165,8 @@ class UserPage extends React.Component {
                                 loadData={this.props.loadData}
                                 currentUser={this.props.currentUser}
                                 deletePost={this.props.deletePost}
-                                deleteComment={this.props.deleteComment}/>}/>
+                                deleteComment={this.props.deleteComment}/>}
+            />
             <Route path='/user/:username/info' component={() =>
                 <UserInfo username={this.props.match.params.username}
                           currentUser={this.props.currentUser}

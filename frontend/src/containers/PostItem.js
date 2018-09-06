@@ -8,10 +8,10 @@ import AddComment from './AddComment'
 import {getDateFromDb} from '../js/timestamp.js'
 import {Link} from 'react-router-dom'
 
-const openComments = (idPost) => {
+const openComments = idPost => {
   let el = document.getElementById(idPost);
   let cont = el.querySelector('.comments-list');
-  cont.classList.toggle('d-none')
+  cont.classList.toggle('d-none');
 };
 
 const showOptions = id => {

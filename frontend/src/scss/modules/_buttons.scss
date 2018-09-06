@@ -1,25 +1,23 @@
 .btn{
-
-&-action {
-	@include clear-default-input-style();
+  &-action {
+    @include clear-default-input-style();
     padding: 14px;
     font-size: 14px;
     border-radius: 5px;
     background-color: $main-color;
     color: #fff;
     font-weight: 700;
-	cursor: pointer;
+    cursor: pointer;
 
-	&:hover {
-		opacity: .9;
-	  }
+    &:hover {
+      opacity: .9;
+    }
 
-	&_rounded{
-	  border-radius: 50%;
+    &_rounded {
+      border-radius: 50%;
       height: 30px;
       width: 30px;
-      padding: 0;
-	}
-}
-
+       padding: 0;
+    }
+  }
 }

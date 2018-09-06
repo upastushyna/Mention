@@ -1,23 +1,22 @@
 .notFound {
-  &__errorText {
-    padding-top: 40px;
-  }
+  background-image: url(../img/404-Background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 
-  &__errorHeader {
-    margin-left: 42%;
-    font-size: 160px;
+  &__errorText {
+    width: 1200px;
+    padding-top: 20%;
+    padding-left: 2%;
   }
 
   &__errorBody {
-    margin-left: 21%;
-    font-size: 35px;
-    }
+    font-size: 37px;
+    color: #e6ecf5;
   }
+}
 
 .returnButton {
-  margin-top: 30px;
-  margin-left: 47%;
-  border-bottom-width: 1px;
-  border-bottom-color: black;
-  background-color: #ff5e3a;
+  width: 10%;
+  margin: 30px 36%;
 }
