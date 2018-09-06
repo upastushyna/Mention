@@ -35,6 +35,13 @@
 
  &__time{
 	 font-size: 12px;
-	 color: #a1a8bd;
+	 color: $placeholder-color;
  }
+}
+
+@media screen and (max-width: 1200px) {
+	.message__time {
+        font-size: 9px;
+	}
+
 }

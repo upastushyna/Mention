@@ -16,3 +16,10 @@
 .scroll-btn:focus {
 	opacity: 1.2;
 }
+
+@media screen and (max-width: 1200px) {
+	.scroll-btn {
+		bottom: 16px;
+		right: 16px;
+	}
+}

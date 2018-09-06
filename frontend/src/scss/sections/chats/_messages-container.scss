@@ -5,6 +5,7 @@
 	@include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
 
 	&__header {
+		height: 8%;
 		padding: 0 15px;
 		border-bottom: 1px solid $border-color;
 		border-left: 1px solid $border-color;
@@ -27,8 +28,11 @@
 
 @media screen and (max-width: 1200px) {
 	.messages-container {
-		width: 60%;
+		width: 100%;
+		box-shadow: none;
+		height: 100vh;
 	}
+
 }
 
 @media screen and (max-width: 768px) {

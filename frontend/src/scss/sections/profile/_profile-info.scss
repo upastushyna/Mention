@@ -4,15 +4,14 @@
  cursor: pointer;
 
  &__avatar {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.21);
  }
 
  &__username {
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 16px;
   font-weight: 700;
   color: $black-text-color;
  }
@@ -29,8 +28,8 @@
  }
 
  &__alias {
-  font-size: 12px;
-  color: #a1a8bd;
+  font-size: 9px;
+  color: $meta-color;
  }
 
  &__signature {
@@ -65,20 +64,19 @@
 
  &__option {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 25px;
   cursor: pointer;
+  color: $black-text-color;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+  padding: 25px;
+  z-index: 10;
 
   &:active,
   &:hover {
    background-color: $border-color;
   }
- }
-
- &__link {
-  color: $black-text-color;
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: none;
  }
 }
 
@@ -91,8 +89,8 @@
 
  &__username {
   color: #fff;
-  font-size: 25px;
-  line-height: 45px;
+  font-size: 17px;
+  line-height: 25px;
   margin-left: 16px;
  }
 }
