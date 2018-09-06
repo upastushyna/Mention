@@ -7,6 +7,7 @@ import {deleteComment} from '../actions/commentsActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
+import {webSocketFeed} from "../js/wsConnection";
 
 class Feed extends React.Component {
   constructor (props) {
@@ -23,9 +24,13 @@ class Feed extends React.Component {
     }
   }
 
+  componentDidMount () {
+    webSocketFeed(this.props.loadData);
+  }
+
   addPost = event => {
-    event.preventDefault()
-    const data = new FormData()
+    event.preventDefault();
+    const data = new FormData();
     data.append('body', this.refs.postInput.value);
     data.append('id', this.props.currentUser.id);
     if (this.refs.inputFile) {
@@ -95,7 +100,9 @@ class Feed extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  feed: state.feed
+  feed: state.feed,
+  deletePost: state.deletePost,
+  deleteComment: state.deleteComment
 });
 
 const mapDispatchToProps = dispatch => ({

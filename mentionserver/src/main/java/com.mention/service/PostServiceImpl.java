@@ -7,6 +7,7 @@ import com.mention.dto.ApiRs;
 import com.mention.dto.PostIdRq;
 import com.mention.dto.PostRq;
 import com.mention.dto.PostRs;
+import com.mention.dto.WsFeedRs;
 import com.mention.model.Comment;
 import com.mention.model.Follow;
 import com.mention.model.Post;
@@ -18,6 +19,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,12 +47,17 @@ public class PostServiceImpl implements PostService {
 
   private ModelMapper modelMapper;
 
+  private final String wsPath = "/queue/feed";
+
+  private SimpMessagingTemplate template;
+
   @Autowired
   public PostServiceImpl(UserRepository userRepository,
                          PostRepository postRepository,
-                         AmazonS3Configuration as3) {
+                         AmazonS3Configuration as3, SimpMessagingTemplate template) {
     this.userRepository = userRepository;
     this.postRepository = postRepository;
+    this.template = template;
     this.modelMapper = new ModelMapper();
     this.as3 = as3;
   }
@@ -146,6 +153,13 @@ public class PostServiceImpl implements PostService {
       post.setAmazonKey(key);
     }
     postRepository.save(post);
+    Optional<User> currentUser = userRepository.findById(userId);
+    if (currentUser.isPresent()) {
+      currentUser.get().getFollowers().forEach(follow ->
+          template.convertAndSendToUser(follow.getFollower().getUsername(), wsPath,
+              new WsFeedRs(follow.getFollower().getUsername())));
+    }
+
     return ResponseEntity.ok(new ApiRs(true, "Post added successfully"));
   }
 
