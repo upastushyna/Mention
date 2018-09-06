@@ -159,14 +159,15 @@ class UserPage extends React.Component {
             </form>
           </div> : ""}
           <Switch>
-            <Route exact path={this.props.match.path} component={() =>
-                <PostsContainer username={this.props.match.params.username}
-                                userPosts={this.props.userPosts}
-                                loadData={this.props.loadData}
-                                currentUser={this.props.currentUser}
-                                deletePost={this.props.deletePost}
-                                deleteComment={this.props.deleteComment}/>}
+            <Route exact path={this.props.match.path} render={() => {
+              return(<PostsContainer username={this.props.match.params.username}
+                                     userPosts={this.props.userPosts}
+                                     loadData={this.props.loadData}
+                                     currentUser={this.props.currentUser}
+                                     deletePost={this.props.deletePost}
+                                     deleteComment={this.props.deleteComment}/>)}}
             />
+
             <Route path='/user/:username/info' component={() =>
                 <UserInfo username={this.props.match.params.username}
                           currentUser={this.props.currentUser}
