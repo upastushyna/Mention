@@ -9,9 +9,9 @@ public class MessageRq {
   @Length(min = 1, max = 1000)
   private String content;
 
-  private UserIdRq sender;
+  private ShortUserDetailsRs sender;
 
-  private UserIdRq receiver;
+  private ShortUserDetailsRs receiver;
 
   private ChatIdRq chat;
 }

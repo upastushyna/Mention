@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -55,10 +56,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   }
 
   private String getJwtFromRequest(HttpServletRequest request) {
-    String bearerToken = request.getHeader("Authorization");
+    String Auth1 = "Authorization";
+    String Auth2 = "accessToken";
+    String bearerToken = request.getHeader(Auth1);
     if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
       return bearerToken.substring(7, bearerToken.length());
+    } else {
+      String accToken = request.getParameter(Auth2);
+      if (accToken != null) {
+        return accToken.substring(7, accToken.length());
+      } else {
+        return null;
+      }
     }
-    return null;
   }
 }

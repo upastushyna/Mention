@@ -4,6 +4,7 @@ import com.mention.dto.ApiRs;
 import com.mention.dto.ChatRq;
 import com.mention.dto.ChatRs;
 import com.mention.model.Chat;
+import com.mention.model.Message;
 import com.mention.repository.ChatRepository;
 import com.mention.repository.UserRepository;
 import com.mention.security.UserPrincipal;
@@ -14,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,21 +39,27 @@ public class ChatServiceImpl implements ChatService {
   }
 
   @Override
-  public ResponseEntity<?> getChatsByUsername(String username) {
+  public ResponseEntity<?> getChatsForCurrentUser() {
     UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
         .getContext()
         .getAuthentication()
         .getPrincipal();
-    if (!username.equals(userPrincipal.getUsername())) {
-      return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
-    }
 
     Optional<List<Chat>> chats = chatRepository
-        .findByUser1UsernameOrUser2Username(username, username);
+        .findByUser1UsernameOrUser2Username(userPrincipal.getUsername(), userPrincipal.getUsername());
     if (chats.isPresent()) {
       List<Chat> currentChats = chats.get();
+      for (Chat chat:
+           currentChats) {
+        if (chat.getMessages().size() > 0) {
+          chat.setModifyTimestamp(chat.getMessages().get(chat.getMessages().size() - 1).getTimestamp());
+        }
+      }
+      currentChats.forEach(chat -> chat.getMessages()
+          .sort(Comparator.comparing(Message::getTimestamp)));
       List<ChatRs> chatRs = currentChats.stream().map(chat ->
           modelMapper.map(chat, ChatRs.class))
+          .sorted((c1, c2) -> c2.getModifyTimestamp().compareTo(c1.getModifyTimestamp()))
           .collect(Collectors.toList());
       return ResponseEntity.ok(chatRs);
     }
@@ -72,6 +81,7 @@ public class ChatServiceImpl implements ChatService {
         chatRepository.findByUser1UsernameAndUser2UsernameOrUser2UsernameAndUser1Username(
             username1, username2, username1, username2);
     if (chat.isPresent()) {
+      chat.get().getMessages().sort(Comparator.comparing(Message::getTimestamp));
       ChatRs currentChat = modelMapper.map(chat.get(), ChatRs.class);
       return ResponseEntity.ok(currentChat);
     }

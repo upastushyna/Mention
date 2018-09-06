@@ -1,7 +1,7 @@
-import { USER_POST_DELETED } from '../constants/action-types'
+import { USER_COMMENT_DELETED } from '../constants/action-types'
 
-export const deletePost = (data) => dispatch => {
-  fetch('/api/posts/delete',
+export const deleteComment = (data) => dispatch => {
+  fetch('/api/comments/delete',
     {
       method: 'DELETE',
       headers: {
@@ -10,6 +10,6 @@ export const deletePost = (data) => dispatch => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({id: data.id})
-    }).then(() => dispatch({ type: USER_POST_DELETED, payload: data.id }))
+    }).then(() => dispatch({ type: USER_COMMENT_DELETED, payload: data.id }))
     .then(() => data.loadPosts(data.username))
-};
+}

@@ -4,6 +4,7 @@
   margin: 15px auto;
   padding: 24px;
   border: 1px solid $border-color;
+  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
 
   &__link {
     text-decoration: none;
@@ -42,6 +43,7 @@
     display: block;
     max-width: 515px;
     max-height: 515px;
+    margin: 15px auto;
   }
 
   &__footer {
@@ -60,7 +62,6 @@
   }
 
   &__action{
-    display: none;
     position: absolute;
     min-width: 128px;
     white-space: nowrap;
@@ -71,6 +72,7 @@
     padding: 16px;
     color: $black-text-color;
     cursor: pointer;
+    display: block;
     &:hover {
       background-color: $border-color;
     }

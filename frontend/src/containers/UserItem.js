@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 const UserItem = props =>
   <div className="follow-container">
-    <Link to={"/" + props.user.username} className="post__link">
+    <Link to={"/user/" + props.user.username} className="post__link">
       <div className="d-flex-center">
         <img src={props.user.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
           <h2 className="profile-info__username">{props.user.username}</h2>

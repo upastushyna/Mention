@@ -3,9 +3,11 @@ import Navigation from './Navigation'
 import '../css/index.css'
 import {loadFeed} from '../actions/feedActions'
 import {deletePost} from '../actions/postsActions'
+import {deleteComment} from '../actions/commentsActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
+import {webSocketFeed} from "../js/wsConnection";
 
 class Feed extends React.Component {
   constructor (props) {
@@ -22,13 +24,17 @@ class Feed extends React.Component {
     }
   }
 
+  componentDidMount () {
+    webSocketFeed(this.props.loadData);
+  }
+
   addPost = event => {
-    event.preventDefault()
-    const data = new FormData()
-    data.append('body', this.refs.postInput.value)
-    data.append('id', this.props.currentUser.id)
+    event.preventDefault();
+    const data = new FormData();
+    data.append('body', this.refs.postInput.value);
+    data.append('id', this.props.currentUser.id);
     if (this.refs.inputFile) {
-      const image = this.refs.inputFile.files[0]
+      const image = this.refs.inputFile.files[0];
       data.append('image', image)
     }
 
@@ -55,7 +61,6 @@ class Feed extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser()
       return 'Loading...'
     }
 
@@ -80,11 +85,14 @@ class Feed extends React.Component {
                   <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
               </form>
             </div> : ''}
-          <PostsContainer username={this.props.currentUser.username}
+          <PostsContainer
+            username={this.props.currentUser.username}
             userPosts={this.props.feed}
             loadData={this.props.loadData}
             currentUser={this.props.currentUser}
-            deletePost={this.props.deletePost}/>
+            deletePost={this.props.deletePost}
+            deleteComment={this.props.deleteComment}
+          />
         </div>
       </Fragment>
     )
@@ -93,12 +101,14 @@ class Feed extends React.Component {
 
 const mapStateToProps = state => ({
   feed: state.feed,
-  deletePost: state.deletePost
-})
+  deletePost: state.deletePost,
+  deleteComment: state.deleteComment
+});
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username)),
-  deletePost: id => dispatch(deletePost(id))
-})
+  deletePost: data => dispatch(deletePost(data)),
+  deleteComment: data => dispatch(deleteComment(data))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)

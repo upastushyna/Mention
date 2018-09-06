@@ -9,13 +9,12 @@ import EmptyState from '../containers/EmptyState'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import searchIcon from '../img/search-icon.svg'
 import {deletePost} from '../actions/postsActions'
-
+import {deleteComment} from '../actions/commentsActions'
 
 class SearchPage extends React.Component {
   componentWillMount () {
     if (this.props.foundPosts.length === 0 && this.props.foundUsers.length === 0) {
-      console.log(this.props)
-      this.props.loadPosts(this.props.match.params.input)
+      this.props.loadPosts(this.props.match.params.input);
       this.props.loadUsers(this.props.match.params.input)
     }
     if (!this.props.currentUser || !this.props.currentUser.username) {
@@ -58,13 +57,14 @@ class SearchPage extends React.Component {
       <Fragment key={SearchPage.id}>
         <Navigation/>
         <div className="container">
-          {this.props.foundPosts.length === 0 ?
-         <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={"Please, try another search query"}/>
+          {this.props.foundPosts.length === 0
+            ? <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={'Please, try another search query'}/>
             : <PostsContainer username={this.props.match.params.input}
               userPosts={this.props.foundPosts}
               loadData={this.props.loadPosts}
               currentUser={this.props.currentUser}
-              deletePost={this.props.deletePost()}/>}
+              deletePost={this.props.deletePost}
+              deleteComment={this.props.deleteComment}/>}
           <div className="users-panel">
             {this.props.foundUsers.length === 0 ? ''
               : <UsersContainer username={this.props.match.params.input}
@@ -84,16 +84,15 @@ class SearchPage extends React.Component {
 const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
   foundUsers: state.foundUsers,
-  currentUser: state.currentUser,
-  deletePost: state.deletePost
-
-})
+  currentUser: state.currentUser
+});
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
   loadUsers: input => dispatch(loadSearchUsers(input)),
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  deletePost: id => dispatch(deletePost(id))
-})
+  deletePost: data => dispatch(deletePost(data)),
+  deleteComment: data => dispatch(deleteComment(data))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)

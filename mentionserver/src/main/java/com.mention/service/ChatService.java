@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ChatService {
 
-  ResponseEntity<?> getChatsByUsername(String username);
+  ResponseEntity<?> getChatsForCurrentUser();
 
   ResponseEntity<?> getChatByUsernames(String username1, String username2);
 

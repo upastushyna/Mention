@@ -7,6 +7,8 @@ import com.mention.dto.ApiRs;
 import com.mention.dto.PostIdRq;
 import com.mention.dto.PostRq;
 import com.mention.dto.PostRs;
+import com.mention.dto.WsFeedRs;
+import com.mention.model.Comment;
 import com.mention.model.Follow;
 import com.mention.model.Post;
 import com.mention.model.User;
@@ -17,6 +19,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +28,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,12 +47,17 @@ public class PostServiceImpl implements PostService {
 
   private ModelMapper modelMapper;
 
+  private final String wsPath = "/queue/feed";
+
+  private SimpMessagingTemplate template;
+
   @Autowired
   public PostServiceImpl(UserRepository userRepository,
                          PostRepository postRepository,
-                         AmazonS3Configuration as3) {
+                         AmazonS3Configuration as3, SimpMessagingTemplate template) {
     this.userRepository = userRepository;
     this.postRepository = postRepository;
+    this.template = template;
     this.modelMapper = new ModelMapper();
     this.as3 = as3;
   }
@@ -62,6 +72,8 @@ public class PostServiceImpl implements PostService {
           user.getFollowedUsers()) {
         posts.addAll(followed.getFollowedUser().getPosts());
       }
+      posts.forEach(post -> post.getComments()
+          .sort(Comparator.comparing(Comment::getTimestamp)));
       List<PostRs> postRs = posts.stream().map(post -> modelMapper.map(
           post, PostRs.class))
           .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
@@ -75,6 +87,8 @@ public class PostServiceImpl implements PostService {
   public List<PostRs> getPostsByUsername(String username) {
     Optional<User> currentUser = userRepository.findByUsername(username);
     if (currentUser.isPresent()) {
+      currentUser.get().getPosts().forEach(post -> post.getComments()
+          .sort(Comparator.comparing(Comment::getTimestamp)));
       List<PostRs> postRs = currentUser.get().getPosts().stream().map(
           post -> modelMapper.map(post, PostRs.class))
           .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
@@ -101,8 +115,11 @@ public class PostServiceImpl implements PostService {
   public List<PostRs> getPostsByBody(String body) {
     List<Post> posts = postRepository.findByBodyContainingIgnoreCase(body);
     if (!posts.isEmpty()) {
+      posts.forEach(post -> post.getComments()
+          .sort(Comparator.comparing(Comment::getTimestamp)));
       List<PostRs> currentPosts = posts.stream()
           .map(post -> modelMapper.map(post, PostRs.class))
+          .sorted((p1, p2) -> p2.getLikes().size() - p1.getLikes().size())
           .collect(Collectors.toList());
       return currentPosts;
     }
@@ -124,7 +141,7 @@ public class PostServiceImpl implements PostService {
     User user = new User(userId);
     Post post = new Post(body, user);
     if (file != null) {
-      String key = "pictures/" + file.getOriginalFilename();
+      String key = "pictures/" + UUID.randomUUID();
       InputStream myFile = file.getInputStream();
       s3.putObject(
           bucket,
@@ -136,6 +153,13 @@ public class PostServiceImpl implements PostService {
       post.setAmazonKey(key);
     }
     postRepository.save(post);
+    Optional<User> currentUser = userRepository.findById(userId);
+    if (currentUser.isPresent()) {
+      currentUser.get().getFollowers().forEach(follow ->
+          template.convertAndSendToUser(follow.getFollower().getUsername(), wsPath,
+              new WsFeedRs(follow.getFollower().getUsername())));
+    }
+
     return ResponseEntity.ok(new ApiRs(true, "Post added successfully"));
   }
 
@@ -178,7 +202,5 @@ public class PostServiceImpl implements PostService {
     return ResponseEntity.ok(new ApiRs(true, "Deleted successfully"));
   }
 
- /* public void deletePost(Long postId) {
-    postRepository.deleteById(postId);
-  }*/
+
 }

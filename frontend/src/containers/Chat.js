@@ -2,6 +2,8 @@ import React, { Fragment } from 'react'
 import '../css/index.css'
 import send from '../img/send.png'
 import {getDateFromDb} from '../js/chatdisplaytime'
+import {webSocketChat} from "../js/wsConnection";
+import {Link} from "react-router-dom";
 
 const goBack = () => {
   document.getElementsByClassName('messages-container')[0].style.display = "none";
@@ -20,29 +22,33 @@ const Chat = props => {
       body: JSON.stringify({content: document.getElementById('messageInput').value,
         sender: {id: props.currentUser.id},
         receiver: {id: props.chat.user2.username === props.user2
-          ? props.chat.user2.id : props.chat.user1.id},
+          ? props.chat.user2.id : props.chat.user1.id, username:
+            props.chat.user2.username === props.user2
+              ? props.chat.user2.username : props.chat.user1.username},
         chat: {id: props.chat.id}})
-    }).then(() => props.loadChat(props.user1, props.user2))
-    .then(() => props.loadData(props.user1))
-    .then(() => document.getElementById('messageInput').value = '')
+    }).then(() => props.loadData())
+    .then(() => props.loadChat(props.chat.user1.username, props.chat.user2.username))
+    .then(() => document.getElementById('messageInput').value = '');
 
   if (!props.chat || !props.chat.messages) {
-    props.loadChat(props.user1, props.user2)
+    props.loadChat(props.user1, props.user2);
     return 'loading...'
   }
 
   return <Fragment key={Chat.id}>
     <div className="messages-container__header d-flex-center content-between">
-      <div className="d-flex-center">
-        <img src={props.chat.user2.username === props.user2
-          ? props.chat.user2.profile.avatarUrl
-          : props.chat.user1.profile.avatarUrl}
-        alt="avatar" className="profile-info__avatar"/>
-        <div className="profile-info__signature">
-          <h2 className="profile-info__username">{props.user2}</h2>
-          <span className="profile-info__alias">Online</span>
+      <Link to={'/user/' + props.user2} className="post__link">
+        <div className="d-flex-center">
+          <img src={props.chat.user2.username === props.user2
+            ? props.chat.user2.profile.avatarUrl
+            : props.chat.user1.profile.avatarUrl}
+          alt="avatar" className="profile-info__avatar"/>
+          <div className="profile-info__signature">
+            <h2 className="profile-info__username">{props.user2}</h2>
+            <span className="profile-info__alias">Online</span>
+          </div>
         </div>
-      </div>
+      </Link>
       <div className="chats__header" onClick={() => goBack()}>Go back2</div>
     </div>
     <div className="messages-container__body">

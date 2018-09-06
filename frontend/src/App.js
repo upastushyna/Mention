@@ -14,17 +14,24 @@ import SearchPage from './components/SearchPage'
 import {connect} from 'react-redux'
 import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
-import Websocket from './components/Websocket'
+import {isLoggedIn} from './js/isLoggedIn'
+import {loadChats} from "./actions/chatsActions";
+import {loadChat} from "./actions/singleChatActions";
+
 
 class App extends Component {
   componentWillMount () {
       if (!this.props.currentUser || !this.props.currentUser.username) {
-        if (this.isLoggedIn()) {
+        if (isLoggedIn()) {
           this.props.loadCurrentUser()
         }else {
           this.props.history.push("/registration")
         }
       }
+  }
+
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleOnScroll);
   }
 
   handleOnScroll = () => {
@@ -38,18 +45,6 @@ class App extends Component {
 
   scrollToTop = () => {
     this.refs.pageTop.scrollIntoView({ block: 'end',  behavior: 'smooth' });
-  };
-
-  componentDidMount () {
-    window.addEventListener('scroll', this.handleOnScroll);
-  }
-
-
-  isLoggedIn = () => {
-    if (localStorage.getItem("accessToken")) {
-      return true;
-    }
-    return false;
   };
 
   render () {
@@ -75,9 +70,8 @@ class App extends Component {
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path='/favorites' component={Favorites}/>
-          <Route exact path='/websocket' component={Websocket}/>
           <Route path='/search/:input' component={SearchPage}/>
-          <Route path='/:username' component={UserPage}/>
+          <Route path='/user/:username' component={UserPage}/>
           <Route path="*" component={NotFound}/>
 
         </Switch>
@@ -89,10 +83,12 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-  loadCurrentUser: () => dispatch(loadCurrentUser())
-})
+  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  loadData: username => dispatch(loadChats(username)),
+  loadMessages: (username1, username2) => dispatch(loadChat(username1, username2))
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
