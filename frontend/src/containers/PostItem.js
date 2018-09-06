@@ -12,6 +12,10 @@ const openComments = idPost => {
   let el = document.getElementById(idPost);
   let cont = el.querySelector('.comments-list');
   cont.classList.toggle('d-none');
+
+  setTimeout(function() {
+    cont.classList.toggle("comment-opacity");
+  }, 100);
 };
 
 const showOptions = id => {
