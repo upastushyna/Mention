@@ -7,6 +7,7 @@ import {deleteComment} from '../actions/commentsActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
+import {webSocketFeed} from "../js/wsConnection";
 
 class Feed extends React.Component {
   constructor (props) {
@@ -23,9 +24,13 @@ class Feed extends React.Component {
     }
   }
 
+  componentDidMount () {
+    webSocketFeed(this.props.loadData);
+  }
+
   addPost = event => {
-    event.preventDefault()
-    const data = new FormData()
+    event.preventDefault();
+    const data = new FormData();
     data.append('body', this.refs.postInput.value);
     data.append('id', this.props.currentUser.id);
     if (this.refs.inputFile) {
@@ -56,6 +61,7 @@ class Feed extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser();
       return 'Loading...'
     }
 
@@ -95,13 +101,15 @@ class Feed extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  feed: state.feed
+  feed: state.feed,
+  deletePost: state.deletePost,
+  deleteComment: state.deleteComment
 });
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username)),
-  deletePost: data => dispatch(deletePost(data)),
-  deleteComment: data => dispatch(deleteComment(data))
+  deletePost: id => dispatch(deletePost(id)),
+  deleteComment: id => dispatch(deleteComment(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)

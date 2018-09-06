@@ -13,3 +13,15 @@ export const webSocketChat = (callback1, callback2) =>  {
     });
   });
 };
+
+export const webSocketFeed = (callback) => {
+  let ws = new SockJS('http://localhost:8080/ws_0001?accessToken=' +
+    'Bearer '  + localStorage.getItem("accessToken"));
+  let stompClient = Stomp.over(ws);
+  stompClient.connect({}, function (frame) {
+    stompClient.subscribe('/user/queue/feed', function (resp) {
+      const object = JSON.parse(resp.body);
+      callback(object.listener);
+    });
+  });
+};
