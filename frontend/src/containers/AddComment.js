@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import {Link} from "react-router-dom";
 
 const AddComment = props => {
   const addComment = () => fetch('/api/comments/add',
@@ -18,7 +19,9 @@ const AddComment = props => {
 
   return <Fragment>
       <div className="add-comment">
-        <img src={props.currentUser.profile.avatarUrl} alt="avatar" className="add-comment__avatar"/>
+        <Link to={"/user/" + props.username} className="post__link">
+          <img src={props.currentUser.profile.avatarUrl} alt="avatar" className="add-comment__avatar"/>
+        </Link>
         <textarea className="create-post__input"
           id={'commentInput' + props.postId} placeholder="Add comment"
                   onKeyPress={(e) => {(e.key === 'Enter' ? addComment() : null)}}

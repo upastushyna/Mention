@@ -86,10 +86,12 @@ class HeaderPanel extends React.Component {
               <Link to={'/user/' + this.props.currentUser.username} className="d-flex-center">
                 <img src={this.props.currentUser.profile.avatarUrl} alt="avatar" className="profile-card__avatar"/>
               </Link>
-              <h2 className="profile-card__username">
-                {this.props.currentUser.username}
-              </h2>
-              <img src={arrow} alt="arrow" onClick={() => this.showOptions()} className="profile-info__arrow" tabIndex="1"/>
+              <div className="d-flex-center" onClick={() => this.showOptions()}>
+                <h2 className="profile-card__username">
+                  {this.props.currentUser.username}
+                </h2>
+                <img src={arrow} alt="arrow" className="profile-info__arrow" tabIndex="1"/>
+              </div>
               <ul ref="nav" id="nav" className="profile__nav d-none">
               <li ref="listItem"><Link to="/editprofile" className="profile__option">Edit
                     Profile</Link></li>
