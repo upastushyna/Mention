@@ -17,7 +17,6 @@
 
   &__action-count {
     margin: 0 10px;
-    font-size: 11px;
     color: $meta-color;
   }
 
@@ -42,6 +41,8 @@
 
   &__img {
     display: block;
+    max-height: 515px;
+    margin: 15px auto;
     width: 100%;
   }
 
@@ -54,8 +55,8 @@
   }
 
   &__action-img {
-    width: 16px;
-    height: 16px;
+    width: 30px;
+    height: 30px;
     outline: none;
     cursor: pointer;
   }
