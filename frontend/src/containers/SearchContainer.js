@@ -42,9 +42,9 @@ class SearchContainer extends React.Component {
           placeholder="Search..."/>
           <input type="submit" className="" value="Search" />
         </form>
-        <Link to={'/search/' + this.state.input} className="search__btn" onClick={() => this.onClick()}>
+        {/* <Link to={'/search/' + this.state.input} className="search__btn" onClick={() => this.onClick()}>
           <img src={search} alt="search"/>
-        </Link>
+        </Link> */}
       </Fragment>
     )
   }
