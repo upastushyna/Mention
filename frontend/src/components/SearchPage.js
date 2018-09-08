@@ -10,6 +10,7 @@ import {loadCurrentUser} from '../actions/currentUserActions'
 import searchIcon from '../img/search-icon.svg'
 import {deletePost} from '../actions/postsActions'
 import {deleteComment} from '../actions/commentsActions'
+import Loader from "../containers/Loader";
 
 class SearchPage extends React.Component {
   componentWillMount () {
@@ -50,7 +51,7 @@ class SearchPage extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return 'Loading...'
+      return <Loader/>
     }
 
     return (
@@ -64,7 +65,8 @@ class SearchPage extends React.Component {
               loadData={this.props.loadPosts}
               currentUser={this.props.currentUser}
               deletePost={this.props.deletePost}
-              deleteComment={this.props.deleteComment}/>}
+              deleteComment={this.props.deleteComment}/>
+          }
           <div className="users-panel">
             {this.props.foundUsers.length === 0 ? ''
               : <UsersContainer username={this.props.match.params.input}

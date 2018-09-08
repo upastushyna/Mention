@@ -8,6 +8,8 @@ import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
 import {webSocketFeed} from "../js/wsConnection";
+import Loader from "../containers/Loader";
+import Preloader from "../containers/Preloader";
 
 class Feed extends React.Component {
   constructor (props) {
@@ -61,7 +63,7 @@ class Feed extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return 'Loading...'
+      return <Preloader/>;
     }
 
     return (

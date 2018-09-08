@@ -17,6 +17,8 @@ import upload from '../img/fileuploadicon.png'
 import {deletePost} from '../actions/postsActions'
 import {isLoggedIn} from '../js/isLoggedIn'
 import {deleteComment} from "../actions/commentsActions";
+import Loader from '../containers/Loader'
+import Preloader from "../containers/Preloader";
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -115,7 +117,7 @@ class UserPage extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return 'Loading...'
+      return <Preloader/>
     }
 
     return (
@@ -142,21 +144,22 @@ class UserPage extends React.Component {
               }
             </div>
           </div>
-          {this.props.match.params.username === this.props.currentUser.username?<div className="create-post">
-            <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-              <div className="d-flex-center content-between">
-              <textarea className="create-post__input" id="postInput"
-                        placeholder="Share your thoughts" ref="postInput"
-                        maxLength={280}/>
-                <button type="submit" className="create-post__btn btn-action">Add post</button>
-                <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
-              </div>
-              <div className="upload-file">
-                <img src={upload} alt="upload" className="upload-file__icon"/>
-                <p ref="addFile">Add file</p>
-                <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/>
-              </div>
-            </form>
+          {this.props.match.params.username === this.props.currentUser.username?
+              <div className="create-post">
+                <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
+                  <div className="d-flex-center content-between">
+                  <textarea className="create-post__input" id="postInput"
+                            placeholder="Share your thoughts" ref="postInput"
+                            maxLength={280}/>
+                    <button type="submit" className="create-post__btn btn-action">Add post</button>
+                    <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
+                  </div>
+                  <div className="upload-file">
+                    <img src={upload} alt="upload" className="upload-file__icon"/>
+                    <p ref="addFile">Add file</p>
+                    <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/>
+                  </div>
+                </form>
           </div> : ""}
           <Switch>
             <Route exact path={this.props.match.path} render={() => {

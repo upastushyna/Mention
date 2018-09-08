@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom'
 import {getDateFromDb} from '../js/timestamp.js'
 
 const openChat = () => {
-  document.getElementsByClassName('messages-container')[0].style.display = "block";
+  /*document.getElementsByClassName('messages-container')[0].style.display = "block";
   document.getElementsByClassName('messages-container')[0].style.width = "100%";
-  document.getElementsByClassName('chats__list')[0].style.display = "none";
+  document.getElementsByClassName('chats__list')[0].style.display = "none";*/
 };
 
 const ChatsContainer = props => {
@@ -16,7 +16,7 @@ const ChatsContainer = props => {
     <Fragment key={chat.id}>
       <Link className="chat-container" to={chat.user1.username === props.username
         ? '/messages/' + chat.user2.username : '/messages/' + chat.user1.username}
-            onClick={() => props.loadChat(chat.user1.username, chat.user2.username)}>
+            onClick={() => openChat()}>
         <div className="d-flex-center">
           <img src={chat.user1.username === props.username
             ? chat.user2.profile.avatarUrl : chat.user1.profile.avatarUrl} alt="icon-search"

@@ -4,7 +4,13 @@
   color: $meta-color; 
   font-size: 13px;
   line-height: 25px;
-  &__info{
+
+  &__info {
     margin: 0 4px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #38ACEC;
   }
 }
