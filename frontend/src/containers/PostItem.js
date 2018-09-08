@@ -108,7 +108,7 @@ const PostItem = props => {
           <img src={comment} alt="comment" className="post__action-img" onClick={() => openComments(props.post.id)}/>
           <span className="post__action-count">{props.post.comments.length}</span>
           <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>
-          <div className="post__action-count">{props.post.children.length}</div>
+          <span className="post__action-count">{props.post.children.length}</span>
         </div>
       </div>
       <div className="comments-list d-none">

@@ -14,8 +14,8 @@
  }
 
  &__container{
-    /*overflow-y: scroll;*/
-    height: 80%;
+  /*overflow-y: scroll;*/
+  height: 80%;
  }
 
  &__search {
@@ -44,7 +44,7 @@
  }
 
  &__header {
-
+  display: none;
   padding: 16px;
  }
 }
