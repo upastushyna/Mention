@@ -7,7 +7,7 @@ const AddComment = props => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': "Bearer " + localStorage.getItem("accessToken")
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
       },
       body: JSON.stringify({body: document.getElementById('commentInput' + props.postId)
         .value,
@@ -17,15 +17,15 @@ const AddComment = props => {
     .then(() => document.getElementById('commentInput' + props.postId).value = '')
 
   return <Fragment>
-      <div className="add-comment">
-        <img src={props.currentUser.profile.avatarUrl} alt="avatar" className="add-comment__avatar"/>
-        <textarea className="create-post__input"
-          id={'commentInput' + props.postId} placeholder="Add comment"
-                  onKeyPress={(e) => {(e.key === 'Enter' ? addComment() : null)}}
-          maxLength={280} />
-          <button onClick={() => addComment()} className="create-post__btn btn-action">Add</button>
-          <button onClick={() => addComment()} className="btn-action create-post__btn_rounded btn-action_rounded">+</button>
-      </div>
+    <div className="add-comment">
+      <img src={props.currentUser.profile.avatarUrl} alt="avatar" className="add-comment__avatar"/>
+      <textarea className="create-post__input"
+        id={'commentInput' + props.postId} placeholder="Add comment"
+        onKeyPress={(e) => { (e.key === 'Enter' ? addComment() : null) }}
+        maxLength={280} />
+      <button onClick={() => addComment()} className="create-post__btn btn-action">Add</button>
+      <button onClick={() => addComment()} className="btn-action create-post__btn_rounded btn-action_rounded">+</button>
+    </div>
   </Fragment>
 }
 

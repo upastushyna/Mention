@@ -23,7 +23,7 @@ class SearchContainer extends React.Component {
     return (
       <Fragment>
         <form action="#" className="d-flex-center">
-          <input onKeyUp={() => this.setState({input: this.refs.searchInput.value})} id="searchInput"
+          <input /* onKeyUp={() => this.setState({input: this.refs.searchInput.value})} */ onKeyPress={(e) => { (e.key === 'Enter' ? () => this.setState({input: this.refs.searchInput.value}) : null) }}id="searchInput"
             /* onKeyPress={(e) => {(e.key === 'Enter' ? () => this.setState({input: this.refs.searchInput.value}): null)}} */
             ref="searchInput" type="text" className="search__input"
             placeholder="Search..."/>
@@ -39,11 +39,11 @@ class SearchContainer extends React.Component {
 const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
   foundUsers: state.foundUsers
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
   loadUsers: input => dispatch(loadSearchUsers(input))
-});
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
