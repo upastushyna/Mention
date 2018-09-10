@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import '../css/index.css'
 import send from '../img/send.png'
 import {getDateFromDb} from '../js/chatdisplaytime'
-import {webSocketChat} from "../js/wsConnection";
 import {Link} from "react-router-dom";
 import Loader from "./Loader";
 

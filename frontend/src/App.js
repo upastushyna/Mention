@@ -4,7 +4,6 @@ import './css/index.css'
 import { Route, Switch } from 'react-router-dom'
 import Profile from './components/Profile'
 import Messages from './components/Messages'
-import Favorites from './components/Favorites'
 import HomePage from './components/HomePage'
 import NotFound from './components/NotFound'
 import Registration from './components/Registration'
@@ -70,7 +69,6 @@ class App extends Component {
           <Route path='/profile' component={() => <Profile
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
-          <Route path='/favorites' component={Favorites}/>
           <Route path='/search/:input' component={SearchPage}/>
           <Route path='/user/:username' component={UserPage}/>
           <Route path='/post/:id' component={props => <Post
