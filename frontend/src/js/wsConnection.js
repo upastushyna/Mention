@@ -33,7 +33,9 @@ export const webSocketMessageNotification = (callback) => {
   stompClient.connect({}, function (frame) {
     stompClient.subscribe('/user/queue/notifications', function (resp) {
       const object = JSON.parse(resp.body);
-      callback(object);
+      if (window.location.pathname !== '/messages/' + object.user.username){
+        callback(object);
+      }
     });
   });
 };

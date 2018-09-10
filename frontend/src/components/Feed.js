@@ -63,6 +63,7 @@ class Feed extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
+      this.props.loadCurrentUser();
       return <Preloader/>;
     }
 
