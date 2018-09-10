@@ -205,7 +205,7 @@ public class PostServiceImpl implements PostService {
   @Override
   public ResponseEntity<?> getPostById(Long id) {
     Optional<Post> post = postRepository.findById(id);
-    if(!post.isPresent()) {
+    if (!post.isPresent()) {
       return new ResponseEntity(new ApiRs(false, "Post not found"), HttpStatus.NOT_FOUND);
     }
     PostRs currentPost = modelMapper.map(post.get(), PostRs.class);
