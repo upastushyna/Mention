@@ -28,5 +28,6 @@ export default combineReducers({
   foundPosts: searchPostsReducer,
   currentUser: currentUserReducer,
   deletePost: postsReducer,
-  deleteComment: commentsReducer
+  deleteComment: commentsReducer,
+  post: postsReducer
 })
