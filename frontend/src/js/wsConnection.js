@@ -25,3 +25,15 @@ export const webSocketFeed = (callback) => {
     });
   });
 };
+
+export const webSocketMessageNotification = (callback) => {
+  let ws = new SockJS('http://localhost:8080/ws_0001?accessToken=' +
+    'Bearer '  + localStorage.getItem("accessToken"));
+  let stompClient = Stomp.over(ws);
+  stompClient.connect({}, function (frame) {
+    stompClient.subscribe('/user/queue/notifications', function (resp) {
+      const object = JSON.parse(resp.body);
+      callback(object);
+    });
+  });
+};

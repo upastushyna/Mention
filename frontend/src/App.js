@@ -17,6 +17,7 @@ import withRouter from 'react-router-dom/es/withRouter'
 import {isLoggedIn} from './js/isLoggedIn'
 import {loadChats} from "./actions/chatsActions";
 import {loadChat} from "./actions/singleChatActions";
+import {webSocketMessageNotification} from "./js/wsConnection";
 
 
 class App extends Component {
