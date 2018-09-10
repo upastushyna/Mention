@@ -17,6 +17,8 @@ import {isLoggedIn} from './js/isLoggedIn'
 import {loadChats} from "./actions/chatsActions";
 import {loadChat} from "./actions/singleChatActions";
 import Post from "./components/Post";
+import {webSocketFeed} from "./js/wsConnection";
+import {loadFeed} from "./actions/feedActions";
 
 
 class App extends Component {
@@ -32,6 +34,7 @@ class App extends Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleOnScroll);
+    webSocketFeed(this.props.loadFeed);
   }
 
   handleOnScroll = () => {
@@ -56,7 +59,8 @@ class App extends Component {
           <Route exact path='/' component={() => <HomePage
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}
-            history={this.props.history}/>}/>
+            history={this.props.history}
+            feed={this.props.feed}/>}/>
           <Route path='/messages' component={() => <Messages
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
@@ -84,13 +88,15 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  feed:state.feed
 });
 
 const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser()),
   loadData: username => dispatch(loadChats(username)),
-  loadMessages: (username1, username2) => dispatch(loadChat(username1, username2))
+  loadMessages: (username1, username2) => dispatch(loadChat(username1, username2)),
+  loadFeed: username => dispatch(loadFeed(username))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
