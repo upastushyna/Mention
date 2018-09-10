@@ -6,8 +6,17 @@ import notification from '../img/header-panel/notification-icon.png'
 import feed from '../img/header-panel/icon-feed.png'
 import arrow from '../img/white-down-arrow.png'
 import SearchContainer from './SearchContainer'
+import {webSocketMessageNotification} from "../js/wsConnection";
+import Notification from '../containers/Notification'
 
 class HeaderPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      notification: undefined
+    };
+  }
+
   componentWillMount () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       this.props.loadCurrentUser()
@@ -16,7 +25,12 @@ class HeaderPanel extends React.Component {
 
    componentDidMount () {
     window.addEventListener('mousedown', event => this.hide(event));
+     webSocketMessageNotification(this.notify);
   }
+
+  notify = notification => {
+    this.setState({notification:notification})
+  };
 
   hide = event => {
     let containsLink = event.target.classList.contains('profile__option');
@@ -72,7 +86,8 @@ class HeaderPanel extends React.Component {
               <li className="header-menu__item">
                 <Link to="/" className="header-menu__link">
                   <img src={notification} alt="notify" className="header-menu__icon"/>
-                  <p>Notifications</p>
+                  <Notification notification={this.state.notification}/>
+                  <p>{"Notifications"}</p>
                 </Link>
               </li>
               <li className="header-menu__item">

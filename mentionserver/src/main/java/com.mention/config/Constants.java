@@ -8,4 +8,5 @@ public final class Constants {
   public static final String COMMENT = "COMMENT";
   public static final String MESSAGE = "MESSAGE";
   public static final String FOLLOW = "FOLLOW";
+  public static final String WS_NOTIFY = "/queue/notifications";
 }

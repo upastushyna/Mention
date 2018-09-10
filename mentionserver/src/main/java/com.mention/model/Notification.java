@@ -48,4 +48,10 @@ public class Notification {
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "notification_modify_timestamp")
   private Date modifyTimestamp;
+
+  public Notification(String url, String type, User user) {
+    this.url = url;
+    this.type = type;
+    this.user = user;
+  }
 }

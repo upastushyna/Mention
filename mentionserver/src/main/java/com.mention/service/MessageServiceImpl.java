@@ -1,10 +1,14 @@
 package com.mention.service;
 
+import com.mention.config.Constants;
 import com.mention.dto.ApiRs;
 import com.mention.dto.MessageRq;
+import com.mention.dto.NotificationRs;
 import com.mention.dto.WsMessageRs;
 import com.mention.model.Message;
+import com.mention.model.Notification;
 import com.mention.repository.MessageRepository;
+import com.mention.repository.NotificationRepository;
 import com.mention.security.UserPrincipal;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +26,15 @@ public class MessageServiceImpl implements MessageService {
 
   private SimpMessagingTemplate template;
 
+  private NotificationRepository notificationRepository;
+
   private final String wsPath = "/queue/chat";
 
   @Autowired
-  public MessageServiceImpl(MessageRepository messageRepository, SimpMessagingTemplate template) {
+  public MessageServiceImpl(MessageRepository messageRepository, SimpMessagingTemplate template, NotificationRepository notificationRepository) {
     this.messageRepository = messageRepository;
     this.template = template;
+    this.notificationRepository = notificationRepository;
   }
 
   @Override
@@ -44,9 +51,19 @@ public class MessageServiceImpl implements MessageService {
     ModelMapper modelMapper = new ModelMapper();
     Message insertMessage = modelMapper.map(message, Message.class);
     messageRepository.save(insertMessage);
+
+    String frontUrl = "/messages/" + userPrincipal.getUsername();
+    Notification notification = new Notification(frontUrl, Constants.MESSAGE, userPrincipal.getUser());
+
+    notificationRepository.save(notification);
     template.convertAndSendToUser(message.getReceiver().getUsername(), wsPath,
         new WsMessageRs(message.getReceiver().getUsername(),
             userPrincipal.getUsername()));
+    template.convertAndSendToUser(message.getReceiver().getUsername(),
+        Constants.WS_NOTIFY,
+        modelMapper.map(notification, NotificationRs.class));
+
     return ResponseEntity.ok(new ApiRs(true, "Message sent successfully"));
+
   }
 }
