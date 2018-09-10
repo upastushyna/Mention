@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker/es/index'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import upload from '../img/fileuploadicon.png'
+import Loader from "../containers/Loader";
 
 class EditProfile extends React.Component {
   constructor(props) {
@@ -114,7 +115,7 @@ class EditProfile extends React.Component {
 
   render() {
     if (!this.props.editProfile) {
-      return "Loading..."
+      return <Loader/>
     }
 
     return (
