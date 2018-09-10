@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const Notification = props => {
+const PopUpNotification = props => {
   if (!props.notification || !props.notification.user) {
     return ""
   }
@@ -9,4 +9,4 @@ const Notification = props => {
     <p>{"New " + props.notification.type + " from " + props.notification.user.username}</p>
   </Link>
 };
-export default Notification
+export default PopUpNotification
