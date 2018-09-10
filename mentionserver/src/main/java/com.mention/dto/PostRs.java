@@ -22,7 +22,7 @@ public class PostRs {
 
   private List<PostLikeRs> likes;
 
-  private List<PostIdRq> children;
+  private List<RepostRs> children;
 
   private PostRs parent;
 }

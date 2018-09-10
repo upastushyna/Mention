@@ -11,17 +11,40 @@ import searchIcon from '../img/search-icon.svg'
 import {deletePost} from '../actions/postsActions'
 import {deleteComment} from '../actions/commentsActions'
 import Loader from "../containers/Loader";
+import {isLoggedIn} from '../js/isLoggedIn'
 
 class SearchPage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      match: this.props.match.params.input
+    }
+  }
   componentWillMount () {
     if (this.props.foundPosts.length === 0 && this.props.foundUsers.length === 0) {
-      this.props.loadPosts(this.props.match.params.input);
+      this.props.loadPosts(this.props.match.params.input)
       this.props.loadUsers(this.props.match.params.input)
     }
     if (!this.props.currentUser || !this.props.currentUser.username) {
       this.props.loadCurrentUser()
     }
   }
+
+  componentDidUpdate () {
+    this.callUpdate()
+  }
+
+  componentDidMount () {
+    this.callUpdate()
+  }
+
+  callUpdate = () => {
+    if (this.props.match.params.input != this.state.match) {
+      this.props.loadPosts(this.props.match.params.input)
+      this.props.loadUsers(this.props.match.params.input)
+      this.setState({match: this.props.match.params.input})
+    }
+  };
 
   follow = followedUser => fetch('/api/follow/add',
     {
@@ -87,7 +110,7 @@ const mapStateToProps = state => ({
   foundPosts: state.foundPosts,
   foundUsers: state.foundUsers,
   currentUser: state.currentUser
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadPosts: input => dispatch(loadSearchPosts(input)),
@@ -95,6 +118,6 @@ const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser()),
   deletePost: data => dispatch(deletePost(data)),
   deleteComment: data => dispatch(deleteComment(data))
-});
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)
