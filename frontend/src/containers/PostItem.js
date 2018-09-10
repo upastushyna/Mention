@@ -7,6 +7,7 @@ import PostLikeItem from './PostLikeItem'
 import AddComment from './AddComment'
 import {getDateFromDb} from '../js/timestamp.js'
 import {Link} from 'react-router-dom'
+import RepostContainer from "./RepostContainer";
 
 const openComments = idPost => {
   let el = document.getElementById(idPost);
@@ -36,8 +37,27 @@ const hide = event => {
   }
 };
 
+const showReposters = id => {
+  if (document.getElementById('repost' + id).classList.contains('d-none')) {
+    document.getElementById('repost' + id).classList.remove('d-none')
+  }
+};
+
+const hideReposters = event => {
+  if (!event.target.classList.contains('likers__nav')) {
+    let hideButton = document.getElementsByClassName('likers__nav');
+
+    Array.prototype.forEach.call(hideButton, item => {
+      if (!item.classList.contains('d-none')) {
+        item.classList.add('d-none')
+      }
+    })
+  }
+};
+
 const PostItem = props => {
   window.addEventListener('mousedown', event => hide(event));
+  window.addEventListener('mousedown', event => hideReposters(event));
   const rePost = () => fetch('/api/posts/repost',
       {
         method: 'POST',
@@ -59,7 +79,7 @@ const PostItem = props => {
             <Link to={'/user/' + props.post.author.username}>
               <h2 className="repost-author__info">@{props.post.author.username}</h2>
             </Link>
-            reposted in
+            reposted
             <span className="repost-author__info">{getDateFromDb(props.post.timestamp)} </span>
           </div>
           : ''}
@@ -108,7 +128,10 @@ const PostItem = props => {
           <img src={comment} alt="comment" className="post__action-img" onClick={() => openComments(props.post.id)}/>
           <span className="post__action-count">{props.post.comments.length}</span>
           <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>
-          <span className="post__action-count">{props.post.children.length}</span>
+          <div className="post__action-count" onClick={() => showReposters(props.post.id)}>{props.post.children.length}</div>
+          <div id={"repost" + props.post.id} className="d-none likers__nav">
+            <RepostContainer children={props.post.children}/>
+          </div>
         </div>
       </div>
       <div className="comments-list d-none">
