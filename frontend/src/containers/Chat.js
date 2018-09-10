@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 import '../css/index.css'
 import send from '../img/send.png'
 import {getDateFromDb} from '../js/chatdisplaytime'
-import {webSocketChat} from "../js/wsConnection";
 import {Link} from "react-router-dom";
+import Loader from "./Loader";
 
 const goBack = () => {
   document.getElementsByClassName('messages-container')[0].style.display = "none";
@@ -32,7 +32,7 @@ const Chat = props => {
 
   if (!props.chat || !props.chat.messages) {
     props.loadChat(props.user1, props.user2);
-    return 'loading...'
+    return <Loader/>
   }
 
   return <Fragment key={Chat.id}>
@@ -49,7 +49,7 @@ const Chat = props => {
           </div>
         </div>
       </Link>
-      <div className="chats__header" onClick={() => goBack()}>Go back2</div>
+      <div className="chats__header" onClick={() => goBack()}>Go back</div>
     </div>
     <div className="messages-container__body">
       <div className="flex-column">

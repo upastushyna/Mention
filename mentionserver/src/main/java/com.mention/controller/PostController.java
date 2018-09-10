@@ -75,4 +75,9 @@ public class PostController {
   public ResponseEntity<?> deletePost(@RequestBody PostIdRq post) {
     return userPostsService.deletePost(post);
   }
+
+  @GetMapping("/get/{id}")
+  public ResponseEntity<?> getPostById(@PathVariable Long id) {
+    return userPostsService.getPostById(id);
+  }
 }

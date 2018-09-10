@@ -76,7 +76,7 @@ const PostItem = props => {
     <div className="post" id={props.post.id}>
       {props.post.parent
           ? <div className="repost-author">
-            <Link to={'/user/' + props.post.author.username}>
+            <Link to={'/user/' + props.post.author.username} className="repost-author__link">
               <h2 className="repost-author__info">@{props.post.author.username}</h2>
             </Link>
             reposted

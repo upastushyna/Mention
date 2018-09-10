@@ -17,7 +17,7 @@ class Messages extends React.Component {
   };
 
   componentWillMount () {
-    if (this.props.chats.length === 0) {
+    if (this.props.chats.length === 0 && this.props.currentUser.username) {
       this.props.loadData()
     }
   }
@@ -55,7 +55,7 @@ class Messages extends React.Component {
     return (
       <Fragment key={Messages.id}>
         <Navigation/>
-        <div className="chats__header" onClick={() => this.openChat()}>Go back</div>
+        <div className="chats__header" onClick={() => this.openChat()}>Open chat</div>
         <main className="container chats__view">
           <section className="chats__list">
             <div className="chats__search">
@@ -71,10 +71,11 @@ class Messages extends React.Component {
 
           <section className="messages-container">
             <Switch>
-              <Route path='/messages/:username' component={props =>
+              <Route path='/messages/:username' render={props =>
                 <Chat user1={this.props.currentUser.username} user2={props.match.params.username}
                   loadChat={this.props.loadMessages} chat={this.props.chat}
-                  loadData={this.props.loadData} currentUser={this.props.currentUser}/>}/>
+                  loadData={this.props.loadData} currentUser={this.props.currentUser}/>}
+              />
             </Switch>
           </section>
         </main>

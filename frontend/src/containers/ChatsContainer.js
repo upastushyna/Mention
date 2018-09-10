@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom'
 import {getDateFromDb} from '../js/timestamp.js'
 
 const openChat = () => {
-  document.getElementsByClassName('messages-container')[0].style.display = "block";
+  /*document.getElementsByClassName('messages-container')[0].style.display = "block";
   document.getElementsByClassName('messages-container')[0].style.width = "100%";
-  document.getElementsByClassName('chats__list')[0].style.display = "none";
+  document.getElementsByClassName('chats__list')[0].style.display = "none";*/
 };
 
 const ChatsContainer = props => {

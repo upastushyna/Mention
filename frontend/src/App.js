@@ -4,7 +4,6 @@ import './css/index.css'
 import { Route, Switch } from 'react-router-dom'
 import Profile from './components/Profile'
 import Messages from './components/Messages'
-import Favorites from './components/Favorites'
 import HomePage from './components/HomePage'
 import NotFound from './components/NotFound'
 import Registration from './components/Registration'
@@ -17,6 +16,7 @@ import withRouter from 'react-router-dom/es/withRouter'
 import {isLoggedIn} from './js/isLoggedIn'
 import {loadChats} from "./actions/chatsActions";
 import {loadChat} from "./actions/singleChatActions";
+import Post from "./components/Post";
 
 
 class App extends Component {
@@ -69,11 +69,13 @@ class App extends Component {
           <Route path='/profile' component={() => <Profile
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
-          <Route path='/favorites' component={Favorites}/>
           <Route path='/search/:input' component={SearchPage}/>
           <Route path='/user/:username' component={UserPage}/>
+          <Route path='/post/:id' component={props => <Post
+            {...props}
+            currentUser={this.props.currentUser}
+            loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path="*" component={NotFound}/>
-
         </Switch>
         <button onClick={() => this.scrollToTop()} ref="scroller" className="scroll-btn d-none">&#11014;</button>
       </Fragment>

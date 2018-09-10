@@ -25,6 +25,8 @@ public interface PostService {
 
   ResponseEntity<?> rePost(PostRq post);
 
+  ResponseEntity<?> getPostById(Long id);
+
 
 
 
