@@ -7,7 +7,6 @@ import {deleteComment} from '../actions/commentsActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
-import Loader from "../containers/Loader";
 import Preloader from "../containers/Preloader";
 
 class Feed extends React.Component {

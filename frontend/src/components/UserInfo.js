@@ -26,7 +26,7 @@ class UserInfo extends React.Component {
         </div>
 
         <Switch>
-          <Route exact path='/user/:username/info/followed' component={() =>
+          <Route exact path='/user/:username/info/followed' render={() =>
             <UsersContainer username={this.props.username}
               loadUsers={this.props.loadFollowedUsers}
               users={this.props.followed}
@@ -34,7 +34,7 @@ class UserInfo extends React.Component {
               loadCurrentUser={this.props.loadCurrentUser}
               follow={this.props.follow}
               unfollow={this.props.unfollow}/>}/>
-          <Route exact path='/user/:username/info/following' component={() =>
+          <Route exact path='/user/:username/info/following' render={() =>
             <UsersContainer username={this.props.username}
               loadUsers={this.props.loadFollowers}
               users={this.props.following}
@@ -42,7 +42,7 @@ class UserInfo extends React.Component {
               loadCurrentUser={this.props.loadCurrentUser}
               follow={this.props.follow}
               unfollow={this.props.unfollow}/>}/>
-          <Route exact path='/user/:username/info/liked' component={() =>
+          <Route exact path='/user/:username/info/liked' render={() =>
             <PostsContainer username={this.props.username}
               userPosts={this.props.likedPosts}
               loadData={this.props.loadData}
@@ -59,13 +59,13 @@ const mapStateToProps = state => ({
   followed: state.followed,
   following: state.following
 
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadLiked(username)),
   loadFollowedUsers: username => dispatch(loadFollowed(username)),
   loadFollowers: username => dispatch(loadFollowing(username))
 
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)

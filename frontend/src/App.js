@@ -14,8 +14,6 @@ import {connect} from 'react-redux'
 import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
 import {isLoggedIn} from './js/isLoggedIn'
-import {loadChats} from "./actions/chatsActions";
-import {loadChat} from "./actions/singleChatActions";
 import Post from "./components/Post";
 import {webSocketFeed} from "./js/wsConnection";
 import {loadFeed} from "./actions/feedActions";
@@ -94,8 +92,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  loadData: username => dispatch(loadChats(username)),
-  loadMessages: (username1, username2) => dispatch(loadChat(username1, username2)),
   loadFeed: username => dispatch(loadFeed(username))
 });
 
