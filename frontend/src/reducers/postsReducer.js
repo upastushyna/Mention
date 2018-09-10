@@ -5,7 +5,7 @@ const initialState = {};
 function postsReducer (state = initialState, action) {
   switch (action.type) {
     case USER_POST_DELETED:
-      return state.filter((item) => (item.id !== action.id));
+      return null;
     case POST_LOADED:
       return action.payload;
     default:
