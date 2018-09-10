@@ -31,7 +31,9 @@ public class MessageServiceImpl implements MessageService {
   private final String wsPath = "/queue/chat";
 
   @Autowired
-  public MessageServiceImpl(MessageRepository messageRepository, SimpMessagingTemplate template, NotificationRepository notificationRepository) {
+  public MessageServiceImpl(MessageRepository messageRepository,
+                            SimpMessagingTemplate template,
+                            NotificationRepository notificationRepository) {
     this.messageRepository = messageRepository;
     this.template = template;
     this.notificationRepository = notificationRepository;
