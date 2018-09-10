@@ -160,7 +160,7 @@ class UserPage extends React.Component {
                                      deleteComment={this.props.deleteComment}/>)}}
             />
 
-            <Route path='/user/:username/info' component={() =>
+            <Route path='/user/:username/info' render={() =>
                 <UserInfo username={this.props.match.params.username}
                           currentUser={this.props.currentUser}
                           loadCurrentUser={this.props.loadCurrentUser}
