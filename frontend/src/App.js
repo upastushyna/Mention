@@ -17,7 +17,7 @@ import withRouter from 'react-router-dom/es/withRouter'
 import {isLoggedIn} from './js/isLoggedIn'
 import {loadChats} from "./actions/chatsActions";
 import {loadChat} from "./actions/singleChatActions";
-import {webSocketMessageNotification} from "./js/wsConnection";
+import Post from "./components/Post";
 
 
 class App extends Component {
@@ -73,8 +73,11 @@ class App extends Component {
           <Route path='/favorites' component={Favorites}/>
           <Route path='/search/:input' component={SearchPage}/>
           <Route path='/user/:username' component={UserPage}/>
+          <Route path='/post/:id' component={props => <Post
+            {...props}
+            currentUser={this.props.currentUser}
+            loadCurrentUser={this.props.loadCurrentUser}/>}/>
           <Route path="*" component={NotFound}/>
-
         </Switch>
         <button onClick={() => this.scrollToTop()} ref="scroller" className="scroll-btn d-none">&#11014;</button>
       </Fragment>
