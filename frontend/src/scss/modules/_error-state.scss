@@ -1,0 +1,31 @@
+.error{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	padding: 16px;
+
+	&__type{
+		font-size: 250px;
+		color: #fff;
+		font-weight: 700;
+		text-shadow: 12px 12px 12px $main-color;
+		margin-bottom: 48px;
+	}
+
+	&__description{
+		color: $black-text-color;
+		font-size: 17px;
+		font-weight: 500;
+		margin-bottom: 48px;
+		text-align: center;
+	}
+
+}
+
+@media screen and (max-width: 1200px) {
+	.error__type {
+        font-size: 150px;
+	}
+}

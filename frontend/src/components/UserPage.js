@@ -25,18 +25,6 @@ class UserPage extends React.Component {
     super(props);
   }
 
-  componentWillMount () {
-    if (this.props.userPosts.length === 0) {
-      this.props.loadData(this.props.match.params.username)
-    }
-    if (!this.props.user || !this.props.user.username) {
-      this.props.loadUser(this.props.match.params.username)
-    }
-    if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser()
-    }
-  }
-
   componentDidUpdate() {
     this.callUpdate();
   }
@@ -50,6 +38,7 @@ class UserPage extends React.Component {
         && isLoggedIn()) {
       this.props.loadUser(this.props.match.params.username);
       this.props.loadData(this.props.match.params.username);
+      this.props.loadCurrentUser();
       if(this.refs.scrollTop) {
         this.refs.scrollTop.scrollIntoView();
       }

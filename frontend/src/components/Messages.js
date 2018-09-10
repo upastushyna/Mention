@@ -17,7 +17,7 @@ class Messages extends React.Component {
   };
 
   componentWillMount () {
-    if (this.props.chats.length === 0) {
+    if (this.props.chats.length === 0 && this.props.currentUser.username) {
       this.props.loadData()
     }
   }
@@ -71,7 +71,7 @@ class Messages extends React.Component {
 
           <section className="messages-container">
             <Switch>
-              <Route path='/messages/:username' component={props =>
+              <Route path='/messages/:username' render={props =>
                 <Chat user1={this.props.currentUser.username} user2={props.match.params.username}
                   loadChat={this.props.loadMessages} chat={this.props.chat}
                   loadData={this.props.loadData} currentUser={this.props.currentUser}/>}

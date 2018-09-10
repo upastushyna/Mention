@@ -40,11 +40,8 @@ class SearchContainer extends React.Component {
             this.setState({input: this.refs.searchInput.value})} id="searchInput"
           ref="searchInput" type="text" className="search__input"
           placeholder="Search..."/>
-          <input type="submit" className="" value="Search" />
+          <input type="image" className="search__btn" src={search} alt="search"/>
         </form>
-        {/* <Link to={'/search/' + this.state.input} className="search__btn" onClick={() => this.onClick()}>
-          <img src={search} alt="search"/>
-        </Link> */}
       </Fragment>
     )
   }
