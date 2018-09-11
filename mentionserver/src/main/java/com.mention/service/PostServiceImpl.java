@@ -3,15 +3,19 @@ package com.mention.service;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.mention.config.AmazonS3Configuration;
+import com.mention.config.Constants;
 import com.mention.dto.ApiRs;
+import com.mention.dto.NotificationPopRs;
 import com.mention.dto.PostIdRq;
 import com.mention.dto.PostRq;
 import com.mention.dto.PostRs;
 import com.mention.dto.WsFeedRs;
 import com.mention.model.Comment;
 import com.mention.model.Follow;
+import com.mention.model.Notification;
 import com.mention.model.Post;
 import com.mention.model.User;
+import com.mention.repository.NotificationRepository;
 import com.mention.repository.PostRepository;
 import com.mention.repository.UserRepository;
 import com.mention.security.UserPrincipal;
@@ -20,7 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +46,8 @@ public class PostServiceImpl implements PostService {
 
   private PostRepository postRepository;
 
+  private NotificationRepository notificationRepository;
+
   private AmazonS3Configuration as3;
 
   private ModelMapper modelMapper;
@@ -54,9 +59,10 @@ public class PostServiceImpl implements PostService {
   @Autowired
   public PostServiceImpl(UserRepository userRepository,
                          PostRepository postRepository,
-                         AmazonS3Configuration as3, SimpMessagingTemplate template) {
+                         NotificationRepository notificationRepository, AmazonS3Configuration as3, SimpMessagingTemplate template) {
     this.userRepository = userRepository;
     this.postRepository = postRepository;
+    this.notificationRepository = notificationRepository;
     this.template = template;
     this.modelMapper = new ModelMapper();
     this.as3 = as3;
@@ -163,6 +169,16 @@ public class PostServiceImpl implements PostService {
     Optional<User> currentUser = userRepository.findById(userId);
     if (!currentUser.isPresent()) {
       return new ResponseEntity(new ApiRs(false, "Bad request"), HttpStatus.BAD_REQUEST);
+    }
+    for (Follow follow : currentUser.get().getFollowers()) {
+      if (follow.getFollower().getId().equals(currentUser.get().getId())) continue;
+
+      Notification notification = new Notification(Constants.FRONT_NOTIFY,
+          Constants.POST, currentUser.get(), follow.getFollower());
+      notificationRepository.save(notification);
+
+      template.convertAndSendToUser(follow.getFollower().getUsername(),
+          Constants.WS_NOTIFY, modelMapper.map(notification, NotificationPopRs.class));
     }
 
     currentUser.get().getFollowers().forEach(follow ->

@@ -14,6 +14,5 @@ const HeaderProfile = props => {
       </div>
     </div>
   </Fragment>
-}
-
+};
 export default HeaderProfile
