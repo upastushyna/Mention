@@ -18,23 +18,21 @@ public class CommentLikeServiceImpl implements CommentLikeService {
 
   private CommentLikeRepository commentLikeRepository;
 
+  private ModelMapper modelMapper;
+
   @Autowired
   public CommentLikeServiceImpl(CommentLikeRepository commentLikeRepository) {
     this.commentLikeRepository = commentLikeRepository;
+    this.modelMapper = new ModelMapper();
   }
 
   @Override
   @Transactional
   public ResponseEntity<?> addCommentLike(CommentLikeRq commentLikeDto) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!commentLikeDto.getUser().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
-
-    ModelMapper modelMapper = new ModelMapper();
     CommentLike insertCommentLike = modelMapper.map(commentLikeDto, CommentLike.class);
     commentLikeRepository.save(insertCommentLike);
     return ResponseEntity.ok(new ApiRs(true, "Liked successfully"));
@@ -43,10 +41,7 @@ public class CommentLikeServiceImpl implements CommentLikeService {
   @Override
   @Transactional
   public ResponseEntity<?> deleteCommentLike(CommentLikeRq commentLikeDto) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!commentLikeDto.getUser().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }

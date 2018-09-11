@@ -6,6 +6,6 @@ import lombok.Data;
 public class PostLikeRq {
 
   private UserIdRq user;
-  private PostIdRq post;
 
+  private PostIdRq post;
 }

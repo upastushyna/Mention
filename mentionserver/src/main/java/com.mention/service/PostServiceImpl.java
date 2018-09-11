@@ -65,74 +65,78 @@ public class PostServiceImpl implements PostService {
   @Override
   public List<PostRs> getFollowedPosts(String username) {
     Optional<User> currentUser = userRepository.findByUsername(username);
-    if (currentUser.isPresent()) {
-      User user = currentUser.get();
-      List<Post> posts = new ArrayList<>();
-      for (Follow followed :
-          user.getFollowedUsers()) {
-        posts.addAll(followed.getFollowedUser().getPosts());
-      }
-      posts.forEach(post -> post.getComments()
-          .sort(Comparator.comparing(Comment::getTimestamp)));
-      List<PostRs> postRs = posts.stream().map(post -> modelMapper.map(
-          post, PostRs.class))
-          .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
-          .collect(Collectors.toList());
-      return postRs;
+    if (!currentUser.isPresent()) {
+      return null;
     }
-    return null;
+
+    User user = currentUser.get();
+    List<Post> posts = new ArrayList<>();
+    for (Follow followed :
+        user.getFollowedUsers()) {
+      posts.addAll(followed.getFollowedUser().getPosts());
+    }
+
+    posts.forEach(post -> post.getComments()
+        .sort(Comparator.comparing(Comment::getTimestamp)));
+    List<PostRs> postRs = posts.stream().map(post -> modelMapper.map(
+        post, PostRs.class))
+        .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
+        .collect(Collectors.toList());
+    return postRs;
+
   }
 
   @Override
   public List<PostRs> getPostsByUsername(String username) {
     Optional<User> currentUser = userRepository.findByUsername(username);
-    if (currentUser.isPresent()) {
-      currentUser.get().getPosts().forEach(post -> post.getComments()
-          .sort(Comparator.comparing(Comment::getTimestamp)));
-      List<PostRs> postRs = currentUser.get().getPosts().stream().map(
-          post -> modelMapper.map(post, PostRs.class))
-          .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
-          .collect(Collectors.toList());
-      return postRs;
+    if (!currentUser.isPresent()) {
+      return null;
     }
-    return null;
+
+    currentUser.get().getPosts().forEach(post -> post.getComments()
+        .sort(Comparator.comparing(Comment::getTimestamp)));
+    List<PostRs> postRs = currentUser.get().getPosts().stream().map(
+        post -> modelMapper.map(post, PostRs.class))
+        .sorted((p1, p2) -> p2.getTimestamp().compareTo(p1.getTimestamp()))
+        .collect(Collectors.toList());
+    return postRs;
+
   }
 
   @Override
   public List<PostRs> getLikedPosts(String username) {
     Optional<User> currentUser = userRepository.findByUsername(username);
-    if (currentUser.isPresent()) {
-      List<PostRs> likedPosts = currentUser.get()
-          .getPostLikes().stream()
-          .map(postLike -> modelMapper.map(postLike.getPost(), PostRs.class))
-          .collect(Collectors.toList());
-      return likedPosts;
+    if (!currentUser.isPresent()) {
+      return null;
     }
-    return null;
+
+    List<PostRs> likedPosts = currentUser.get()
+        .getPostLikes().stream()
+        .map(postLike -> modelMapper.map(postLike.getPost(), PostRs.class))
+        .collect(Collectors.toList());
+    return likedPosts;
   }
 
   @Override
   public List<PostRs> getPostsByBody(String body) {
     List<Post> posts = postRepository.findByBodyContainingIgnoreCase(body);
-    if (!posts.isEmpty()) {
-      posts.forEach(post -> post.getComments()
-          .sort(Comparator.comparing(Comment::getTimestamp)));
-      List<PostRs> currentPosts = posts.stream()
-          .map(post -> modelMapper.map(post, PostRs.class))
-          .sorted((p1, p2) -> p2.getLikes().size() - p1.getLikes().size())
-          .collect(Collectors.toList());
-      return currentPosts;
+    if (posts.isEmpty()) {
+      return null;
     }
-    return null;
+
+    posts.forEach(post -> post.getComments()
+        .sort(Comparator.comparing(Comment::getTimestamp)));
+    List<PostRs> currentPosts = posts.stream()
+        .map(post -> modelMapper.map(post, PostRs.class))
+        .sorted((p1, p2) -> p2.getLikes().size() - p1.getLikes().size())
+        .collect(Collectors.toList());
+    return currentPosts;
   }
 
   @Override
   @Transactional
   public ResponseEntity<?> addPost(String body, Long userId, MultipartFile file) throws IOException {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!userId.equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
@@ -140,6 +144,7 @@ public class PostServiceImpl implements PostService {
     AmazonS3 s3 = as3.getAmazonS3();
     User user = new User(userId);
     Post post = new Post(body, user);
+
     if (file != null) {
       String key = "pictures/" + UUID.randomUUID();
       InputStream myFile = file.getInputStream();
@@ -148,28 +153,30 @@ public class PostServiceImpl implements PostService {
           key,
           myFile,
           new ObjectMetadata());
+
       String url = s3.getUrl(bucket, key).toString();
       post.setMediaFileUrl(url);
       post.setAmazonKey(key);
     }
+
     postRepository.save(post);
     Optional<User> currentUser = userRepository.findById(userId);
-    if (currentUser.isPresent()) {
-      currentUser.get().getFollowers().forEach(follow ->
-          template.convertAndSendToUser(follow.getFollower().getUsername(), wsPath,
-              new WsFeedRs(follow.getFollower().getUsername())));
+    if (!currentUser.isPresent()) {
+      return new ResponseEntity(new ApiRs(false, "Bad request"), HttpStatus.BAD_REQUEST);
     }
 
+    currentUser.get().getFollowers().forEach(follow ->
+        template.convertAndSendToUser(follow.getFollower().getUsername(), wsPath,
+            new WsFeedRs(follow.getFollower().getUsername())));
     return ResponseEntity.ok(new ApiRs(true, "Post added successfully"));
+
+
   }
 
   @Override
   @Transactional
   public ResponseEntity<?> rePost(PostRq post) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!post.getAuthor().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
@@ -183,10 +190,7 @@ public class PostServiceImpl implements PostService {
   @Transactional
   public ResponseEntity<?> deletePost(PostIdRq postDtoIdRq) {
     Post post = postRepository.findById(postDtoIdRq.getId()).get();
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!post.getAuthor().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
@@ -208,6 +212,7 @@ public class PostServiceImpl implements PostService {
     if (!post.isPresent()) {
       return new ResponseEntity(new ApiRs(false, "Post not found"), HttpStatus.NOT_FOUND);
     }
+
     PostRs currentPost = modelMapper.map(post.get(), PostRs.class);
     return ResponseEntity.ok(currentPost);
   }
