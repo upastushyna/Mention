@@ -15,7 +15,9 @@ public class NotificationRs {
 
   private boolean isChecked;
 
-  private ShortUserDetailsRs user;
+  private ShortUserDetailsRs sender;
+
+  private ShortUserDetailsRs receiver;
 
   private Date modifyTimestamp;
 }

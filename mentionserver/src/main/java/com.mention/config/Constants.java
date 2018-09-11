@@ -12,4 +12,5 @@ public final class Constants {
   public static final String AUTH_HEADER = "Authorization";
   public static final String AUTH_BEARER = "Bearer ";
   public static final String AUTH_TOKEN = "accessToken";
+  public static final String FRONT_NOTIFY = "/notifications";
 }
