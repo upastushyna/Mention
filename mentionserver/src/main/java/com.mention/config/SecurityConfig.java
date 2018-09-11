@@ -46,35 +46,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
         .headers()
-        .frameOptions()
-        .disable()
-        .and()
-        .csrf()
-        .disable()
-        .exceptionHandling()
-        .authenticationEntryPoint(unauthorizedHandler)
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        /*.addFilterBefore(new )*/
-        .authorizeRequests()
-        .antMatchers("/api/login")
-        .permitAll()
-        .antMatchers("/api/register")
-        .permitAll()
-        .antMatchers("/h2/**")
-        //      .permitAll()
-        //    .antMatchers("/h2/*")
-        .permitAll()
-        .antMatchers("/api/register/*")
-        .permitAll()
-        .antMatchers("/ws/*")
-        .permitAll()
-        .anyRequest()
-        .authenticated();
+          .frameOptions()
+          .disable()
+          .and()
 
-    http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        .csrf()
+          .disable()
+
+        .exceptionHandling()
+          .authenticationEntryPoint(unauthorizedHandler)
+          .and()
+
+        .sessionManagement()
+          .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+          .and()
+
+        .authorizeRequests()
+          .antMatchers("/h2/**", "/api/login", "/api/register/**", "/ws/**")
+            .permitAll()
+          .anyRequest()
+            .authenticated()
+          .and()
+
+        .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+/*
+        .antMatchers("/api/register/**")
+          .permitAll()
+        .antMatchers("/h2/**")
+          .permitAll()
+        .antMatchers("/api/register/*")
+          .permitAll()
+        .antMatchers("/ws/*")
+          .permitAll()
+*/
   }
 
   @Override
