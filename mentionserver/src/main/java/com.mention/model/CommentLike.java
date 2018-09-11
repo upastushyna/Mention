@@ -1,6 +1,5 @@
 package com.mention.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,6 +24,7 @@ import java.util.Date;
 @Table(name = "commentLikes", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "comment_id"}))
 @EntityListeners(AuditingEntityListener.class)
 public class CommentLike {
+
   @Id
   @Column(name = "comment_like_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)

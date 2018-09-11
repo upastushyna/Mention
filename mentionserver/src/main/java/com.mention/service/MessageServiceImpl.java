@@ -28,6 +28,8 @@ public class MessageServiceImpl implements MessageService {
 
   private NotificationRepository notificationRepository;
 
+  private ModelMapper modelMapper;
+
   private final String wsPath = "/queue/chat";
 
   @Autowired
@@ -37,6 +39,7 @@ public class MessageServiceImpl implements MessageService {
     this.messageRepository = messageRepository;
     this.template = template;
     this.notificationRepository = notificationRepository;
+    this.modelMapper = new ModelMapper();
   }
 
   @Override
@@ -50,7 +53,6 @@ public class MessageServiceImpl implements MessageService {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
-    ModelMapper modelMapper = new ModelMapper();
     Message insertMessage = modelMapper.map(message, Message.class);
     messageRepository.save(insertMessage);
 

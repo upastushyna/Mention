@@ -63,10 +63,7 @@ public class FollowServiceImpl implements FollowService {
   @Override
   @Transactional
   public ResponseEntity<?> addFollow(FollowRq follow) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!follow.getFollower().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
@@ -79,10 +76,7 @@ public class FollowServiceImpl implements FollowService {
   @Override
   @Transactional
   public ResponseEntity<?> deleteFollow(FollowRq follow) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!follow.getFollower().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }

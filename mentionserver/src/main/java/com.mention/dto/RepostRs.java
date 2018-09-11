@@ -6,6 +6,6 @@ import lombok.Data;
 public class RepostRs {
 
   private Long id;
-  private ShortUserDetailsRs author;
 
+  private ShortUserDetailsRs author;
 }
