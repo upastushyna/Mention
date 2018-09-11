@@ -34,7 +34,10 @@ public class PostLikeServiceImpl implements PostLikeService {
   private ModelMapper modelMapper;
 
   @Autowired
-  public PostLikeServiceImpl(PostLikeRepository postLikeRepository, NotificationRepository notificationRepository, SimpMessagingTemplate template, PostRepository postRepository) {
+  public PostLikeServiceImpl(PostLikeRepository postLikeRepository,
+                             NotificationRepository notificationRepository,
+                             SimpMessagingTemplate template,
+                             PostRepository postRepository) {
     this.postLikeRepository = postLikeRepository;
     this.notificationRepository = notificationRepository;
     this.template = template;

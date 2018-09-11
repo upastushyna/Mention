@@ -59,7 +59,9 @@ public class PostServiceImpl implements PostService {
   @Autowired
   public PostServiceImpl(UserRepository userRepository,
                          PostRepository postRepository,
-                         NotificationRepository notificationRepository, AmazonS3Configuration as3, SimpMessagingTemplate template) {
+                         NotificationRepository notificationRepository,
+                         AmazonS3Configuration as3,
+                         SimpMessagingTemplate template) {
     this.userRepository = userRepository;
     this.postRepository = postRepository;
     this.notificationRepository = notificationRepository;
@@ -170,8 +172,11 @@ public class PostServiceImpl implements PostService {
     if (!currentUser.isPresent()) {
       return new ResponseEntity(new ApiRs(false, "Bad request"), HttpStatus.BAD_REQUEST);
     }
+
     for (Follow follow : currentUser.get().getFollowers()) {
-      if (follow.getFollower().getId().equals(currentUser.get().getId())) continue;
+      if (follow.getFollower().getId().equals(currentUser.get().getId())) {
+        continue;
+      }
 
       Notification notification = new Notification(Constants.FRONT_NOTIFY,
           Constants.POST, currentUser.get(), follow.getFollower());

@@ -35,7 +35,10 @@ public class CommentServiceImpl implements CommentService {
   private ModelMapper modelMapper;
 
   @Autowired
-  public CommentServiceImpl(CommentRepository commentRepository, PostRepository postRepository, NotificationRepository notificationRepository, SimpMessagingTemplate template) {
+  public CommentServiceImpl(CommentRepository commentRepository,
+                            PostRepository postRepository,
+                            NotificationRepository notificationRepository,
+                            SimpMessagingTemplate template) {
     this.commentRepository = commentRepository;
     this.postRepository = postRepository;
     this.notificationRepository = notificationRepository;

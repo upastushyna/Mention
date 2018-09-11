@@ -34,7 +34,10 @@ public class FollowServiceImpl implements FollowService {
   private ModelMapper modelMapper;
 
   @Autowired
-  public FollowServiceImpl(UserRepository userRepository, FollowRepository followRepository, NotificationRepository notificationRepository, SimpMessagingTemplate template) {
+  public FollowServiceImpl(UserRepository userRepository,
+                           FollowRepository followRepository,
+                           NotificationRepository notificationRepository,
+                           SimpMessagingTemplate template) {
     this.userRepository = userRepository;
     this.followRepository = followRepository;
     this.notificationRepository = notificationRepository;

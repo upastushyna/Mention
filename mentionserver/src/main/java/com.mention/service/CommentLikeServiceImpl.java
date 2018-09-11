@@ -35,7 +35,9 @@ public class CommentLikeServiceImpl implements CommentLikeService {
 
   @Autowired
   public CommentLikeServiceImpl(CommentLikeRepository commentLikeRepository,
-                                CommentRepository commentRepository, NotificationRepository notificationRepository, SimpMessagingTemplate template) {
+                                CommentRepository commentRepository,
+                                NotificationRepository notificationRepository,
+                                SimpMessagingTemplate template) {
     this.commentLikeRepository = commentLikeRepository;
     this.commentRepository = commentRepository;
     this.notificationRepository = notificationRepository;
