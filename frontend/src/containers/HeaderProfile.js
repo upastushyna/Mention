@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
+import Loader from './Loader'
 
 const HeaderProfile = props => {
   if (!props.user || !props.user.username) {
-    return 'loading...'
+    return <Loader/>
   }
 
   return <Fragment>

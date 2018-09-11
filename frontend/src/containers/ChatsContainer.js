@@ -2,19 +2,14 @@ import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import {getDateFromDb} from '../js/timestamp.js'
 
-const openChat = () => {
-  /*document.getElementsByClassName('messages-container')[0].style.display = "block";
-  document.getElementsByClassName('messages-container')[0].style.width = "100%";
-  document.getElementsByClassName('chats__list')[0].style.display = "none";*/
-};
-
 const ChatsContainer = props => {
   if (props.chats.length === 0) {
     return <p>No chats found. Add users to chat with to start conversation!</p>
   }
+
   return props.chats.map(chat =>
     <Fragment key={chat.id}>
-      <Link className="chat-container" to={chat.user1.username === props.username
+      <Link id={chat.id} className="chat-container" to={chat.user1.username === props.username
         ? '/messages/' + chat.user2.username : '/messages/' + chat.user1.username}
             onClick={() => props.loadChat(chat.user1.username, chat.user2.username)}>
         <div className="d-flex-center">
