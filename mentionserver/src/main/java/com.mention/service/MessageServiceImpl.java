@@ -3,6 +3,7 @@ package com.mention.service;
 import com.mention.config.Constants;
 import com.mention.dto.ApiRs;
 import com.mention.dto.MessageRq;
+import com.mention.dto.NotificationPopRs;
 import com.mention.dto.NotificationRs;
 import com.mention.dto.WsMessageRs;
 import com.mention.model.Message;
@@ -45,10 +46,7 @@ public class MessageServiceImpl implements MessageService {
   @Override
   @Transactional
   public ResponseEntity<?> addMessage(MessageRq message) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!message.getSender().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
@@ -57,15 +55,19 @@ public class MessageServiceImpl implements MessageService {
     messageRepository.save(insertMessage);
 
     String frontUrl = "/messages/" + userPrincipal.getUsername();
-    Notification notification = new Notification(frontUrl, Constants.MESSAGE, userPrincipal.getUser());
+    Notification notification = new Notification(frontUrl,
+        Constants.MESSAGE,
+        userPrincipal.getUser(),
+        insertMessage.getReceiver());
 
     notificationRepository.save(notification);
     template.convertAndSendToUser(message.getReceiver().getUsername(), wsPath,
         new WsMessageRs(message.getReceiver().getUsername(),
             userPrincipal.getUsername()));
+
     template.convertAndSendToUser(message.getReceiver().getUsername(),
         Constants.WS_NOTIFY,
-        modelMapper.map(notification, NotificationRs.class));
+        modelMapper.map(notification, NotificationPopRs.class));
 
     return ResponseEntity.ok(new ApiRs(true, "Message sent successfully"));
 

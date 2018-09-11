@@ -37,8 +37,12 @@ public class Notification {
   private boolean isChecked;
 
   @ManyToOne
-  @JoinColumn(name = "user_id", updatable = false, nullable = false)
-  private User user;
+  @JoinColumn(name = "sender_id", updatable = false, nullable = false)
+  private User sender;
+
+  @ManyToOne
+  @JoinColumn(name = "receiver_id", updatable = false, nullable = false)
+  private User receiver;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
@@ -50,9 +54,10 @@ public class Notification {
   @Column(name = "notification_modify_timestamp")
   private Date modifyTimestamp;
 
-  public Notification(String url, String type, User user) {
+  public Notification(String url, String type, User sender, User receiver) {
     this.url = url;
     this.type = type;
-    this.user = user;
+    this.sender = sender;
+    this.receiver = receiver;
   }
 }

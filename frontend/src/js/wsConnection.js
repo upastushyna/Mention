@@ -33,9 +33,24 @@ export const webSocketMessageNotification = (callback) => {
   stompClient.connect({}, function (frame) {
     stompClient.subscribe('/user/queue/notifications', function (resp) {
       const object = JSON.parse(resp.body);
-      if (window.location.pathname !== '/messages/' + object.user.username){
+      if (window.location.pathname !== '/messages/' + object.sender.username){
         callback(object);
       }
     });
   });
 };
+/*
+
+function WebSocket(subsribeUrl, ArrayOfChannels) {
+  const socket = SockJS(subsribeUrl); //create wrapper
+  const stompClient = Stomp.over(socket);//connect using your client
+  stompClient.connect({}, () => {
+    ArrayOfChannels.forEach((channel) => {
+      stompClient.subscribe(channel.route, channel.callback);
+    });
+  }, () => {
+    setTimeout(() => {
+      subscribeToSocket(subsribeUrl, ArrayOfChannels);
+    }, 0);
+  });
+}*/

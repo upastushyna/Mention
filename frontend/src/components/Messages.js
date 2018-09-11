@@ -24,18 +24,25 @@ class Messages extends React.Component {
 
   componentDidMount () {
     webSocketChat(this.props.loadMessages, this.props.loadData);
-    this.scrollToBottom()
+    this.scrollToBottom();
   }
 
   componentDidUpdate () {
-    this.scrollToBottom()
+    this.scrollToBottom();
+    this.openChat();
   }
 
   openChat = () => {
-    document.getElementsByClassName('messages-container')[0].style.display = "block";
-    document.getElementsByClassName('chats__list')[0].style.display = "none";
-    document.getElementsByClassName('messages-container')[0].style.width = "100%";
+    let id = document.getElementById("root");
+
+    if (id.clientWidth <= 768) {
+      this.refs.messages.style.display = "block";
+      this.refs.chats.style.display = "none";
+      this.refs.messages.style.width = "100%";
+    }
   };
+
+
 
   addChat = () => fetch('/api/chats/add',
     {
@@ -55,9 +62,9 @@ class Messages extends React.Component {
     return (
       <Fragment key={Messages.id}>
         <Navigation/>
-        <div className="chats__header" onClick={() => this.openChat()}>Open chat</div>
+        {/*<div className="chats__header" onClick={() => this.openChat()}>Open chat</div>*/}
         <main className="container chats__view">
-          <section className="chats__list">
+          <section ref="chats" className="chats__list">
             <div className="chats__search">
               <input id="chatInput" ref="chatInput"
                 type="text" className="chats__input" placeholder="Search"/>
@@ -69,7 +76,7 @@ class Messages extends React.Component {
             </div>      
           </section>
 
-          <section className="messages-container">
+          <section ref="messages" className="messages-container">
             <Switch>
               <Route path='/messages/:username' render={props =>
                 <Chat user1={this.props.currentUser.username} user2={props.match.params.username}

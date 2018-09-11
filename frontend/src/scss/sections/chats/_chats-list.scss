@@ -78,8 +78,21 @@
   }
 
   &__list {
-   width: 100%;
+   width: 35%;
    box-shadow: none;
+  }
+ }
+}
+
+@media screen and (max-width: 768px) {
+ .chats {
+  &__header {
+   display: block;
+  }
+
+  &__list {
+   display: block;
+   width: 100%;
   }
  }
 }
