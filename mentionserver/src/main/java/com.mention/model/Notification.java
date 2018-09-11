@@ -21,6 +21,7 @@ import java.util.Date;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Notification {
+
   @Id
   @Column(name = "notification_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -21,23 +21,22 @@ public class PostLikeServiceImpl implements PostLikeService {
 
   private PostLikeRepository postLikeRepository;
 
+  private ModelMapper modelMapper;
+
   @Autowired
   public PostLikeServiceImpl(PostLikeRepository postLikeRepository) {
     this.postLikeRepository = postLikeRepository;
+    this.modelMapper = new ModelMapper();
   }
 
   @Override
   @Transactional
   public ResponseEntity<?> addPostLike(PostLikeRq postLike) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!postLike.getUser().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
-    ModelMapper modelMapper = new ModelMapper();
     PostLike insertPostLike = modelMapper.map(postLike, PostLike.class);
     postLikeRepository.save(insertPostLike);
     return ResponseEntity.ok(new ApiRs(true, "Liked successfully"));
@@ -46,10 +45,7 @@ public class PostLikeServiceImpl implements PostLikeService {
   @Override
   @Transactional
   public ResponseEntity<?> deletePostLike(PostLikeRq postLike) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!postLike.getUser().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }

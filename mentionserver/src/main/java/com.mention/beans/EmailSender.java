@@ -14,20 +14,25 @@ import java.util.Properties;
 @Component
 public class EmailSender {
 
-  @Value("${emailLogin}")
-  private String emailLogin;
+  @Value("${smtpLogin}")
+  private String smtpLogin;
 
-  @Value("${emailPassword}")
-  private String emailPassword;
+  @Value("${smtpPassword}")
+  private String smtpPassword;
+
+  @Value("${smtpHostName}")
+  private String smtpHostName;
+
+  @Value("${smtpPort}")
+  private int smtpPort;
 
   @Bean
   public JavaMailSender getJavaMailSender() {
     JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-    mailSender.setHost("smtp.gmail.com");
-    mailSender.setPort(587);
-
-    mailSender.setUsername(emailLogin);
-    mailSender.setPassword(emailPassword);
+    mailSender.setHost(smtpHostName);
+    mailSender.setPort(smtpPort);
+    mailSender.setUsername(smtpLogin);
+    mailSender.setPassword(smtpPassword);
 
     Properties props = mailSender.getJavaMailProperties();
     props.put("mail.transport.protocol", "smtp");

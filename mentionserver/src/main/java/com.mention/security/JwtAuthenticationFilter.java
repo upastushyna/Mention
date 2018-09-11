@@ -1,5 +1,6 @@
 package com.mention.security;
 
+import com.mention.config.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     try {
       String jwt = getJwtFromRequest(request);
 
-      if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+      if (tokenProvider.validateToken(jwt)) {
         Long userId = tokenProvider.getUserIdFromJwt(jwt);
 
         UserDetails userDetails = userDetailsService.loadUserById(userId);
@@ -56,15 +57,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   }
 
   private String getJwtFromRequest(HttpServletRequest request) {
-    String Auth1 = "Authorization";
-    String Auth2 = "accessToken";
+    String Auth1 = Constants.AUTH_HEADER;
+    String Auth2 = Constants.AUTH_TOKEN;
     String bearerToken = request.getHeader(Auth1);
-    if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-      return bearerToken.substring(7, bearerToken.length());
+    if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(Constants.AUTH_BEARER)) {
+      return bearerToken.substring(Constants.AUTH_BEARER.length(), bearerToken.length());
     } else {
       String accToken = request.getParameter(Auth2);
       if (accToken != null) {
-        return accToken.substring(7, accToken.length());
+        return accToken.substring(Constants.AUTH_BEARER.length(), accToken.length());
       } else {
         return null;
       }
