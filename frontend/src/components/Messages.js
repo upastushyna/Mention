@@ -25,7 +25,6 @@ class Messages extends React.Component {
   componentDidMount () {
     webSocketChat(this.props.loadMessages, this.props.loadData);
     this.scrollToBottom();
-    this.openChat();
   }
 
   componentDidUpdate () {
@@ -42,8 +41,6 @@ class Messages extends React.Component {
       this.refs.messages.style.width = "100%";
     }
   };
-
-
 
   addChat = () => fetch('/api/chats/add',
     {

@@ -31,16 +31,17 @@ class SearchPage extends React.Component {
   }
 
   componentDidUpdate () {
-    this.callUpdate()
     this.searchTimeOut();
+    this.callUpdate();
   }
 
   componentDidMount () {
-    this.callUpdate()
-    this.searchTimeOut();
+    this.callUpdate();
   }
 
   searchTimeOut = () => {
+    document.getElementsByClassName('empty-state')[0].style.display = "none";
+
     setTimeout(() => {
       if (this.props.foundPosts.length === 0) {
         document.getElementsByClassName('loader')[0].style.display = "none";
