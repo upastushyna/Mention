@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NotificationPopRs {
 
+  private Long id;
+
   private ShortUserDetailsRs sender;
 
   private ShortUserDetailsRs receiver;

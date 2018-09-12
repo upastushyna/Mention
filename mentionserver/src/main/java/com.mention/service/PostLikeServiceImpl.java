@@ -67,7 +67,7 @@ public class PostLikeServiceImpl implements PostLikeService {
         userPrincipal.getUser(),
         post.getAuthor());
     notification.setPost(post);
-    notificationRepository.save(notification);
+    notification.setId(notificationRepository.save(notification).getId());
 
     template.convertAndSendToUser(post.getAuthor().getUsername(),
         Constants.WS_NOTIFY, modelMapper.map(notification, NotificationPopRs.class));

@@ -64,7 +64,7 @@ public class CommentLikeServiceImpl implements CommentLikeService {
         Constants.COMMENT_LIKE,
         userPrincipal.getUser(), receiver);
     notification.setPost(comment.getPost());
-    notificationRepository.save(notification);
+    notification.setId(notificationRepository.save(notification).getId());
 
     template.convertAndSendToUser(receiver.getUsername(),
         Constants.WS_NOTIFY, modelMapper.map(notification, NotificationPopRs.class));

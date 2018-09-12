@@ -59,5 +59,6 @@ public class Notification {
     this.type = type;
     this.sender = sender;
     this.receiver = receiver;
+    this.isChecked = false;
   }
 }

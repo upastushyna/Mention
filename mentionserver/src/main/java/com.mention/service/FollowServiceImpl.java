@@ -90,7 +90,7 @@ public class FollowServiceImpl implements FollowService {
         Constants.FOLLOW,
         userPrincipal.getUser(),
         user);
-    notificationRepository.save(notification);
+    notification.setId(notificationRepository.save(notification).getId());
 
     template.convertAndSendToUser(user.getUsername(),
         Constants.WS_NOTIFY, modelMapper.map(notification, NotificationPopRs.class));
