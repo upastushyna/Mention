@@ -46,8 +46,8 @@ public class NotificationServiceImpl implements NotificationService {
   @Transactional
   public ResponseEntity<?> setAllChecked() {
     UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
-    List<Notification> notifications = notificationRepository.
-        findAllByReceiverIdAndIsChecked(userPrincipal.getId(), false);
+    List<Notification> notifications = notificationRepository
+        .findAllByReceiverIdAndIsChecked(userPrincipal.getId(), false);
     notifications.forEach(notification -> notification.setChecked(true));
     notifications.forEach(notification -> notificationRepository.save(notification));
     return ResponseEntity.ok(new ApiRs(true, "Updated successfully"));
@@ -56,8 +56,8 @@ public class NotificationServiceImpl implements NotificationService {
   @Override
   public ResponseEntity<?> getUnread() {
     UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
-    List<Notification> notifications = notificationRepository.
-        findAllByReceiverIdAndIsChecked(userPrincipal.getId(), false);
+    List<Notification> notifications = notificationRepository
+        .findAllByReceiverIdAndIsChecked(userPrincipal.getId(), false);
     List<NotificationRs> notificationRsList = notifications
         .stream()
         .map(notification -> modelMapper.map(notification, NotificationRs.class))
@@ -68,8 +68,8 @@ public class NotificationServiceImpl implements NotificationService {
   @Override
   public ResponseEntity<?> getAllForUser() {
     UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
-    List<Notification> notifications = notificationRepository.
-        findAllByReceiverId(userPrincipal.getId());
+    List<Notification> notifications = notificationRepository
+        .findAllByReceiverId(userPrincipal.getId());
     List<NotificationRs> notificationRsList = notifications
         .stream()
         .map(notification -> modelMapper.map(notification, NotificationRs.class))

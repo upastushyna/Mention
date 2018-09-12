@@ -5,11 +5,11 @@ import org.springframework.http.ResponseEntity;
 
 public interface NotificationService {
 
-  ResponseEntity<?> setChecked (NotificationIdRq notification);
+  ResponseEntity<?> setChecked(NotificationIdRq notification);
 
   ResponseEntity<?> setAllChecked();
 
-  ResponseEntity<?> getUnread ();
+  ResponseEntity<?> getUnread();
 
   ResponseEntity<?> getAllForUser();
 }
