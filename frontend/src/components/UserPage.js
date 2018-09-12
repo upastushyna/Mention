@@ -112,7 +112,6 @@ class UserPage extends React.Component {
     return (
         <Fragment key={UserPage.id}>
           <div ref='scrollTop' />
-          <Navigation/>
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
             <div className="user-navigation__links">
@@ -160,7 +159,7 @@ class UserPage extends React.Component {
                                      deleteComment={this.props.deleteComment}/>)}}
             />
 
-            <Route path='/user/:username/info' component={() =>
+            <Route path='/user/:username/info' render={() =>
                 <UserInfo username={this.props.match.params.username}
                           currentUser={this.props.currentUser}
                           loadCurrentUser={this.props.loadCurrentUser}

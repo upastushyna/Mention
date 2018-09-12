@@ -3,6 +3,7 @@ package com.mention.service;
 import com.mention.config.Constants;
 import com.mention.dto.ApiRs;
 import com.mention.dto.MessageRq;
+import com.mention.dto.NotificationPopRs;
 import com.mention.dto.NotificationRs;
 import com.mention.dto.WsMessageRs;
 import com.mention.model.Message;
@@ -28,6 +29,8 @@ public class MessageServiceImpl implements MessageService {
 
   private NotificationRepository notificationRepository;
 
+  private ModelMapper modelMapper;
+
   private final String wsPath = "/queue/chat";
 
   @Autowired
@@ -37,33 +40,33 @@ public class MessageServiceImpl implements MessageService {
     this.messageRepository = messageRepository;
     this.template = template;
     this.notificationRepository = notificationRepository;
+    this.modelMapper = new ModelMapper();
   }
 
   @Override
   @Transactional
   public ResponseEntity<?> addMessage(MessageRq message) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!message.getSender().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
-    ModelMapper modelMapper = new ModelMapper();
     Message insertMessage = modelMapper.map(message, Message.class);
     messageRepository.save(insertMessage);
 
-    String frontUrl = "/messages/" + userPrincipal.getUsername();
-    Notification notification = new Notification(frontUrl, Constants.MESSAGE, userPrincipal.getUser());
+    Notification notification = new Notification(
+        Constants.MESSAGE,
+        userPrincipal.getUser(),
+        insertMessage.getReceiver());
 
-    notificationRepository.save(notification);
+    notification.setId(notificationRepository.save(notification).getId());
     template.convertAndSendToUser(message.getReceiver().getUsername(), wsPath,
         new WsMessageRs(message.getReceiver().getUsername(),
             userPrincipal.getUsername()));
+
     template.convertAndSendToUser(message.getReceiver().getUsername(),
         Constants.WS_NOTIFY,
-        modelMapper.map(notification, NotificationRs.class));
+        modelMapper.map(notification, NotificationPopRs.class));
 
     return ResponseEntity.ok(new ApiRs(true, "Message sent successfully"));
 

@@ -79,7 +79,6 @@ class SearchPage extends React.Component {
 
     return (
       <Fragment key={SearchPage.id}>
-        <Navigation/>
         <div className="container">
           {this.props.foundPosts.length === 0
             ? <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={'Please, try another search query'}/>

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "moment": "latest",
+    "moment": "^2.22.2",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1",
     "npm-watch": "^0.3.0",

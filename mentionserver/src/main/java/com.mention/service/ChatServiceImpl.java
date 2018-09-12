@@ -40,30 +40,28 @@ public class ChatServiceImpl implements ChatService {
 
   @Override
   public ResponseEntity<?> getChatsForCurrentUser() {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
 
     Optional<List<Chat>> chats = chatRepository
         .findByUser1UsernameOrUser2Username(userPrincipal.getUsername(), userPrincipal.getUsername());
-    if (chats.isPresent()) {
-      List<Chat> currentChats = chats.get();
-      for (Chat chat:
-           currentChats) {
-        if (chat.getMessages().size() > 0) {
-          chat.setModifyTimestamp(chat.getMessages().get(chat.getMessages().size() - 1).getTimestamp());
-        }
-      }
-      currentChats.forEach(chat -> chat.getMessages()
-          .sort(Comparator.comparing(Message::getTimestamp)));
-      List<ChatRs> chatRs = currentChats.stream().map(chat ->
-          modelMapper.map(chat, ChatRs.class))
-          .sorted((c1, c2) -> c2.getModifyTimestamp().compareTo(c1.getModifyTimestamp()))
-          .collect(Collectors.toList());
-      return ResponseEntity.ok(chatRs);
+    if (!chats.isPresent()) {
+      return new ResponseEntity(new ApiRs(false, "Bad request"), HttpStatus.BAD_REQUEST);
     }
-    return new ResponseEntity(new ApiRs(false, "Bad request"), HttpStatus.BAD_REQUEST);
+    List<Chat> currentChats = chats.get();
+    for (Chat chat:
+        currentChats) {
+      if (chat.getMessages().size() > 0) {
+        chat.setModifyTimestamp(chat.getMessages().get(chat.getMessages().size() - 1).getTimestamp());
+      }
+    }
+    currentChats.forEach(chat -> chat.getMessages()
+        .sort(Comparator.comparing(Message::getTimestamp)));
+    List<ChatRs> chatRs = currentChats.stream().map(chat ->
+        modelMapper.map(chat, ChatRs.class))
+        .sorted((c1, c2) -> c2.getModifyTimestamp().compareTo(c1.getModifyTimestamp()))
+        .collect(Collectors.toList());
+    return ResponseEntity.ok(chatRs);
+
   }
 
   @Override
@@ -80,21 +78,20 @@ public class ChatServiceImpl implements ChatService {
     Optional<Chat> chat =
         chatRepository.findByUser1UsernameAndUser2UsernameOrUser2UsernameAndUser1Username(
             username1, username2, username1, username2);
-    if (chat.isPresent()) {
-      chat.get().getMessages().sort(Comparator.comparing(Message::getTimestamp));
-      ChatRs currentChat = modelMapper.map(chat.get(), ChatRs.class);
-      return ResponseEntity.ok(currentChat);
+    if (!chat.isPresent()) {
+      return new ResponseEntity(new ApiRs(false, "Bad Request"), HttpStatus.BAD_REQUEST);
     }
-    return new ResponseEntity(new ApiRs(false, "Bad Request"), HttpStatus.BAD_REQUEST);
+
+    chat.get().getMessages().sort(Comparator.comparing(Message::getTimestamp));
+    ChatRs currentChat = modelMapper.map(chat.get(), ChatRs.class);
+    return ResponseEntity.ok(currentChat);
+
   }
 
   @Override
   @Transactional
   public ResponseEntity<?> addChat(ChatRq chat) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!chat.getUser1().getUsername().equals(userPrincipal.getUsername()) 
         && !chat.getUser2().getUsername().equals(userPrincipal.getUsername())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
@@ -109,7 +106,9 @@ public class ChatServiceImpl implements ChatService {
       insertChat.setUser1(userRepository.findByUsername(username1).get());
       insertChat.setUser2(userRepository.findByUsername(username2).get());
       chatRepository.save(insertChat);
+      return ResponseEntity.ok(new ApiRs(true, "Chat added successfully"));
     }
-    return ResponseEntity.ok(new ApiRs(true, "Chat added successfully"));
+    return new ResponseEntity(new ApiRs(false, "Bad request"), HttpStatus.BAD_REQUEST);
+
   }
 }

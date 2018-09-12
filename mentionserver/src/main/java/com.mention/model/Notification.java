@@ -21,13 +21,11 @@ import java.util.Date;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Notification {
+
   @Id
   @Column(name = "notification_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
-
-  @Column(name = "notification_url", updatable = false, nullable = false)
-  private String url;
 
   @Column(name = "notification_type", updatable = false, nullable = false)
   private String type;
@@ -36,8 +34,16 @@ public class Notification {
   private boolean isChecked;
 
   @ManyToOne
-  @JoinColumn(name = "user_id", updatable = false, nullable = false)
-  private User user;
+  @JoinColumn(name = "post_id", updatable = false)
+  private Post post;
+
+  @ManyToOne
+  @JoinColumn(name = "sender_id", updatable = false, nullable = false)
+  private User sender;
+
+  @ManyToOne
+  @JoinColumn(name = "receiver_id", updatable = false, nullable = false)
+  private User receiver;
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
@@ -49,9 +55,10 @@ public class Notification {
   @Column(name = "notification_modify_timestamp")
   private Date modifyTimestamp;
 
-  public Notification(String url, String type, User user) {
-    this.url = url;
+  public Notification(String type, User sender, User receiver) {
     this.type = type;
-    this.user = user;
+    this.sender = sender;
+    this.receiver = receiver;
+    this.isChecked = false;
   }
 }

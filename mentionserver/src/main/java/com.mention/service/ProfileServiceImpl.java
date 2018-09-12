@@ -34,17 +34,19 @@ public class ProfileServiceImpl implements ProfileService {
 
   private AmazonS3Configuration as3;
 
+  private ModelMapper modelMapper;
+
   @Autowired
   public ProfileServiceImpl(ProfileRepository profileRepository,
                             AmazonS3Configuration as3) {
     this.profileRepository = profileRepository;
     this.as3 = as3;
+    this.modelMapper = new ModelMapper();
   }
 
   @Override
   @Transactional
   public void addProfile(ProfileRq profile) {
-    ModelMapper modelMapper = new ModelMapper();
     Profile newProfile = modelMapper.map(profile, Profile.class);
     profileRepository.save(newProfile);
   }
@@ -52,15 +54,11 @@ public class ProfileServiceImpl implements ProfileService {
   @Override
   @Transactional
   public ResponseEntity<?> updateProfile(ProfileRq profile) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!profile.getUser().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
-    ModelMapper modelMapper = new ModelMapper();
     Profile updatedProfile = modelMapper.map(profile, Profile.class);
     profileRepository.save(updatedProfile);
     return ResponseEntity.ok(new ApiRs(true, "Profile updated successfully"));
@@ -69,10 +67,7 @@ public class ProfileServiceImpl implements ProfileService {
   @Override
   @Transactional
   public ResponseEntity<?> updateAvatar(MultipartFile file) throws IOException {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     Profile profile = profileRepository.findByUserId(userPrincipal.getId());
 
     AmazonS3 s3 = as3.getAmazonS3();
@@ -99,10 +94,7 @@ public class ProfileServiceImpl implements ProfileService {
   @Override
   @Transactional
   public ResponseEntity<?> updateBackground(MultipartFile file) throws IOException {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     Profile profile = profileRepository.findByUserId(userPrincipal.getId());
 
     AmazonS3 s3 = as3.getAmazonS3();
@@ -128,15 +120,11 @@ public class ProfileServiceImpl implements ProfileService {
 
   @Override
   public ResponseEntity<?> getProfileById(Long id) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!id.equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
-    ModelMapper modelMapper = new ModelMapper();
     Profile profile = profileRepository.findByUserId(id);
     ProfileRs currentProfile =  modelMapper.map(profile, ProfileRs.class);
     return ResponseEntity.ok(currentProfile);

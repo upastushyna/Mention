@@ -1,18 +1,22 @@
 package com.mention.service;
 
+import com.mention.config.Constants;
 import com.mention.dto.ApiRs;
 import com.mention.dto.FollowRq;
+import com.mention.dto.NotificationPopRs;
 import com.mention.dto.ShortUserDetailsRs;
 import com.mention.model.Follow;
+import com.mention.model.Notification;
 import com.mention.model.User;
 import com.mention.repository.FollowRepository;
+import com.mention.repository.NotificationRepository;
 import com.mention.repository.UserRepository;
 import com.mention.security.UserPrincipal;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,12 +29,19 @@ public class FollowServiceImpl implements FollowService {
 
   private UserRepository userRepository;
   private FollowRepository followRepository;
+  private NotificationRepository notificationRepository;
+  private SimpMessagingTemplate template;
   private ModelMapper modelMapper;
 
   @Autowired
-  public FollowServiceImpl(UserRepository userRepository, FollowRepository followRepository) {
+  public FollowServiceImpl(UserRepository userRepository,
+                           FollowRepository followRepository,
+                           NotificationRepository notificationRepository,
+                           SimpMessagingTemplate template) {
     this.userRepository = userRepository;
     this.followRepository = followRepository;
+    this.notificationRepository = notificationRepository;
+    this.template = template;
     this.modelMapper = new ModelMapper();
   }
 
@@ -63,26 +74,34 @@ public class FollowServiceImpl implements FollowService {
   @Override
   @Transactional
   public ResponseEntity<?> addFollow(FollowRq follow) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!follow.getFollower().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
 
     Follow insertFollow = modelMapper.map(follow, Follow.class);
     followRepository.save(insertFollow);
+
+    if (userPrincipal.getId().equals(insertFollow.getFollowedUser().getId())) {
+      return ResponseEntity.ok(new ApiRs(true, "Followed successfully"));
+    }
+    User user = userRepository.findById(insertFollow.getFollowedUser().getId()).get();
+    Notification notification = new Notification(
+        Constants.FOLLOW,
+        userPrincipal.getUser(),
+        user);
+    notification.setId(notificationRepository.save(notification).getId());
+
+    template.convertAndSendToUser(user.getUsername(),
+        Constants.WS_NOTIFY, modelMapper.map(notification, NotificationPopRs.class));
+
     return ResponseEntity.ok(new ApiRs(true, "Followed successfully"));
   }
 
   @Override
   @Transactional
   public ResponseEntity<?> deleteFollow(FollowRq follow) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!follow.getFollower().getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }

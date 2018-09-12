@@ -27,32 +27,34 @@ const PostLikeItem = props => {
         body: JSON.stringify({user: {id: props.currentUser.id}, post: {id: props.postId}})
       }).then(() => props.loadData(props.username))
 
-  const showOptions = id => {
+  const showPostLikers = id => {
     if (document.getElementById('post' + id).classList.contains('d-none')) {
       document.getElementById('post' + id).classList.remove('d-none')
     }
   };
 
-  const hide = event => {
-    if (!event.target.classList.contains('likers__nav')) {
-      let hideButton = document.getElementsByClassName('likers__nav');
+  const hidePostLikers = event => {
+    if (!event.target.classList.contains('profile-info__avatar')) {
+      if (!event.target.classList.contains('profile-info__username')) {
+        let hideButton = document.getElementsByClassName('postLikers__nav');
 
-      Array.prototype.forEach.call(hideButton, item => {
-        if(!item.classList.contains('d-nome')) {
-          item.classList.add('d-none')
-        }
-      })
+        Array.prototype.forEach.call(hideButton, item => {
+          if (!item.classList.contains('d-none')) {
+            item.classList.add('d-none')
+          }
+        })
+      }
     }
   };
 
-  window.addEventListener('mousedown', event => hide(event));
+  window.addEventListener('mousedown', event => hidePostLikers(event));
 
   return <div className="d-flex-center">
     {props.likes.find(like => like.user.username === props.currentUser.username)
         ? <img onClick={() => deleteLike()} src={likeFilled} alt="like" className="post__action-img"/>
         : <img onClick={() => addLike()} src={like} alt="dislike" className="post__action-img"/>}
-    <span className="post__action-count" onClick={() => showOptions(props.postId)}>{props.likes.length}</span>
-    <div id={"post" + props.postId} className="d-none likers__nav">
+    <span className="post__action-count" onClick={() => showPostLikers(props.postId)}>{props.likes.length}</span>
+    <div id={"post" + props.postId} className="d-none postLikers__nav">
       <UserLikesContainer likes={props.likes}/>
     </div>
   </div>

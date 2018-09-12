@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-
   private UserRepository userRepository;
 
   private ModelMapper modelMapper;
@@ -47,25 +46,24 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<ShortUserDetailsRs> getUsersByUsername(String username) {
     List<User> users = userRepository.findByUsernameContainingIgnoreCase(username);
-    if (!users.isEmpty()) {
-      List<ShortUserDetailsRs> currentUsers = users.stream()
-          .map(user -> modelMapper.map(user, ShortUserDetailsRs.class))
-          .collect(Collectors.toList());
-      return currentUsers;
+    if (users.isEmpty()) {
+      return null;
     }
-    return null;
+
+    List<ShortUserDetailsRs> currentUsers = users.stream()
+        .map(user -> modelMapper.map(user, ShortUserDetailsRs.class))
+        .collect(Collectors.toList());
+    return currentUsers;
   }
 
   @Override
   public CurrentUserRs getCurrentUser() {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     Optional<User> user = userRepository.findById(userPrincipal.getId());
     if (user.isPresent()) {
       return modelMapper.map(user.get(), CurrentUserRs.class);
     }
+
     throw new UsernameNotFoundException("User not found!");
   }
 
@@ -79,19 +77,18 @@ public class UserServiceImpl implements UserService {
   @Override
   @Transactional
   public ResponseEntity<?> deleteUser(UserIdRq user) {
-    UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
-        .getContext()
-        .getAuthentication()
-        .getPrincipal();
+    UserPrincipal userPrincipal = UserPrincipal.getPrincipal();
     if (!user.getId().equals(userPrincipal.getId())) {
       return new ResponseEntity(new ApiRs(false, "Access denied"), HttpStatus.FORBIDDEN);
     }
+
     Optional<User> currentUser = userRepository.findById(user.getId());
     if (currentUser.isPresent()) {
       currentUser.get().setActive(false);
       userRepository.save(currentUser.get());
       return ResponseEntity.ok(new ApiRs(true, "Success"));
     }
+
     return new ResponseEntity(new ApiRs(false, "Bad request"), HttpStatus.BAD_REQUEST);
   }
 }

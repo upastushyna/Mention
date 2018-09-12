@@ -55,7 +55,7 @@ class HeaderPanel extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return 'Loading...'
+      return "loading..."
     }
 
     return (
@@ -73,7 +73,7 @@ class HeaderPanel extends React.Component {
 
             <ul className="header-menu d-flex-center">
               <li className="header-menu__item">
-                <Link to="/messages" className="header-menu__link">
+                <Link id="test1" to="/messages" className="header-menu__link">
                   <img src={chat} alt="messages" className="header-menu__icon"/>
                   <p>Messages</p>
                 </Link>
@@ -81,7 +81,7 @@ class HeaderPanel extends React.Component {
               <li className="header-menu__item">
                 <Link to="/" className="header-menu__link">
                   <img src={notification} alt="notify" className="header-menu__icon"/>
-                  <p>{"Notifications"}</p>
+                  <p>{`Notifications(${0})`}</p>
                 </Link>
               </li>
               <li className="header-menu__item">

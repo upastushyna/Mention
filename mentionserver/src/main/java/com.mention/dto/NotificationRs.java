@@ -9,13 +9,15 @@ public class NotificationRs {
 
   private Long id;
 
-  private String url;
-
   private String type;
 
   private boolean isChecked;
 
-  private ShortUserDetailsRs user;
+  private PostIdRq post;
+
+  private ShortUserDetailsRs sender;
+
+  private ShortUserDetailsRs receiver;
 
   private Date modifyTimestamp;
 }

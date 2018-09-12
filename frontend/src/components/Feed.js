@@ -7,27 +7,17 @@ import {deleteComment} from '../actions/commentsActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
-import {webSocketFeed} from "../js/wsConnection";
-import Loader from "../containers/Loader";
 import Preloader from "../containers/Preloader";
 
 class Feed extends React.Component {
   constructor (props) {
     super(props)
-
-    this.props.history.listen((location, action) => {
-      this.props.loadData(this.props.currentUser.username)
-    })
   }
 
   componentWillMount () {
     if (this.props.feed.length === 0 && this.props.currentUser.username) {
       this.props.loadData(this.props.currentUser.username)
     }
-  }
-
-  componentDidMount () {
-    webSocketFeed(this.props.loadData);
   }
 
   addPost = event => {
@@ -69,7 +59,6 @@ class Feed extends React.Component {
 
     return (
       <Fragment key={Feed.id}>
-        <Navigation history={this.props.history}/>
         <div ref="container">
           {this.props.currentUser.followedUsers.find(follow =>
             follow.followedUser.id === this.props.currentUser.id)

@@ -3,6 +3,7 @@ package com.mention.security;
 import com.mention.model.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
@@ -23,6 +24,15 @@ public class UserPrincipal implements UserDetails {
 
   private User user;
 
+  public UserPrincipal(User user) {
+    this(user.getId(),
+        user.getUsername(),
+        user.getEmail(),
+        user.getPassword(),
+        user.getRoles().stream().map(s -> (GrantedAuthority) () -> s).collect(Collectors.toList()),
+        user);
+  }
+
   public UserPrincipal(Long id,
                        String username,
                        String email,
@@ -37,16 +47,11 @@ public class UserPrincipal implements UserDetails {
     this.user = user;
   }
 
-  public static UserPrincipal create(User user) {
-
-    return new UserPrincipal(
-        user.getId(),
-        user.getUsername(),
-        user.getEmail(),
-        user.getPassword(),
-        user.getRoles().stream().map(s -> (GrantedAuthority) () -> s).collect(Collectors.toList()),
-        user
-    );
+  public static UserPrincipal getPrincipal() {
+    return (UserPrincipal) SecurityContextHolder
+        .getContext()
+        .getAuthentication()
+        .getPrincipal();
   }
 
   @Override

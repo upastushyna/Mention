@@ -5,6 +5,5 @@ import org.hibernate.validator.constraints.Length;
 
 @Data
 public class UsernameRq {
-  
   private String username;
 }

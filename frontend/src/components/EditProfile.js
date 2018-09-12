@@ -120,7 +120,6 @@ class EditProfile extends React.Component {
 
     return (
       <Fragment key={EditProfile.id}>
-        <Navigation/>
         <div className="container">
           <form className="edit-profile flex-column" onSubmit={event => this.updateProfile(event)}>
             <h2 className="edit-profile__title">Tell us more about yourself</h2>

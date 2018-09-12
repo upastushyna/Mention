@@ -44,14 +44,16 @@ const showReposters = id => {
 };
 
 const hideReposters = event => {
-  if (!event.target.classList.contains('likers__nav')) {
-    let hideButton = document.getElementsByClassName('likers__nav');
+  if (!event.target.classList.contains('profile-info__avatar')) {
+    if (!event.target.classList.contains('profile-info__username')) {
+      let hideButton = document.getElementsByClassName('repostLikers__nav');
 
-    Array.prototype.forEach.call(hideButton, item => {
-      if (!item.classList.contains('d-none')) {
-        item.classList.add('d-none')
-      }
-    })
+      Array.prototype.forEach.call(hideButton, item => {
+        if (!item.classList.contains('d-none')) {
+          item.classList.add('d-none')
+        }
+      })
+    }
   }
 };
 
@@ -128,8 +130,9 @@ const PostItem = props => {
           <img src={comment} alt="comment" className="post__action-img" onClick={() => openComments(props.post.id)}/>
           <span className="post__action-count">{props.post.comments.length}</span>
           <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>
-          <div className="post__action-count" onClick={() => showReposters(props.post.id)}>{props.post.children.length}</div>
-          <div id={"repost" + props.post.id} className="d-none likers__nav">
+          <div className="post__action-count"
+               onClick={() => showReposters(props.post.id)}>{props.post.children.length}</div>
+          <div id={"repost" + props.post.id} className="d-none repostLikers__nav">
             <RepostContainer children={props.post.children}/>
           </div>
         </div>

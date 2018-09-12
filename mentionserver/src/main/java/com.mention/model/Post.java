@@ -2,7 +2,6 @@ package com.mention.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,6 +24,7 @@ import java.util.List;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Post {
+
   @Id
   @Column(name = "post_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
