@@ -61,7 +61,6 @@ class Messages extends React.Component {
 
     return (
       <Fragment key={Messages.id}>
-        <Navigation/>
         {/*<div className="chats__header" onClick={() => this.openChat()}>Open chat</div>*/}
         <main className="container chats__view">
           <section ref="chats" className="chats__list">

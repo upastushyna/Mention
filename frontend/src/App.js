@@ -17,6 +17,7 @@ import {isLoggedIn} from './js/isLoggedIn'
 import Post from "./components/Post";
 import {webSocketFeed} from "./js/wsConnection";
 import {loadFeed} from "./actions/feedActions";
+import Navigation from "./components/Navigation"
 
 
 class App extends Component {
@@ -53,6 +54,8 @@ class App extends Component {
     return (
       <Fragment>
         <div ref="pageTop" style={{ float: 'left', clear: 'both' }}></div>
+        {window.location.pathname !== '/registration'?
+        <Navigation/> : null}
         <Switch>
           <Route exact path='/' component={() => <HomePage
             currentUser={this.props.currentUser}

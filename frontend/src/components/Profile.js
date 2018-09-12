@@ -6,7 +6,6 @@ export default class Profile extends React.Component {
   render () {
     return (
       <div key={Profile.id}>
-        <Navigation/>
         <div className='container'>
         </div>
         <EditProfile/>

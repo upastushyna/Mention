@@ -6,7 +6,6 @@ class Notifications extends React.Component {
   render () {
     return (
       <Fragment id={Favorites.id}>
-        <Navigation/>
         <div className="container">
         </div>
       </Fragment>

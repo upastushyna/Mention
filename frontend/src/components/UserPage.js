@@ -112,7 +112,6 @@ class UserPage extends React.Component {
     return (
         <Fragment key={UserPage.id}>
           <div ref='scrollTop' />
-          <Navigation/>
           <div className="user-navigation">
             <HeaderProfile user={this.props.user}/>
             <div className="user-navigation__links">
