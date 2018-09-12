@@ -30,7 +30,7 @@ class Navigation extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return 'Loading...'
+      return ' ';
     }
 
     return (

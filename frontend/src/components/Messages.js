@@ -25,6 +25,7 @@ class Messages extends React.Component {
   componentDidMount () {
     webSocketChat(this.props.loadMessages, this.props.loadData);
     this.scrollToBottom();
+    this.openChat();
   }
 
   componentDidUpdate () {
@@ -37,7 +38,7 @@ class Messages extends React.Component {
 
     if (id.clientWidth <= 768) {
       this.refs.messages.style.display = "block";
-      this.refs.chats.style.display = "none";
+      this.refs.chatsList.style.display = "none";
       this.refs.messages.style.width = "100%";
     }
   };
@@ -58,12 +59,10 @@ class Messages extends React.Component {
     .then(() => this.refs.chatInput.value = '');
 
   render () {
-
     return (
       <Fragment key={Messages.id}>
-        {/*<div className="chats__header" onClick={() => this.openChat()}>Open chat</div>*/}
         <main className="container chats__view">
-          <section ref="chats" className="chats__list">
+          <section ref="chatsList" className="chats__list">
             <div className="chats__search">
               <input id="chatInput" ref="chatInput"
                 type="text" className="chats__input" placeholder="Search"/>

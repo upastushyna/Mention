@@ -32,10 +32,21 @@ class SearchPage extends React.Component {
 
   componentDidUpdate () {
     this.callUpdate()
+    this.searchTimeOut();
   }
 
   componentDidMount () {
     this.callUpdate()
+    this.searchTimeOut();
+  }
+
+  searchTimeOut = () => {
+    setTimeout(() => {
+      if (this.props.foundPosts.length === 0) {
+        document.getElementsByClassName('loader')[0].style.display = "none";
+        document.getElementsByClassName('empty-state')[0].style.display = "flex";
+      }
+    }, 2500)
   }
 
   callUpdate = () => {
@@ -80,8 +91,9 @@ class SearchPage extends React.Component {
     return (
       <Fragment key={SearchPage.id}>
         <div className="container">
+          <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={'Please, try another search query'}/>
           {this.props.foundPosts.length === 0
-            ? <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={'Please, try another search query'}/>
+            ? <Loader/>
             : <PostsContainer username={this.props.match.params.input}
               userPosts={this.props.foundPosts}
               loadData={this.props.loadPosts}
