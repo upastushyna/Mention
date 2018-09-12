@@ -60,9 +60,10 @@ public class CommentLikeServiceImpl implements CommentLikeService {
       return ResponseEntity.ok(new ApiRs(true, "Liked successfully"));
     }
     User receiver = comment.getCommentator();
-    Notification notification = new Notification(Constants.FRONT_NOTIFY,
+    Notification notification = new Notification(
         Constants.COMMENT_LIKE,
         userPrincipal.getUser(), receiver);
+    notification.setPost(comment.getPost());
     notificationRepository.save(notification);
 
     template.convertAndSendToUser(receiver.getUsername(),

@@ -86,7 +86,7 @@ public class FollowServiceImpl implements FollowService {
       return ResponseEntity.ok(new ApiRs(true, "Followed successfully"));
     }
     User user = userRepository.findById(insertFollow.getFollowedUser().getId()).get();
-    Notification notification = new Notification(Constants.FRONT_NOTIFY,
+    Notification notification = new Notification(
         Constants.FOLLOW,
         userPrincipal.getUser(),
         user);

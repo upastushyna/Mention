@@ -27,14 +27,15 @@ public class Notification {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Column(name = "notification_url", updatable = false, nullable = false)
-  private String url;
-
   @Column(name = "notification_type", updatable = false, nullable = false)
   private String type;
 
   @Column(name = "notification_is_checked", nullable = false)
   private boolean isChecked;
+
+  @ManyToOne
+  @JoinColumn(name = "post_id", updatable = false)
+  private Post post;
 
   @ManyToOne
   @JoinColumn(name = "sender_id", updatable = false, nullable = false)
@@ -54,8 +55,7 @@ public class Notification {
   @Column(name = "notification_modify_timestamp")
   private Date modifyTimestamp;
 
-  public Notification(String url, String type, User sender, User receiver) {
-    this.url = url;
+  public Notification(String type, User sender, User receiver) {
     this.type = type;
     this.sender = sender;
     this.receiver = receiver;

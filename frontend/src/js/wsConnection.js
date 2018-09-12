@@ -1,5 +1,6 @@
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
+import {COMMENT, COMMENT_LIKE, FOLLOW, MESSAGE, POST, POST_LIKE} from "../constants/action-types";
 
 export const webSocketChat = (callback1, callback2) =>  {
   let ws = new SockJS('http://localhost:8080/ws_0001?accessToken=' +
@@ -33,8 +34,40 @@ export const webSocketMessageNotification = (callback) => {
   stompClient.connect({}, function (frame) {
     stompClient.subscribe('/user/queue/notifications', function (resp) {
       const object = JSON.parse(resp.body);
-      if (window.location.pathname !== '/messages/' + object.sender.username){
-        callback(object);
+      switch (object.type) {
+        case MESSAGE:
+          if (window.location.pathname !== '/messages/' + object.sender.username) {
+            object.url = `/messages/${object.sender.username}`;
+            object.message = `New message from ${object.sender.username}`;
+            callback(object);
+          }
+          break;
+        case COMMENT:
+          object.url = `/post/${object.post.id}`;
+          object.message = `${object.sender.username} has commented your post`;
+          callback(object);
+          break;
+        case POST:
+          if (window.location.pathname !== '/') {
+            object.url = `/post/${object.post.id}`;
+            object.message = `${object.sender.username} shared a new post`;
+            callback(object);
+          }
+          break;
+        case FOLLOW:
+          object.url = `/user/${object.sender.username}`;
+          object.message = `${object.sender.username} is now following you`;
+          callback(object);
+          break;
+        case POST_LIKE:
+          object.url = `/post/${object.post.id}`;
+          object.message = `${object.sender.username} has liked your post`;
+          callback(object);
+          break;
+        case COMMENT_LIKE:
+          object.url = `/post/${object.post.id}`;
+          object.message = `${object.sender.username} has liked your comment`;
+          callback(object);
       }
     });
   });

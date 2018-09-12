@@ -58,9 +58,10 @@ public class CommentServiceImpl implements CommentService {
     Post post = postRepository.findById(comment.getPost().getId()).get();
 
     if (!userPrincipal.getId().equals(post.getAuthor().getId())) {
-      Notification notification = new Notification(Constants.FRONT_NOTIFY,
+      Notification notification = new Notification(
           Constants.COMMENT,
           userPrincipal.getUser(), post.getAuthor());
+      notification.setPost(post);
       notificationRepository.save(notification);
 
       template.convertAndSendToUser(post.getAuthor().getUsername(),
