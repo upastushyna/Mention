@@ -59,7 +59,7 @@ public class MessageServiceImpl implements MessageService {
         userPrincipal.getUser(),
         insertMessage.getReceiver());
 
-    notificationRepository.save(notification);
+    notification.setId(notificationRepository.save(notification).getId());
     template.convertAndSendToUser(message.getReceiver().getUsername(), wsPath,
         new WsMessageRs(message.getReceiver().getUsername(),
             userPrincipal.getUsername()));

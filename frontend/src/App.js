@@ -18,6 +18,7 @@ import Post from "./components/Post";
 import {webSocketFeed} from "./js/wsConnection";
 import {loadFeed} from "./actions/feedActions";
 import Navigation from "./components/Navigation"
+import Feed from './components/Feed'
 
 
 class App extends Component {
@@ -57,7 +58,7 @@ class App extends Component {
         {window.location.pathname !== '/registration'?
         <Navigation/> : null}
         <Switch>
-          <Route exact path='/' component={() => <HomePage
+          <Route exact path='/' component={() => <Feed
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}
             history={this.props.history}

@@ -9,11 +9,11 @@ public class NotificationRs {
 
   private Long id;
 
-  private String url;
-
   private String type;
 
   private boolean isChecked;
+
+  private PostIdRq post;
 
   private ShortUserDetailsRs sender;
 
