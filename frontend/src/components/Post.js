@@ -34,7 +34,6 @@ class Post extends React.Component {
     }
     return (
       <Fragment>
-        <Navigation/>
         <div className="container">
           <PostItem username={this.props.match.params.id}
           loadData={this.props.loadPost}

@@ -59,7 +59,6 @@ class Feed extends React.Component {
 
     return (
       <Fragment key={Feed.id}>
-        <Navigation history={this.props.history}/>
         <div ref="container">
           {this.props.currentUser.followedUsers.find(follow =>
             follow.followedUser.id === this.props.currentUser.id)

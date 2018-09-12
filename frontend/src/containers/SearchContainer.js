@@ -37,7 +37,8 @@ class SearchContainer extends React.Component {
         {this.redirect()}
         <form onSubmit={event => this.handleSubmit(event) } className="d-flex-center">
           <input pattern=".{1,}" required title="1 characters minimum" onKeyUp={() =>
-            this.setState({input: this.refs.searchInput.value})} id="searchInput"
+            this.refs.searchInput.value.length > 0?
+              this.setState({input: this.refs.searchInput.value}):null} id="searchInput"
           ref="searchInput" type="text" className="search__input"
           placeholder="Search..."/>
           <input type="image" className="search__btn" src={search} alt="search"/>
