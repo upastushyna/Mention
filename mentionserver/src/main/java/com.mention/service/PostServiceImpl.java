@@ -178,8 +178,9 @@ public class PostServiceImpl implements PostService {
         continue;
       }
 
-      Notification notification = new Notification(Constants.FRONT_NOTIFY,
+      Notification notification = new Notification(
           Constants.POST, currentUser.get(), follow.getFollower());
+      notification.setPost(post);
       notificationRepository.save(notification);
 
       template.convertAndSendToUser(follow.getFollower().getUsername(),

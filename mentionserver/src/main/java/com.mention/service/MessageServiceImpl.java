@@ -54,8 +54,7 @@ public class MessageServiceImpl implements MessageService {
     Message insertMessage = modelMapper.map(message, Message.class);
     messageRepository.save(insertMessage);
 
-    String frontUrl = "/messages/" + userPrincipal.getUsername();
-    Notification notification = new Notification(frontUrl,
+    Notification notification = new Notification(
         Constants.MESSAGE,
         userPrincipal.getUser(),
         insertMessage.getReceiver());

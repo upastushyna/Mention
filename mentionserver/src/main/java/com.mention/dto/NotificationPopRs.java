@@ -13,6 +13,8 @@ public class NotificationPopRs {
 
   private ShortUserDetailsRs receiver;
 
+  private PostIdRq post;
+
   private String url;
 
   private String type;

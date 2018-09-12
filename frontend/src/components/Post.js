@@ -14,6 +14,20 @@ class Post extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.callUpdate()
+  }
+
+  componentDidMount() {
+    this.callUpdate()
+  }
+
+  callUpdate = () => {
+    if(this.props.post.id != this.props.match.params.id) {
+      this.props.loadPost(this.props.match.params.id)
+    }
+  };
+
   render () {
     if (!this.props.post || !this.props.post.author) {
       return <Preloader/>

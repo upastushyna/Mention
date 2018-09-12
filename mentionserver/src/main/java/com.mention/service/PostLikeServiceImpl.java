@@ -62,10 +62,11 @@ public class PostLikeServiceImpl implements PostLikeService {
       return ResponseEntity.ok(new ApiRs(true, "Liked successfully"));
     }
 
-    Notification notification = new Notification(Constants.FRONT_NOTIFY,
+    Notification notification = new Notification(
         Constants.POST_LIKE,
         userPrincipal.getUser(),
         post.getAuthor());
+    notification.setPost(post);
     notificationRepository.save(notification);
 
     template.convertAndSendToUser(post.getAuthor().getUsername(),
