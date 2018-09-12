@@ -41,6 +41,7 @@ class SearchPage extends React.Component {
 
   searchTimeOut = () => {
     document.getElementsByClassName('empty-state')[0].style.display = "none";
+    document.getElementsByClassName('loader')[0].style.display = "flex";
 
     setTimeout(() => {
       if (this.props.foundPosts.length === 0) {
