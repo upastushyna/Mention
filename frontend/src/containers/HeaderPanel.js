@@ -55,7 +55,7 @@ class HeaderPanel extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      return "loading..."
+      return " ";
     }
 
     return (
