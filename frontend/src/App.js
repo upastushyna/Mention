@@ -58,7 +58,8 @@ class App extends Component {
       <Fragment>
         <div ref="pageTop" style={{ float: 'left', clear: 'both' }}></div>
         {window.location.pathname !== '/registration'?
-        <Navigation loadUnread={this.props.loadUnread}/> : null}
+        <Navigation loadUnread={this.props.loadUnread}
+                    history={this.props.history}/> : null}
         <Switch>
           <Route exact path='/' component={() => <Feed
             currentUser={this.props.currentUser}

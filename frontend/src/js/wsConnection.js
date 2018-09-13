@@ -27,7 +27,7 @@ export const webSocketFeed = (callback) => {
   });
 };
 
-export const webSocketMessageNotification = (callback1, callback2) => {
+export const webSocketPopUpNotification = (callback1, callback2, callback3, history) => {
   let ws = new SockJS('http://localhost:8080/ws_0001?accessToken=' +
     'Bearer '  + localStorage.getItem("accessToken"));
   let stompClient = Stomp.over(ws);
@@ -36,9 +36,12 @@ export const webSocketMessageNotification = (callback1, callback2) => {
       const object = JSON.parse(resp.body);
       switch (object.type) {
         case MESSAGE:
-          if (window.location.pathname !== '/messages/' + object.sender.username) {
+          if (history.location.pathname !== '/messages/' + object.sender.username) {
             object.url = `/messages/${object.sender.username}`;
             object.message = `New message from ${object.sender.username}`;
+          } else {
+            callback3(callback2, object.id)
+            return;
           }
           break;
         case COMMENT:
@@ -46,9 +49,12 @@ export const webSocketMessageNotification = (callback1, callback2) => {
           object.message = `${object.sender.username} has commented your post`;
           break;
         case POST:
-          if (window.location.pathname !== '/') {
+          if (history.location.pathname !== '/') {
             object.url = `/post/${object.post.id}`;
             object.message = `${object.sender.username} shared a new post`;
+          } else {
+            callback3(callback2, object.id)
+            return;
           }
           break;
         case FOLLOW:

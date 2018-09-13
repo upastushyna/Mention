@@ -3,9 +3,9 @@ import HeaderPanel from '../containers/HeaderPanel'
 import withRouter from 'react-router-dom/es/withRouter'
 import {connect} from 'react-redux'
 import {loadCurrentUser} from '../actions/currentUserActions'
-import {webSocketMessageNotification} from "../js/wsConnection";
+import {webSocketPopUpNotification} from "../js/wsConnection";
 import PopUpNotification from "../containers/PopUpNotification";
-import {checkReadNotification, loadUnreadNotifications} from "../actions/notificationsActions";
+import {checkReadNotification} from "../actions/notificationsActions";
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -16,7 +16,10 @@ class Navigation extends React.Component {
   }
 
   componentDidMount () {
-    webSocketMessageNotification(this.notify, this.props.loadUnread);
+    webSocketPopUpNotification(this.notify,
+      this.props.loadUnread,
+      this.props.checkRead,
+      this.props.history);
   }
 
   notify = notification => {
