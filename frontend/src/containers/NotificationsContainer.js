@@ -1,13 +1,14 @@
 import React from 'react'
-import Loader from "./Loader";
+import EmptyState from "./EmptyState";
 import NotificationItem from "./NotificationItem";
 
 const NotificationsContainer = props => {
   if (props.notifications.length === 0) {
-    return <Loader/>
+    return <EmptyState title="No new notifications" message="You read all of them :)"/>
   }
 
   return props.notifications.map(notification =>
+   
     <NotificationItem notification={notification}/>)
 };
 
