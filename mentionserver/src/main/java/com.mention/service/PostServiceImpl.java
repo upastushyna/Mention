@@ -205,6 +205,18 @@ public class PostServiceImpl implements PostService {
 
     Post insertPost = modelMapper.map(post, Post.class);
     postRepository.save(insertPost);
+
+    Post original = postRepository.findById(post.getParent().getId()).get();
+
+    Notification notification = new Notification(
+        Constants.REPOST, userPrincipal.getUser(), original.getAuthor());
+    notification.setPost(modelMapper.map(post, Post.class));
+    notification.setId(notificationRepository.save(notification).getId());
+
+    template.convertAndSendToUser(original.getAuthor().getUsername(),
+        Constants.WS_NOTIFY, modelMapper.map(notification, NotificationPopRs.class));
+
+
     return ResponseEntity.ok(new ApiRs(true, "Reposted successfully"));
   }
 
