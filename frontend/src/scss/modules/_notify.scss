@@ -1,0 +1,77 @@
+.notify{
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	text-decoration: none;
+	background-color: $main-color;
+	padding: 16px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	border-radius: 6px;
+	max-width: 400px;
+	z-index: 10;
+
+	&__container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto;
+		width: 40vw;
+	}
+
+	&__close {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		width: 16px;
+		height: 16px;
+	}
+
+	&__text{
+	 font-size: 14px;
+	 line-height: 24px;
+	 font-weight: 500;
+	 margin-right: 24px;
+	 word-break: break-all;
+	}
+
+	&__icon{
+		width: 17px;
+		height: 17px;
+		margin-right: 16px;
+	}
+
+	&__list-item{
+		width: 100%;
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 16px;
+		color: $black-text-color;
+        border-bottom: 1px solid $border-color;
+		&:active,
+		&:hover{
+          background-color: $border-color;
+		}
+	}
+
+	&__arrow{
+		color: $meta-color;
+		font-size: 12px;
+		margin-left: 16px;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.notify {
+		bottom: 16px;
+		right: 16px;
+
+		&__container{
+			width: 100vw;
+		}
+	}
+   }

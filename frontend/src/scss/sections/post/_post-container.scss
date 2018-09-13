@@ -85,11 +85,12 @@
     border: 1px solid $main-color;
     position: absolute;
     left: 80px;
-    top: 40px;
+    bottom: 20px;
     background-color: #fff;
     border-radius: 6px;
     padding: 8px;
     z-index: 20;
+
 
     &:after {
       content: "";

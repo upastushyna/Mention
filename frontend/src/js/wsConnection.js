@@ -1,6 +1,6 @@
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
-import {COMMENT, COMMENT_LIKE, FOLLOW, MESSAGE, POST, POST_LIKE} from "../constants/action-types";
+import {COMMENT, COMMENT_LIKE, FOLLOW, MESSAGE, POST, POST_LIKE, REPOST} from "../constants/action-types";
 
 export const webSocketChat = (callback1, callback2) =>  {
   let ws = new SockJS('http://localhost:8080/ws_0001?accessToken=' +
@@ -68,6 +68,10 @@ export const webSocketPopUpNotification = (callback1, callback2, callback3, hist
         case COMMENT_LIKE:
           object.url = `/post/${object.post.id}`;
           object.message = `${object.sender.username} has liked your comment`;
+          break;
+        case REPOST:
+          object.url = `/post/${object.post.id}`;
+          object.message = `${object.sender.username} has re-posted you`;
       }
       callback1(object);
       callback2();
