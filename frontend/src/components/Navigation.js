@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {loadCurrentUser} from '../actions/currentUserActions'
 import {webSocketMessageNotification} from "../js/wsConnection";
 import PopUpNotification from "../containers/PopUpNotification";
+import {checkReadNotification, loadUnreadNotifications} from "../actions/notificationsActions";
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -14,14 +15,8 @@ class Navigation extends React.Component {
     };
   }
 
-  componentWillMount () {
-    if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser()
-    }
-  }
-
   componentDidMount () {
-    webSocketMessageNotification(this.notify);
+    webSocketMessageNotification(this.notify, this.props.loadUnread);
   }
 
   notify = notification => {
@@ -35,19 +30,24 @@ class Navigation extends React.Component {
 
     return (
       <Fragment key={Navigation.id}>
-        <HeaderPanel history={this.props.history} currentUser={this.props.currentUser}/>
-        <PopUpNotification notification={this.state.notification}/>
+        <HeaderPanel unread={this.props.unread.length} history={this.props.history}
+                     currentUser={this.props.currentUser}/>
+        <PopUpNotification notification={this.state.notification}
+                           checkRead={this.props.checkRead}
+                           loadUnread={this.props.loadUnread}/>
       </Fragment>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
-})
+  currentUser: state.currentUser,
+  unread:state.unread
+});
 
 const mapDispatchToProps = dispatch => ({
-  loadCurrentUser: () => dispatch(loadCurrentUser())
-})
+  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  checkRead: (callback, id) => checkReadNotification(callback, id)
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navigation))
