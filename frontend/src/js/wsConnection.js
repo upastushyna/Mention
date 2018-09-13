@@ -74,18 +74,3 @@ export const webSocketPopUpNotification = (callback1, callback2, callback3, hist
     });
   });
 };
-/*
-
-function WebSocket(subsribeUrl, ArrayOfChannels) {
-  const socket = SockJS(subsribeUrl); //create wrapper
-  const stompClient = Stomp.over(socket);//connect using your client
-  stompClient.connect({}, () => {
-    ArrayOfChannels.forEach((channel) => {
-      stompClient.subscribe(channel.route, channel.callback);
-    });
-  }, () => {
-    setTimeout(() => {
-      subscribeToSocket(subsribeUrl, ArrayOfChannels);
-    }, 0);
-  });
-}*/
