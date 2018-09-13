@@ -10,5 +10,4 @@ const NotificationsContainer = props => {
   return props.notifications.map(notification =>
     <NotificationItem notification={notification}/>)
 };
-
 export default NotificationsContainer
