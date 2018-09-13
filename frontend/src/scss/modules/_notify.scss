@@ -12,6 +12,15 @@
 	max-width: 400px;
 	z-index: 10;
 
+	&__container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto;
+		width: 40vw;
+	}
+
 	&__close {
 		position: absolute;
 		top: 8px;
@@ -33,11 +42,36 @@
 		height: 17px;
 		margin-right: 16px;
 	}
+
+	&__list-item{
+		width: 100%;
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 16px;
+		color: $black-text-color;
+        border-bottom: 1px solid $border-color;
+		&:active,
+		&:hover{
+          background-color: $border-color;
+		}
+	}
+
+	&__arrow{
+		color: $meta-color;
+		font-size: 12px;
+		margin-left: 16px;
+	}
 }
 
 @media screen and (max-width: 1200px) {
 	.notify {
 		bottom: 16px;
 		right: 16px;
+
+		&__container{
+			width: 100vw;
+		}
 	}
    }

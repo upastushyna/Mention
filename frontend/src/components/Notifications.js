@@ -23,6 +23,7 @@ class Notifications extends React.Component {
             <button onClick={() => checkReadAll(this.props.loadUnread)}>
               Mark all as read</button> : null }
         </div>
+       <section className="notify__container">
         <Switch>
           <Route exact path='/notifications/all' component={() => <NotificationsContainer
             notifications={this.props.notifications}
@@ -31,6 +32,7 @@ class Notifications extends React.Component {
               notifications={this.props.unread}
               loadNotifications={this.props.loadUnread}/>}/>
         </Switch>
+        </section>
       </Fragment>
     )
   }
