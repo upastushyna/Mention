@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {COMMENT, COMMENT_LIKE, FOLLOW, MESSAGE, POST, POST_LIKE} from "../constants/action-types";
 
 const PopUpNotification = props => {
 
