@@ -43,7 +43,6 @@ class Navigation extends React.Component {
   }
 }
 
-
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
   unread:state.unread
