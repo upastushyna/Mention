@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react'
-import {Redirect} from 'react-router-dom'
-import Navigation from './Navigation'
 import PostItem from '../containers/PostItem'
 import {deletePost, loadPostById} from '../actions/postsActions'
 import {connect} from 'react-redux'
@@ -25,7 +23,7 @@ class Post extends React.Component {
 
   callUpdate = () => {
     if (!this.props.post) {
-      this.props.history.push('/') && this.props.loadPost(this.props.match.params)
+      this.props.history.push('/')
     } else if (this.props.post.id != this.props.match.params.id) {
       this.props.loadPost(this.props.match.params.id)
     }
