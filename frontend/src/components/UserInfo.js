@@ -15,10 +15,6 @@ class UserInfo extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    console.log("=============================UNMOUNTED")
-  }
-
   render () {
     return (
       <Fragment key={UserInfo.id}>
