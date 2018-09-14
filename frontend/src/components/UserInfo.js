@@ -42,7 +42,7 @@ class UserInfo extends React.Component {
               loadCurrentUser={this.props.loadCurrentUser}
               follow={this.props.follow}
               unfollow={this.props.unfollow}/>}/>
-          <Route exact path='/user/:username/info/liked' render={() =>
+          <Route path='/user/:username/info/liked' render={() =>
             <PostsContainer username={this.props.username}
               userPosts={this.props.likedPosts}
               loadData={this.props.loadData}
