@@ -14,7 +14,6 @@ class Post extends React.Component {
 
   componentDidUpdate () {
     this.callUpdate()
-    /* this.redirectToFeed() */
   }
 
   componentDidMount () {
@@ -28,12 +27,6 @@ class Post extends React.Component {
       this.props.loadPost(this.props.match.params.id)
     }
   }
-
-  /* redirectToFeed = () => {
-    if (!this.props.post) {
-      this.props.history.push('/')
-    }
-  } */
 
   render () {
     if (!this.props.post || !this.props.post.author) {
