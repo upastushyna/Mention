@@ -14,7 +14,6 @@ import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
 import {isLoggedIn} from './js/isLoggedIn'
 import Post from "./components/Post";
-import {loadFeed} from "./actions/feedActions";
 import Navigation from "./components/Navigation"
 import Feed from './components/Feed'
 import {loadUnreadNotifications} from "./actions/notificationsActions";
@@ -92,13 +91,11 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  feed:state.feed,
   unread:state.unread
 });
 
 const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  loadFeed: username => dispatch(loadFeed(username)),
   loadUnread: () => dispatch(loadUnreadNotifications())
 });
 

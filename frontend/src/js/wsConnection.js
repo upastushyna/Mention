@@ -40,7 +40,7 @@ export const webSocketPopUpNotification = (callback1, callback2, callback3, hist
             object.url = `/messages/${object.sender.username}`;
             object.message = `New message from ${object.sender.username}`;
           } else {
-            callback3(callback2, object.id)
+            callback3(callback2, object.id);
             return;
           }
           break;

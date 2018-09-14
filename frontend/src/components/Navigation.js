@@ -11,8 +11,14 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notification: undefined
+      notification: undefined,
+      timerId: undefined
     };
+  }
+
+  timeout () {
+    this.setState({timerId: setTimeout(() =>
+        this.triggerHide(document.getElementById('pop-up')), 5000)})
   }
 
   componentDidMount () {
@@ -21,6 +27,26 @@ class Navigation extends React.Component {
       this.props.checkRead,
       this.props.history);
   }
+
+  componentWillReceiveProps() {
+    const popUp = document.getElementById('pop-up');
+    const {timerId} = this.state;
+
+    if(popUp && popUp.classList.contains('d-none')) {
+      popUp.classList.remove('d-none');
+    }
+
+    if (popUp) {
+      timerId && clearTimeout(timerId);
+      this.timeout();
+    }
+  }
+
+  triggerHide = (popUp) => {
+    if (popUp && !popUp.classList.contains('d-none')) {
+      popUp.classList.add('d-none');
+    }
+  };
 
   notify = notification => {
     this.setState({notification:notification})
