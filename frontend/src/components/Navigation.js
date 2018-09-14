@@ -35,13 +35,14 @@ class Navigation extends React.Component {
       <Fragment key={Navigation.id}>
         <HeaderPanel unread={this.props.unread.length} history={this.props.history}
                      currentUser={this.props.currentUser}/>
-        <PopUpNotification notification={this.state.notification}
+        <PopUpNotification  notification={this.state.notification}
                            checkRead={this.props.checkRead}
                            loadUnread={this.props.loadUnread}/>
       </Fragment>
     )
   }
 }
+
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,

@@ -29,8 +29,8 @@ const NotificationItem = props => {
       url = `/post/${notification.post.id}`;
   }
 
-  return <Link to={url}><p>{props.notification.type.toLowerCase() +
+  return <Link to={url} className="notify__list-item">{props.notification.type.toLowerCase() +
   " from " + props.notification.sender.username +
-  " " + getDateFromDb(props.notification.modifyTimestamp)}</p></Link>
+  " " + getDateFromDb(props.notification.modifyTimestamp)}<span className="notify__arrow">&gt;</span></Link>
 };
 export default NotificationItem
