@@ -12,9 +12,9 @@ export const getDateFromDb = dateDB => {
   let createdDate = new Date(year, month, day, hour, minute, second)
   let currentDate = new Date()
 
-  let showDate = (currentDate.getDate() === createdDate.getDate()) ? 'Today ' + time
-    : (currentDate.getDate() - createdDate.getDate() === 1) ? 'Yesterday ' + time
-      : yearMonthDate + ' ' + time
+  let showDate = (currentDate.getDate() === createdDate.getDate()) ? 'Today at ' + time
+    : (currentDate.getDate() - createdDate.getDate() === 1) ? 'Yesterday at ' + time
+      : yearMonthDate + ' at ' + time
 
   return showDate
 }

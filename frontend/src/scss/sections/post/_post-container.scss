@@ -79,7 +79,54 @@
   }
 }
 
+.postLikers {
+  &__nav {
+    width: 30vw;
+    border: 1px solid $main-color;
+    position: absolute;
+    left: 80px;
+    bottom: 20px;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 8px;
+    z-index: 20;
 
+
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: 50%;
+      left: -2px;
+      transform: translate(50%);
+      transform: rotate(45deg);
+      border-style: solid;
+      border-width: 13px 13px 13px 0;
+      border-color: transparent transparent $main-color transparent;
+     }
+
+    .follow-container{
+      @include box-shadow(none);
+      border: none;
+      width: 100%;
+      margin: 8px auto;
+      padding: 6px;
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__title{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    color: $black-text-color;
+    text-align: center;
+  }
+}
 @media screen and (max-width: 1200px) {
 
   .post{
@@ -99,5 +146,9 @@
     &__action-count{
       font-size: 12px;
     }
-    }
+  }
+
+  .postLikers__nav {
+    width: 70vw;  }
+    
 }

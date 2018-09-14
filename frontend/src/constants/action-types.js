@@ -19,3 +19,6 @@ export const POST = "POST";
 export const COMMENT = "COMMENT";
 export const MESSAGE = "MESSAGE";
 export const FOLLOW = "FOLLOW";
+export const ALL_NOTIFICATIONS_LOADED="ALL_NOTIFICATIONS_LOADED";
+export const UNREAD_NOTIFICATIONS_LOADED="UNREAD_NOTIFICATIONS_LOADED";
+export const REPOST = "REPOST";

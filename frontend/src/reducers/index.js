@@ -13,6 +13,8 @@ import searchPostsReducer from './searchPostsReducer'
 import currentUserReducer from './currentUserReducer'
 import postsReducer from './postsReducer'
 import commentsReducer from './commentsReducer'
+import allNotificationsReducer from "./NotificationsReducer";
+import unreadNotificationsReducer from "./unreadNotificationsReducer";
 
 export default combineReducers({
   feed: feedReducer,
@@ -29,5 +31,7 @@ export default combineReducers({
   currentUser: currentUserReducer,
   deletePost: postsReducer,
   deleteComment: commentsReducer,
-  post: postsReducer
+  post: postsReducer,
+  notifications: allNotificationsReducer,
+  unread: unreadNotificationsReducer
 })
