@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import {Redirect} from 'react-router-dom'
 import Navigation from './Navigation'
 import PostItem from '../containers/PostItem'
 import {deletePost, loadPostById} from '../actions/postsActions'
@@ -15,6 +16,7 @@ class Post extends React.Component {
 
   componentDidUpdate () {
     this.callUpdate()
+    /* this.redirectToFeed() */
   }
 
   componentDidMount () {
@@ -22,10 +24,18 @@ class Post extends React.Component {
   }
 
   callUpdate = () => {
-    if (this.props.post.id != this.props.match.params.id) {
+    if (!this.props.post) {
+      this.props.history.push('/') && this.props.loadPost(this.props.match.params)
+    } else if (this.props.post.id != this.props.match.params.id) {
       this.props.loadPost(this.props.match.params.id)
     }
-  };
+  }
+
+  /* redirectToFeed = () => {
+    if (!this.props.post) {
+      this.props.history.push('/')
+    }
+  } */
 
   render () {
     if (!this.props.post || !this.props.post.author) {

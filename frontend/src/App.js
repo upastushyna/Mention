@@ -51,7 +51,7 @@ class App extends Component {
   };
 
   render () {
-    
+
     return (
       <Fragment>
         <div ref="pageTop" style={{ float: 'left', clear: 'both' }}></div>
@@ -77,7 +77,8 @@ class App extends Component {
           <Route path='/post/:id' component={props => <Post
             {...props}
             currentUser={this.props.currentUser}
-            loadCurrentUser={this.props.loadCurrentUser}/>}/>
+            loadCurrentUser={this.props.loadCurrentUser}
+            history={this.props.history}/>}/>
           <Route path='/notifications' component={() => <Notifications
                  unread={this.props.unread}
                  loadUnread={this.props.loadUnread}
