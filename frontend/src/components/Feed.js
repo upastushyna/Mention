@@ -8,10 +8,12 @@ import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
 import Preloader from "../containers/Preloader";
+import Test from '../containers/Test'
 
 class Feed extends React.Component {
   constructor (props) {
     super(props)
+    this.inputElement = React.createRef();
   }
 
   componentWillMount () {
@@ -57,9 +59,14 @@ class Feed extends React.Component {
       return <Preloader/>;
     }
 
+    const myRef = React.createRef();
+
+    console.log(myRef)
+
     return (
       <Fragment key={Feed.id}>
         <div ref="container">
+          <Test ref={myRef}>Click</Test>
           {this.props.currentUser.followedUsers.find(follow =>
             follow.followedUser.id === this.props.currentUser.id)
             ? <div className="create-post">

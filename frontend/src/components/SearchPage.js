@@ -14,6 +14,7 @@ import Loader from "../containers/Loader";
 import {isLoggedIn} from '../js/isLoggedIn'
 
 class SearchPage extends React.Component {
+
   constructor (props) {
     super(props)
     this.state = {
@@ -41,12 +42,16 @@ class SearchPage extends React.Component {
 
   searchTimeOut = () => {
     document.getElementsByClassName('empty-state')[0].style.display = "none";
-    document.getElementsByClassName('loader')[0].style.display = "flex";
+
+    if (this.props.foundPosts.length === 0) {
+      document.getElementsByClassName('loader')[0].style.display = "flex";
+    }
 
     setTimeout(() => {
       if (this.props.foundPosts.length === 0) {
         document.getElementsByClassName('loader')[0].style.display = "none";
         document.getElementsByClassName('empty-state')[0].style.display = "flex";
+        console.log(this.myRef, "hig");
       }
     }, 2500)
   }
@@ -85,11 +90,12 @@ class SearchPage extends React.Component {
         followedUser: {id: followedUser}})
     }).then(() => this.props.loadCurrentUser());
 
+
+
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return <Loader/>
     }
-
     return (
       <Fragment key={SearchPage.id}>
         <div className="container">
