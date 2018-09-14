@@ -7,10 +7,10 @@ import {deleteComment} from '../actions/commentsActions'
 import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
-import Preloader from '../containers/Preloader'
-import withRouter from 'react-router-dom/es/withRouter'
-import {webSocketFeed} from '../js/wsConnection'
-import {loadCurrentUser} from '../actions/currentUserActions'
+import Preloader from "../containers/Preloader";
+import withRouter from "react-router-dom/es/withRouter";
+import {webSocketFeed} from "../js/wsConnection";
+import {loadCurrentUser} from "../actions/currentUserActions";
 
 class Feed extends React.Component {
   constructor (props) {
@@ -21,7 +21,7 @@ class Feed extends React.Component {
   }
 
   componentWillMount () {
-    if (!this.props.currentUser.username) {
+    if(!this.props.currentUser.username) {
       this.props.loadCurrentUser()
     }
     if (this.props.feed.length === 0 && this.props.currentUser.username) {
@@ -36,16 +36,16 @@ class Feed extends React.Component {
   }
 
   componentDidMount () {
-    webSocketFeed(this.props.loadData)
+    webSocketFeed(this.props.loadData);
   }
 
   addPost = event => {
-    event.preventDefault()
-    const data = new FormData()
-    data.append('body', this.refs.postInput.value)
-    data.append('id', this.props.currentUser.id)
+    event.preventDefault();
+    const data = new FormData();
+    data.append('body', this.refs.postInput.value);
+    data.append('id', this.props.currentUser.id);
     if (this.refs.inputFile) {
-      const image = this.refs.inputFile.files[0]
+      const image = this.refs.inputFile.files[0];
       data.append('image', image)
     }
 
@@ -72,8 +72,8 @@ class Feed extends React.Component {
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser()
-      return <Preloader/>
+      this.props.loadCurrentUser();
+      return <Preloader/>;
     }
 
     return (
@@ -115,13 +115,13 @@ const mapStateToProps = state => ({
   deletePost: state.deletePost,
   deleteComment: state.deleteComment,
   currentUser: state.currentUser
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username)),
   deletePost: data => dispatch(deletePost(data)),
   deleteComment: data => dispatch(deleteComment(data)),
   loadCurrentUser: () => dispatch(loadCurrentUser())
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)

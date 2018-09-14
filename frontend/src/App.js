@@ -51,7 +51,7 @@ class App extends Component {
   };
 
   render () {
-
+    
     return (
       <Fragment>
         <div ref="pageTop" style={{ float: 'left', clear: 'both' }}></div>
@@ -93,13 +93,11 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  feed:state.feed,
   unread:state.unread
 });
 
 const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  loadFeed: username => dispatch(loadFeed(username)),
   loadUnread: () => dispatch(loadUnreadNotifications())
 });
 
