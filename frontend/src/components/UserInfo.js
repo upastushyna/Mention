@@ -6,12 +6,17 @@ import {connect} from 'react-redux'
 import {loadFollowed} from '../actions/followedActions'
 import {loadFollowing} from '../actions/followingActions'
 import {loadLiked} from '../actions/likedActions'
+import withRouter from 'react-router-dom/es/withRouter'
 
 class UserInfo extends React.Component {
   componentWillMount () {
     if (this.props.likedPosts.length === 0) {
       this.props.loadData(this.props.username)
     }
+  }
+
+  componentWillUnmount() {
+    console.log("=============================UNMOUNTED")
   }
 
   render () {
@@ -68,4 +73,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserInfo))

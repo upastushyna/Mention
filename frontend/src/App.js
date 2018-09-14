@@ -14,7 +14,6 @@ import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
 import {isLoggedIn} from './js/isLoggedIn'
 import Post from "./components/Post";
-import {webSocketFeed} from "./js/wsConnection";
 import {loadFeed} from "./actions/feedActions";
 import Navigation from "./components/Navigation"
 import Feed from './components/Feed'
@@ -36,7 +35,6 @@ class App extends Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleOnScroll);
-    webSocketFeed(this.props.loadFeed);
   }
 
   handleOnScroll = () => {
@@ -61,11 +59,7 @@ class App extends Component {
         <Navigation loadUnread={this.props.loadUnread}
                     history={this.props.history}/> : null}
         <Switch>
-          <Route exact path='/' component={() => <Feed
-            currentUser={this.props.currentUser}
-            loadCurrentUser={this.props.loadCurrentUser}
-            history={this.props.history}
-            feed={this.props.feed}/>}/>
+          <Route exact path='/' component={Feed}/>
           <Route path='/messages' component={() => <Messages
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
