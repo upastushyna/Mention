@@ -71,15 +71,16 @@
   width: 100%;
  }
 
- &__sign-btn{
-     @include clear-default-input-style;
-     background-color: #fff;
-     border: none;
-     padding: 7px 15px;
-     color: $main-color;
-     margin-top: 20px;
-     font-weight: 700;
-     font-size: 20px;
+ &__sign-btn {
+  @include clear-default-input-style;
+
+  background-color: #fff;
+  border: none;
+  padding: 7px 15px;
+  color: $main-color;
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 20px;
  }
 }
 
@@ -101,14 +102,14 @@
  }
 }
 
-@media screen and (min-width: 460px) and (max-width: 1200px){
-    .login {
-     &__container{
-         width: 70%;
-     }
-    
-        &__icon{
-            width: 10%; 
-        }
-    }
+@media screen and (min-width: 460px) and (max-width: 1200px) {
+ .login {
+  &__container {
+   width: 70%;
+  }
+
+  &__icon {
+   width: 10%;
+  }
+ }
 }

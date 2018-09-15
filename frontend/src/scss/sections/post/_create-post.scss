@@ -32,28 +32,7 @@
     }
   }
 }
-.upload-file{
-  display: flex;
-  align-items: flex-end;
-  font-size: 12px;
-  line-height: 20px;
-  color: #a1a8bd;
-  margin-top: 16px;
-  height: 25px;
-  position: relative;
 
-  &__icon{
-    width: 25px;
-    height: 25px;
-  }
-
-  input{
-    opacity: 0;
-    position: absolute;
-    left: 0;
-  }
-
-}
 
 @media screen and (max-width: 1200px) {
 

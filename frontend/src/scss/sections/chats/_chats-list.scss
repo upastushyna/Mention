@@ -13,8 +13,14 @@
   @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
  }
 
+ &__back-btn{
+     width: 16px;
+     height: 16px;
+     display: none;
+     margin-right: 16px;
+ }
+
  &__container{
-  /*overflow-y: scroll;*/
   height: 80%;
  }
 
@@ -41,11 +47,6 @@
  &__button {
   width: 20px;
   height: 20px;
- }
-
- &__header {
-  display: none;
-  padding: 16px;
  }
 }
 
@@ -86,7 +87,7 @@
 
 @media screen and (max-width: 768px) {
  .chats {
-  &__header {
+  &__back-btn {
    display: block;
   }
 

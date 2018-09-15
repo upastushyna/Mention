@@ -16,12 +16,12 @@ class Notifications extends React.Component {
       <Fragment>
         <div className="container">
           <div className="info-controller">
-            <Link className="info-controller__link" to={'/notifications/unread'}>Unread</Link>
-            <Link className="info-controller__link" to={'/notifications/all'}>All</Link>
-          </div>
-          {this.props.unread.length > 0?
-            <button onClick={() => checkReadAll(this.props.loadUnread)}>
+              {this.props.unread.length > 0 ?
+            <button className="notify__btn" onClick={() => checkReadAll(this.props.loadUnread)}>
               Mark all as read</button> : null }
+            <Link className="info-controller__link" to={'/notifications/unread'}>Unread</Link>
+            <Link className="info-controller__link" to={'/notifications/all'}>All</Link>         
+          </div>
         </div>
        <section className="notify__container">
         <Switch>

@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react'
-import Navigation from './Navigation'
 import {Route, Switch, Link} from 'react-router-dom'
 import '../css/index.css'
 import {connect} from 'react-redux'
@@ -17,7 +16,6 @@ import upload from '../img/fileuploadicon.png'
 import {deletePost} from '../actions/postsActions'
 import {isLoggedIn} from '../js/isLoggedIn'
 import {deleteComment} from "../actions/commentsActions";
-import Loader from '../containers/Loader'
 import Preloader from "../containers/Preloader";
 
 class UserPage extends React.Component {

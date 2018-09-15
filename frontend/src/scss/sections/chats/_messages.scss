@@ -33,21 +33,20 @@
   }
  }
 
- &__time{
-	 font-size: 12px;
-	 color: $placeholder-color;
+ &__time {
+  font-size: 12px;
+  color: $placeholder-color;
  }
 }
 
 @media screen and (max-width: 1200px) {
-.message {
- &__time {
-  font-size: 9px;
- }
+ .message {
+  &__time {
+   font-size: 9px;
+  }
 
- &__text {
-  max-width: 250px;
+  &__text {
+   max-width: 250px;
+  }
  }
-}
-
 }

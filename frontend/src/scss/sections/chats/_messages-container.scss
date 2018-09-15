@@ -1,42 +1,44 @@
 .messages-container {
-	position: relative;
-	width: 65%;
-	background-color: #fff;
-	@include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+ position: relative;
+ width: 65%;
+ background-color: #fff;
 
-	&__header {
-		height: 8%;
-		padding: 0 15px;
-		border-bottom: 1px solid $border-color;
-		border-left: 1px solid $border-color;
-	}
+ @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
 
-	&__body {
-		height: 82%;
-		padding: 20px;
-		overflow-y: scroll;
-		border-left: 1px solid $border-color;
+ &__header {
+  height: 8%;
+  padding: 0 15px;
+  border-bottom: 1px solid $border-color;
+  border-left: 1px solid $border-color;
+ }
 
-		&::-webkit-scrollbar{
-			width: 5px;
-		}
-		&::-webkit-scrollbar-thumb{
-			background-color: #a1a8bd;
-		}
-	}
+ &__body {
+  height: 82%;
+  padding: 20px;
+  overflow-y: scroll;
+  border-left: 1px solid $border-color;
+
+  &::-webkit-scrollbar {
+   width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+   background-color: #a1a8bd;
+  }
+ }
 }
 
 @media screen and (max-width: 1200px) {
-	.messages-container {
-		width: 65%;
-		box-shadow: none;
-		height: 100vh;
-	}
+ .messages-container {
+  width: 65%;
+  box-shadow: none;
+  height: 100vh;
+ }
 }
 
 @media screen and (max-width: 768px) {
-	.messages-container {
-		display: none;
-		height: 80vh;
-	}
+ .messages-container {
+  display: none;
+  height: 90vh;
+ }
 }

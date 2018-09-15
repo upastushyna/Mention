@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import Navigation from './Navigation'
 import PostItem from "../containers/PostItem";
 import {deletePost, loadPostById} from "../actions/postsActions";
 import {connect} from "react-redux";
@@ -23,7 +22,7 @@ class Post extends React.Component {
   }
 
   callUpdate = () => {
-    if(this.props.post.id != this.props.match.params.id) {
+    if(this.props.post.id !== this.props.match.params.id) {
       this.props.loadPost(this.props.match.params.id)
     }
   };
