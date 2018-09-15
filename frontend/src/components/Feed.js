@@ -8,17 +8,35 @@ import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
 import Preloader from "../containers/Preloader";
+import withRouter from "react-router-dom/es/withRouter";
+import {webSocketFeed} from "../js/wsConnection";
+import {loadCurrentUser} from "../actions/currentUserActions";
 
 class Feed extends React.Component {
   constructor (props) {
     super(props)
-    this.inputElement = React.createRef();
+    this.props.history.listen((location, action) => {
+      this.props.loadData(this.props.currentUser.username)
+    })
   }
 
   componentWillMount () {
+    if(!this.props.currentUser.username) {
+      this.props.loadCurrentUser()
+    }
     if (this.props.feed.length === 0 && this.props.currentUser.username) {
       this.props.loadData(this.props.currentUser.username)
     }
+  }
+
+  componentWillReceiveProps () {
+    if (this.props.feed.length === 0) {
+      this.props.loadData(this.props.currentUser.username)
+    }
+  }
+
+  componentDidMount () {
+    webSocketFeed(this.props.loadData);
   }
 
   addPost = event => {
@@ -100,13 +118,15 @@ class Feed extends React.Component {
 const mapStateToProps = state => ({
   feed: state.feed,
   deletePost: state.deletePost,
-  deleteComment: state.deleteComment
+  deleteComment: state.deleteComment,
+  currentUser: state.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
   loadData: username => dispatch(loadFeed(username)),
   deletePost: data => dispatch(deletePost(data)),
-  deleteComment: data => dispatch(deleteComment(data))
+  deleteComment: data => dispatch(deleteComment(data)),
+  loadCurrentUser: () => dispatch(loadCurrentUser())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)

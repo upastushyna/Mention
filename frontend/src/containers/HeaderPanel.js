@@ -79,9 +79,9 @@ class HeaderPanel extends React.Component {
                 </Link>
               </li>
               <li className="header-menu__item">
-                <Link to="/" className="header-menu__link">
+                <Link to="/notifications/unread" className="header-menu__link">
                   <img src={notification} alt="notify" className="header-menu__icon"/>
-                  <p>{`Notifications(${0})`}</p>
+                  <p>{`Notifications(${this.props.unread})`}</p>
                 </Link>
               </li>
               <li className="header-menu__item">

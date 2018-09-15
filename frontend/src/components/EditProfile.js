@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react'
 import {loadProfileById} from '../actions/editProfileAction'
 import {connect} from 'react-redux'
-import Navigation from './Navigation'
 import DatePicker from 'react-datepicker/es/index'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
@@ -32,6 +31,8 @@ class EditProfile extends React.Component {
   componentDidUpdate() {
     if (this.props.editProfile.birthDate && this.state.startDate === undefined)
       this.setState({startDate: moment(this.props.editProfile.birthDate)});
+    document.getElementById("changeAvatar").disabled = true;
+    document.getElementById("changeBackground").disabled = true;
   }
 
 
@@ -39,67 +40,71 @@ class EditProfile extends React.Component {
     event.preventDefault();
 
     fetch('/api/profiles/update',
-      {
-        method: 'PUT',
-        headers: {
-          'Authorization': "Bearer " + localStorage.getItem("accessToken"),
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({id:this.props.editProfile.id,
-          firstName:this.refs.inputFirstName.value,
-          secondName:this.refs.inputSecondName.value,
-          address:this.refs.inputAddress.value,
-          birthDate:this.state.startDate,
-          avatarUrl:this.props.editProfile.avatarUrl,
-          avatarKey:this.props.editProfile.avatarKey,
-          backgroundUrl:this.props.editProfile.backgroundUrl,
-          backgroundKey:this.props.editProfile.backgroundKey,
-          user:{id:this.props.currentUser.id}})
-      }).then(this.props.loadProfileById(this.props.currentUser.id));
+        {
+          method: 'PUT',
+          headers: {
+            'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: this.props.editProfile.id,
+            firstName: this.refs.inputFirstName.value,
+            secondName: this.refs.inputSecondName.value,
+            address: this.refs.inputAddress.value,
+            birthDate: this.state.startDate,
+            avatarUrl: this.props.editProfile.avatarUrl,
+            avatarKey: this.props.editProfile.avatarKey,
+            backgroundUrl: this.props.editProfile.backgroundUrl,
+            backgroundKey: this.props.editProfile.backgroundKey,
+            user: {id: this.props.currentUser.id}
+          })
+        }).then(this.props.loadProfileById(this.props.currentUser.id));
   };
 
   updateAvatar = event => {
     event.preventDefault();
     const data = new FormData();
-    if(this.refs.avatarFile) {
+    if (this.refs.avatarFile) {
       const image = this.refs.avatarFile.files[0];
       data.append("image", image);
 
       fetch('/api/profiles/avatar',
-        {
-          method: 'PUT',
-          headers: {
-            'Authorization': "Bearer " + localStorage.getItem("accessToken")
-          },
-          body: data
-        }).then(this.refs.addAvatar.innerText = "Add file")
-        .then(this.props.loadCurrentUser())
+          {
+            method: 'PUT',
+            headers: {
+              'Authorization': "Bearer " + localStorage.getItem("accessToken")
+            },
+            body: data
+          }).then(this.refs.addAvatar.innerText = "Add file")
+          .then(this.props.loadCurrentUser())
     }
   };
 
   updateBackground = event => {
     event.preventDefault();
     const data = new FormData();
-    if(this.refs.backgroundFile) {
+    if (this.refs.backgroundFile) {
       const image = this.refs.backgroundFile.files[0];
       data.append("image", image);
 
       fetch('/api/profiles/background',
-        {
-          method: 'PUT',
-          headers: {
-            'Authorization': "Bearer " + localStorage.getItem("accessToken")
-          },
-          body: data
-        }).then(this.refs.addBackground.innerText = "Add file")
-        .then(this.props.loadCurrentUser())
+          {
+            method: 'PUT',
+            headers: {
+              'Authorization': "Bearer " + localStorage.getItem("accessToken")
+            },
+            body: data
+          }).then(this.refs.addBackground.innerText = "Add file")
+          .then(this.props.loadCurrentUser())
     }
   };
 
   changeBackgroundName = () => {
     if (this.refs.backgroundFile.files[0]) {
       this.refs.addBackground.innerText = this.refs.backgroundFile.files[0].name;
+      document.getElementById("changeBackground").disabled = false;
+      document.getElementById("changeBackground").classList.remove("inactive-button")
     } else {
       this.refs.addBackground.innerText = "Add file";
     }
@@ -108,6 +113,8 @@ class EditProfile extends React.Component {
   changeAvatarName = () => {
     if (this.refs.avatarFile.files[0]) {
       this.refs.addAvatar.innerText = this.refs.avatarFile.files[0].name;
+      document.getElementById("changeAvatar").disabled = false;
+      document.getElementById("changeAvatar").classList.remove("inactive-button")
     } else {
       this.refs.addAvatar.innerText = "Add file";
     }
@@ -119,47 +126,47 @@ class EditProfile extends React.Component {
     }
 
     return (
-      <Fragment key={EditProfile.id}>
-        <div className="container">
-          <form className="edit-profile flex-column" onSubmit={event => this.updateProfile(event)}>
-            <h2 className="edit-profile__title">Tell us more about yourself</h2>
+        <Fragment key={EditProfile.id}>
+          <div className="container">
+            <form className="edit-profile flex-column" onSubmit={event => this.updateProfile(event)}>
+              <h2 className="edit-profile__title">Tell us more about yourself</h2>
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change firstname</p>
                 <input type="text" ref="inputFirstName" className="input_custom edit-profile__input"
-                           defaultValue={this.props.editProfile.firstName}
-                           placeholder="First Name"/>
+                       defaultValue={this.props.editProfile.firstName}
+                       placeholder="First Name"/>
               </div>
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change secondname</p>
                 <input type="text" ref="inputSecondName" className="input_custom edit-profile__input"
-                           defaultValue={this.props.editProfile.secondName}
-                           placeholder="Second Name"/>
+                       defaultValue={this.props.editProfile.secondName}
+                       placeholder="Second Name"/>
               </div>
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change address</p>
                 <input type="text" ref="inputAddress" className="input_custom edit-profile__input"
-                           defaultValue={this.props.editProfile.address}
-                           placeholder="Address"/>
+                       defaultValue={this.props.editProfile.address}
+                       placeholder="Address"/>
               </div>
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change birthday</p>
                 <DatePicker
-                      selected={this.state.startDate}
-                      onChange={this.handleChange}
-                      peekNextMonth
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      className="input_custom edit-profile__input"
-                      placeholderText="Select birthday"
-                  />
+                    selected={this.state.startDate}
+                    onChange={this.handleChange}
+                    peekNextMonth
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    className="input_custom edit-profile__input"
+                    placeholderText="Select birthday"
+                />
               </div>
               <div className="edit-profile__item">
                 <input type="submit" className="edit-profile__btn btn-action" defaultValue="Edit"/>
               </div>
-          </form>
-          <form className="edit-profile flex-column" encType="multipart/form-data"
-                onSubmit={event => this.updateAvatar(event)}>
+            </form>
+            <form className="edit-profile flex-column" encType="multipart/form-data"
+                  onSubmit={event => this.updateAvatar(event)}>
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change avatar</p>
                 <div className="upload-file">
@@ -171,12 +178,12 @@ class EditProfile extends React.Component {
                 </div>
               </div>
               <div className="edit-profile__item">
-                <input type="submit" className="edit-profile__btn btn-action"
+                <input id="changeAvatar" type="submit" className="edit-profile__btn btn-action inactive-button"
                        defaultValue="Change Profile Picture"/>
               </div>
-          </form>
-          <form className="edit-profile flex-column" encType="multipart/form-data"
-                onSubmit={event => this.updateBackground(event)}>
+            </form>
+            <form className="edit-profile flex-column" encType="multipart/form-data"
+                  onSubmit={event => this.updateBackground(event)}>
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change profile background</p>
                 <div className="upload-file">
@@ -189,12 +196,12 @@ class EditProfile extends React.Component {
                 </div>
               </div>
               <div className="edit-profile__item">
-                <input type="submit" className="edit-profile__btn btn-action"
+                <input id="changeBackground" type="submit" className="edit-profile__btn btn-action inactive-button"
                        defaultValue="Change background picture"/>
               </div>
-          </form>
-        </div>
-      </Fragment>
+            </form>
+          </div>
+        </Fragment>
     )
   }
 }

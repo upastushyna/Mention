@@ -4,7 +4,6 @@ import './css/index.css'
 import { Route, Switch } from 'react-router-dom'
 import Profile from './components/Profile'
 import Messages from './components/Messages'
-import HomePage from './components/HomePage'
 import NotFound from './components/NotFound'
 import Registration from './components/Registration'
 import UserPage from './components/UserPage'
@@ -15,10 +14,11 @@ import {loadCurrentUser} from './actions/currentUserActions'
 import withRouter from 'react-router-dom/es/withRouter'
 import {isLoggedIn} from './js/isLoggedIn'
 import Post from "./components/Post";
-import {webSocketFeed} from "./js/wsConnection";
 import {loadFeed} from "./actions/feedActions";
 import Navigation from "./components/Navigation"
 import Feed from './components/Feed'
+import {loadUnreadNotifications} from "./actions/notificationsActions";
+import Notifications from "./components/Notifications"
 
 
 class App extends Component {
@@ -26,6 +26,7 @@ class App extends Component {
       if (!this.props.currentUser || !this.props.currentUser.username) {
         if (isLoggedIn()) {
           this.props.loadCurrentUser()
+          this.props.loadUnread()
         }else {
           this.props.history.push("/registration")
         }
@@ -34,7 +35,6 @@ class App extends Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleOnScroll);
-    webSocketFeed(this.props.loadFeed);
   }
 
   handleOnScroll = () => {
@@ -56,13 +56,10 @@ class App extends Component {
       <Fragment>
         <div ref="pageTop" style={{ float: 'left', clear: 'both' }}></div>
         {window.location.pathname !== '/registration'?
-        <Navigation/> : null}
+        <Navigation loadUnread={this.props.loadUnread}
+                    history={this.props.history}/> : null}
         <Switch>
-          <Route exact path='/' component={() => <Feed
-            currentUser={this.props.currentUser}
-            loadCurrentUser={this.props.loadCurrentUser}
-            history={this.props.history}
-            feed={this.props.feed}/>}/>
+          <Route exact path='/' component={Feed}/>
           <Route path='/messages' component={() => <Messages
             currentUser={this.props.currentUser}
             loadCurrentUser={this.props.loadCurrentUser}/>}/>
@@ -80,7 +77,12 @@ class App extends Component {
           <Route path='/post/:id' component={props => <Post
             {...props}
             currentUser={this.props.currentUser}
-            loadCurrentUser={this.props.loadCurrentUser}/>}/>
+            loadCurrentUser={this.props.loadCurrentUser}
+            history={this.props.history}/>}/>
+          <Route path='/notifications' component={() => <Notifications
+                 unread={this.props.unread}
+                 loadUnread={this.props.loadUnread}
+                 currentUser={this.props.currentUser}/>}/>
           <Route path="*" component={NotFound}/>
         </Switch>
         <button onClick={() => this.scrollToTop()} ref="scroller" className="scroll-btn d-none">&#11014;</button>
@@ -91,12 +93,12 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  feed:state.feed
+  unread:state.unread
 });
 
 const mapDispatchToProps = dispatch => ({
   loadCurrentUser: () => dispatch(loadCurrentUser()),
-  loadFeed: username => dispatch(loadFeed(username))
+  loadUnread: () => dispatch(loadUnreadNotifications())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

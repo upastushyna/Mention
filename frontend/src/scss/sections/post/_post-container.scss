@@ -4,8 +4,7 @@
   margin: 25px auto;
   padding: 16px;
   border: 1px solid $border-color;
-
-  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, .08));
+  box-shadow: 2px 0 4px 0 rgba(0, 0, 0, .08);
 
   &__link {
     text-decoration: none;
@@ -71,8 +70,7 @@
     border: 1px solid $border-color;
     border-radius: 5px;
     background-color: #fff;
-
-    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, .08));
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, .08);
 
     color: $black-text-color;
     white-space: nowrap;

@@ -3,26 +3,50 @@ import HeaderPanel from '../containers/HeaderPanel'
 import withRouter from 'react-router-dom/es/withRouter'
 import {connect} from 'react-redux'
 import {loadCurrentUser} from '../actions/currentUserActions'
-import {webSocketMessageNotification} from "../js/wsConnection";
+import {webSocketPopUpNotification} from "../js/wsConnection";
 import PopUpNotification from "../containers/PopUpNotification";
+import {checkReadNotification} from "../actions/notificationsActions";
 
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notification: undefined
+      notification: undefined,
+      timerId: undefined
     };
   }
 
-  componentWillMount () {
-    if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser()
-    }
+  timeout () {
+    this.setState({timerId: setTimeout(() =>
+        this.triggerHide(document.getElementById('pop-up')), 5000)})
   }
 
   componentDidMount () {
-    webSocketMessageNotification(this.notify);
+    webSocketPopUpNotification(this.notify,
+      this.props.loadUnread,
+      this.props.checkRead,
+      this.props.history);
   }
+
+  componentWillReceiveProps() {
+    const popUp = document.getElementById('pop-up');
+    const {timerId} = this.state;
+
+    if(popUp && popUp.classList.contains('d-none')) {
+      popUp.classList.remove('d-none');
+    }
+
+    if (popUp) {
+      timerId && clearTimeout(timerId);
+      this.timeout();
+    }
+  }
+
+  triggerHide = (popUp) => {
+    if (popUp && !popUp.classList.contains('d-none')) {
+      popUp.classList.add('d-none');
+    }
+  };
 
   notify = notification => {
     this.setState({notification:notification})
@@ -35,19 +59,25 @@ class Navigation extends React.Component {
 
     return (
       <Fragment key={Navigation.id}>
-        <HeaderPanel history={this.props.history} currentUser={this.props.currentUser}/>
-        <PopUpNotification notification={this.state.notification}/>
+        <HeaderPanel unread={this.props.unread.length} history={this.props.history}
+                     currentUser={this.props.currentUser}/>
+        <PopUpNotification  notification={this.state.notification}
+                           checkRead={this.props.checkRead}
+                           loadUnread={this.props.loadUnread}/>
       </Fragment>
     )
   }
 }
 
+
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
-})
+  currentUser: state.currentUser,
+  unread:state.unread
+});
 
 const mapDispatchToProps = dispatch => ({
-  loadCurrentUser: () => dispatch(loadCurrentUser())
-})
+  loadCurrentUser: () => dispatch(loadCurrentUser()),
+  checkRead: (callback, id) => checkReadNotification(callback, id)
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navigation))
