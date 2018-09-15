@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import Navigation from './Navigation'
 import '../css/index.css'
 import {loadFeed} from '../actions/feedActions'
 import {deletePost} from '../actions/postsActions'

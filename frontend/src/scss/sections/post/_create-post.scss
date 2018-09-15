@@ -36,27 +36,6 @@
   }
 }
 
-.upload-file {
-  display: flex;
-  align-items: flex-end;
-  position: relative;
-  height: 25px;
-  margin-top: 16px;
-  color: #a1a8bd;
-  font-size: 12px;
-  line-height: 20px;
-
-  &__icon {
-    width: 25px;
-    height: 25px;
-  }
-
-  input {
-    position: absolute;
-    left: 0;
-    opacity: 0;
-  }
-}
 
 @media screen and (max-width: 1200px) {
   .create-post {

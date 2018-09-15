@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react'
-import Navigation from './Navigation'
 import {connect} from 'react-redux'
 import {loadSearchPosts} from '../actions/searchPostsActions'
 import {loadSearchUsers} from '../actions/searchUsersActions'
@@ -11,7 +10,6 @@ import searchIcon from '../img/search-icon.svg'
 import {deletePost} from '../actions/postsActions'
 import {deleteComment} from '../actions/commentsActions'
 import Loader from "../containers/Loader";
-import {isLoggedIn} from '../js/isLoggedIn'
 
 class SearchPage extends React.Component {
 

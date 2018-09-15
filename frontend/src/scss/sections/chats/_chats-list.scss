@@ -13,10 +13,16 @@
     box-shadow: 2px 0 4px 0 rgba(0, 0, 0, .08);
   }
 
-  &__container {
-    /* overflow-y: scroll; */
-    height: 80%;
-  }
+ &__back-btn{
+     width: 16px;
+     height: 16px;
+     display: none;
+     margin-right: 16px;
+ }
+
+ &__container{
+  height: 80%;
+ }
 
   &__search {
     display: flex;
@@ -24,6 +30,7 @@
     justify-content: space-between;
     padding: 10px 20px;
     border: 1px solid $border-color;
+    cursor: pointer;
   }
 
   &__input {
@@ -40,20 +47,15 @@
     @include placeholder-default;
   }
 
-  &__button {
-    width: 20px;
-    height: 20px;
-  }
-
-  &__header {
-    display: none;
-    padding: 16px;
-  }
+ &__button {
+  width: 20px;
+  height: 20px;
+ }
 }
 
 .chat-container {
   display: block;
-  padding: 0 15px;
+  padding: 15px;
   border-right: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
   border-left: 1px solid $border-color;
@@ -88,10 +90,10 @@
 }
 
 @media screen and (max-width: 768px) {
-  .chats {
-    &__header {
-      display: block;
-    }
+ .chats {
+  &__back-btn {
+   display: block;
+  }
 
     &__list {
       display: block;

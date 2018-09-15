@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import '../css/index.css'
 import send from '../img/send.png'
+import arrow from '../img/arrow-left.svg'
 import {getDateFromDb} from '../js/chatdisplaytime'
 import {Link} from "react-router-dom";
 import Loader from "./Loader";
@@ -36,7 +37,8 @@ const Chat = props => {
   }
 
   return <Fragment key={Chat.id}>
-    <div className="messages-container__header d-flex-center content-between">
+    <div className="messages-container__header d-flex-center">
+    <img className="chats__back-btn" src={arrow} onClick={() => goBack()} />
       <Link to={'/user/' + props.user2} className="post__link">
         <div className="d-flex-center">
           <img src={props.chat.user2.username === props.user2
@@ -49,7 +51,7 @@ const Chat = props => {
           </div>
         </div>
       </Link>
-      <div className="chats__header" onClick={() => goBack()}>Go back</div>
+    
     </div>
     <div className="messages-container__body">
       <div className="flex-column">

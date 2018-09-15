@@ -41,8 +41,9 @@ const NotificationItem = props => {
       icon = forward;
   }
 
-  return <Link to={url} className="notify__list-item"><img src={icon}/>{props.notification.type.toLowerCase() +
+  return <Link to={url} className="notify__list-item">
+  <div className="d-flex-center"><img className="notify__icon" src={icon}/>{props.notification.type.toLowerCase() +
   " from " + props.notification.sender.username +
-  " " + getDateFromDb(props.notification.modifyTimestamp)}<span className="notify__arrow">&gt;</span></Link>
+  " " + getDateFromDb(props.notification.modifyTimestamp)}</div><span className="notify__arrow">&gt;</span></Link>
 };
 export default NotificationItem
