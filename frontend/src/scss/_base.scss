@@ -1,72 +1,72 @@
 body {
- font-family: $main-font;
+  font-family: $main-font;
 }
 
 .container {
- position: relative;
- max-width: 85%;
- margin: 0 auto;
+  position: relative;
+  max-width: 85%;
+  margin: 0 auto;
 }
 
 .d-none {
- display: none !important;
+  display: none !important;
 }
 
 .d-block {
- display: block !important;
+  display: block !important;
 }
 
 .d-flex-center {
- display: flex;
- align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .content-between {
- justify-content: space-between;
+  justify-content: space-between;
 }
 
 .flex-column {
- display: flex;
- flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .left-margin {
- margin-left: 10px;
+  margin-left: 10px;
 }
 
 .shadow-button:focus,
 .shadow-button:active {
- filter: none;
+  filter: none;
 }
 
 .shadow-button {
- filter: drop-shadow(2px 2px 5px black);
+  filter: drop-shadow(2px 2px 5px black);
 }
 
 .pos-relative {
- position: relative;
+  position: relative;
 }
 
 textarea:focus {
- &::-webkit-input-placeholder {
-  color: transparent;
- }
+  &::-webkit-input-placeholder {
+    color: transparent;
+  }
 
- &:-moz-placeholder {
-  color: transparent;
- }
+  &:-moz-placeholder {
+    color: transparent;
+  }
 
- &::-moz-placeholder {
-  color: transparent;
- }
+  &::-moz-placeholder {
+    color: transparent;
+  }
 
- &:-ms-input-placeholder {
-  color: transparent;
- }
+  &:-ms-input-placeholder {
+    color: transparent;
+  }
 }
 
 @media screen and (max-width: 1200px) {
- .container {
-  max-width: 90%;
- }
+  .container {
+    max-width: 90%;
+  }
 }

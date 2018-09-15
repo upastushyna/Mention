@@ -12,6 +12,7 @@ import {deleteComment} from '../actions/commentsActions'
 import Loader from "../containers/Loader";
 
 class SearchPage extends React.Component {
+
   constructor (props) {
     super(props)
     this.state = {
@@ -29,8 +30,8 @@ class SearchPage extends React.Component {
   }
 
   componentDidUpdate () {
-    this.searchTimeOut();
     this.callUpdate();
+    this.searchTimeOut();
   }
 
   componentDidMount () {
@@ -38,16 +39,21 @@ class SearchPage extends React.Component {
   }
 
   searchTimeOut = () => {
-    document.getElementsByClassName('empty-state')[0].style.display = "none";
-    document.getElementsByClassName('loader')[0].style.display = "flex";
+    let empty = document.querySelector('.empty-state');
+    let loader = document.querySelector('.loader');
+
+    if (empty !== null && loader !== null) {
+      loader.style.display = "flex";
+      empty.style.display = "none";
+    }
 
     setTimeout(() => {
-      if (this.props.foundPosts.length === 0) {
-        document.getElementsByClassName('loader')[0].style.display = "none";
-        document.getElementsByClassName('empty-state')[0].style.display = "flex";
+      if (this.props.foundPosts.length === 0 && empty !== null && loader !== null) {
+        loader.style.display = "none";
+        empty.style.display = "flex";
       }
-    }, 2500)
-  }
+    }, 2000)
+  };
 
   callUpdate = () => {
     if (this.props.match.params.input != this.state.match) {
@@ -83,11 +89,12 @@ class SearchPage extends React.Component {
         followedUser: {id: followedUser}})
     }).then(() => this.props.loadCurrentUser());
 
+
+
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return <Loader/>
     }
-
     return (
       <Fragment key={SearchPage.id}>
         <div className="container">

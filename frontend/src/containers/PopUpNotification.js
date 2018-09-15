@@ -6,12 +6,17 @@ import {COMMENT, COMMENT_LIKE, FOLLOW, MESSAGE, POST, POST_LIKE} from "../consta
 
 const PopUpNotification = props => {
 
+  const checkAndHide = (loadUnread, id) => {
+    props.checkRead(loadUnread, id);
+    document.getElementById('pop-up').classList.add('d-none');
+  };
+
   if (!props.notification || !props.notification.sender) {
     return ""
   }
 
-  return <Link to={props.notification.url} className="notify"
-    onClick={() => props.checkRead(props.loadUnread, props.notification.id)}>
+  return <Link id='pop-up' to={props.notification.url} className="notify"
+    onClick={() => checkAndHide(props.loadUnread, props.notification.id)}>
     <img className="notify__icon" src={infoIcon} alt="close" />
     <p className="notify__text">{props.notification.message}</p>
     <img className="notify__close" src={closeIcon} alt="close" />

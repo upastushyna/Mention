@@ -1,20 +1,21 @@
 .follow-button {
-    @include clear-default-input-style();
-    padding: 8px;
-    min-width: 120px;
-    font-size: 17px;    
-    border-radius: 5px;  
-    color: #fff;
-    font-weight: 700;
+  @include clear-default-input-style();
 
-    &_green{
-      background-color: $green-color;
-    }
+  min-width: 120px;
+  padding: 8px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
 
-    &_red{
-      background-color: $red-color;
-    }
+  &_green {
+    background-color: $green-color;
   }
+
+  &_red {
+    background-color: $red-color;
+  }
+}
 
 .following {
   position: relative;

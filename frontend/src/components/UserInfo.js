@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {loadFollowed} from '../actions/followedActions'
 import {loadFollowing} from '../actions/followingActions'
 import {loadLiked} from '../actions/likedActions'
+import withRouter from 'react-router-dom/es/withRouter'
 
 class UserInfo extends React.Component {
   componentWillMount () {
@@ -42,7 +43,7 @@ class UserInfo extends React.Component {
               loadCurrentUser={this.props.loadCurrentUser}
               follow={this.props.follow}
               unfollow={this.props.unfollow}/>}/>
-          <Route exact path='/user/:username/info/liked' render={() =>
+          <Route path='/user/:username/info/liked' render={() =>
             <PostsContainer username={this.props.username}
               userPosts={this.props.likedPosts}
               loadData={this.props.loadData}
@@ -68,4 +69,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserInfo))

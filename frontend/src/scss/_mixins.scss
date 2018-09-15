@@ -1,89 +1,89 @@
 @mixin box-shadow($args) {
- -webkit-box-shadow: $args;
- -moz-box-shadow: $args;
- box-shadow: $args;
+  -webkit-box-shadow: $args;
+  -moz-box-shadow: $args;
+  box-shadow: $args;
 }
 
 @mixin clear-default-input-style {
- border: none;
- background: none;
- background-image: none;
- -webkit-box-shadow: none;
- -moz-box-shadow: none;
- box-shadow: none;
- -webkit-appearance: none;
- -moz-appearance: none;
- appearance: none;
- outline: none;
- resize: none;
-
- &::-moz-focus-inner {
-  border: 0;
- }
-
- &::-ms-expand {
-  display: none;
- }
-
- &:focus {
+  border: none;
   outline: none;
- }
+  background: none;
+  background-image: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  resize: none;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 @mixin placeholder {
- &::-webkit-input-placeholder {
-  @content;
- }
+  &::-webkit-input-placeholder {
+    @content;
+  }
 
- &:-moz-placeholder {
-  @content;
- }
+  &:-moz-placeholder {
+    @content;
+  }
 
- &::-moz-placeholder {
-  @content;
- }
+  &::-moz-placeholder {
+    @content;
+  }
 
- &:-ms-input-placeholder {
-  @content;
- }
+  &:-ms-input-placeholder {
+    @content;
+  }
 }
 
 @mixin placeholder-default {
- &::-webkit-input-placeholder {
-  font-family: $main-font;
-  font-size: 14px;
-  line-height: 28px;
-  color: $placeholder-color;
-  letter-spacing: 0.3px;
- }
+  &::-webkit-input-placeholder {
+    color: $placeholder-color;
+    font-family: $main-font;
+    font-size: 14px;
+    letter-spacing: .3px;
+    line-height: 28px;
+  }
 
- &:-moz-placeholder {
-  font-family: $main-font;
-  font-size: 14px;
-  color: $placeholder-color;
-  letter-spacing: 0.3px;
-  line-height: 28px;
- }
+  &:-moz-placeholder {
+    color: $placeholder-color;
+    font-family: $main-font;
+    font-size: 14px;
+    letter-spacing: .3px;
+    line-height: 28px;
+  }
 
- &::-moz-placeholder {
-  font-family: $main-font;
-  font-size: 14px;
-  color: $placeholder-color;
-  letter-spacing: 0.3px;
-  line-height: 28px;
- }
+  &::-moz-placeholder {
+    color: $placeholder-color;
+    font-family: $main-font;
+    font-size: 14px;
+    letter-spacing: .3px;
+    line-height: 28px;
+  }
 
- &:-ms-input-placeholder {
-  font-family: $main-font;
-  font-size: 14px;
-  color: $placeholder-color;
-  letter-spacing: 0.3px;
-  line-height: 28px;
- }
+  &:-ms-input-placeholder {
+    color: $placeholder-color;
+    font-family: $main-font;
+    font-size: 14px;
+    letter-spacing: .3px;
+    line-height: 28px;
+  }
 }
 
 @mixin ellipsis-text {
- white-space: nowrap;
- overflow: hidden;
- text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

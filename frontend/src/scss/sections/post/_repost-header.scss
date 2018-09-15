@@ -1,7 +1,7 @@
 .repost-author {
   display: flex;
   align-items: center;
-  color: $meta-color; 
+  color: $meta-color;
   font-size: 13px;
   line-height: 25px;
 
@@ -10,7 +10,7 @@
   }
 
   &__link {
+    color: #38acec;
     text-decoration: none;
-    color: #38ACEC;
   }
 }

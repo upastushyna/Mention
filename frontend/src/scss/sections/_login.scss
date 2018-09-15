@@ -1,115 +1,115 @@
 .login {
- height: 100vh;
- background: linear-gradient(-72deg, #00b0f3 27%, $main-color 50%);
+  height: 100vh;
+  background: linear-gradient(-72deg, #00b0f3 27%, $main-color 50%);
 
- &__container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
-  margin: 0 auto;
-  padding: 48px 0 36px;
-  border-radius: 4px;
-  background-color: #fff;
-  text-align: center;
- }
-
- &__icon {
-  width: 20%;
-  border-radius: 50%;
-  position: absolute;
-  top: -56px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: $main-color;
- }
-
- &__title {
-  font-size: 30px;
-  line-height: 48px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 16px;
- }
-
- &__forgot-password {
-  color: $red-color;
-  font-size: 18px;
-  margin-top: 16px;
-  text-decoration: none;
-  border: none;
- }
-
- &__input {
-  @include clear-default-input-style;
-
-  display: block;
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 11px 0;
-  background-color: #fff;
-  border-radius: 4px;
-  border: 1px solid $border-color;
-  font-size: 18px;
-  text-align: center;
-  transition: all 1s;
-
-  @include placeholder-default;
-
-  &:focus {
-   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.21);
-  }
- }
-
- &__btn {
-  display: block;
-  background-color: $green-color;
-  font-size: 20px;
-  font-weight: 500;
-  font-family: $main-font;
-  width: 100%;
- }
-
- &__sign-btn {
-  @include clear-default-input-style;
-
-  background-color: #fff;
-  border: none;
-  padding: 7px 15px;
-  color: $main-color;
-  margin-top: 20px;
-  font-weight: 700;
-  font-size: 20px;
- }
-}
-
-@media screen and (max-width: 1200px) {
- .login {
   &__container {
-   width: 95%;
-   padding: 40px 0;
-  }
-
-  &__title {
-   font-size: 20px;
-   line-height: 30px;
-  }
-
-  &__forgot-password {
-   font-size: 15px;
-  }
- }
-}
-
-@media screen and (min-width: 460px) and (max-width: 1200px) {
- .login {
-  &__container {
-   width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 500px;
+    margin: 0 auto;
+    padding: 48px 0 36px;
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: center;
   }
 
   &__icon {
-   width: 10%;
+    position: absolute;
+    top: -56px;
+    left: 50%;
+    width: 20%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background-color: $main-color;
   }
- }
+
+  &__title {
+    margin-bottom: 16px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 48px;
+    text-align: center;
+  }
+
+  &__forgot-password {
+    margin-top: 16px;
+    border: none;
+    color: $red-color;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  &__input {
+    @include clear-default-input-style;
+
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 11px 0;
+    transition: all 1s;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 18px;
+    text-align: center;
+
+    @include placeholder-default;
+
+    &:focus {
+      box-shadow: 0 3px 8px rgba(0, 0, 0, .21);
+    }
+  }
+
+  &__btn {
+    display: block;
+    width: 100%;
+    background-color: $green-color;
+    font-family: $main-font;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  &__sign-btn {
+    @include clear-default-input-style;
+
+    margin-top: 20px;
+    padding: 7px 15px;
+    border: none;
+    background-color: #fff;
+    color: $main-color;
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .login {
+    &__container {
+      width: 95%;
+      padding: 40px 0;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 30px;
+    }
+
+    &__forgot-password {
+      font-size: 15px;
+    }
+  }
+}
+
+@media screen and (min-width: 460px) and (max-width: 1200px) {
+  .login {
+    &__container {
+      width: 70%;
+    }
+
+    &__icon {
+      width: 10%;
+    }
+  }
 }

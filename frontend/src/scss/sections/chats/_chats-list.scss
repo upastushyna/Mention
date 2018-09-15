@@ -1,17 +1,17 @@
 .chats {
- &__view {
-  display: flex;
-  height: 75vh;
-  margin: 50px auto 0;
- }
+  &__view {
+    display: flex;
+    height: 75vh;
+    margin: 50px auto 0;
+  }
 
- &__list {
-  width: 35%;
-  overflow-y: auto;
-  margin: 0 auto;
-  background-color: #fff;
-  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
- }
+  &__list {
+    width: 35%;
+    overflow-y: auto;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, .08);
+  }
 
  &__back-btn{
      width: 16px;
@@ -24,25 +24,27 @@
   height: 80%;
  }
 
- &__search {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  border: 1px solid $border-color;
- }
+  &__search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border: 1px solid $border-color;
+  }
 
- &__input {
-  @include clear-default-input-style;
-  width: 85%;
-  padding: 10px 20px;
-  margin-right: 8px;
-  border-radius: 4px;
-  background-color: $border-color;
-  color: $black-text-color;
-  font-size: 16px;
-  @include placeholder-default;
- }
+  &__input {
+    @include clear-default-input-style;
+
+    width: 85%;
+    margin-right: 8px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: $border-color;
+    color: $black-text-color;
+    font-size: 16px;
+
+    @include placeholder-default;
+  }
 
  &__button {
   width: 20px;
@@ -51,38 +53,39 @@
 }
 
 .chat-container {
- display: block;
- padding: 0 15px;
- border-bottom: 1px solid $border-color;
- border-left: 1px solid $border-color;
- border-right: 1px solid $border-color;
- text-decoration: none;
+  display: block;
+  padding: 0 15px;
+  border-right: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  border-left: 1px solid $border-color;
+  text-decoration: none;
 
- &:hover {
-  opacity: .7;
- }
+  &:hover {
+    opacity: .7;
+  }
 
- &__text {
-  margin: 8px;
-  font-size: 16px;
-  height: 25px;
-  @include ellipsis-text;
-  color: $black-text-color;
- }
+  &__text {
+    height: 25px;
+    margin: 8px;
+    color: $black-text-color;
+    font-size: 16px;
+
+    @include ellipsis-text;
+  }
 }
 
 @media screen and (max-width: 1200px) {
- .chats {
-  &__view {
-   margin: 8px;
-   max-width: 100%;
-  }
+  .chats {
+    &__view {
+      max-width: 100%;
+      margin: 8px;
+    }
 
-  &__list {
-   width: 35%;
-   box-shadow: none;
+    &__list {
+      width: 35%;
+      box-shadow: none;
+    }
   }
- }
 }
 
 @media screen and (max-width: 768px) {
@@ -91,9 +94,9 @@
    display: block;
   }
 
-  &__list {
-   display: block;
-   width: 100%;
+    &__list {
+      display: block;
+      width: 100%;
+    }
   }
- }
 }
