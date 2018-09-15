@@ -1,53 +1,46 @@
 .message {
- display: flex;
- align-items: center;
- margin-bottom: 20px;
-
- &_sent {
-  align-self: flex-start;
-  justify-content: flex-start;
- }
-
- &_received {
-  align-self: flex-end;
-  justify-content: flex-end;
- }
-
- &__text {
-  max-width: 500px;
-  word-wrap: break-word;
-  padding: 16px;
-  border-radius: 15px;
-  font-size: 15px;
-  line-height: 22px;
-  margin: 0 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 
   &_sent {
-   background-color: #f1f1f1;
-   color: #203152;
+    align-self: flex-start;
+    justify-content: flex-start;
   }
 
   &_received {
-   background-color: $main-color;
-   color: #fff;
+    align-self: flex-end;
+    justify-content: flex-end;
   }
- }
 
- &__time{
-	 font-size: 12px;
-	 color: $placeholder-color;
- }
+  &__text {
+    max-width: 500px;
+    margin: 0 16px;
+    word-wrap: break-word;
+    padding: 16px;
+    border-radius: 15px;
+    font-size: 15px;
+    line-height: 22px;
+
+    &_sent {
+      background-color: #f1f1f1;
+      color: #203152;
+    }
+
+    &_received {
+      background-color: $main-color;
+      color: #fff;
+    }
+  }
+
+  &__time {
+    color: $placeholder-color;
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 1200px) {
-.message {
- &__time {
-  font-size: 9px;
- }
-
- &__text {
-  max-width: 250px;
- }
-}
-
+  .message__time {
+    font-size: 9px;
+  }
 }

@@ -6,6 +6,7 @@ const PostsContainer = props => {
   if (props.userPosts.length === 0) {
     return <Loader/>
   }
+
   return props.userPosts.map(post =>
     <PostItem username={props.username}
       loadData={props.loadData}
@@ -15,4 +16,5 @@ const PostsContainer = props => {
       deleteComment={props.deleteComment}
       key={post.id}/>)
 };
+                           
 export default PostsContainer

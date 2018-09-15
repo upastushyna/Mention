@@ -1,31 +1,31 @@
 .follow-container {
- display: flex;
- align-items: center;
- justify-content: space-between;
- width: 30%;
- margin: 16px auto;
- padding: 12px;
- border: 1px solid $border-color;
- border-radius: 5px;
- background-color: #fff;
- @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  margin: 16px auto;
+  padding: 12px;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 2px 0 4px 0 rgba(0, 0, 0, .08);
 
- .profile-info__avatar {
-  margin-right: 16px;
- }
+  .profile-info__avatar {
+    margin-right: 16px;
+  }
 
- &:last-child {
-  margin-bottom: 100px;
- }
+  &:last-child {
+    margin-bottom: 100px;
+  }
 }
 
 @media screen and (max-width: 1200px) {
- .follow-container {
-  width: 95vw;
+  .follow-container {
+    width: 95vw;
 
-  .follow-button {
-   font-size: 13px;
-   min-width: 85px;
+    .follow-button {
+      min-width: 85px;
+      font-size: 13px;
+    }
   }
- }
 }

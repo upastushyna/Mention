@@ -4,25 +4,25 @@
   margin-top: 100px;
 
   &__title {
-    font-size: 30px;
-    line-height: 45px;
-    font-weight: 700;
-    color: $black-text-color;
     margin: 36px;
+    color: $black-text-color;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 45px;
     text-align: center;
 
     &_secondary {
+      margin-right: 16px;
       font-size: 18px;
       font-weight: 500;
-      margin-right: 16px;
     }
   }
 
   &__item {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
     width: 40%;
     padding: 25px;
     border-bottom: 1px solid $border-color;
@@ -41,21 +41,13 @@
 
   &__btn {
     width: 50%;
-    margin: 0 auto;
     min-height: 48px;
+    margin: 0 auto;
 
     &:active,
     &:hover {
-      opacity: 0.7;
+      opacity: .7;
     }
-  }
-}
-
-.inactive-button {
-  background-color: #aaa;
-  cursor: inherit;
-  &:hover {
-    opacity: 1;
   }
 }
 

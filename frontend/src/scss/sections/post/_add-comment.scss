@@ -1,25 +1,25 @@
 .add-comment {
- display: flex;
- align-items: center;
- position: relative;
- padding: 16px 16px 20px;
- border-top: 1px solid $border-color;
- color: $black-text-color;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 16px 16px 20px;
+  border-top: 1px solid $border-color;
+  color: $black-text-color;
 
- &__avatar {
-  max-width: 28px;
-  max-height: 28px;
-  margin-right: 20px;
-  border-radius: 50%;
- }
+  &__avatar {
+    max-width: 28px;
+    max-height: 28px;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
 }
 
 @media screen and (max-width: 1200px) {
- .add-comment {
-  padding: 16px;
+  .add-comment {
+    padding: 16px;
 
-  &__avatar {
-   display: none;
+    &__avatar {
+      display: none;
+    }
   }
- }
 }

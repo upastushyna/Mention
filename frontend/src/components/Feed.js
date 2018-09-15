@@ -76,6 +76,10 @@ class Feed extends React.Component {
       return <Preloader/>;
     }
 
+    const myRef = React.createRef();
+
+    console.log(myRef)
+
     return (
       <Fragment key={Feed.id}>
         <div ref="container">
@@ -97,13 +101,14 @@ class Feed extends React.Component {
               </form>
             </div> : ''}
           <PostsContainer
-            username={this.props.currentUser.username}
-            userPosts={this.props.feed}
-            loadData={this.props.loadData}
-            currentUser={this.props.currentUser}
-            deletePost={this.props.deletePost}
-            deleteComment={this.props.deleteComment}
+              username={this.props.currentUser.username}
+              userPosts={this.props.feed}
+              loadData={this.props.loadData}
+              currentUser={this.props.currentUser}
+              deletePost={this.props.deletePost}
+              deleteComment={this.props.deleteComment}
           />
+
         </div>
       </Fragment>
     )

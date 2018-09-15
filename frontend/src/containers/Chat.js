@@ -6,8 +6,8 @@ import {Link} from "react-router-dom";
 import Loader from "./Loader";
 
 const goBack = () => {
-  document.getElementsByClassName('messages-container')[0].style.display = "none";
-  document.getElementsByClassName('chats__list')[0].style.display = "block";
+  document.querySelector('.messages-container').style.display = "none";
+  document.querySelector('.chats__list').style.display = "block";
 };
 
 const Chat = props => {

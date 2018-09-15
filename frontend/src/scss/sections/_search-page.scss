@@ -1,21 +1,22 @@
 .users-panel {
- position: absolute;
- top: 0;
- right: 0;
- border: 1px solid #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid #fff;
 
- .follow-container {
-  width: 100%;
- }
+  .follow-container {
+    width: 100%;
+  }
 
- .profile-info__username {
-  width: 90px;
-  @include ellipsis-text;
- }
+  .profile-info__username {
+    width: 90px;
+
+    @include ellipsis-text;
+  }
 }
 
 @media screen and (max-width: 1200px) {
- .users-panel {
-  display: none;
- }
+  .users-panel {
+    display: none;
+  }
 }

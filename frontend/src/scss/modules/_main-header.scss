@@ -1,103 +1,103 @@
 .main-header-wrapper {
- display: flex;
- justify-content: space-between;
- align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .main-header {
- width: 100%;
- padding: 16px;
- background-color: $main-color;
- z-index: 999;
-
- &__logo {
+  width: 100%;
+  padding: 16px;
   background-color: $main-color;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  margin-right: 24px;
- }
+  z-index: 999;
 
- &__logo-img {
-  width: 50px;
- }
-
- &__title {
-  color: #fff;
-  font-size: 40px;
-  font-weight: 700;
-  text-transform: uppercase;
- }
-}
-
-.header-menu {
- display: flex;
- align-items: center;
- margin-left: 16px;
-
- &__item {
-  margin-right: 24px;
- }
-
- &__link {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  text-decoration: none;
-  font-size: 17px;
-  line-height: 25px;
-
-  &:hover {
-   text-decoration: underline;
-  }
- }
-
- &__icon {
-  width: 25px;
-  margin-right: 8px;
-
-  &_small {
-   width: 20px;
-  }
- }
-}
-
-@media screen and (max-width: 1200px) {
- .main-header {
-  padding: 8px 16px;
-
-  &__title {
-   display: none;
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+    background-color: $main-color;
+    text-decoration: none;
   }
 
   &__logo-img {
-   width: 30px;
-   height: 30px;
-  }
- }
-
- .search {
-  &__input {
-   display: none;
+    width: 50px;
   }
 
-  &__btn {
-   display: none;
+  &__title {
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
   }
- }
+}
 
- .main-header-wrapper {
-  margin: 0;
-  max-width: 100%;
- }
+.header-menu {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
 
- .header-menu {
+  &__item {
+    margin-right: 24px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 17px;
+    line-height: 25px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &__icon {
-   width: 20px;
+    width: 25px;
+    margin-right: 8px;
+
+    &_small {
+      width: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main-header {
+    padding: 8px 16px;
+
+    &__title {
+      display: none;
+    }
+
+    &__logo-img {
+      width: 30px;
+      height: 30px;
+    }
   }
 
-  &__link p {
-   display: none;
+  .search {
+    &__input {
+      display: none;
+    }
+
+    &__btn {
+      display: none;
+    }
   }
- }
+
+  .main-header-wrapper {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .header-menu {
+    &__icon {
+      width: 20px;
+    }
+
+    &__link p {
+      display: none;
+    }
+  }
 }
