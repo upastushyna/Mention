@@ -1,10 +1,11 @@
 import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import {getDateFromDb} from '../js/timestamp.js'
+import EmptyState from '../containers/EmptyState'
 
 const ChatsContainer = props => {
   if (props.chats.length === 0) {
-    return <p>No chats found. Add users to chat with to start conversation!</p>
+    return <EmptyState title="No active chat found" message="Search for new friends :)"/>
   }
 
   return props.chats.map(chat =>
@@ -26,7 +27,7 @@ const ChatsContainer = props => {
           </div>
         </div>
         <p className="chat-container__text">{chat.messages.length !== 0
-          ? chat.messages[chat.messages.length - 1].content : ''}</p>
+          ? chat.messages[chat.messages.length - 1].content : 'Start conversation! :)'}</p>
       </Link>
     </Fragment>
   )

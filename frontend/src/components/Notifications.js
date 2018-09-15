@@ -17,7 +17,7 @@ class Notifications extends React.Component {
         <div className="container">
           <div className="info-controller">
               {this.props.unread.length > 0 ?
-            <button className="notify__btn" onClick={() => checkReadAll(this.props.loadUnread)}>
+            <button className="info-controller__link info-controller__link_white" onClick={() => checkReadAll(this.props.loadUnread)}>
               Mark all as read</button> : null }
             <Link className="info-controller__link" to={'/notifications/unread'}>Unread</Link>
             <Link className="info-controller__link" to={'/notifications/all'}>All</Link>         
