@@ -1,110 +1,109 @@
 .profile-info {
- display: flex;
- align-items: center;
- cursor: pointer;
-
- &__avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.21);
- }
-
- &__username {
-  font-size: 16px;
-  font-weight: 700;
-  color: $black-text-color;
- }
-
- &__arrow {
-  width: 17px;
-  height: 17px;
-  margin-left: 8px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 
-  &:focus {
-   outline: none;
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .21);
   }
- }
 
- &__alias {
-  font-size: 9px;
-  color: $meta-color;
- }
+  &__username {
+    color: $black-text-color;
+    font-size: 16px;
+    font-weight: 700;
+  }
 
- &__signature {
-  margin: 7px;
- }
+  &__arrow {
+    width: 17px;
+    height: 17px;
+    margin-left: 8px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__alias {
+    color: $meta-color;
+    font-size: 9px;
+  }
+
+  &__signature {
+    margin: 7px;
+  }
 }
 
 .profile {
- &__nav {
-  list-style: none;
-  position: absolute;
-  top: 67px;
-  right: 0;
-  background-color: #fff;
-  z-index: 4;
+  &__nav {
+    position: absolute;
+    top: 67px;
+    right: 0;
+    background-color: #fff;
+    list-style: none;
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, .08);
+    z-index: 4;
 
-  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
-
-  &:after {
-   content: "";
-   width: 0;
-   height: 0;
-   position: absolute;
-   top: -13px;
-   left: 50%;
-   transform: translateX(-50%);
-   border-style: solid;
-   border-width: 0 13px 13px 13px;
-   border-color: transparent transparent #fff transparent;
+    &::after {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      width: 0;
+      height: 0;
+      transform: translateX(-50%);
+      border-width: 0 13px 13px;
+      border-style: solid;
+      border-color: transparent transparent #fff;
+      content: "";
+    }
   }
- }
 
- &__option {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  color: $black-text-color;
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: none;
-  display: block;
-  padding: 25px;
-  z-index: 10;
+  &__option {
+    display: block;
+    padding: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    color: $black-text-color;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 10;
 
-  &:active,
-  &:hover {
-   background-color: $border-color;
+    &:active,
+    &:hover {
+      background-color: $border-color;
+    }
   }
- }
 }
 
 .profile-card {
- &__avatar {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
- }
+  &__avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
 
- &__username {
-  color: #fff;
-  font-size: 17px;
-  line-height: 25px;
-  margin-left: 16px;
-  cursor: pointer;
- }
+  &__username {
+    margin-left: 16px;
+    color: #fff;
+    font-size: 17px;
+    line-height: 25px;
+    cursor: pointer;
+  }
 }
 
 @media screen and (max-width: 1200px) {
- .profile-card {
-  &__username {
-   display: none;
-  }
+  .profile-card {
+    &__username {
+      display: none;
+    }
 
-  &__avatar {
-   width: 35px;
-   height: 35px;
+    &__avatar {
+      width: 35px;
+      height: 35px;
+    }
   }
- }
 }

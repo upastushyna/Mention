@@ -1,25 +1,26 @@
-.empty-state{
+.empty-state {
+	display: none;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	height: 60vh;
 
-	&__title{
-		font-size: 26px;
-		line-height: 38px;
-		font-weight: 700;
+	&__title {
 		margin: 24px 0;
 		color: $black-text-color;
+		font-size: 26px;
+		font-weight: 700;
+		line-height: 38px;
 		text-align: center;
 	}
 
 	&__msg {
+		color: $placeholder-color;
 		font-size: 17px;
 		line-height: 25px;
-		color: $placeholder-color;
 	}
 
-	&__icon{
+	&__icon {
 		width: 48px;
 		height: 48px;
 	}
@@ -27,9 +28,9 @@
 
 @media screen and (max-width: 1200px) {
 	.empty-state {
-	 &__title {
-		font-size: 22px;
-		line-height: 30px;
-	 }
-}
+		&__title {
+			font-size: 22px;
+			line-height: 30px;
+		}
+	}
 }

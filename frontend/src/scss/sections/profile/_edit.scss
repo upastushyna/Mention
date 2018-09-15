@@ -1,72 +1,72 @@
 .edit-profile {
- align-items: center;
- justify-content: center;
- margin-top: 100px;
-
- &__title {
-  font-size: 30px;
-  line-height: 45px;
-  font-weight: 700;
-  color: $black-text-color;
-  margin: 36px;
-  text-align: center;
-
-  &_secondary {
-   font-size: 18px;
-   font-weight: 500;
-   margin-right: 16px;
-  }
- }
-
- &__item {
-  position: relative;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 40%;
-  padding: 25px;
-  border-bottom: 1px solid $border-color;
+  justify-content: center;
+  margin-top: 100px;
 
-  &:last-child {
-   border: none;
+  &__title {
+    margin: 36px;
+    color: $black-text-color;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 45px;
+    text-align: center;
+
+    &_secondary {
+      margin-right: 16px;
+      font-size: 18px;
+      font-weight: 500;
+    }
   }
- }
 
- &__input {
-  width: auto;
-  margin-bottom: 0;
-  border: none;
-  border-bottom: 1px solid $border-color;
- }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 40%;
+    padding: 25px;
+    border-bottom: 1px solid $border-color;
 
- &__btn {
-  width: 50%;
-  margin: 0 auto;
-  min-height: 48px;
-
-  &:active,
-  &:hover {
-   opacity: 0.7;
+    &:last-child {
+      border: none;
+    }
   }
- }
+
+  &__input {
+    width: auto;
+    margin-bottom: 0;
+    border: none;
+    border-bottom: 1px solid $border-color;
+  }
+
+  &__btn {
+    width: 50%;
+    min-height: 48px;
+    margin: 0 auto;
+
+    &:active,
+    &:hover {
+      opacity: .7;
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {
- .edit-profile {
-  &__item {
-   width: 100%;
-   padding: 16px 8px;
-  }
+  .edit-profile {
+    &__item {
+      width: 100%;
+      padding: 16px 8px;
+    }
 
-  &__title {
-   margin: 16px;
-   font-size: 25px;
-   line-height: 30px;
+    &__title {
+      margin: 16px;
+      font-size: 25px;
+      line-height: 30px;
 
-   &_secondary {
-    font-size: 17px;
-    line-height: 25px;
-   }
+      &_secondary {
+        font-size: 17px;
+        line-height: 25px;
+      }
+    }
   }
- }
 }

@@ -32,8 +32,8 @@ class SearchPage extends React.Component {
   }
 
   componentDidUpdate () {
-    this.searchTimeOut();
     this.callUpdate();
+    this.searchTimeOut();
   }
 
   componentDidMount () {
@@ -41,20 +41,21 @@ class SearchPage extends React.Component {
   }
 
   searchTimeOut = () => {
-    document.getElementsByClassName('empty-state')[0].style.display = "none";
+    let empty = document.querySelector('.empty-state');
+    let loader = document.querySelector('.loader');
 
-    if (this.props.foundPosts.length === 0) {
-      document.getElementsByClassName('loader')[0].style.display = "flex";
+    if (empty !== null && loader !== null) {
+      loader.style.display = "flex";
+      empty.style.display = "none";
     }
 
     setTimeout(() => {
-      if (this.props.foundPosts.length === 0) {
-        document.getElementsByClassName('loader')[0].style.display = "none";
-        document.getElementsByClassName('empty-state')[0].style.display = "flex";
-        console.log(this.myRef, "hig");
+      if (this.props.foundPosts.length === 0 && empty !== null && loader !== null) {
+        loader.style.display = "none";
+        empty.style.display = "flex";
       }
-    }, 2500)
-  }
+    }, 2000)
+  };
 
   callUpdate = () => {
     if (this.props.match.params.input != this.state.match) {

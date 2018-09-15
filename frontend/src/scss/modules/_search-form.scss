@@ -1,27 +1,28 @@
 .search {
- &__input {
-  @include clear-default-input-style;
-  padding: 6px 0;
-  background-color: transparent;
-  border-bottom: 0.5px solid #fff;
-  color: #fff;
-  font-size: 15px;
+  &__input {
+    @include clear-default-input-style;
 
-  @include placeholder () {
-   font-size: 13px;
-   color: #fff;
-   letter-spacing: 0.3px;
-   font-weight: 300;
+    padding: 6px 0;
+    border-bottom: .5px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-size: 15px;
+
+    @include placeholder () {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: .3px;
+    }
   }
- }
 
- &__btn {
-  text-decoration: none;
-  margin-left: 8px;
-  width: 16px;
+  &__btn {
+    width: 16px;
+    margin-left: 8px;
+    text-decoration: none;
 
-  img {
-   width: 100%;
+    img {
+      width: 100%;
+    }
   }
- }
 }

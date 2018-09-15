@@ -8,7 +8,6 @@ import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
 import Preloader from "../containers/Preloader";
-import Test from '../containers/Test'
 
 class Feed extends React.Component {
   constructor (props) {
@@ -66,7 +65,6 @@ class Feed extends React.Component {
     return (
       <Fragment key={Feed.id}>
         <div ref="container">
-          <Test ref={myRef}>Click</Test>
           {this.props.currentUser.followedUsers.find(follow =>
             follow.followedUser.id === this.props.currentUser.id)
             ? <div className="create-post">
@@ -85,13 +83,14 @@ class Feed extends React.Component {
               </form>
             </div> : ''}
           <PostsContainer
-            username={this.props.currentUser.username}
-            userPosts={this.props.feed}
-            loadData={this.props.loadData}
-            currentUser={this.props.currentUser}
-            deletePost={this.props.deletePost}
-            deleteComment={this.props.deleteComment}
+              username={this.props.currentUser.username}
+              userPosts={this.props.feed}
+              loadData={this.props.loadData}
+              currentUser={this.props.currentUser}
+              deletePost={this.props.deletePost}
+              deleteComment={this.props.deleteComment}
           />
+
         </div>
       </Fragment>
     )
