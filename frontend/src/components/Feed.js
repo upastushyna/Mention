@@ -75,9 +75,8 @@ class Feed extends React.Component {
       return <Preloader/>;
     }
 
-    const myRef = React.createRef();
-
-    console.log(myRef)
+    // const myRef = React.createRef();
+    // console.log(myRef)
 
     return (
       <Fragment key={Feed.id}>
