@@ -13,9 +13,6 @@ import {loadCurrentUser} from "../actions/currentUserActions";
 class Feed extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      textarea: undefined
-    };
     this.props.history.listen((location, action) => {
       this.props.loadData(this.props.currentUser.username)
     })
@@ -39,10 +36,6 @@ class Feed extends React.Component {
   componentDidMount () {
     webSocketFeed(this.props.loadData);
   }
-
-  handleChange = value => {
-    this.setState({textarea: value})
-  };
 
   addPost = event => {
     event.preventDefault();
