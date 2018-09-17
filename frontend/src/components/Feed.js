@@ -40,10 +40,6 @@ class Feed extends React.Component {
     webSocketFeed(this.props.loadData);
   }
 
-  componentDidUpdate() {
-    this.refs.postButton.disabled = !this.refs.postInput.value;
-}
-
   addPost = event => {
       event.preventDefault();
       const data = new FormData();
