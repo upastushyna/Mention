@@ -8,7 +8,13 @@ const PopUpNotification = props => {
 
   const checkAndHide = (loadUnread, id) => {
     props.checkRead(loadUnread, id);
-    document.getElementById('pop-up').classList.add('d-none');
+    hide();
+  };
+
+  const hide = () => {
+    if (document.getElementById('pop-up')) {
+      document.getElementById('pop-up').classList.add('d-none');
+    }
   };
 
   if (!props.notification || !props.notification.sender) {
@@ -19,7 +25,7 @@ const PopUpNotification = props => {
     onClick={() => checkAndHide(props.loadUnread, props.notification.id)}>
     <img className="notify__icon" src={infoIcon} alt="close" />
     <p className="notify__text">{props.notification.message}</p>
-    <img className="notify__close" src={closeIcon} alt="close" />
+    <img className="notify__close" onClick={() => hide()} src={closeIcon} alt="close" />
   </Link>
 };
 export default PopUpNotification
