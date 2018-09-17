@@ -53,17 +53,19 @@ class Navigation extends React.Component {
   };
 
   render () {
+    const {unread, currentUser, notification, checkRead, loadUnread, history} = this.props;
+
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return ' ';
     }
 
     return (
       <Fragment key={Navigation.id}>
-        <HeaderPanel unread={this.props.unread.length} history={this.props.history}
-                     currentUser={this.props.currentUser}/>
-        <PopUpNotification  notification={this.state.notification}
-                           checkRead={this.props.checkRead}
-                           loadUnread={this.props.loadUnread}/>
+        <HeaderPanel unread={unread.length} history={history}
+                     currentUser={currentUser}/>
+        <PopUpNotification  notification={notification}
+                           checkRead={checkRead}
+                           loadUnread={loadUnread}/>
       </Fragment>
     )
   }
