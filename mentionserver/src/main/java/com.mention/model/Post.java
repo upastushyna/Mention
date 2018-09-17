@@ -62,6 +62,10 @@ public class Post {
   @JsonIgnoreProperties(value = {"post"})
   private List<PostLike> postLikes;
 
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+  @JsonIgnoreProperties(value = {"post"})
+  private List <Notification> notifications;
+
   @ManyToOne
   @JoinColumn(name = "post_parent_id",  updatable = false)
   @JsonIgnoreProperties(value = {"children"})
