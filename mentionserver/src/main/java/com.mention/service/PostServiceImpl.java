@@ -204,7 +204,7 @@ public class PostServiceImpl implements PostService {
     }
 
     Post insertPost = modelMapper.map(post, Post.class);
-    postRepository.save(insertPost);
+    post.setId(postRepository.save(insertPost).getId());
 
     Post original = postRepository.findById(post.getParent().getId()).get();
 

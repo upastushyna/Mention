@@ -34,7 +34,7 @@ public class Notification {
   @Column(name = "notification_is_checked", nullable = false)
   private boolean isChecked;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "post_id", updatable = false)
   private Post post;
 
