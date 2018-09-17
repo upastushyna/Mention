@@ -44,7 +44,8 @@ class Navigation extends React.Component {
   };
 
   render () {
-    const {unread, currentUser, notification, checkRead, loadUnread, history} = this.props;
+    const {unread, currentUser, checkRead, loadUnread, history} = this.props;
+    const {notification} = this.state;
 
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return ' ';
