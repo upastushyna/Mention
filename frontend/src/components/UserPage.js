@@ -24,6 +24,7 @@ class UserPage extends React.Component {
   }
 
   componentDidUpdate() {
+    this.searchTimeOut();
     this.callUpdate();
   }
 
@@ -99,6 +100,20 @@ class UserPage extends React.Component {
       this.refs.addFile.innerText = this.refs.inputFile.files[0].name;
     } else {
       this.refs.addFile.innerText = "Add file";
+    }
+  };
+
+  searchTimeOut = () => {
+    let empty = document.querySelector('.empty-state');
+    let loader = document.querySelector('.loader');
+
+    if (empty !== null && loader !== null) {
+      empty.style.display = "none";
+
+      setTimeout(() => {
+        loader.style.display = "none";
+        empty.style.display = "flex";
+      }, 2000)
     }
   };
 

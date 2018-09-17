@@ -5,6 +5,10 @@ import '../css/index.css'
 import logo from '../img/posts-icon.png'
 
 export default class Registration extends React.Component {
+  /*state = {
+    showRegister: false
+  }*/
+
   login = event => {
     event.preventDefault()
     fetch('/api/login',
@@ -81,6 +85,8 @@ export default class Registration extends React.Component {
   };
 
   render () {
+    // const {showRegister} = this.state
+
     return (
       <Fragment key={Registration.id}>
         <section ref="registerForm" className="login d-flex-center d-none">
@@ -90,6 +96,7 @@ export default class Registration extends React.Component {
             <form onSubmit={event => this.register(event)}>
               <div className="login__form">
                 <input ref="registerUsername" type="text" className="input_custom" placeholder="Username" minLength="3" maxLength="20"/>
+                {/*<input ref="registerUsername" type="text" className={`input input_text ${showRegister ? 'input_custom' : 'd-none'}`} placeholder="Username" minLength="3" maxLength="20"/>*/}
                 <p ref="usernameRegister" className="d-none"></p>
                 <input ref="registerEmail" type="text" className="input_custom" placeholder="Email"/>
                 <p ref="emailRegister" className="d-none"></p>
@@ -103,6 +110,7 @@ export default class Registration extends React.Component {
               </div>
             </form>
             <p onClick={() => this.showLogin()} className="login__forgot-password">Member Login</p>
+            {/*<p onClick={() => this.setState({showRegister: true})} className="login__forgot-password">Member Login</p>*/}
           </div>
         </section>
         <section ref="loginForm" className="login d-flex-center">

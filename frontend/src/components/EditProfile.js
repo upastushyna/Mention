@@ -121,6 +121,8 @@ class EditProfile extends React.Component {
   };
 
   render() {
+    const {editProfile} = this.props;
+
     if (!this.props.editProfile) {
       return <Loader/>
     }
@@ -133,19 +135,19 @@ class EditProfile extends React.Component {
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change firstname</p>
                 <input type="text" ref="inputFirstName" className="input_custom edit-profile__input"
-                       defaultValue={this.props.editProfile.firstName}
+                       defaultValue={editProfile.firstName}
                        placeholder="First Name"/>
               </div>
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change secondname</p>
                 <input type="text" ref="inputSecondName" className="input_custom edit-profile__input"
-                       defaultValue={this.props.editProfile.secondName}
+                       defaultValue={editProfile.secondName}
                        placeholder="Second Name"/>
               </div>
               <div className="edit-profile__item">
                 <p className="edit-profile__title_secondary">Change address</p>
                 <input type="text" ref="inputAddress" className="input_custom edit-profile__input"
-                       defaultValue={this.props.editProfile.address}
+                       defaultValue={editProfile.address}
                        placeholder="Address"/>
               </div>
               <div className="edit-profile__item">
