@@ -3,7 +3,7 @@ import {Route, Switch, Link} from 'react-router-dom'
 import NotificationsContainer from "../containers/NotificationsContainer";
 import withRouter from "react-router-dom/es/withRouter";
 import {connect} from "react-redux";
-import {checkReadAll, loadAllNotifications} from "../actions/notificationsActions";
+import {checkReadAll, checkReadNotification, loadAllNotifications} from "../actions/notificationsActions";
 
 class Notifications extends React.Component {
 
@@ -17,7 +17,8 @@ class Notifications extends React.Component {
         <div className="container">
           <div className="info-controller">
               {this.props.unread.length > 0 ?
-            <button className="info-controller__link info-controller__link_white" onClick={() => checkReadAll(this.props.loadUnread)}>
+            <button className="info-controller__link info-controller__link_white"
+                    onClick={() => this.props.checkReadAll(this.props.loadUnread)}>
               Mark all as read</button> : null }
             <Link className="info-controller__link" to={'/notifications/unread'}>Unread</Link>
             <Link className="info-controller__link" to={'/notifications/all'}>All</Link>         
@@ -27,10 +28,12 @@ class Notifications extends React.Component {
         <Switch>
           <Route exact path='/notifications/all' component={() => <NotificationsContainer
             notifications={this.props.notifications}
-            loadNotifications={this.props.loadNotifications}/>}/>
+            loadNotifications={this.props.loadNotifications}
+            checkRead={this.props.checkRead}/>}/>
           <Route exact path='/notifications/unread' component={() => <NotificationsContainer
               notifications={this.props.unread}
-              loadNotifications={this.props.loadUnread}/>}/>
+              loadNotifications={this.props.loadUnread}
+              checkRead={this.props.checkRead}/>}/>
         </Switch>
         </section>
       </Fragment>
@@ -44,7 +47,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadNotifications: () => dispatch(loadAllNotifications()),
-  checkReadAll: () => checkReadAll()
+  checkReadAll: callback => checkReadAll(callback),
+  checkRead: (callback, id) => checkReadNotification(callback, id)
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Notifications))

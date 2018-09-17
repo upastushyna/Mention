@@ -9,7 +9,9 @@ const NotificationsContainer = props => {
 
   return props.notifications.map(notification =>
    
-    <NotificationItem notification={notification}/>)
+    <NotificationItem notification={notification}
+                      loadNotifications={props.loadNotifications}
+                      checkRead={props.checkRead}/>)
 };
 
 export default NotificationsContainer
