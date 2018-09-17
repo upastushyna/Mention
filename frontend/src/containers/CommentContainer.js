@@ -3,6 +3,7 @@ import more from '../img/post-form/more-icon.png'
 import CommentLikeItem from './CommentLikeItem'
 import {getDateFromDb} from '../js/timestamp.js'
 import {Link} from 'react-router-dom'
+import Linkify from 'react-linkify'
 
 const showDelete = id => {
   if (document.getElementById('commentDelete' + id).classList.contains('d-none')) {
@@ -51,7 +52,7 @@ const CommentContainer = props => {
           </div> : ""}
         </div>
         <p className="comment-container__body">
-          {comment.body}
+          <Linkify>{comment.body}</Linkify>
         </p>
         <div className="comment-container__footer d-flex-center content-between">
           <CommentLikeItem likes={comment.commentLikes} username={props.username}

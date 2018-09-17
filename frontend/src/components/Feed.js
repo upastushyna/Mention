@@ -7,13 +7,15 @@ import {connect} from 'react-redux'
 import PostsContainer from '../containers/PostsContainer'
 import upload from '../img/fileuploadicon.png'
 import Preloader from "../containers/Preloader";
-import withRouter from "react-router-dom/es/withRouter";
 import {webSocketFeed} from "../js/wsConnection";
 import {loadCurrentUser} from "../actions/currentUserActions";
 
 class Feed extends React.Component {
   constructor (props) {
-    super(props)
+    super(props);
+    this.state = {
+      textarea: undefined
+    };
     this.props.history.listen((location, action) => {
       this.props.loadData(this.props.currentUser.username)
     })
@@ -37,6 +39,10 @@ class Feed extends React.Component {
   componentDidMount () {
     webSocketFeed(this.props.loadData);
   }
+
+  handleChange = value => {
+    this.setState({textarea: value})
+  };
 
   addPost = event => {
     event.preventDefault();
@@ -106,7 +112,6 @@ class Feed extends React.Component {
               deletePost={this.props.deletePost}
               deleteComment={this.props.deleteComment}
           />
-
         </div>
       </Fragment>
     )
