@@ -51,6 +51,14 @@
   }
 }
 
+.inactive-button {
+  background-color: #aaa;
+  cursor: inherit;
+  &:hover {
+    opacity: 1;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .edit-profile {
     &__item {
