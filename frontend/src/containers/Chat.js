@@ -5,6 +5,7 @@ import arrow from '../img/arrow-left.svg'
 import {getDateFromDb} from '../js/chatdisplaytime'
 import {Link} from "react-router-dom";
 import Loader from "./Loader";
+import Linkify from 'react-linkify'
 
 const goBack = () => {
   document.querySelector('.messages-container').style.display = "none";
@@ -62,7 +63,9 @@ const Chat = props => {
               <img src={props.chat.user2.username === props.user2
                 ? props.chat.user2.profile.avatarUrl
                 : props.chat.user1.profile.avatarUrl} alt="avatar" className="profile-info__avatar"/>
-              <p className="message__text message__text_sent">{message.content}</p>
+              <p className="message__text message__text_sent">
+                <Linkify>{message.content}</Linkify>
+              </p>
               <span className="message__time">{getDateFromDb(message.timestamp)}</span>
             </div>
             /* {<span className="message-send__time">{message.timestamp.substring(0, 10)}</span> } */

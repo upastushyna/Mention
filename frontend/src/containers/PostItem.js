@@ -8,22 +8,23 @@ import AddComment from './AddComment'
 import {getDateFromDb} from '../js/timestamp.js'
 import {Link} from 'react-router-dom'
 import RepostContainer from './RepostContainer'
+import Linkify from 'react-linkify'
 
 const openComments = idPost => {
-  let el = document.getElementById(idPost)
-  let cont = el.querySelector('.comments-list')
-  cont.classList.toggle('d-none')
+  let el = document.getElementById(idPost);
+  let cont = el.querySelector('.comments-list');
+  cont.classList.toggle('d-none');
 
   setTimeout(function () {
     cont.classList.toggle('comment-opacity')
   }, 100)
-}
+};
 
 const showOptions = id => {
   if (document.getElementById('delete' + id).classList.contains('d-none')) {
     document.getElementById('delete' + id).classList.remove('d-none')
   }
-}
+};
 
 const hide = event => {
   if (!event.target.classList.contains('post__action')) {
@@ -35,18 +36,18 @@ const hide = event => {
       }
     })
   }
-}
+};
 
 const showReposters = id => {
   if (document.getElementById('repost' + id).classList.contains('d-none')) {
     document.getElementById('repost' + id).classList.remove('d-none')
   }
-}
+};
 
 const hideReposters = event => {
   if (!event.target.classList.contains('profile-info__avatar')) {
     if (!event.target.classList.contains('profile-info__username')) {
-      let hideButton = document.getElementsByClassName('repostLikers__nav')
+      let hideButton = document.getElementsByClassName('repostLikers__nav');
 
       Array.prototype.forEach.call(hideButton, item => {
         if (!item.classList.contains('d-none')) {
@@ -55,7 +56,7 @@ const hideReposters = event => {
       })
     }
   }
-}
+};
 
 const PostItem = props => {
   window.addEventListener('mousedown', event => hide(event))
@@ -72,7 +73,7 @@ const PostItem = props => {
         author: {id: props.currentUser.id},
         parent: {id: props.post.parent ? props.post.parent.id : props.post.id}
       })
-    }).then(() => props.loadData(props.username))
+    }).then(() => props.loadData(props.username));
 
   return <Fragment>
     <div className="post" id={props.post.id}>
@@ -119,7 +120,7 @@ const PostItem = props => {
       <Link to={'/post/' + (props.post.parent
         ? props.post.parent.id : props.post.id)} className="post__link">
         <p className="post__body">
-          {props.post.parent ? props.post.parent.body : props.post.body}
+          <Linkify>{props.post.parent ? props.post.parent.body : props.post.body}</Linkify>
         </p>
         {props.post.parent ? props.post.parent.mediaFileUrl
           ? <img className="post__img" alt="like" src={props.post.parent.mediaFileUrl}/> : '' : props.post.mediaFileUrl
