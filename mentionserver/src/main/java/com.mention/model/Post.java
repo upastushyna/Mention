@@ -14,15 +14,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
 import java.util.List;
 
 @Entity
 @Data
 @EntityListeners(AuditingEntityListener.class)
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "post_parent_id"}))
 public class Post {
 
   @Id
@@ -64,7 +67,7 @@ public class Post {
 
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
   @JsonIgnoreProperties(value = {"post"})
-  private List <Notification> notifications;
+  private List<Notification> notifications;
 
   @ManyToOne
   @JoinColumn(name = "post_parent_id",  updatable = false)
