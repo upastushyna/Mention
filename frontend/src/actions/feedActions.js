@@ -1,6 +1,12 @@
 import {FEED_LOADED} from '../constants/action-types'
 
-export const loadFeed = username => dispatch => {
+export const loadFeed = (data) => dispatch => {
+  let username;
+  if (data.username) {
+    username = data.username;
+  }else {
+    username = data;
+  }
   fetch('/api/posts/followed/' + username,
     {
       method: 'GET',
@@ -11,4 +17,5 @@ export const loadFeed = username => dispatch => {
       }
     }).then(res => res.headers.get('content-type') === null ? null : res.json())
     .then(data => dispatch({type: FEED_LOADED, payload: data || []}))
-}
+    .then(() => data.username?data.changeState() : null)
+};

@@ -34,7 +34,6 @@ class Post extends React.Component {
     }
     return (
       <Fragment>
-        <div className="container">
           <PostItem username={this.props.match.params.id}
             loadData={this.props.loadPost}
             post={this.props.post}
@@ -42,7 +41,6 @@ class Post extends React.Component {
             deletePost={this.props.deletePost}
             key={this.props.post.id}
             deleteComment={this.props.deleteComment}/>
-        </div>
       </Fragment>
     )
   }

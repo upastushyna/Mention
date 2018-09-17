@@ -13,8 +13,12 @@ import {loadCurrentUser} from "../actions/currentUserActions";
 class Feed extends React.Component {
   constructor (props) {
     super(props);
+    this.state = {
+      feedLoaded: false
+    };
+
     this.props.history.listen((location, action) => {
-      this.props.loadData(this.props.currentUser.username)
+      this.props.loadData({username:this.props.currentUser.username, changeState:this.changeState})
     })
   }
 
@@ -22,20 +26,24 @@ class Feed extends React.Component {
     if(!this.props.currentUser.username) {
       this.props.loadCurrentUser()
     }
-    if (this.props.feed.length === 0 && this.props.currentUser.username) {
-      this.props.loadData(this.props.currentUser.username);
+    if (!this.state.feedLoaded && this.props.currentUser.username) {
+      this.props.loadData({username:this.props.currentUser.username, changeState:this.changeState})
     }
   }
 
   componentWillReceiveProps () {
-    if (this.props.feed.length !== 0) {
-      this.props.loadData(this.props.currentUser.username);
+    if (!this.state.feedLoaded) {
+      this.props.loadData({username:this.props.currentUser.username, changeState:this.changeState})
     }
   }
 
   componentDidMount () {
     webSocketFeed(this.props.loadData);
   }
+
+  changeState = () => {
+    this.setState({feedLoaded:true})
+  };
 
   addPost = event => {
     event.preventDefault();
@@ -85,8 +93,7 @@ class Feed extends React.Component {
   render () {
     const {feed, loadData, currentUser, deletePost, deleteComment} = this.props;
 
-    if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser();
+    if (!this.state.feedLoaded) {
       return <Preloader/>;
     }
 
