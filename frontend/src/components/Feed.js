@@ -23,13 +23,13 @@ class Feed extends React.Component {
       this.props.loadCurrentUser()
     }
     if (this.props.feed.length === 0 && this.props.currentUser.username) {
-      this.props.loadData(this.props.currentUser.username)
+      this.props.loadData(this.props.currentUser.username);
     }
   }
 
   componentWillReceiveProps () {
-    if (this.props.feed.length === 0) {
-      this.props.loadData(this.props.currentUser.username)
+    if (this.props.feed.length !== 0) {
+      this.props.loadData(this.props.currentUser.username);
     }
   }
 
@@ -68,20 +68,37 @@ class Feed extends React.Component {
     }
   };
 
+  searchTimeOut = () => {
+    let empty = document.querySelector('.empty-state');
+    let loader = document.querySelector('.loader');
+
+    if (empty !== null && loader !== null) {
+      empty.style.display = "none";
+
+      setTimeout(() => {
+        loader.style.display = "none";
+        empty.style.display = "flex";
+      }, 2000)
+    }
+  };
+
   render () {
+    const {feed, loadData, currentUser, deletePost, deleteComment} = this.props;
+
     if (!this.props.currentUser || !this.props.currentUser.username) {
       this.props.loadCurrentUser();
       return <Preloader/>;
     }
 
-    // const myRef = React.createRef();
-    // console.log(myRef)
+    if (this.props.feed.length === 0) {
+      this.searchTimeOut();
+    }
 
     return (
       <Fragment key={Feed.id}>
         <div ref="container">
-          {this.props.currentUser.followedUsers.find(follow =>
-            follow.followedUser.id === this.props.currentUser.id)
+          {currentUser.followedUsers.find(follow =>
+            follow.followedUser.id === currentUser.id)
             ? <div className="create-post">
               <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
                 <div className="d-flex-center">
@@ -98,12 +115,12 @@ class Feed extends React.Component {
               </form>
             </div> : ''}
           <PostsContainer
-              username={this.props.currentUser.username}
-              userPosts={this.props.feed}
-              loadData={this.props.loadData}
-              currentUser={this.props.currentUser}
-              deletePost={this.props.deletePost}
-              deleteComment={this.props.deleteComment}
+              username={currentUser.username}
+              userPosts={feed}
+              loadData={loadData}
+              currentUser={currentUser}
+              deletePost={deletePost}
+              deleteComment={deleteComment}
           />
         </div>
       </Fragment>
