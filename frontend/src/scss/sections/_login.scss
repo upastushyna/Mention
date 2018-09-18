@@ -15,6 +15,12 @@
     text-align: center;
   }
 
+  &__error{
+    font-size: 14px;
+    color: $red-color;
+    margin: 8px;
+  }
+
   &__icon {
     position: absolute;
     top: -56px;
@@ -84,7 +90,7 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
   .login {
     &__container {
       width: 95%;

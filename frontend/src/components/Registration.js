@@ -36,6 +36,7 @@ export default class Registration extends React.Component {
 
   displayMessage = () => {
     this.refs.message.classList.remove('d-none');
+    this.refs.message.classList.add('login__error');
   };
 
   setMessage = message => {
