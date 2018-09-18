@@ -26,7 +26,7 @@ class Notifications extends React.Component {
             <button className="notify__mark-btn"
                     onClick={() => this.props.checkReadAll(this.props.loadUnread)}>
               &#9998; Mark all as read</button> : null }
-              <div>
+        <div>
         <Switch>
           <Route exact path='/notifications/all' component={() => <NotificationsContainer
             notifications={this.props.notifications}
