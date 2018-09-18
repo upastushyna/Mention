@@ -122,7 +122,7 @@ class Feed extends React.Component {
                   <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
                     <div className="d-flex-center">
                   <textarea className="create-post__input" id="postInput"
-                            placeholder="Share your thoughts with world" rows="2" ref="postInput"
+                            placeholder="Share your thoughts" rows="2" ref="postInput"
                             maxLength={280} onChange={() => this.activeButton()}/>
                       <button ref="postButton" type="submit"
                               className="create-post__btn btn-action inactive-button">Add post</button>
