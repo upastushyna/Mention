@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, {Fragment} from 'react'
 import '../css/index.css'
 import {loadFeed} from '../actions/feedActions'
 import {deletePost} from '../actions/postsActions'
@@ -15,6 +15,7 @@ class Feed extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      inputValue: '',
       feedLoaded: false
     };
 
@@ -23,8 +24,8 @@ class Feed extends React.Component {
     })
   }
 
-  componentWillMount () {
-    if(!this.props.currentUser.username) {
+  componentWillMount() {
+    if (!this.props.currentUser.username) {
       this.props.loadCurrentUser()
     }
     if (!this.state.feedLoaded && this.props.currentUser.username) {
@@ -32,13 +33,13 @@ class Feed extends React.Component {
     }
   }
 
-  componentWillReceiveProps () {
+  componentWillReceiveProps() {
     if (!this.state.feedLoaded) {
       this.props.loadData({username:this.props.currentUser.username, changeState:this.changeState})
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     webSocketFeed(this.props.loadData);
   }
 
@@ -47,26 +48,30 @@ class Feed extends React.Component {
   };
 
   addPost = event => {
-    event.preventDefault();
-    const data = new FormData();
-    data.append('body', this.refs.postInput.value);
-    data.append('id', this.props.currentUser.id);
-    if (this.refs.inputFile) {
-      const image = this.refs.inputFile.files[0];
-      data.append('image', image)
-    }
+      event.preventDefault();
+      const data = new FormData();
+      data.append('body', this.refs.postInput.value);
+      data.append('id', this.props.currentUser.id);
+      if (this.refs.inputFile) {
+        const image = this.refs.inputFile.files[0];
+        data.append('image', image)
+      }
+      if(this.refs.postInput.value.length > 0) {
 
-    fetch('/api/posts/add',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-        },
-        body: data
-      }).then(() => this.props.loadData(this.props.currentUser.username))
-      .then(() => this.refs.postInput.value = '')
-      .then(() => this.refs.inputFile.value = null)
-      .then(this.refs.addFile.innerText = 'Add file')
+        fetch('/api/posts/add',
+            {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+              },
+              body: data
+            }).then(() => this.props.loadData(this.props.currentUser.username))
+            .then(() => this.refs.postInput.value = '')
+            .then(() => this.refs.inputFile.value = null)
+            .then(this.refs.addFile.innerText = 'Add file')
+            .then(this.setState({inputValue: null}))
+            .then(() => this.refs.postButton.classList.add("inactive-button"))
+      }
   };
 
   changeName = () => {
@@ -80,7 +85,6 @@ class Feed extends React.Component {
   searchTimeOut = () => {
     let empty = document.querySelector('.empty-state');
     let loader = document.querySelector('.loader');
-
     if (empty !== null && loader !== null) {
       empty.style.display = "none";
 
@@ -91,10 +95,17 @@ class Feed extends React.Component {
     }
   };
 
-  render () {
-    const {feed, loadData, currentUser, deletePost, deleteComment} = this.props;
+  activeButton() {
+    if(this.refs.postInput && this.refs.postInput.value.length > 0){
+      this.refs.postButton.classList.remove("inactive-button")
+    } else {
+      this.refs.postButton.classList.add("inactive-button")
+    }
+  }
 
-    if (!this.state.feedLoaded) {
+  render () {
+    const {feed, loadData,currentUser , deletePost, deleteComment} =this.props;
+      if (!this.state.feedLoaded){
       return <Preloader/>;
     }
 
@@ -103,38 +114,39 @@ class Feed extends React.Component {
     }
 
     return (
-      <Fragment key={Feed.id}>
-        <div ref="container">
-          {currentUser.followedUsers.find(follow =>
-            follow.followedUser.id === currentUser.id)
-            ? <div className="create-post">
-              <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
-                <div className="d-flex-center">
+        <Fragment key={Feed.id}>
+          <div ref="container">
+            {currentUser.followedUsers.find(follow =>
+                follow.followedUser.id === currentUser.id)
+                ? <div className="create-post">
+                  <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
+                    <div className="d-flex-center">
                   <textarea className="create-post__input" id="postInput"
-                    placeholder="Share your thoughts with world" rows="2" ref="postInput"
-                    maxLength={280}/>
-                  <button type="submit" className="create-post__btn btn-action">Add post</button>
-                  <button type="submit" className="create-post__btn_rounded btn-action btn-action_rounded">+</button>
-                </div>
-                <div className="upload-file">
-                  <img src={upload} alt="upload" className="upload-file__icon"/>
-                  <p ref="addFile">Add file</p>
-                  <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile" type="file"/></div>
-              </form>
-            </div> : ''}
-          <PostsContainer
-              username={currentUser.username}
-              userPosts={feed}
-              loadData={loadData}
-              currentUser={currentUser}
-              deletePost={deletePost}
-              deleteComment={deleteComment}
+                            placeholder="Share your thoughts" rows="2" ref="postInput"
+                            maxLength={280} onChange={() => this.activeButton()}/>
+                      <button ref="postButton" type="submit"
+                              className="create-post__btn btn-action inactive-button">Add post</button>
+                    </div>
+                    <div className="upload-file">
+                      <img src={upload} alt="upload" className="upload-file__icon"/>
+                      <p ref="addFile">Add file</p>
+                      <input onChange={() => this.changeName()} className="upload" id="inputFile" ref="inputFile"
+                             type="file"/></div>
+                  </form>
+                </div> : ''}
+            <PostsContainer
+                username={currentUser.username}
+                userPosts={feed}
+                loadData={loadData}
+                currentUser={currentUser}
+                deletePost={deletePost}
+                deleteComment={deleteComment}
               image={surprised}
               title="Nothing to show"
               message={'Follow other people and share your own thoughts'}
-          />
-        </div>
-      </Fragment>
+            />
+          </div>
+        </Fragment>
     )
   }
 }

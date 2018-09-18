@@ -83,17 +83,20 @@ class UserPage extends React.Component {
       data.append('image', image)
     }
 
-    fetch('/api/posts/add',
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-          },
-          body: data
-        }).then(() => this.props.loadData(this.props.match.params.username))
-        .then(() => this.refs.postInput.value = '')
-        .then(() => this.refs.inputFile.value = null)
-        .then(this.refs.addFile.innerText = 'Add file')
+    if(this.refs.postInput.value.length > 0) {
+      fetch('/api/posts/add',
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+            },
+            body: data
+          }).then(() => this.props.loadData(this.props.match.params.username))
+          .then(() => this.refs.postInput.value = '')
+          .then(() => this.refs.inputFile.value = null)
+          .then(this.refs.addFile.innerText = 'Add file')
+          .then(() => this.refs.postButton.classList.add("inactive-button"))
+    }
   };
 
   changeName = () => {
@@ -117,6 +120,14 @@ class UserPage extends React.Component {
       }, 2000)
     }
   };
+
+  activeButton() {
+    if(this.refs.postInput && this.refs.postInput.value.length > 0){
+      this.refs.postButton.classList.remove("inactive-button")
+    } else {
+      this.refs.postButton.classList.add("inactive-button")
+    }
+  }
 
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
@@ -152,9 +163,9 @@ class UserPage extends React.Component {
                   <div className="d-flex-center content-between">
                   <textarea className="create-post__input" id="postInput"
                             placeholder="Share your thoughts" ref="postInput"
-                            maxLength={280}/>
-                    <button type="submit" className="create-post__btn btn-action">Add post</button>
-                    <button type="submit" className="btn-action btn-action_rounded create-post__btn_rounded">+</button>
+                            maxLength={280} onChange={() => this.activeButton()}/>
+                    <button type="submit" ref="postButton"
+                            className="create-post__btn btn-action inactive-button">Add post</button>
                   </div>
                   <div className="upload-file">
                     <img src={upload} alt="upload" className="upload-file__icon"/>

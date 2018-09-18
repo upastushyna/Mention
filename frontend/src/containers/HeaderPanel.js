@@ -7,7 +7,6 @@ import feed from '../img/header-panel/icon-feed.png'
 import arrow from '../img/white-down-arrow.png'
 import SearchContainer from './SearchContainer'
 import {webSocketMessageNotification} from "../js/wsConnection";
-import NotificationItem from './NotificationItem'
 
 class HeaderPanel extends React.Component {
   constructor(props) {
@@ -82,7 +81,8 @@ class HeaderPanel extends React.Component {
                 <Link to="/notifications/unread" className="header-menu__link">
                   <img src={notification} alt="notify" className="header-menu__icon"/>
                   <p>{'Notifications'}</p>
-                  <span className="notify__count">{`${this.props.unread}`}</span>
+                  {this.props.unread > 0?
+                    <span className="notify__count">{`${this.props.unread}`}</span> : null}
                 </Link>
               </li>
               <li className="header-menu__item">
