@@ -18,7 +18,7 @@ class Navigation extends React.Component {
 
   timeout () {
     this.setState({timerId: setTimeout(() =>
-        this.triggerHide(document.getElementById('pop-up')), 5000)})
+        this.triggerHide(), 5000)})
   }
 
   componentDidMount () {
@@ -29,23 +29,14 @@ class Navigation extends React.Component {
   }
 
   componentWillReceiveProps() {
-    const popUp = document.getElementById('pop-up');
     const {timerId} = this.state;
 
-    if(popUp && popUp.classList.contains('d-none')) {
-      popUp.classList.remove('d-none');
-    }
-
-    if (popUp) {
-      timerId && clearTimeout(timerId);
-      this.timeout();
-    }
+    timerId && clearTimeout(timerId);
+    this.timeout();
   }
 
-  triggerHide = (popUp) => {
-    if (popUp && !popUp.classList.contains('d-none')) {
-      popUp.classList.add('d-none');
-    }
+  triggerHide = () => {
+    this.setState({notification:undefined})
   };
 
   notify = notification => {
@@ -53,17 +44,20 @@ class Navigation extends React.Component {
   };
 
   render () {
+    const {unread, currentUser, checkRead, loadUnread, history} = this.props;
+    const {notification} = this.state;
+
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return ' ';
     }
 
     return (
       <Fragment key={Navigation.id}>
-        <HeaderPanel unread={this.props.unread.length} history={this.props.history}
-                     currentUser={this.props.currentUser}/>
-        <PopUpNotification  notification={this.state.notification}
-                           checkRead={this.props.checkRead}
-                           loadUnread={this.props.loadUnread}/>
+        <HeaderPanel unread={unread.length} history={history}
+                     currentUser={currentUser}/>
+        <PopUpNotification  notification={notification}
+                           checkRead={checkRead}
+                           loadUnread={loadUnread}/>
       </Fragment>
     )
   }

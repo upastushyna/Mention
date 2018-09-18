@@ -61,6 +61,7 @@ public class NotificationServiceImpl implements NotificationService {
     List<NotificationRs> notificationRsList = notifications
         .stream()
         .map(notification -> modelMapper.map(notification, NotificationRs.class))
+        .sorted((n1, n2) -> n2.getTimestamp().compareTo(n1.getTimestamp()))
         .collect(Collectors.toList());
     return ResponseEntity.ok(notificationRsList);
   }
@@ -73,6 +74,7 @@ public class NotificationServiceImpl implements NotificationService {
     List<NotificationRs> notificationRsList = notifications
         .stream()
         .map(notification -> modelMapper.map(notification, NotificationRs.class))
+        .sorted((n1, n2) -> n2.getTimestamp().compareTo(n1.getTimestamp()))
         .collect(Collectors.toList());
     return ResponseEntity.ok(notificationRsList);
   }
