@@ -9,6 +9,7 @@ import upload from '../img/fileuploadicon.png'
 import Preloader from "../containers/Preloader";
 import {webSocketFeed} from "../js/wsConnection";
 import {loadCurrentUser} from "../actions/currentUserActions";
+import surprised from '../img/surprised.svg'
 
 class Feed extends React.Component {
   constructor (props) {
@@ -128,6 +129,9 @@ class Feed extends React.Component {
               currentUser={currentUser}
               deletePost={deletePost}
               deleteComment={deleteComment}
+              image={surprised}
+              title="Nothing to show"
+              message={'Follow other people and share your own thoughts'}
           />
         </div>
       </Fragment>

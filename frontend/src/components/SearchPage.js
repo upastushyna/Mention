@@ -98,7 +98,9 @@ class SearchPage extends React.Component {
     return (
       <Fragment key={SearchPage.id}>
         <div className="container">
-          <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={'Please, try another search query'}/>
+          <EmptyState image={searchIcon}
+                      title="Oops! Nothing has been found"
+                      message={'Sorry, no results found matching your parameters'}/>
           {this.props.foundPosts.length === 0
             ? <Loader/>
             : <PostsContainer username={this.props.match.params.input}

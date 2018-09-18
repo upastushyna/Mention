@@ -2,10 +2,13 @@ import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import {getDateFromDb} from '../js/timestamp.js'
 import EmptyState from '../containers/EmptyState'
+import conversation from '../img/conversation.svg'
 
 const ChatsContainer = props => {
   if (props.chats.length === 0) {
-    return <EmptyState title="No active chat found" message="Search for new friends :)"/>
+    return <EmptyState title="No chats found"
+                       message="Type in the other person's name to start chatting"
+                       image={conversation}/>
   }
 
   return props.chats.map(chat =>
