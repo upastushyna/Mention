@@ -100,7 +100,9 @@ export default class Registration extends React.Component {
 
     return (
       <Fragment key={Registration.id}>
-        <p className='d-none' ref='message'></p>;
+        <div>
+          <p className='d-none' ref='message'></p>;
+        </div>
         <section ref="registerForm" className="login d-flex-center d-none">
           <div className="login__container">
             <img className="login__icon" src={logo} alt="profile"/>
