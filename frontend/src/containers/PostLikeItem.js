@@ -56,7 +56,7 @@ const PostLikeItem = props => {
     {props.likes.find(like => like.user.username === props.currentUser.username)
         ? <img onClick={() => deleteLike()} src={likeFilled} alt="like" className="post__action-img"/>
         : <img onClick={() => addLike()} src={like} alt="dislike" className="post__action-img"/>}
-    <span className="post__action-count" onClick={() => showPostLikers(props.postId, props.likes.length)}>{props.likes.length}</span>
+    <span className="post__action-count cursor" onClick={() => showPostLikers(props.postId, props.likes.length)}>{props.likes.length}</span>
     <div id={"post" + props.postId} className="d-none postLikers__nav">
     <h2 className="postLikers__title">This people liked this post :)</h2>
       <UserLikesContainer likes={props.likes}/>
