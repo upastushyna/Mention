@@ -30,7 +30,7 @@ const ChatsContainer = props => {
           </div>
         </div>
         <p className="chat-container__text">{chat.messages.length !== 0
-          ? chat.messages[chat.messages.length - 1].content : 'Start conversation! :)'}</p>
+          ? chat.messages[chat.messages.length - 1].content : ''}</p>
       </Link>
     </Fragment>
   )
