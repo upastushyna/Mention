@@ -16,15 +16,17 @@ class Notifications extends React.Component {
       <Fragment>
         <div className="container">
           <div className="info-controller">
-              {this.props.unread.length > 0 ?
-            <button className="info-controller__link info-controller__link_white"
-                    onClick={() => this.props.checkReadAll(this.props.loadUnread)}>
-              Mark all as read</button> : null }
             <Link className="info-controller__link" to={'/notifications/unread'}>Unread</Link>
             <Link className="info-controller__link" to={'/notifications/all'}>All</Link>
           </div>
         </div>
        <section className="notify__container">
+  
+       {this.props.unread.length > 0 ?
+            <button className="notify__mark-btn"
+                    onClick={() => this.props.checkReadAll(this.props.loadUnread)}>
+              &#9998; Mark all as read</button> : null }
+              <div>
         <Switch>
           <Route exact path='/notifications/all' component={() => <NotificationsContainer
             notifications={this.props.notifications}
@@ -35,6 +37,7 @@ class Notifications extends React.Component {
               loadNotifications={this.props.loadUnread}
               checkRead={this.props.checkRead}/>}/>
         </Switch>
+        </div>
         </section>
       </Fragment>
     )
