@@ -56,6 +56,8 @@ class Messages extends React.Component {
     .then(() => this.refs.chatInput.value = '');
 
   render () {
+    const {loadMessages, chat, chats, loadData, currentUser} = this.props
+
     return (
       <Fragment key={Messages.id}>
         <main className="container chats__view">
@@ -66,17 +68,17 @@ class Messages extends React.Component {
               <img onClick={() => this.addChat()} src={search} alt="search" className="chats__button"/>
             </div>
             <div className="chats__container">
-              <ChatsContainer loadChat={this.props.loadMessages}
-                chats={this.props.chats} username={this.props.currentUser.username}/>
+              <ChatsContainer loadChat={loadMessages}
+                chats={chats} username={currentUser.username}/>
             </div>      
           </section>
 
           <section ref="messages" className="messages-container">
             <Switch>
               <Route path='/messages/:username' render={props =>
-                <Chat user1={this.props.currentUser.username} user2={props.match.params.username}
-                  loadChat={this.props.loadMessages} chat={this.props.chat}
-                  loadData={this.props.loadData} currentUser={this.props.currentUser}/>}
+                <Chat user1={currentUser.username} user2={props.match.params.username}
+                  loadChat={loadMessages} chat={chat} {...props}
+                  loadData={loadData} currentUser={currentUser}/>}
               />
             </Switch>
           </section>

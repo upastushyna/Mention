@@ -1,81 +1,112 @@
-.notify{
-	position: fixed;
-	bottom: 30px;
-	right: 30px;
-	text-decoration: none;
-	background-color: $main-color;
-	padding: 16px;
-	color: #fff;
-	display: flex;
-	align-items: center;
-	border-radius: 6px;
-	max-width: 400px;
-	z-index: 10;
+.notify {
+ position: fixed;
+ bottom: 30px;
+ right: 30px;
+ text-decoration: none;
+ background-color: $main-color;
+ padding: 16px;
+ color: #fff;
+ display: flex;
+ align-items: center;
+ border-radius: 6px;
+ max-width: 400px;
+ z-index: 10;
 
-	&__container{
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		margin: 0 auto;
-		width: 40vw;
-	}
+ &__container {
+  display: flex;
+  margin: 0 auto;
+  width: 50vw;
 
-	&__close {
-		position: absolute;
-		top: 8px;
-		right: 8px;
-		width: 16px;
-		height: 16px;
-	}
+  .empty-state{
+    width: 50vw;
+  }
+ }
 
-	&__text{
-	 font-size: 14px;
-	 line-height: 24px;
-	 font-weight: 500;
-	 margin-right: 24px;
-	 word-break: break-all;
-	}
+ &__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+ }
 
-	&__icon{
-		width: 17px;
-		height: 17px;
-		margin-right: 16px;
-	}
+ &__text {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+  margin-right: 24px;
+  word-break: break-all;
+ }
 
-	&__list-item{
-		width: 100%;
-		text-decoration: none;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 16px;
-		color: $black-text-color;
-        border-bottom: 1px solid $border-color;
-		&:active,
-		&:hover{
-          background-color: $border-color;
-		}
+ &__icon {
+  width: 17px;
+  height: 17px;
+  margin-right: 16px;
+ }
 
-	&__btn{
-		
-	}
-	}
+ &__list-item {
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  color: $black-text-color;
+  border-bottom: 1px solid $border-color;
 
-	&__arrow{
-		color: $meta-color;
-		font-size: 12px;
-		margin-left: 16px;
-	}
+  &:active,
+  &:hover {
+   background-color: $border-color;
+  }
+ }
+
+ &__arrow {
+  color: $meta-color;
+  font-size: 12px;
+  margin-left: 16px;
+ }
+
+ &__count {
+  position: absolute;
+  top: -7px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background-color: $red-color;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 4px;
+ }
+
+ &__mark-btn{
+	 @include clear-default-input-style;
+	 background-color: #fff;
+	 color: $main-color;
+	 border-bottom: 1px solid $main-color;
+	  padding: 8px;
+	  font-size: 15px;
+	  margin: 16px;
+	  height: min-content;
+ }
 }
 
 @media screen and (max-width: 1200px) {
-	.notify {
-		bottom: 16px;
-		right: 16px;
+ .notify {
+  bottom: 16px;
+  right: 16px;
 
-		&__container{
-			width: 100vw;
-		}
-	}
-   }
+  &__container {
+   width: 100vw;
+   flex-direction: column;
+   align-items: center;
+  }
+
+  &__mark-btn{
+	  width: max-content;
+  }
+ }
+}

@@ -9,15 +9,18 @@ import upload from '../img/fileuploadicon.png'
 import Preloader from "../containers/Preloader";
 import {webSocketFeed} from "../js/wsConnection";
 import {loadCurrentUser} from "../actions/currentUserActions";
+import surprised from '../img/surprised.svg'
 
 class Feed extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      feedLoaded: false
     };
+
     this.props.history.listen((location, action) => {
-      this.props.loadData(this.props.currentUser.username)
+      this.props.loadData({username:this.props.currentUser.username, changeState:this.changeState})
     })
   }
 
@@ -25,20 +28,24 @@ class Feed extends React.Component {
     if (!this.props.currentUser.username) {
       this.props.loadCurrentUser()
     }
-    if (this.props.feed.length === 0 && this.props.currentUser.username) {
-      this.props.loadData(this.props.currentUser.username)
+    if (!this.state.feedLoaded && this.props.currentUser.username) {
+      this.props.loadData({username:this.props.currentUser.username, changeState:this.changeState})
     }
   }
 
   componentWillReceiveProps() {
-    if (this.props.feed.length === 0) {
-      this.props.loadData(this.props.currentUser.username)
+    if (!this.state.feedLoaded) {
+      this.props.loadData({username:this.props.currentUser.username, changeState:this.changeState})
     }
   }
 
   componentDidMount() {
     webSocketFeed(this.props.loadData);
   }
+
+  changeState = () => {
+    this.setState({feedLoaded:true})
+  };
 
   addPost = event => {
       event.preventDefault();
@@ -72,20 +79,34 @@ class Feed extends React.Component {
     }
   };
 
-  render() {
-    if (!this.props.currentUser || !this.props.currentUser.username) {
-      this.props.loadCurrentUser();
+  searchTimeOut = () => {
+    let empty = document.querySelector('.empty-state');
+    let loader = document.querySelector('.loader');
+    if (empty !== null && loader !== null) {
+      empty.style.display = "none";
+
+      setTimeout(() => {
+        loader.style.display = "none";
+        empty.style.display = "flex";
+      }, 2000)
+    }
+  };
+
+  render () {
+    const {feed, loadData,currentUser , deletePost, deleteComment} =this.props;
+      if (!this.state.feedLoaded){
       return <Preloader/>;
     }
 
-    // const myRef = React.createRef();
-    // console.log(myRef)
+    if (this.props.feed.length === 0) {
+      this.searchTimeOut();
+    }
 
     return (
         <Fragment key={Feed.id}>
           <div ref="container">
-            {this.props.currentUser.followedUsers.find(follow =>
-                follow.followedUser.id === this.props.currentUser.id)
+            {currentUser.followedUsers.find(follow =>
+                follow.followedUser.id === currentUser.id)
                 ? <div className="create-post">
                   <form encType="multipart/form-data" onSubmit={event => this.addPost(event)}>
                     <div className="d-flex-center">
@@ -104,12 +125,15 @@ class Feed extends React.Component {
                   </form>
                 </div> : ''}
             <PostsContainer
-                username={this.props.currentUser.username}
-                userPosts={this.props.feed}
-                loadData={this.props.loadData}
-                currentUser={this.props.currentUser}
-                deletePost={this.props.deletePost}
-                deleteComment={this.props.deleteComment}
+                username={currentUser.username}
+                userPosts={feed}
+                loadData={loadData}
+                currentUser={currentUser}
+                deletePost={deletePost}
+                deleteComment={deleteComment}
+              image={surprised}
+              title="Nothing to show"
+              message={'Follow other people and share your own thoughts'}
             />
           </div>
         </Fragment>

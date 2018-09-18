@@ -17,6 +17,7 @@ import {deletePost} from '../actions/postsActions'
 import {isLoggedIn} from '../js/isLoggedIn'
 import {deleteComment} from "../actions/commentsActions";
 import Preloader from "../containers/Preloader";
+import thinking from '../img/thinking.svg'
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class UserPage extends React.Component {
   }
 
   componentDidUpdate() {
+    this.searchTimeOut();
     this.callUpdate();
   }
 
@@ -102,6 +104,20 @@ class UserPage extends React.Component {
     }
   };
 
+  searchTimeOut = () => {
+    let empty = document.querySelector('.empty-state');
+    let loader = document.querySelector('.loader');
+
+    if (empty !== null && loader !== null) {
+      empty.style.display = "none";
+
+      setTimeout(() => {
+        loader.style.display = "none";
+        empty.style.display = "flex";
+      }, 2000)
+    }
+  };
+
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return <Preloader/>
@@ -154,7 +170,10 @@ class UserPage extends React.Component {
                                      loadData={this.props.loadData}
                                      currentUser={this.props.currentUser}
                                      deletePost={this.props.deletePost}
-                                     deleteComment={this.props.deleteComment}/>)}}
+                                     deleteComment={this.props.deleteComment}
+                                     title='Nothing to show'
+                                     message='Share your thoughts with us!'
+                                     image={thinking}/>)}}
             />
 
             <Route path='/user/:username/info' render={() =>

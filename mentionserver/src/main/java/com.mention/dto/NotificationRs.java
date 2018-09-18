@@ -19,5 +19,5 @@ public class NotificationRs {
 
   private ShortUserDetailsRs receiver;
 
-  private Date modifyTimestamp;
+  private Date timestamp;
 }

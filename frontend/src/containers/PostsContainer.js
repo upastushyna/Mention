@@ -1,10 +1,16 @@
 import React from 'react'
 import PostItem from './PostItem'
 import Loader from "./Loader";
+import EmptyState from "./EmptyState";
 
 const PostsContainer = props => {
   if (props.userPosts.length === 0) {
-    return <Loader/>
+    return (<div className="empty-loader">
+      <Loader/>
+      <EmptyState image={props.image}
+                  title={props.title}
+                  message={props.message}/>
+    </div>)
   }
 
   return props.userPosts.map(post =>

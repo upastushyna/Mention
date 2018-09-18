@@ -1,7 +1,7 @@
 import React from 'react'
 import {getDateFromDb} from "../js/timestamp";
 import {Link} from 'react-router-dom'
-import chat from '../img/header-panel/chat-icon.png'
+import chat from '../img/chat.png'
 import comment from '../img/post-form/comment-icon.png'
 import forward from '../img/post-form/forward-icon.png'
 import likeFilled from '../img/post-form/like-icon-filled.png'
@@ -45,6 +45,6 @@ const NotificationItem = props => {
                onClick={() => props.checkRead(props.loadNotifications, props.notification.id)}>
   <div className="d-flex-center"><img className="notify__icon" src={icon}/>{props.notification.type.toLowerCase() +
   " from " + props.notification.sender.username +
-  " " + getDateFromDb(props.notification.modifyTimestamp)}</div><span className="notify__arrow">&gt;</span></Link>
+  " " + getDateFromDb(props.notification.timestamp)}</div><span className="notify__arrow">&gt;</span></Link>
 };
 export default NotificationItem

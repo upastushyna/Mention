@@ -42,17 +42,17 @@ class SearchPage extends React.Component {
     let empty = document.querySelector('.empty-state');
     let loader = document.querySelector('.loader');
 
-    if (empty !== null && loader !== null) {
+    if (this.props.foundPosts.length === 0 && empty !== null && loader !== null) {
       loader.style.display = "flex";
       empty.style.display = "none";
-    }
 
-    setTimeout(() => {
-      if (this.props.foundPosts.length === 0 && empty !== null && loader !== null) {
-        loader.style.display = "none";
-        empty.style.display = "flex";
-      }
-    }, 2000)
+      setTimeout(() => {
+        if (this.props.foundPosts.length === 0) {
+          loader.style.display = "none";
+          empty.style.display = "flex";
+        }
+      }, 2000)
+    }
   };
 
   callUpdate = () => {
@@ -98,7 +98,9 @@ class SearchPage extends React.Component {
     return (
       <Fragment key={SearchPage.id}>
         <div className="container">
-          <EmptyState image={searchIcon} title="Oops! Nothing has been found :(" message={'Please, try another search query'}/>
+          <EmptyState image={searchIcon}
+                      title="Oops! Nothing has been found"
+                      message={'Sorry, no results found matching your parameters'}/>
           {this.props.foundPosts.length === 0
             ? <Loader/>
             : <PostsContainer username={this.props.match.params.input}
