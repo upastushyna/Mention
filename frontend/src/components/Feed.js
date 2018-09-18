@@ -56,19 +56,22 @@ class Feed extends React.Component {
         const image = this.refs.inputFile.files[0];
         data.append('image', image)
       }
+      if(this.refs.postInput.value.length > 0) {
 
-      fetch('/api/posts/add',
-          {
-            method: 'POST',
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-            },
-            body: data
-          }).then(() => this.props.loadData(this.props.currentUser.username))
-          .then(() => this.refs.postInput.value = '')
-          .then(() => this.refs.inputFile.value = null)
-          .then(this.refs.addFile.innerText = 'Add file')
-          .then(this.setState({inputValue: ''}))
+        fetch('/api/posts/add',
+            {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+              },
+              body: data
+            }).then(() => this.props.loadData(this.props.currentUser.username))
+            .then(() => this.refs.postInput.value = '')
+            .then(() => this.refs.inputFile.value = null)
+            .then(this.refs.addFile.innerText = 'Add file')
+            .then(this.setState({inputValue: null}))
+            .then(() => this.refs.postButton.classList.add("inactive-button"))
+      }
   };
 
   changeName = () => {
@@ -92,6 +95,14 @@ class Feed extends React.Component {
     }
   };
 
+  activeButton() {
+    if(this.refs.postInput && this.refs.postInput.value.length > 0){
+      this.refs.postButton.classList.remove("inactive-button")
+    } else {
+      this.refs.postButton.classList.add("inactive-button")
+    }
+  }
+
   render () {
     const {feed, loadData,currentUser , deletePost, deleteComment} =this.props;
       if (!this.state.feedLoaded){
@@ -112,10 +123,9 @@ class Feed extends React.Component {
                     <div className="d-flex-center">
                   <textarea className="create-post__input" id="postInput"
                             placeholder="Share your thoughts with world" rows="2" ref="postInput"
-                            maxLength={280} onChange={e => this.setState({ value: e.target.value })}/>
+                            maxLength={280} onChange={() => this.activeButton()}/>
                       <button ref="postButton" type="submit"
-                              disabled={!this.state.value}
-                              className="create-post__btn btn-action">Add post</button>
+                              className="create-post__btn btn-action inactive-button">Add post</button>
                     </div>
                     <div className="upload-file">
                       <img src={upload} alt="upload" className="upload-file__icon"/>
