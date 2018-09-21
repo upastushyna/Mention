@@ -61,7 +61,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <copy todir="${project.basedir}/src/main/resources/public">
+                                <copy todir="../mentionserver/src/main/resources/public">
                                     <fileset dir="${project.basedir}/build"/>
                                 </copy>
                             </target>
