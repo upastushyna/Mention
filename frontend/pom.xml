@@ -15,7 +15,7 @@
 
     <build>
         <plugins>
-         <plugin>
+       <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.6</version>
@@ -61,7 +61,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <copy todir="../mentionserver/target/classes/public">
+                                <copy todir="${project.basedir}/src/main/resources/public">
                                     <fileset dir="${project.basedir}/build"/>
                                 </copy>
                             </target>
