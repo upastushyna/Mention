@@ -15,9 +15,15 @@
     text-align: center;
   }
 
-  &__error{
+  &__error {
     font-size: 14px;
     color: $red-color;
+    margin: 8px;
+  }
+
+  &__valid {
+    font-size: 14px;
+    color: green;
     margin: 8px;
   }
 
@@ -45,6 +51,7 @@
     color: $red-color;
     font-size: 18px;
     text-decoration: none;
+    cursor: pointer;
   }
 
   &__input {
