@@ -137,6 +137,7 @@ const PostItem = props => {
           <div className="post__action-count cursor"
             onClick={() => showReposters(props.post.id)}>{props.post.children.length}</div>
           <div id={'repost' + props.post.id} className="d-none repostLikers__nav">
+            <h2 className="postLikers__title">People who reposted this post</h2>
             <RepostContainer children={props.post.children}/>
           </div>
         </div>

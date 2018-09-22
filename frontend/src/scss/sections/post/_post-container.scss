@@ -130,6 +130,54 @@
  }
 }
 
+.repostLikers {
+  &__nav {
+    width: 30vw;
+    border: 1px solid $main-color;
+    position: absolute;
+    right: 45px;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 8px;
+    z-index: 20;
+
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: calc(50% - 17px);
+      right: -2px;
+      transform: translate(50%);
+      transform: rotate(-45deg);
+      border-style: solid;
+      border-width: 13px 0px 13px 13px;
+      border-color: transparent transparent $main-color transparent;
+    }
+
+    .follow-container {
+      @include box-shadow(none);
+
+      border: none;
+      width: 100%;
+      margin: 8px auto;
+      padding: 6px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    color: $black-text-color;
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .post {
     width: 100%;
