@@ -88,7 +88,6 @@
   border: 1px solid $main-color;
   position: absolute;
   left: 80px;
-  bottom: 20px;
   background-color: #fff;
   border-radius: 6px;
   padding: 8px;
@@ -99,7 +98,7 @@
    width: 0;
    height: 0;
    position: absolute;
-   top: 50%;
+   top: calc(50% - 17px);
    left: -2px;
    transform: translate(50%);
    transform: rotate(45deg);
