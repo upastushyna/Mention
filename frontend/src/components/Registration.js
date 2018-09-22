@@ -39,6 +39,11 @@ export default class Registration extends React.Component {
     this.refs.message.classList.add('login__error');
   };
 
+  displayValidMessage = () => {
+    this.refs.message.classList.remove('d-none');
+    this.refs.message.classList.add('login__valid');
+  }
+
   setMessage = message => {
     this.refs.message.innerText = message;
   };
@@ -52,6 +57,11 @@ export default class Registration extends React.Component {
     this.displayMessage();
     this.insertMessage(el, index)
   };
+  createValidMessage = (message, el, index) => {
+    this.setMessage(message);
+    this.displayValidMessage();
+    this.insertMessage(el, index)
+  }
 
   register = event => {
     event.preventDefault();
@@ -74,7 +84,7 @@ export default class Registration extends React.Component {
   };
 
   showSuccess = res => {
-    this.createMessage(res.message, document.getElementById('registerForm'), 0);
+    this.createValidMessage(res.message, document.getElementById('registerForm'), 0);
   };
 
   showError = res => {
@@ -82,7 +92,7 @@ export default class Registration extends React.Component {
       this.createMessage('Please, enter a valid email address',
         document.getElementById('registerForm'), 0);
     } else {
-      this.createMessage(res.message, document.getElementById('registerForm'), 0);
+      this.createValidMessage(res.message, document.getElementById('registerForm'), 0);
     }
   };
 
@@ -102,7 +112,7 @@ export default class Registration extends React.Component {
     return (
       <Fragment key={Registration.id}>
         <div>
-          <p className='d-none' ref='message'></p>;
+          <p className='d-none' ref='message'></p>
         </div>
         <section ref="registerForm" className="login d-flex-center d-none">
           <div className="login__container">
