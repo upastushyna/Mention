@@ -58,6 +58,6 @@ const CommentLikeItem = props => {
       <UserLikesContainer likes={props.likes}/>
     </div>
   </div>
-}
+};
 
 export default CommentLikeItem

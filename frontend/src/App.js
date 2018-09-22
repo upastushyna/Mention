@@ -25,7 +25,7 @@ class App extends Component {
   componentWillMount () {
       if (!this.props.currentUser || !this.props.currentUser.username) {
         if (isLoggedIn()) {
-          this.props.loadCurrentUser()
+          this.props.loadCurrentUser();
           this.props.loadUnread()
         }else {
           this.props.history.push("/registration")
