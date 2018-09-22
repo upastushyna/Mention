@@ -20,16 +20,16 @@ const AddComment = props => {
             })
           }).then(() => props.loadData(props.username))
           .then(() => document.getElementById('commentInput' + props.postId).value = '')
-          .then(() => document.getElementById("commentButton").classList.add("inactive-button"));
+          .then(() => document.getElementById("commentButton" + props.postId).classList.add("inactive-button"));
     }
   }
 
-  const activeCommentButton = () => {
-    if (document.getElementById('commentInput' + props.postId) &&
-        document.getElementById('commentInput' + props.postId).value.length > 0) {
-      document.getElementById("commentButton").classList.remove("inactive-button");
+  const activeCommentButton = (id) => {
+    if (document.getElementById('commentInput' + id) &&
+        document.getElementById('commentInput' + id).value.length > 0) {
+      document.getElementById("commentButton" + id).classList.remove("inactive-button");
     } else {
-      document.getElementById("commentButton").classList.add("inactive-button");
+      document.getElementById("commentButton" + id).classList.add("inactive-button");
     }
   }
 
@@ -43,9 +43,9 @@ const AddComment = props => {
                 onKeyPress={(e) => {
                   (e.key === 'Enter' ? addComment() : null)
                 }}
-                onChange={() => activeCommentButton()}
+                onChange={() => activeCommentButton(props.postId)}
                 maxLength={280}/>
-      <button id="commentButton" onClick={() => addComment()}
+      <button id={"commentButton" + props.postId} onClick={() => addComment()}
               className="create-post__btn btn-action inactive-button">Add
       </button>
     </div>
