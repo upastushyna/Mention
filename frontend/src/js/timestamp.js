@@ -8,6 +8,12 @@ export const getDateFromDb = dateDB => {
 
   let tz = new Date();
   let hour = parseInt(hour1) - tz.getTimezoneOffset()/60;
+  day = parseInt(day);
+
+  if(hour > 24){
+    hour = hour % 24;
+    day += 1;
+  }
 
   let time = hour.toString() + ':' + minute + ':' + second;
   let yearMonthDate = dateDB.substr(0, 10);
