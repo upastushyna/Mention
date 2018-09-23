@@ -70,7 +70,7 @@ class HeaderPanel extends React.Component {
               <SearchContainer/>
             </div>
 
-            <ul className="header-menu d-flex-center">
+            <ul className="header-menu">
               <li className="header-menu__item">
                 <Link id="test1" to="/messages" className="header-menu__link">
                   <img src={chat} alt="messages" className="header-menu__icon"/>

@@ -1,29 +1,40 @@
 .btn {
-  &-action {
-    @include clear-default-input-style();
+ &-action {
+  @include clear-default-input-style;
 
-    padding: 14px;
-    border-radius: 5px;
-    background-color: $main-color;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
+  padding: 14px;
+  border-radius: 5px;
+  background-color: $main-color;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
 
-    &:hover {
-      opacity: .9;
-    }
-
-    &_rounded {
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      border-radius: 50%;
-    }
+  &:hover {
+   opacity: .9;
   }
+
+  &__add {
+   display: none;
+   font-size: 16px;
+  }
+ }
 }
 
-.cursor{
-  cursor: pointer;
+@media screen and (max-width: 1000px) {
+ .btn-action {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+
+  &__text {
+   display: none;
+  }
+
+  &__add {
+   display: inline;
+  }
+ }
 }
