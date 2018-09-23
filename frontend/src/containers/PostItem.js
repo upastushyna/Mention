@@ -134,9 +134,10 @@ const PostItem = props => {
           <img src={comment} alt="comment" className="post__action-img" onClick={() => openComments(props.post.id)}/>
           <span className="post__action-count">{props.post.comments.length}</span>
           <img onClick={() => rePost()} src={forward} alt="repost" className="post__action-img"/>
-          <div className="post__action-count"
+          <div className="post__action-count cursor"
             onClick={() => showReposters(props.post.id)}>{props.post.children.length}</div>
           <div id={'repost' + props.post.id} className="d-none repostLikers__nav">
+            <h2 className="postLikers__title">People who reposted this post</h2>
             <RepostContainer children={props.post.children}/>
           </div>
         </div>

@@ -1,59 +1,49 @@
 .create-post {
-  width: 40%;
-  margin: 24px auto 15px;
-  padding: 15px;
-  border: 1px solid #e6ecf5;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #888da8;
+ width: 40%;
+ margin: 24px auto 15px;
+ padding: 15px;
+ border: 1px solid #e6ecf5;
+ border-radius: 5px;
+ background-color: #fff;
+ color: #888da8;
 
-  @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, .08));
+ @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, 0.08));
+
+ &__input {
+  @include clear-default-input-style;
+
+  width: 80%;
+  padding: 16px 7px;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+
+  @include placeholder {
+   color: $placeholder-color;
+   font-size: 15px;
+   font-weight: 300;
+   letter-spacing: .5px;
+  }
+ }
+
+ &__btn {
+  width: 20%;
+  margin-left: 16px;
+ }
+}
+
+@media screen and (max-width: 1000px) {
+ .create-post {
+  width: 95vw;
+  padding-right: 8px;
 
   &__input {
-    @include clear-default-input-style();
-
-    width: 80%;
-    padding: 16px 7px;
-    border: 1px solid $border-color;
-    border-radius: 5px;
-
-    @include placeholder() {
-      color: $placeholder-color;
-      font-size: 15px;
-      font-weight: 300;
-      letter-spacing: .5px;
-    }
+   @include placeholder {
+    font-size: 10px;
+   }
   }
 
   &__btn {
-    width: 20%;
-    margin-left: 16px;
-
-    &_rounded {
-      display: none;
-      margin-left: 8px;
-    }
+   width: 30px;
   }
-}
-
-
-@media screen and (max-width: 1000px) {
-  .create-post {
-    width: 95vw;
-    padding-right: 8px;
-
-    &__btn {
-      display: none;
-
-      &_rounded {
-        display: block;
-      }
-    }
-
-    &__input {
-      @include placeholder() {
-        font-size: 10px;
-      }
-    }
-  }
+ }
 }

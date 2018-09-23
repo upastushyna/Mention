@@ -165,7 +165,7 @@ class UserPage extends React.Component {
                             placeholder="Share your thoughts" ref="postInput"
                             maxLength={280} onChange={() => this.activeButton()}/>
                     <button type="submit" ref="postButton"
-                            className="create-post__btn btn-action inactive-button">Add post</button>
+                            className="create-post__btn btn-action inactive-button"><p className="btn-action__text">Add post</p><span className="btn-action__add">+</span></button>
                   </div>
                   <div className="upload-file">
                     <img src={upload} alt="upload" className="upload-file__icon"/>
