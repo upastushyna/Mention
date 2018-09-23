@@ -110,7 +110,6 @@ public class LoginServiceImpl implements LoginService {
 
     Profile profile = new Profile(newUser);
     profile.setAvatarUrl("https://www.jetphotos.com/assets/img/user.png");
-    profile.setBackgroundUrl("https://www.publicdomainpictures.net/pictures/130000/velka/blue-background-1440627643Oc1.jpg");
     profileRepository.save(profile);
 
     String message = "Thank you for registering in Mention! To finish your "
