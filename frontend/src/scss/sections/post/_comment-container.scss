@@ -1,6 +1,6 @@
 .comment-container {
- padding: 10px 15px;
- border-top: 1px solid $border-color;
+  padding: 10px 15px;
+  border-top: 1px solid $border-color;
 
   &__body {
     height: 22px;
@@ -12,8 +12,8 @@
   }
 
   &__footer {
-    padding: 15px 0 0;
     position: relative;
+    padding: 15px 0 0;
 
     .postLikers__nav {
       bottom: 0;
@@ -31,20 +31,20 @@
     }
   }
 
- .profile-info__avatar {
-  max-width: 28px;
-  max-height: 28px;
- }
+  .profile-info__avatar {
+    max-width: 28px;
+    max-height: 28px;
+  }
 
- .profile-info__username {
-  font-size: 14px;
-  line-height: 1;
- }
+  .profile-info__username {
+    font-size: 14px;
+    line-height: 1;
+  }
 
- .profile-info__alias {
-  font-size: 9px;
-  line-height: 1;
- }
+  .profile-info__alias {
+    font-size: 9px;
+    line-height: 1;
+  }
 }
 
 .comments-list {
@@ -53,11 +53,11 @@
 }
 
 .comment-opacity {
- opacity: 1;
+  opacity: 1;
 }
 
 @media screen and (max-width: 1000px) {
- .comment-container {
-  padding: 16px;
- }
+  .comment-container {
+    padding: 16px;
+  }
 }

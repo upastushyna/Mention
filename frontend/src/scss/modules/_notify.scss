@@ -1,112 +1,113 @@
 .notify {
- position: fixed;
- bottom: 30px;
- right: 30px;
- text-decoration: none;
- background-color: $main-color;
- padding: 16px;
- color: #fff;
- display: flex;
- align-items: center;
- border-radius: 6px;
- max-width: 400px;
- z-index: 10;
-
- &__container {
-  display: flex;
-  margin: 0 auto;
-  width: 50vw;
-
-  .empty-state{
-    width: 50vw;
-  }
- }
-
- &__close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 16px;
-  height: 16px;
- }
-
- &__text {
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: 500;
-  margin-right: 24px;
-  word-break: break-all;
- }
-
- &__icon {
-  width: 17px;
-  height: 17px;
-  margin-right: 16px;
- }
-
- &__list-item {
-  width: 100%;
-  text-decoration: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  max-width: 400px;
   padding: 16px;
-  color: $black-text-color;
-  border-bottom: 1px solid $border-color;
-
-  &:active,
-  &:hover {
-   background-color: $border-color;
-  }
- }
-
- &__arrow {
-  color: $meta-color;
-  font-size: 12px;
-  margin-left: 16px;
- }
-
- &__count {
-  position: absolute;
-  top: -7px;
-  left: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  background-color: $red-color;
+  border-radius: 6px;
+  background-color: $main-color;
   color: #fff;
-  font-size: 12px;
-  border-radius: 50%;
-  padding: 4px;
- }
+  text-decoration: none;
+  z-index: 10;
 
- &__mark-btn{
-	 @include clear-default-input-style;
-	 background-color: #fff;
-	 color: $main-color;
-	 border-bottom: 1px solid $main-color;
-	  padding: 8px;
-	  font-size: 15px;
-	  margin: 16px;
-	  height: min-content;
- }
+  &__container {
+    display: flex;
+    width: 50vw;
+    margin: 0 auto;
+
+    .empty-state {
+      width: 50vw;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+  }
+
+  &__text {
+    margin-right: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    word-break: break-all;
+  }
+
+  &__icon {
+    width: 17px;
+    height: 17px;
+    margin-right: 16px;
+  }
+
+  &__list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px;
+    border-bottom: 1px solid $border-color;
+    color: $black-text-color;
+    text-decoration: none;
+
+    &:active,
+    &:hover {
+      background-color: $border-color;
+    }
+  }
+
+  &__arrow {
+    margin-left: 16px;
+    color: $meta-color;
+    font-size: 12px;
+  }
+
+  &__count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -7px;
+    left: 12px;
+    width: 18px;
+    height: 18px;
+    padding: 4px;
+    border-radius: 50%;
+    background-color: $red-color;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  &__mark-btn {
+    height: min-content;
+    margin: 16px;
+    padding: 8px;
+    border-bottom: 1px solid $main-color;
+    background-color: #fff;
+    color: $main-color;
+    font-size: 15px;
+
+    @include clear-default-input-style;
+  }
 }
 
 @media screen and (max-width: 1000px) {
- .notify {
-  bottom: 16px;
-  right: 16px;
+  .notify {
+    right: 16px;
+    bottom: 16px;
 
-  &__container {
-   width: 100vw;
-   flex-direction: column;
-   align-items: center;
-  }
+    &__container {
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+    }
 
-  &__mark-btn{
-	  width: max-content;
+    &__mark-btn {
+      width: max-content;
+    }
   }
- }
 }
