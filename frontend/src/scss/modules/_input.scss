@@ -1,6 +1,5 @@
 .input {
   &_custom {
-    @include clear-default-input-style;
     @include placeholder-default;
     display: block;
     width: 100%;

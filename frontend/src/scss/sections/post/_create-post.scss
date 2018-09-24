@@ -10,8 +10,6 @@
   @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, .08));
 
  &__input {
-  @include clear-default-input-style;
-
   width: 80%;
   padding: 16px 7px;
   border: 1px solid $border-color;

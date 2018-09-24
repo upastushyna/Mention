@@ -34,7 +34,6 @@
   }
 
   &__input {
-    @include clear-default-input-style;
     @include placeholder-default;
     width: 85%;
     margin-right: 8px;
