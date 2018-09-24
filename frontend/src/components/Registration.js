@@ -28,7 +28,8 @@ export default class Registration extends React.Component {
           },
           body: JSON.stringify({
             usernameOrEmail: this.refs.loginUsername.value,
-            password: this.refs.loginPassword.value
+            password: this.refs.loginPassword.value,
+            isRemembered: this.refs.rememberMe.checked
           })
         }).then(res => res.json())
         .then(res => res.accessToken ? localStorage.setItem('accessToken', res.accessToken) : this.showMessage(res))
@@ -215,6 +216,9 @@ export default class Registration extends React.Component {
                 <input ref="loginPassword" type="password" className="input_custom" placeholder="Password" minLength="6"
                        maxLength="24"/>
                 <input type="submit" className="login__btn" value="login"/>
+                <input type="checkbox" name="feature" ref='rememberMe'
+                       defaultValue="Remember Me"/>
+                <input type="submit" className="btn-action login__btn" value="login"/>
               </form>
               <button onClick={() => this.showRegister()} className="login__sign-btn">Sign up</button>
               <button onClick={() => this.showForgot()} className="login__forgot-password">Forgot Password?</button>
