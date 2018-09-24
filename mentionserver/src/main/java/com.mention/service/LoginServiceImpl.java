@@ -153,8 +153,8 @@ public class LoginServiceImpl implements LoginService {
         + ". You recently requested to reset your password for Mention. "
         + "Follow the link to reset it: "
         + "http://localhost:3000/registration/recover/" + token
-        +"\n\nIf you received this email by mistake, please, ignore it."
-        +"\n\nSincerely yours,\nMention team";
+        + "\n\nIf you received this email by mistake, please, ignore it."
+        + "\n\nSincerely yours,\nMention team";
     String to = user.getEmail();
     String subject = "Forgotten password recovery";
     emailService.sendSimpleMessage(to, subject, message);
