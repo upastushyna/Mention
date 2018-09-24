@@ -89,6 +89,12 @@ class SearchPage extends React.Component {
         followedUser: {id: followedUser}})
     }).then(() => this.props.loadCurrentUser());
 
+  ShowUsers = () => {
+    let asd = document.getElementsByClassName("post-panel");
+    console.log(asd);
+    console.log(asd.classList);
+    asd.classList.remove('d-none');
+  }
 
 
   render () {
@@ -97,7 +103,12 @@ class SearchPage extends React.Component {
     }
     return (
       <Fragment key={SearchPage.id}>
+        <div className="header_search">
+        <div onClick={() => this.ShowUsers()}>Users</div>
+        <div onClick={() => this.showPosts()}>Posts</div>
+        </div>
         <div className="container">
+          <div className="post-panel d-none">
           <EmptyState image={searchIcon}
                       title="Oops! Nothing has been found"
                       message={'Sorry, no results found matching your parameters'}/>
@@ -110,7 +121,8 @@ class SearchPage extends React.Component {
               deletePost={this.props.deletePost}
               deleteComment={this.props.deleteComment}/>
           }
-          <div className="users-panel">
+          </div>
+          <div className="users-panel d-none">
             {this.props.foundUsers.length === 0 ? ''
               : <UsersContainer username={this.props.match.params.input}
                 loadUsers={this.props.loadUsers}

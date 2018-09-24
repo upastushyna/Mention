@@ -15,8 +15,13 @@
   }
 }
 
+.header_search {
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 1000px) {
-  .users-panel {
-    display: none;
+  .header_search {
+    display: flex;
   }
 }
