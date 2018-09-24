@@ -83,7 +83,6 @@
   }
 
   &__mark-btn {
-    @include clear-default-input-style;
     height: min-content;
     margin: 16px;
     padding: 8px;
