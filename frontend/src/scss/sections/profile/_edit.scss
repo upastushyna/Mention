@@ -33,7 +33,7 @@
   }
 
   &__input {
-    width: auto;
+    width: 50%;
     margin-bottom: 0;
     border: none;
     border-bottom: 1px solid $border-color;
@@ -52,7 +52,7 @@
 }
 
 .inactive-button {
-  background-color: #aaa;
+  background-color: $placeholder-color;
   cursor: inherit;
 
   &:hover {
@@ -62,6 +62,11 @@
 
 @media screen and (max-width: 1000px) {
   .edit-profile {
+    margin-top: 30px;
+
+    &:last-child{
+      margin-bottom: 100px;
+    }
     &__item {
       width: 100%;
       padding: 16px 8px;
@@ -69,6 +74,7 @@
 
     &__btn{
       border-radius: 0;
+      width: 80%;
     }
 
     &__title {
