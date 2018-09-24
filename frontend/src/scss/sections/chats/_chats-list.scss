@@ -7,22 +7,22 @@
 
   &__list {
     width: 35%;
-    overflow-y: auto;
     margin: 0 auto;
     background-color: #fff;
     box-shadow: 2px 0 4px 0 rgba(0, 0, 0, .08);
+    overflow-y: auto;
   }
 
- &__back-btn{
-     width: 16px;
-     height: 16px;
-     display: none;
-     margin-right: 16px;
- }
+  &__back-btn {
+    display: none;
+    width: 16px;
+    height: 16px;
+    margin-right: 16px;
+  }
 
- &__container{
-  height: 80%;
- }
+  &__container {
+    height: 80%;
+  }
 
   &__search {
     display: flex;
@@ -34,8 +34,6 @@
   }
 
   &__input {
-    @include clear-default-input-style;
-
     width: 85%;
     margin-right: 8px;
     padding: 10px 20px;
@@ -44,13 +42,14 @@
     color: $black-text-color;
     font-size: 16px;
 
+    @include clear-default-input-style;
     @include placeholder-default;
   }
 
- &__button {
-  width: 20px;
-  height: 20px;
- }
+  &__button {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .chat-container {
@@ -90,10 +89,10 @@
 }
 
 @media screen and (max-width: 768px) {
- .chats {
-  &__back-btn {
-   display: block;
-  }
+  .chats {
+    &__back-btn {
+      display: block;
+    }
 
     &__list {
       display: block;

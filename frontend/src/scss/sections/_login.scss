@@ -16,15 +16,15 @@
   }
 
   &__error {
-    font-size: 14px;
-    color: $red-color;
     margin: 8px;
+    color: $red-color;
+    font-size: 14px;
   }
 
   &__valid {
-    font-size: 14px;
-    color: green;
     margin: 8px;
+    color: green;
+    font-size: 14px;
   }
 
   &__icon {
@@ -55,8 +55,6 @@
   }
 
   &__input {
-    @include clear-default-input-style;
-
     display: block;
     width: 100%;
     margin-bottom: 20px;
@@ -68,6 +66,7 @@
     font-size: 18px;
     text-align: center;
 
+    @include clear-default-input-style;
     @include placeholder-default;
 
     &:focus {
@@ -85,8 +84,6 @@
   }
 
   &__sign-btn {
-    @include clear-default-input-style;
-
     margin-top: 20px;
     padding: 7px 15px;
     border: none;
@@ -94,6 +91,8 @@
     color: $main-color;
     font-size: 20px;
     font-weight: 700;
+
+    @include clear-default-input-style;
   }
 }
 

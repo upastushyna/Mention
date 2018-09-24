@@ -1,32 +1,32 @@
-.upload-file{
-	display: flex;
-	align-items: flex-end;
-	font-size: 14px;
-	line-height: 20px;
-	color: $meta-color;
-	margin-top: 16px;
-	height: 25px;
-	position: relative;
+.upload-file {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  height: 25px;
+  margin-top: 16px;
+  color: $meta-color;
+  font-size: 14px;
+  line-height: 20px;
   
-	&__icon{
-	  width: 30px;
-	  height: 30px;
-	  cursor: pointer;
+  &__icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 	 
-	}
-
-	& p {
-		cursor: pointer;
-	}
-  
-	input{
-	  opacity: 0;
-	  position: absolute;
-	  left: 0;
-	  font-size: 0;
-	  cursor: pointer;
-	  width: 170px;
-	  height: 24px;
-	}
-  
   }
+
+  & p {
+    cursor: pointer;
+  }
+  
+  input {
+    position: absolute;
+    left: 0;
+    width: 170px;
+    height: 24px;
+    font-size: 0;
+    cursor: pointer;
+    opacity: 0;
+  }
+  
+}
