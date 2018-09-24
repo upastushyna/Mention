@@ -1,5 +1,6 @@
 package com.mention.controller;
 
+import com.mention.dto.ChangePasswordRq;
 import com.mention.dto.ForgotPasswordRq;
 import com.mention.dto.LoginRq;
 import com.mention.dto.UserRq;
@@ -38,6 +39,12 @@ public class LoginController {
   @PostMapping("/register")
   public ResponseEntity<?> registerUser(@Valid @RequestBody UserRq userDtoRq) {
     return loginService.registerUser(userDtoRq);
+  }
+
+  @PostMapping("/recover/{token}")
+  public ResponseEntity<?> changePassword(@PathVariable String token,
+                                          @Valid @RequestBody ChangePasswordRq changePasswordRq) {
+    return loginService.changePassword(token, changePasswordRq);
   }
 
   @PostMapping("/recover")
