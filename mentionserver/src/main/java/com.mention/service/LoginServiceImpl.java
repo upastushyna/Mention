@@ -2,6 +2,7 @@ package com.mention.service;
 
 import com.mention.config.EmailService;
 import com.mention.dto.ApiRs;
+import com.mention.dto.ChangePasswordRq;
 import com.mention.dto.ForgotPasswordRq;
 import com.mention.dto.JwtAuthenticationRs;
 import com.mention.dto.LoginRq;
@@ -162,5 +163,20 @@ public class LoginServiceImpl implements LoginService {
     return ResponseEntity.ok(new ApiRs(true, "An email with instructions was sent. "
         + "Please, check your inbox for confirmation!"
     ));
+  }
+
+  @Override
+  public ResponseEntity<?> changePassword(String token, ChangePasswordRq changePasswordRq) {
+    Optional<UserToken> userToken = tokenRepository.findByToken(token);
+    if (!userToken.isPresent()) {
+      return new  ResponseEntity(new ApiRs(false, "Token not found"),
+          HttpStatus.BAD_REQUEST);
+    }
+    User user = userRepository.findById(userToken.get().getUser().getId()).get();
+    user.setPassword(passwordEncoder.encode(changePasswordRq.getPassword()));
+    userRepository.save(user);
+    tokenRepository.delete(userToken.get());
+    return ResponseEntity.ok(new ApiRs(true,
+        "Password changed successfully"));
   }
 }

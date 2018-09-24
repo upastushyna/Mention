@@ -1,5 +1,6 @@
 package com.mention.service;
 
+import com.mention.dto.ChangePasswordRq;
 import com.mention.dto.ForgotPasswordRq;
 import com.mention.dto.LoginRq;
 import com.mention.dto.UserRq;
@@ -14,4 +15,6 @@ public interface LoginService {
   ResponseEntity<?> confirmRegistration(String token);
 
   ResponseEntity<?> recoverPassword(ForgotPasswordRq forgotPasswordRq);
+
+  ResponseEntity<?> changePassword(String token, ChangePasswordRq changePasswordRq);
 }
