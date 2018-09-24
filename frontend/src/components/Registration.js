@@ -31,7 +31,7 @@ export default class Registration extends React.Component {
             password: this.refs.loginPassword.value,
             isRemembered: this.refs.rememberMe.checked
           })
-        }).then(res => res.json())
+        }).then(res =>  res.status !== 405 ? res.json() : null)
         .then(res => res.accessToken ? localStorage.setItem('accessToken', res.accessToken) : this.showMessage(res))
         .then(() => localStorage.getItem('accessToken')
             ? setTimeout(() => this.props.history.push('/'), 1000) : null)
