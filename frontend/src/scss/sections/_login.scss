@@ -9,7 +9,7 @@
     position: relative;
     width: 500px;
     margin: 0 auto;
-    padding: 48px 0 36px;
+    padding: 48px 36px;
     border-radius: 4px;
     background-color: #fff;
     text-align: center;
@@ -95,7 +95,33 @@
     font-size: 20px;
     font-weight: 700;   
   }
+
+  &__checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $border-color;
+    background: #fff no-repeat center;
+    background-size: cover;   
+  }
+
+  &__remember{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   margin-top: 20px;
+   cursor: pointer;
+
+   p{
+     margin-left: 10px;
+     font-size: 14px;
+   }
+  }
 }
+
+.default-checkbox:checked ~ .login__checkbox {
+  background-image: url("../img/checkbox.png") ;
+ }
 
 @media screen and (max-width: 1000px) {
   .login {
