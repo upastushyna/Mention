@@ -1,0 +1,14 @@
+.btn-action,
+.input_custom,
+.notify__mark-btn,
+.search__input,
+.login__forgot-password,
+.login__input,
+.login__btn,
+.login__sign-btn,
+.chats__input,
+.message-sender__input,
+.create-post__input,
+.follow-button {
+	@include clear-default-input-style;
+}

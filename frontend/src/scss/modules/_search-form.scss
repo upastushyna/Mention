@@ -1,6 +1,5 @@
 .search {
   &__input {
-    @include clear-default-input-style;
     padding: 6px 0;
     border-bottom: .5px solid #fff;
     background-color: transparent;

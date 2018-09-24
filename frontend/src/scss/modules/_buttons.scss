@@ -1,6 +1,5 @@
 .btn {
  &-action {
-  @include clear-default-input-style;
   padding: 14px;
   border-radius: 5px;
   background-color: $main-color;

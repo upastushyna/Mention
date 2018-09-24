@@ -46,7 +46,6 @@
   }
 
   &__forgot-password {
-    @include clear-default-input-style;
     margin-top: 10px;
     border: none;
     color: $red-color;
@@ -56,7 +55,6 @@
   }
 
   &__input {
-    @include clear-default-input-style;
     @include placeholder-default;
     display: block;
     width: 100%;
@@ -75,7 +73,6 @@
   }
 
   &__btn {
-    @include clear-default-input-style;
     color: #fff;
     padding: 8px;
     width: 100%;
@@ -86,7 +83,6 @@
   }
 
   &__sign-btn {
-    @include clear-default-input-style;
     margin-top: 10px;
     padding: 7px 15px;
     border: none;
