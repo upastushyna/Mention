@@ -1,5 +1,7 @@
 .input {
   &_custom {
+    @include clear-default-input-style;
+    @include placeholder-default;
     display: block;
     width: 100%;
     margin-bottom: 20px;
@@ -10,9 +12,6 @@
     background-color: #fff;
     font-size: 18px;
     text-align: center;
-
-    @include clear-default-input-style;
-    @include placeholder-default;
 
     &:focus {
       box-shadow: 0 3px 8px rgba(0, 0, 0, .21);
