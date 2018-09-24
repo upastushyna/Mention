@@ -16,11 +16,11 @@
   &__text {
     max-width: 500px;
     margin: 0 16px;
-    word-wrap: break-word;
     padding: 16px;
     border-radius: 15px;
     font-size: 15px;
     line-height: 22px;
+    word-wrap: break-word;
 
     &_sent {
       background-color: #f1f1f1;
@@ -40,13 +40,13 @@
 }
 
 @media screen and (max-width: 1000px) {
- .message {
-  &__time {
-   font-size: 9px;
-  }
+  .message {
+    &__time {
+      font-size: 9px;
+    }
 
-  &__text {
-   max-width: 250px;
+    &__text {
+      max-width: 250px;
+    }
   }
- }
 }
