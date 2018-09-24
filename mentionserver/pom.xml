@@ -178,6 +178,7 @@
                     <mainClass>com.mention.SpringBootConfiguration</mainClass>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>

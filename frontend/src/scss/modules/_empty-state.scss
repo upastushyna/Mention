@@ -1,36 +1,36 @@
 .empty-state {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
 
-	&__title {
-		margin: 24px 0;
-		color: $black-text-color;
-		font-size: 26px;
-		font-weight: 700;
-		line-height: 38px;
-		text-align: center;
-	}
+  &__title {
+    margin: 24px 0;
+    color: $black-text-color;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 38px;
+    text-align: center;
+  }
 
-	&__msg {
-		color: $placeholder-color;
-		font-size: 17px;
-		line-height: 25px;
-	}
+  &__msg {
+    color: $placeholder-color;
+    font-size: 17px;
+    line-height: 25px;
+  }
 
-	&__icon {
-		width: 48px;
-		height: 48px;
-	}
+  &__icon {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 @media screen and (max-width: 1000px) {
-	.empty-state {
-		&__title {
-			font-size: 22px;
-			line-height: 30px;
-		}
-	}
+  .empty-state {
+    &__title {
+      font-size: 22px;
+      line-height: 30px;
+    }
+  }
 }

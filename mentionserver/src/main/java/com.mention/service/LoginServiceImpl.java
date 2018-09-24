@@ -2,6 +2,8 @@ package com.mention.service;
 
 import com.mention.config.EmailService;
 import com.mention.dto.ApiRs;
+import com.mention.dto.ChangePasswordRq;
+import com.mention.dto.ForgotPasswordRq;
 import com.mention.dto.JwtAuthenticationRs;
 import com.mention.dto.LoginRq;
 import com.mention.dto.UserRq;
@@ -102,10 +104,8 @@ public class LoginServiceImpl implements LoginService {
     newUser.setActive(false);
     userRepository.save(newUser);
 
-    UserToken userToken = new UserToken();
-    userToken.setUser(newUser);
     String token = UUID.randomUUID().toString();
-    userToken.setToken(token);
+    UserToken userToken = new UserToken(token, newUser);
     tokenRepository.save(userToken);
 
     Profile profile = new Profile(newUser);
@@ -136,5 +136,47 @@ public class LoginServiceImpl implements LoginService {
     }
     return new  ResponseEntity(new ApiRs(false, "Token not found"),
         HttpStatus.BAD_REQUEST);
+  }
+
+  @Override
+  public ResponseEntity<?> recoverPassword(ForgotPasswordRq forgotPasswordRq) {
+    Optional<User> userEmailCheck = userRepository.findByEmail(forgotPasswordRq.getEmail());
+    if (!userEmailCheck.isPresent()) {
+      return new ResponseEntity(new ApiRs(false,
+          "User with provided email not found"), HttpStatus.NOT_FOUND);
+    }
+    User user = userEmailCheck.get();
+    String token = UUID.randomUUID().toString();
+    UserToken userToken = new UserToken(token, user);
+    tokenRepository.save(userToken);
+
+    String message = "Hi, " + user.getUsername()
+        + ". You recently requested to reset your password for Mention. "
+        + "Follow the link to reset it: "
+        + "http://localhost:3000/registration/recover/" + token
+        + "\n\nIf you received this email by mistake, please, ignore it."
+        + "\n\nSincerely yours,\nMention team";
+    String to = user.getEmail();
+    String subject = "Forgotten password recovery";
+    emailService.sendSimpleMessage(to, subject, message);
+
+    return ResponseEntity.ok(new ApiRs(true, "An email with instructions was sent. "
+        + "Please, check your inbox for confirmation!"
+    ));
+  }
+
+  @Override
+  public ResponseEntity<?> changePassword(String token, ChangePasswordRq changePasswordRq) {
+    Optional<UserToken> userToken = tokenRepository.findByToken(token);
+    if (!userToken.isPresent()) {
+      return new  ResponseEntity(new ApiRs(false, "Token not found"),
+          HttpStatus.BAD_REQUEST);
+    }
+    User user = userRepository.findById(userToken.get().getUser().getId()).get();
+    user.setPassword(passwordEncoder.encode(changePasswordRq.getPassword()));
+    userRepository.save(user);
+    tokenRepository.delete(userToken.get());
+    return ResponseEntity.ok(new ApiRs(true,
+        "Password changed successfully"));
   }
 }

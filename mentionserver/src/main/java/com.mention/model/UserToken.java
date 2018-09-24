@@ -1,5 +1,6 @@
 package com.mention.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -25,4 +26,12 @@ public class UserToken {
   @OneToOne
   @JoinColumn(name = "user_id", updatable = false, unique = true, nullable = false)
   private User user;
+
+  protected UserToken() {
+  }
+
+  public UserToken(String token, User user) {
+    this.token = token;
+    this.user = user;
+  }
 }
