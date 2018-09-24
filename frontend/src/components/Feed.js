@@ -35,7 +35,6 @@ class Feed extends React.Component {
 
   componentWillReceiveProps() {
     if (!this.state.feedLoaded) {
-      this.props.loadCurrentUser();
       this.props.loadData({username:this.props.currentUser.username, changeState:this.changeState})
     }
   }

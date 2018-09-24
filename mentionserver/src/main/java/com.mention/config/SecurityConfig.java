@@ -63,12 +63,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         .authorizeRequests()
          .antMatchers( "/", "/static/**","/css/**", "/js/**", "/media/**","*.html",
-             "/registration", "/favicon.ico","/api/login", "/api/register/**", "/ws/**")
+             "/registration", "/favicon.ico","/api/login", "/api/register/**", "/api/recover/**", "/ws/**")
         .permitAll()
         .anyRequest()
         .authenticated()
         .and()
-
         .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 /*
         .antMatchers("/api/register/**")
