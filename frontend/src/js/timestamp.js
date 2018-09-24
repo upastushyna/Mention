@@ -10,7 +10,7 @@ export const getDateFromDb = dateDB => {
   let hour = parseInt(hour1) - tz.getTimezoneOffset()/60;
   day = parseInt(day);
 
-  if(hour > 24){
+  if(hour => 24){
     hour = hour % 24;
     day += 1;
   }
