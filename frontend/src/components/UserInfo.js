@@ -7,6 +7,7 @@ import {loadFollowed} from '../actions/followedActions'
 import {loadFollowing} from '../actions/followingActions'
 import {loadLiked} from '../actions/likedActions'
 import withRouter from 'react-router-dom/es/withRouter'
+import thinking from '../img/thinking.svg'
 
 class UserInfo extends React.Component {
   componentWillMount () {
@@ -48,7 +49,10 @@ class UserInfo extends React.Component {
               userPosts={this.props.likedPosts}
               loadData={this.props.loadData}
               currentUser={this.props.currentUser}
-              deletePost={this.props.deletePost}/>}/>
+              deletePost={this.props.deletePost}
+                            title='Nothing to show'
+                            message='Like other posts to see the items you liked'
+                            image={thinking}/>}/>
         </Switch>
       </Fragment>
     )

@@ -9,7 +9,7 @@ export const loadCurrentUser = () => dispatch => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(res => res.status === 401 ? localStorage.removeItem('accessToken') :  res.json())
+    }).then(res => res.status !== 200 ? localStorage.removeItem('accessToken') :  res.json())
     .then(data => localStorage.getItem('accessToken')?
       dispatch({type: CURRENT_USER_LOADED, payload: data}) : window.location = '/registration')
 };

@@ -7,6 +7,8 @@ export const loadFeed = (data) => dispatch => {
   }else {
     username = data;
   }
+  data.username ? data.changeState() : null;
+
   fetch('/api/posts/followed/' + username,
     {
       method: 'GET',
@@ -17,5 +19,4 @@ export const loadFeed = (data) => dispatch => {
       }
     }).then(res => res.headers.get('content-type') === null ? null : res.json())
     .then(data => dispatch({type: FEED_LOADED, payload: data || []}))
-    .then(() => data.username?data.changeState() : null)
 };
