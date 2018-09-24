@@ -13,13 +13,14 @@ import Loader from "../containers/Loader";
 
 class SearchPage extends React.Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       match: this.props.match.params.input
     }
   }
-  componentWillMount () {
+
+  componentWillMount() {
     if (this.props.foundPosts.length === 0 && this.props.foundUsers.length === 0) {
       this.props.loadPosts(this.props.match.params.input)
       this.props.loadUsers(this.props.match.params.input)
@@ -29,12 +30,12 @@ class SearchPage extends React.Component {
     }
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     this.callUpdate();
     this.searchTimeOut();
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.callUpdate();
   }
 
@@ -64,30 +65,32 @@ class SearchPage extends React.Component {
   };
 
   follow = followedUser => fetch('/api/follow/add',
-    {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        follower: {id: this.props.currentUser.id},
-        followedUser: {id: followedUser}})
-    }).then(() => this.props.loadCurrentUser());
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          follower: {id: this.props.currentUser.id},
+          followedUser: {id: followedUser}
+        })
+      }).then(() => this.props.loadCurrentUser());
 
   unfollow = followedUser => fetch('/api/follow/delete',
-    {
-      method: 'DELETE',
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        follower: {id: this.props.currentUser.id},
-        followedUser: {id: followedUser}})
-    }).then(() => this.props.loadCurrentUser());
+      {
+        method: 'DELETE',
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          follower: {id: this.props.currentUser.id},
+          followedUser: {id: followedUser}
+        })
+      }).then(() => this.props.loadCurrentUser());
 
   ShowUsers = () => {
     this.refs.searchUsers.classList.remove("d-none");
@@ -100,43 +103,43 @@ class SearchPage extends React.Component {
   };
 
 
-  render () {
+  render() {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return <Loader/>
     }
     return (
-      <Fragment key={SearchPage.id}>
-        <div className="header_search">
-        <div onClick={() => this.ShowUsers()} className="btn-toSearch">Users</div>
-        <div onClick={() => this.showPosts()} className="btn-toSearch">Posts</div>
-        </div>
-        <div className="container">
-          <div ref="searchPosts" className="post-panel">
-          <EmptyState image={searchIcon}
-                      title="Oops! Nothing has been found"
-                      message={'Sorry, no results found matching your parameters'}/>
-          {this.props.foundPosts.length === 0
-            ? <Loader/>
-            : <PostsContainer username={this.props.match.params.input}
-              userPosts={this.props.foundPosts}
-              loadData={this.props.loadPosts}
-              currentUser={this.props.currentUser}
-              deletePost={this.props.deletePost}
-              deleteComment={this.props.deleteComment}/>
-          }
+        <Fragment key={SearchPage.id}>
+          <div className="header_search">
+            <div onClick={() => this.ShowUsers()} className="btn-toSearch">Users</div>
+            <div onClick={() => this.showPosts()} className="btn-toSearch">Posts</div>
           </div>
-          <div ref="searchUsers" className="users-panel d-none">
-            {this.props.foundUsers.length === 0 ? ''
-              : <UsersContainer username={this.props.match.params.input}
-                loadUsers={this.props.loadUsers}
-                users={this.props.foundUsers}
-                currentUser={this.props.currentUser}
-                follow={this.follow}
-                unfollow={this.unfollow}
-              />}
+          <div className="container">
+            <div ref="searchPosts" className="post-panel">
+              <EmptyState image={searchIcon}
+                          title="Oops! Nothing has been found"
+                          message={'Sorry, no results found matching your parameters'}/>
+              {this.props.foundPosts.length === 0
+                  ? <Loader/>
+                  : <PostsContainer username={this.props.match.params.input}
+                                    userPosts={this.props.foundPosts}
+                                    loadData={this.props.loadPosts}
+                                    currentUser={this.props.currentUser}
+                                    deletePost={this.props.deletePost}
+                                    deleteComment={this.props.deleteComment}/>
+              }
+            </div>
+            <div ref="searchUsers" className="users-panel d-none">
+              {this.props.foundUsers.length === 0 ? ''
+                  : <UsersContainer username={this.props.match.params.input}
+                                    loadUsers={this.props.loadUsers}
+                                    users={this.props.foundUsers}
+                                    currentUser={this.props.currentUser}
+                                    follow={this.follow}
+                                    unfollow={this.unfollow}
+                  />}
+            </div>
           </div>
-        </div>
-      </Fragment>
+        </Fragment>
     )
   }
 }
