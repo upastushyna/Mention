@@ -43,8 +43,11 @@ const NotificationItem = props => {
 
   return <Link to={url} className="notify__list-item"
                onClick={() => props.checkRead(props.loadNotifications, props.notification.id)}>
-  <div className="d-flex-center"><img className="notify__icon" src={icon}/>{props.notification.type.toLowerCase() +
+  <div className="d-flex-center">
+    <img className="notify__icon" src={icon}/>{props.notification.type.toLowerCase() +
   " from " + props.notification.sender.username +
-  " " + getDateFromDb(props.notification.timestamp)}</div><span className="notify__arrow">&gt;</span></Link>
+  " " + getDateFromDb(props.notification.timestamp)}</div>
+    <span className="notify__arrow">&gt;</span>
+  </Link>
 };
 export default NotificationItem

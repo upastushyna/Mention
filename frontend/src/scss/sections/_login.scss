@@ -47,7 +47,7 @@
 
   &__forgot-password {
     @include clear-default-input-style;
-    margin-top: 16px;
+    margin-top: 10px;
     border: none;
     color: $red-color;
     font-size: 18px;
@@ -87,7 +87,7 @@
 
   &__sign-btn {
     @include clear-default-input-style;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 7px 15px;
     border: none;
     background-color: #fff;
@@ -104,15 +104,15 @@
     background-size: cover;   
   }
 
-  &__remember{
+  &__remember {
    display: flex;
    align-items: center;
    justify-content: center;
    position: relative;
-   margin-top: 20px;
+   margin-bottom: 10px;
    cursor: pointer;
 
-   p{
+   p {
      margin-left: 10px;
      font-size: 14px;
    }

@@ -215,13 +215,13 @@ export default class Registration extends React.Component {
                        minLength="3"/>
                 <input ref="loginPassword" type="password" className="input_custom" placeholder="Password" minLength="6"
                        maxLength="24"/>
-                <input type="submit" className="login__btn" value="login"/>
                 <label className="login__remember">
-                <input type="checkbox" name="feature" ref='rememberMe'
-                       defaultValue="Remember Me" className="default-checkbox"/>
-                       <div className="login__checkbox"></div>
-                <p>Remember me</p>
+                  <input type="checkbox" name="feature" ref='rememberMe'
+                         defaultValue="Remember Me" className="default-checkbox"/>
+                  <div className="login__checkbox"></div>
+                  <p>Remember me</p>
                 </label>
+                <input type="submit" className="login__btn" value="login"/>
               </form>
               <button onClick={() => this.showRegister()} className="login__sign-btn">Sign up</button>
               <button onClick={() => this.showForgot()} className="login__forgot-password">Forgot Password?</button>
