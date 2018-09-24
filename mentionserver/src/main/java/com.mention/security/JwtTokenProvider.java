@@ -34,7 +34,7 @@ public class JwtTokenProvider {
     if (isRemembered) {
       expiryDate = new Date(new Date().getTime() + jwtExpirationInMs);
     } else {
-      expiryDate = new Date(new Date().getTime() + jwtExpirationInMs/7);
+      expiryDate = new Date(new Date().getTime() + jwtExpirationInMs / 7);
     }
 
     return Jwts.builder()
