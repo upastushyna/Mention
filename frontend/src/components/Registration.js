@@ -32,13 +32,13 @@ export default class Registration extends React.Component {
             isRemembered: this.refs.rememberMe.checked
           })
         }).then(res =>  res.status !== 405 ? res.json() : null)
-        .then(res => res.accessToken ? localStorage.setItem('accessToken', res.accessToken) : this.showMessage(res))
+        .then(res => res && res.accessToken ? localStorage.setItem('accessToken', res.accessToken) : this.showMessage(res))
         .then(() => localStorage.getItem('accessToken')
             ? setTimeout(() => this.props.history.push('/'), 1000) : null)
   };
 
   showMessage = res => {
-    if (res.status) {
+    if (!res) {
       this.createMessage('Wrong password', document.getElementById('loginForm'), 0);
     } else {
       this.createMessage(res.message, document.getElementById('loginForm'), 0);
