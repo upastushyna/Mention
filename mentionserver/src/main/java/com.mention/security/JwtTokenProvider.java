@@ -28,9 +28,15 @@ public class JwtTokenProvider {
   @Value("${jwtExpirationInMs}")
   private Long jwtExpirationInMs;
 
-  public String generateToken(Authentication authentication) {
+  public String generateToken(Authentication authentication, boolean isRemembered) {
     UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-    Date expiryDate = new Date(new Date().getTime() + jwtExpirationInMs);
+    Date expiryDate;
+    if (isRemembered) {
+      expiryDate = new Date(new Date().getTime() + jwtExpirationInMs);
+    } else {
+      expiryDate = new Date(new Date().getTime() + jwtExpirationInMs/7);
+    }
+
     return Jwts.builder()
         .setSubject(userPrincipal.getId().toString())
         .setIssuedAt(new Date())
