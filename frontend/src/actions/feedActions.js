@@ -7,7 +7,7 @@ export const loadFeed = (data) => dispatch => {
   }else {
     username = data;
   }
-
+  
   data.username ? data.changeState() : null;
 
   fetch('/api/posts/followed/' + username,

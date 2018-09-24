@@ -31,14 +31,14 @@ export default class Registration extends React.Component {
             password: this.refs.loginPassword.value,
             isRemembered: this.refs.rememberMe.checked
           })
-        }).then(res => res.json())
-        .then(res => res.accessToken ? localStorage.setItem('accessToken', res.accessToken) : this.showMessage(res))
+        }).then(res =>  res.status !== 405 ? res.json() : null)
+        .then(res => res && res.accessToken ? localStorage.setItem('accessToken', res.accessToken) : this.showMessage(res))
         .then(() => localStorage.getItem('accessToken')
             ? setTimeout(() => this.props.history.push('/'), 1000) : null)
   };
 
   showMessage = res => {
-    if (res.status) {
+    if (!res) {
       this.createMessage('Wrong password', document.getElementById('loginForm'), 0);
     } else {
       this.createMessage(res.message, document.getElementById('loginForm'), 0);
@@ -236,7 +236,7 @@ export default class Registration extends React.Component {
               <form id='forgotForm' onSubmit={event => this.recoverPassword(event)}>
                 <input ref="forgotEmail" type="text" className="input_custom" placeholder="Email address"
                        minLength="3"/>
-                <input type="submit" className="btn-action login__btn" value="Send email"/>
+                <input type="submit" className="login__btn" value="Send email"/>
               </form>
               <button onClick={() => this.showLogin()} className="login__sign-btn">Sign in</button>
             </div>
