@@ -6,7 +6,7 @@
   font-size: 17px;
   font-weight: 700;
 
-  @include clear-default-input-style();
+  @include  clear-default-input-style();
 
   &_green {
     background-color: $green-color;
