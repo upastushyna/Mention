@@ -74,7 +74,6 @@ public class LoginServiceImpl implements LoginService {
       return new ResponseEntity(new ApiRs(false, "Username or Email not found"),
           HttpStatus.BAD_REQUEST);
     }
-    System.out.println(passwordEncoder.encode(loginRequest.getPassword()).equals(currentUser.get().getPassword()));
 
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
