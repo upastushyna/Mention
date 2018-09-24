@@ -34,16 +34,15 @@
   }
 
   &__input {
+    @include clear-default-input-style;
+    @include placeholder-default;
     width: 85%;
     margin-right: 8px;
     padding: 10px 20px;
     border-radius: 4px;
     background-color: $border-color;
     color: $black-text-color;
-    font-size: 16px;
-
-    @include clear-default-input-style;
-    @include placeholder-default;
+    font-size: 16px;   
   }
 
   &__button {

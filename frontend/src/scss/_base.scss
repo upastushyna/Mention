@@ -55,6 +55,11 @@ body {
   cursor: pointer;
 }
 
+.default-checkbox{
+  opacity: 0;
+  position: absolute;
+}
+
 textarea:focus {
   &::-webkit-input-placeholder {
     color: transparent;

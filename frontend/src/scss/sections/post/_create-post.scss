@@ -9,26 +9,26 @@
 
   @include box-shadow(2px 0 4px 0 rgba(0, 0, 0, .08));
 
-  &__input {
-    width: 80%;
-    padding: 16px 7px;
-    border: 1px solid $border-color;
-    border-radius: 5px;
+ &__input {
+  @include clear-default-input-style;
 
-    @include clear-default-input-style;
+  width: 80%;
+  padding: 16px 7px;
+  border: 1px solid $border-color;
+  border-radius: 5px;
 
-    @include placeholder {
-      color: $placeholder-color;
-      font-size: 15px;
-      font-weight: 300;
-      letter-spacing: .5px;
-    }
+  @include placeholder {
+   color: $placeholder-color;
+   font-size: 15px;
+   font-weight: 300;
+   letter-spacing: .5px;
   }
+ }
 
-  &__btn {
-    width: 20%;
-    margin-left: 16px;
-  }
+ &__btn {
+  width: 20%;
+  margin-left: 16px;
+ }
 }
 
 @media screen and (max-width: 1000px) {

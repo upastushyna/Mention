@@ -9,7 +9,7 @@
     position: relative;
     width: 500px;
     margin: 0 auto;
-    padding: 48px 0 36px;
+    padding: 48px 36px;
     border-radius: 4px;
     background-color: #fff;
     text-align: center;
@@ -46,6 +46,7 @@
   }
 
   &__forgot-password {
+    @include clear-default-input-style;
     margin-top: 16px;
     border: none;
     color: $red-color;
@@ -55,6 +56,8 @@
   }
 
   &__input {
+    @include clear-default-input-style;
+    @include placeholder-default;
     display: block;
     width: 100%;
     margin-bottom: 20px;
@@ -66,16 +69,15 @@
     font-size: 18px;
     text-align: center;
 
-    @include clear-default-input-style;
-    @include placeholder-default;
-
     &:focus {
       box-shadow: 0 3px 8px rgba(0, 0, 0, .21);
     }
   }
 
   &__btn {
-    display: block;
+    @include clear-default-input-style;
+    color: #fff;
+    padding: 8px;
     width: 100%;
     background-color: $green-color;
     font-family: $main-font;
@@ -84,17 +86,42 @@
   }
 
   &__sign-btn {
+    @include clear-default-input-style;
     margin-top: 20px;
     padding: 7px 15px;
     border: none;
     background-color: #fff;
     color: $main-color;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 700;   
+  }
 
-    @include clear-default-input-style;
+  &__checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $border-color;
+    background: #fff no-repeat center;
+    background-size: cover;   
+  }
+
+  &__remember{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   margin-top: 20px;
+   cursor: pointer;
+
+   p{
+     margin-left: 10px;
+     font-size: 14px;
+   }
   }
 }
+
+.default-checkbox:checked ~ .login__checkbox {
+  background-image: url("../img/checkbox.png") ;
+ }
 
 @media screen and (max-width: 1000px) {
   .login {

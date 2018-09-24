@@ -188,8 +188,8 @@ export default class Registration extends React.Component {
             <div className="login__container">
               <img className="login__icon" src={logo} alt="profile"/>
               <h1 className="login__title">Join the community</h1>
-              <form onSubmit={event => this.register(event)}>
-                <div id='registerForm' className="login__form">
+              <form id='registerForm' className="login__form" onSubmit={event => this.register(event)}>
+               
                   <input ref="registerUsername" type="text" className="input_custom" placeholder="Username"
                          minLength="3" maxLength="20"/>
                   {/*<input ref="registerUsername" type="text" className={`input input_text ${showRegister ? 'input_custom' : 'd-none'}`} placeholder="Username" minLength="3" maxLength="20"/>*/}
@@ -198,8 +198,8 @@ export default class Registration extends React.Component {
                          minLength="6" maxLength="24"/>
                   <input ref="confirmPassword" type="password" className="input_custom"
                          placeholder="Confirm Password"/>
-                  <input className="btn-action login__btn" type="submit" placeholder="Register"/>
-                </div>
+                  <input className="login__btn" type="submit" placeholder="Register"/>
+          
               </form>
               <button onClick={() => this.showLogin()} className="login__sign-btn">Member Login</button>
             </div>
@@ -215,9 +215,13 @@ export default class Registration extends React.Component {
                        minLength="3"/>
                 <input ref="loginPassword" type="password" className="input_custom" placeholder="Password" minLength="6"
                        maxLength="24"/>
+                <input type="submit" className="login__btn" value="login"/>
+                <label className="login__remember">
                 <input type="checkbox" name="feature" ref='rememberMe'
-                       defaultValue="Remember Me"/>
-                <input type="submit" className="btn-action login__btn" value="login"/>
+                       defaultValue="Remember Me" className="default-checkbox"/>
+                       <div className="login__checkbox"></div>
+                <p>Remember me</p>
+                </label>
               </form>
               <button onClick={() => this.showRegister()} className="login__sign-btn">Sign up</button>
               <button onClick={() => this.showForgot()} className="login__forgot-password">Forgot Password?</button>

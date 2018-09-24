@@ -10,10 +10,9 @@
   overflow: hidden;
 
   &__input {
-    width: 80%;
-
     @include clear-default-input-style;
     @include placeholder-default;
+    width: 80%;    
   }
 
   &__actions {
