@@ -6,19 +6,19 @@
   border: 1px solid $border-color;
   box-shadow: 2px 0 4px 0 rgba(0, 0, 0, .08);
 
- &__link {
-  text-decoration: none;
- }
+  &__link {
+    text-decoration: none;
+  }
 
- &__avatar {
-  width: 40px;
-  height: 40px;
- }
+  &__avatar {
+    width: 40px;
+    height: 40px;
+  }
 
- &__action-count {
-  margin: 0 10px;
-  color: $meta-color;
- }
+  &__action-count {
+    margin: 0 10px;
+    color: $meta-color;
+  }
 
   &__header {
     display: flex;
@@ -56,11 +56,11 @@
   }
 
   &__action-img {
-   width: 30px;
-   height: 30px;
-   outline: none;
-   cursor: pointer;
- }
+    width: 30px;
+    height: 30px;
+    outline: none;
+    cursor: pointer;
+  }
 
   &__action {
     display: block;
@@ -70,11 +70,11 @@
     border: 1px solid $border-color;
     border-radius: 5px;
     background-color: #fff;
-    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0,0.08));
-
     color: $black-text-color;
     white-space: nowrap;
     cursor: pointer;
+
+    @include box-shadow(2px 0 4px 0 rgba(0, 0, 0,.08));
 
     &:hover {
       background-color: $border-color;
@@ -83,85 +83,37 @@
 }
 
 .postLikers {
- &__nav {
-  width: 30vw;
-  border: 1px solid $main-color;
-  position: absolute;
-  left: 80px;
-  background-color: #fff;
-  border-radius: 6px;
-  padding: 8px;
-  z-index: 20;
-
-  &:after {
-   content: "";
-   width: 0;
-   height: 0;
-   position: absolute;
-   top: calc(50% - 17px);
-   left: -2px;
-   transform: translate(50%);
-   transform: rotate(45deg);
-   border-style: solid;
-   border-width: 13px 13px 13px 0;
-   border-color: transparent transparent $main-color transparent;
-  }
-
-  .follow-container {
-   @include box-shadow(none);
-
-   border: none;
-   width: 100%;
-   margin: 8px auto;
-   padding: 6px;
-
-   &:last-child {
-    margin-bottom: 0;
-   }
-  }
- }
-
- &__title {
-  font-size: 20px;
-  line-height: 30px;
-  font-weight: 700;
-  color: $black-text-color;
-  text-align: center;
- }
-}
-
-.repostLikers {
   &__nav {
-    width: 30vw;
-    border: 1px solid $main-color;
     position: absolute;
-    right: 45px;
-    background-color: #fff;
-    border-radius: 6px;
+    left: 80px;
+    width: 30vw;
     padding: 8px;
+    border: 1px solid $main-color;
+    border-radius: 6px;
+    background-color: #fff;
     z-index: 20;
 
-    &:after {
-      content: "";
-      width: 0;
-      height: 0;
+    &::after {
       position: absolute;
       top: calc(50% - 17px);
-      right: -2px;
+      left: -2px;
+      width: 0;
+      height: 0;
       transform: translate(50%);
-      transform: rotate(-45deg);
+      transform: rotate(45deg);
+      border-width: 13px 13px 13px 0;
       border-style: solid;
-      border-width: 13px 0px 13px 13px;
       border-color: transparent transparent $main-color transparent;
+      content: "";
     }
 
     .follow-container {
-      @include box-shadow(none);
-
-      border: none;
       width: 100%;
       margin: 8px auto;
       padding: 6px;
+      border: none;
+
+      @include box-shadow(none);
 
       &:last-child {
         margin-bottom: 0;
@@ -170,10 +122,58 @@
   }
 
   &__title {
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 700;
     color: $black-text-color;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    text-align: center;
+  }
+}
+
+.repostLikers {
+  &__nav {
+    position: absolute;
+    right: 45px;
+    width: 30vw;
+    padding: 8px;
+    border: 1px solid $main-color;
+    border-radius: 6px;
+    background-color: #fff;
+    z-index: 20;
+
+    &::after {
+      position: absolute;
+      top: calc(50% - 17px);
+      right: -2px;
+      width: 0;
+      height: 0;
+      transform: translate(50%);
+      transform: rotate(-45deg);
+      border-width: 13px 0 13px 13px;
+      border-style: solid;
+      border-color: transparent transparent $main-color transparent;
+      content: "";
+    }
+
+    .follow-container {
+      width: 100%;
+      margin: 8px auto;
+      padding: 6px;
+      border: none;
+
+      @include box-shadow(none);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__title {
+    color: $black-text-color;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
     text-align: center;
   }
 }
@@ -197,6 +197,7 @@
       font-size: 12px;
     }
   }
+
   .postLikers__nav {
     width: 70vw;
   }

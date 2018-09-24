@@ -14,8 +14,8 @@
   &__body {
     height: 82%;
     padding: 20px;
-    overflow-y: scroll;
     border-left: 1px solid $border-color;
+    overflow-y: scroll;
 
     &::-webkit-scrollbar {
       width: 5px;

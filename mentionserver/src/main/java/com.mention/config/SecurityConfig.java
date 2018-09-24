@@ -46,28 +46,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
         .headers()
-          .frameOptions()
-          .disable()
-          .and()
+        .frameOptions()
+        .disable()
+        .and()
 
         .csrf()
-          .disable()
+        .disable()
 
         .exceptionHandling()
-          .authenticationEntryPoint(unauthorizedHandler)
-          .and()
+        .authenticationEntryPoint(unauthorizedHandler)
+        .and()
 
         .sessionManagement()
-          .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-          .and()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
 
         .authorizeRequests()
-          .antMatchers("/h2/**", "/api/login", "/api/register/**", "/ws/**", "/api/recover/**")
-            .permitAll()
-          .anyRequest()
-            .authenticated()
-          .and()
-
+         .antMatchers( "/", "/static/**","/css/**", "/js/**", "/media/**","*.html",
+             "/registration", "/favicon.ico","/api/login", "/api/register/**", "/api/recover/**", "/ws/**")
+        .permitAll()
+        .anyRequest()
+        .authenticated()
+        .and()
         .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 /*
         .antMatchers("/api/register/**")
