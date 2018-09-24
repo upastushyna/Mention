@@ -156,6 +156,6 @@ const PostItem = props => {
     </div>
 
   </Fragment>
-}
+};
 
 export default PostItem

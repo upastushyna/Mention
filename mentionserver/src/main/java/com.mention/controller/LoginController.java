@@ -1,5 +1,6 @@
 package com.mention.controller;
 
+import com.mention.dto.ForgotPasswordRq;
 import com.mention.dto.LoginRq;
 import com.mention.dto.UserRq;
 import com.mention.service.LoginServiceImpl;
@@ -37,5 +38,10 @@ public class LoginController {
   @PostMapping("/register")
   public ResponseEntity<?> registerUser(@Valid @RequestBody UserRq userDtoRq) {
     return loginService.registerUser(userDtoRq);
+  }
+
+  @PostMapping("/recover")
+  public ResponseEntity<?> recoverPassword(@Valid @RequestBody ForgotPasswordRq forgotPasswordRq) {
+    return loginService.recoverPassword(forgotPasswordRq);
   }
 }
