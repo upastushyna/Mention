@@ -80,6 +80,7 @@
     font-family: $main-font;
     font-size: 20px;
     font-weight: 500;
+    cursor: pointer;
   }
 
   &__sign-btn {
@@ -95,7 +96,7 @@
   &__checkbox {
     width: 20px;
     height: 20px;
-    border: 1px solid $border-color;
+    border: 1px solid $placeholder-color;
     background: #fff no-repeat center;
     background-size: cover;   
   }

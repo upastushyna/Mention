@@ -15,6 +15,7 @@
   &__container {
     display: flex;
     width: 50vw;
+    justify-content: center;
     margin: 0 auto;
 
     .empty-state {
