@@ -32,10 +32,12 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .upload-file {
-    input{
-      right: 0;
-      left: initial;
+  .edit-profile__item{
+    .upload-file {
+      input{
+        right: 0;
+        left: initial;
+      }
     }
-  }
+  } 
 }

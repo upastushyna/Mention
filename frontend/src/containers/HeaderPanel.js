@@ -60,7 +60,6 @@ class HeaderPanel extends React.Component {
     return (
       <Fragment>
         <div className="main-header">
-          <div className="container main-header-wrapper">
             <div className="d-flex-center">
               <Link to="/" className="main-header__logo"><img className="main-header__logo-img" src={logo}
                 alt="logo-img"/>
@@ -108,7 +107,6 @@ class HeaderPanel extends React.Component {
                 <li className="profile__option" onClick={() => this.logout()} ref="listItem">Logout</li>             
               </ul>
             </div>
-          </div>
         </div>
       </Fragment>
     )
