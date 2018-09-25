@@ -23,6 +23,10 @@
   .follow-container {
     width: 95vw;
 
+    &:last-of-type{
+      margin-bottom: 70px;
+    }
+
     .follow-button {
       min-width: 85px;
       font-size: 13px;
