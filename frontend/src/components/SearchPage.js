@@ -128,7 +128,7 @@ class SearchPage extends React.Component {
                                     deleteComment={this.props.deleteComment}/>
               }
             </div>
-            <div ref="searchUsers" className="users-panel d-none">
+            <div ref="searchUsers" className="users-panel">
               {this.props.foundUsers.length === 0 ? ''
                   : <UsersContainer username={this.props.match.params.input}
                                     loadUsers={this.props.loadUsers}

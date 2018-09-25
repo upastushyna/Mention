@@ -46,7 +46,7 @@ const AddComment = props => {
                 onChange={() => activeCommentButton(props.postId)}
                 maxLength={280}/>
       <button id={"commentButton" + props.postId} onClick={() => addComment()}
-              className="create-post__btn btn-action inactive-button"><p className="btn-action__text">Add post</p><span className="btn-action__add">+</span>
+              className="create-post__btn btn-action inactive-button"><p className="btn-action__text">Add comment</p><span className="btn-action__add">+</span>
       </button>
     </div>
   </Fragment>
