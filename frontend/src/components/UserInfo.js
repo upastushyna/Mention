@@ -11,9 +11,7 @@ import thinking from '../img/thinking.svg'
 
 class UserInfo extends React.Component {
   componentWillMount () {
-    if (this.props.likedPosts.length === 0) {
-      this.props.loadData(this.props.username)
-    }
+    this.props.loadData(this.props.username)
   }
 
   render () {
