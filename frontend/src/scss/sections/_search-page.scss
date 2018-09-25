@@ -15,8 +15,25 @@
   }
 }
 
+.header_search {
+  justify-content: space-around;
+  margin: 0 auto;
+  display: none;
+}
+
+.btn-toSearch {
+  margin-top: 15px;
+  color: white;
+  background-color: #38acec;
+  padding: 15px 25px;
+  border-radius: 25px;
+}
+
 @media screen and (max-width: 1000px) {
+  .header_search {
+    display: flex;
+  }
   .users-panel {
-    display: none;
+    right: inherit;
   }
 }

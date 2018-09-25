@@ -1,4 +1,4 @@
-import {FEED_LOADED, USER_POST_DELETED} from '../constants/action-types'
+import {FEED_LOADED} from '../constants/action-types'
 
 const initialState = []
 

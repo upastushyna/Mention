@@ -32,6 +32,11 @@
     width: 65%;
     height: 100vh;
     box-shadow: none;
+
+    &__header,
+    &__body {
+      border-left: none;
+    }
   }
 }
 

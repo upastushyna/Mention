@@ -181,7 +181,7 @@ class EditProfile extends React.Component {
               </div>
               <div className="edit-profile__item">
                 <input id="changeAvatar" type="submit" className="edit-profile__btn btn-action inactive-button"
-                       defaultValue="Change Profile Picture"/>
+                       defaultValue="Change Picture"/>
               </div>
             </form>
             <form className="edit-profile flex-column" encType="multipart/form-data"
@@ -199,7 +199,7 @@ class EditProfile extends React.Component {
               </div>
               <div className="edit-profile__item">
                 <input id="changeBackground" type="submit" className="edit-profile__btn btn-action inactive-button"
-                       defaultValue="Change background picture"/>
+                       defaultValue="Change Picture"/>
               </div>
             </form>
           </div>

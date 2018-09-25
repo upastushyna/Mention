@@ -7,10 +7,10 @@ export const getDateFromDb = dateDB => {
   let second = dateDB.substr(17, 2)
 
   let tz = new Date();
-  let hour = parseInt(hour1) - tz.getTimezoneOffset()/60;
+  let hour = parseInt(hour1) - tz.getTimezoneOffset() / 60;
   day = parseInt(day);
 
-  if(hour > 24){
+  if (hour => 24) {
     hour = hour % 24;
     day += 1;
   }
@@ -22,8 +22,8 @@ export const getDateFromDb = dateDB => {
   let currentDate = new Date()
 
   let showDate = (currentDate.getDate() === createdDate.getDate()) ? 'Today at ' + time
-    : (currentDate.getDate() - createdDate.getDate() === 1) ? 'Yesterday at ' + time
-      : yearMonthDate + ' at ' + time
+      : (currentDate.getDate() - createdDate.getDate() === 1) ? 'Yesterday at ' + time
+          : yearMonthDate + ' at ' + time
 
   return showDate
 }
