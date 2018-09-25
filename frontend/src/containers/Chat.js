@@ -8,8 +8,12 @@ import Loader from "./Loader";
 import Linkify from 'react-linkify'
 
 const goBack = () => {
-  document.querySelector('.messages-container').style.display = "none";
-  document.querySelector('.chats__list').style.display = "block";
+  let messages = document.querySelector('.messages-container');
+  let chatList = document.querySelector('.chats__list');
+
+  messages.classList.remove('d-block');
+  messages.classList.remove('w-100');
+  chatList.classList.remove('d-none');
 };
 
 const Chat = props => {

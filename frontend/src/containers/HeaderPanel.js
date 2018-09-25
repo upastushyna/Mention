@@ -52,6 +52,12 @@ class HeaderPanel extends React.Component {
     }
   };
 
+  reset1 = () => {
+    document.querySelector('.messages-container').classList.remove('d-block');
+    document.querySelector('.messages-container').classList.remove('w-100');
+    document.querySelector('.chats__list').classList.remove('d-none');
+  };
+
   render () {
     if (!this.props.currentUser || !this.props.currentUser.username) {
       return " ";

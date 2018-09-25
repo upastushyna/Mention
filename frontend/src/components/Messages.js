@@ -30,15 +30,18 @@ class Messages extends React.Component {
   componentDidUpdate () {
     this.scrollToBottom();
     this.openChat();
+
   }
 
   openChat = () => {
     let id = document.getElementById("root");
+    let messages = document.querySelector('.messages-container');
+    let chatList = document.querySelector('.chats__list');
 
-    if (id.clientWidth <= 768) {
-      this.refs.messages.style.display = "block";
-      this.refs.chatsList.style.display = "none";
-      this.refs.messages.style.width = "100%";
+    if (id.clientWidth <= 768 && !messages.classList.contains('d-block')) {
+      messages.classList.add('d-block');
+      messages.classList.add('w-100');
+      chatList.classList.add('d-none');
     }
   };
 
@@ -61,7 +64,7 @@ class Messages extends React.Component {
     return (
       <Fragment key={Messages.id}>
         <main className="container chats__view">
-          <section ref="chatsList" className="chats__list">
+          <section className="chats__list">
             <div className="chats__search">
               <input id="chatInput" ref="chatInput"
                 type="text" className="chats__input" placeholder="Search"/>
@@ -73,7 +76,7 @@ class Messages extends React.Component {
             </div>      
           </section>
 
-          <section ref="messages" className="messages-container">
+          <section className="messages-container">
             <Switch>
               <Route path='/messages/:username' render={props =>
                 <Chat user1={currentUser.username} user2={props.match.params.username}
